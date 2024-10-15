@@ -15,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 public class Home {
 	
 	@GetMapping("")
-	public String home() {
+	public String showHome() {
 		return "user/home";
 	}
 }
