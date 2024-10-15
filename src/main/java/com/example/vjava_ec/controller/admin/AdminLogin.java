@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 /**
  * ログインコントローラ
  */
-@Controller("adminLogin")
+@Controller
 @RequestMapping("/admin/login")
 @RequiredArgsConstructor
 public class AdminLogin {

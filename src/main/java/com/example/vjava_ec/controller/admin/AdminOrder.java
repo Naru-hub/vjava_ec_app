@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 /**
  * 注文コントローラ
  */
-@Controller("adminOrder")
+@Controller
 @RequestMapping("/admin/order")
 @RequiredArgsConstructor
 public class AdminOrder {
