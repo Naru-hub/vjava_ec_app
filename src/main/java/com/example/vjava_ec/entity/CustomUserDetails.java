@@ -6,13 +6,18 @@ import java.util.List;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+/**
+ * UserDetails実装クラス
+ */
 public class CustomUserDetails implements UserDetails{
+	// フィールドの設定
 	private String email;
 	private String password;
 	private List<GrantedAuthority> authorities;
 	
-	
-
+	/*
+	 * コンストラクタ
+	 */
 	public CustomUserDetails(String email, String password, List<GrantedAuthority> authorities) {
 		super();
 		this.email = email;

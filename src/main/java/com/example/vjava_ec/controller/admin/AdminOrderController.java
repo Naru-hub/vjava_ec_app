@@ -1,4 +1,4 @@
-package com.example.vjava_ec.controller.user;
+package com.example.vjava_ec.controller.admin;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import lombok.RequiredArgsConstructor;
 
 /**
- * 新規登録コントローラ
+ * 注文コントローラ
  */
 @Controller
-@RequestMapping("/user/register")
+@RequestMapping("/admin/order")
 @RequiredArgsConstructor
-public class Register {
+public class AdminOrderController {
 
 }

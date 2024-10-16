@@ -9,25 +9,34 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.web.SecurityFilterChain;
 
 import lombok.RequiredArgsConstructor;
-
+/*
+ * Spring Securityの設定をするクラス
+ * 今回は会員と管理者で別のFilterChainを設定している
+ */
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
-
+	// DI
 	private final CustomAuthenticationProvider customAuthenticationProvider;
 	
-	// SecurityFilterChainのBean定義
+	/**
+     * 管理者用のSecurityFilterChainを設定するメソッド
+     * "/admin/**"のURLに対するアクセス制御を設定している
+     * 
+     * @param http HttpSecurityオブジェクト
+     * @return SecurityFilterChainオブジェクト
+     * @throws Exception セキュリティ設定の構築時に発生する例外
+     */
 	@Bean
 	protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http
 		.securityMatcher("/admin/**")
 		// ★HTTPリクエストに対するセキュリティ設定
 		.authorizeHttpRequests(authz -> authz
-				// 「/login」へのアクセスは認証を必要としない
+				// 下記のアクセスは認証を必要としない
 				.requestMatchers("/admin/login","/admin/authentication").permitAll()
-				// ▽▽▽▽▽ リストA.29 ▽▽▽▽▽
-				// 【管理者権限設定】url:/todos/**は管理者しかアクセスできない
+				// 【管理者権限設定】url:/admin/**はadmin管理者しかアクセスできない
 				.requestMatchers("/admin/**").hasAuthority("ADMIN")
 				// その他のリクエストは認証が必要
 				.anyRequest().authenticated())
@@ -35,7 +44,7 @@ public class SecurityConfig {
 		.formLogin(form -> form
 				// ログイン処理のURLを指定
 				.loginProcessingUrl("/admin/authentication")
-				// ユーザー名のname属性を指定
+				// メールアドレスのname属性を指定
 				.usernameParameter("email")
 				// パスワードのname属性を指定
 				.passwordParameter("password")
@@ -54,20 +63,25 @@ public class SecurityConfig {
 				// ログアウト時にCookieを削除する
 				.deleteCookies("JSESSIONID")
 				);
-		// △△△△△ リストA.5 △△△△△
 		return http.build();
 		
 	}
-	
+	/**
+     * ユーザー用のSecurityFilterChainを設定するメソッド。
+     * このメソッドでは、"/user/**"のURLに対するアクセス制御を設定します。
+     * 
+     * @param http HttpSecurityオブジェクト
+     * @return SecurityFilterChainオブジェクト
+     * @throws Exception セキュリティ設定の構築時に発生する例外
+     */
 	@Bean
 	protected SecurityFilterChain userFilterChain(HttpSecurity http) throws Exception {
 		http
 		.securityMatcher("/user/**")
 		// ★HTTPリクエストに対するセキュリティ設定
 		.authorizeHttpRequests(authz -> authz
-				// 「/login」へのアクセスは認証を必要としない
+				// 下記のアクセスは認証を必要としない
 				.requestMatchers("/user","/user/login","/user/logout").permitAll()
-				// ▽▽▽▽▽ リストA.29 ▽▽▽▽▽
 				// 【管理者権限設定】url:/admin/**は管理者しかアクセスできない
 				.requestMatchers("/admin/**").hasAuthority("ADMIN")
 				// その他のリクエストは認証が必要
@@ -78,7 +92,7 @@ public class SecurityConfig {
 				.loginPage("/user/login")
 				// ログイン処理のURLを指定
 				.loginProcessingUrl("/user/authentication")
-				// ユーザー名のname属性を指定
+				// メールアドレスのname属性を指定
 				.usernameParameter("email")
 				// パスワードのname属性を指定
 				.passwordParameter("password")
@@ -100,7 +114,14 @@ public class SecurityConfig {
 		return http.build();
 		
 	}
-	
+	/**
+     * AuthenticationManagerを設定するメソッド
+     * カスタム認証プロバイダを利用した認証マネージャーを構築
+     * 
+     * @param http HttpSecurityオブジェクト
+     * @return AuthenticationManagerオブジェクト
+     * @throws Exception 認証マネージャーの構築時に発生する例外
+     */
 	@Bean
     public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
         return http.getSharedObject(AuthenticationManagerBuilder.class)

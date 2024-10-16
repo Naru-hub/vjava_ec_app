@@ -19,24 +19,25 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 
 /**
- * カスタム認証プロバイダー。
+ *AuthenticationProviderを実装したクラス
  * 
- * <p>このクラスは、管理者またはユーザーのログインに応じて適切な {@link UserDetailsService} を切り替えて
- * 認証を行います。ログインURLに基づき、管理者かユーザーかを判別し、それぞれの認証処理を実行します。</p>
+ * 管理者またはユーザーのログインに応じて適切な {@link UserDetailsService} を切り替えて
+ * 認証を行う。ログインURLに基づき、管理者かユーザーかを判別し、それぞれの認証処理を実行
  */
 @Component
 @RequiredArgsConstructor
 public class CustomAuthenticationProvider implements AuthenticationProvider{
 	
+	// DI
 	private final AdminUserDetailsServiceImpl adminUserDetailsService;
 	private final UserUserDetailsServiceImpl userUserDetailsService;
 	private final PasswordEncoder passwordEmcoder;
 	/**
-     * 認証を行うメソッド。
+     * 認証を行うメソッド
      * 
-     * <p>このメソッドは、認証に必要な {@link Authentication} オブジェクトを受け取り、
-     * ユーザーまたは管理者の認証を行います。ログインURLに基づいて、適切な {@link UserDetailsService} を使用して
-     * ユーザー情報をロードし、パスワードの照合を行います。</p>
+     * 認証に必要な {@link Authentication} オブジェクトを受け取り、
+     * ユーザーまたは管理者の認証を行う。ログインURLに基づいて、適切な {@link UserDetailsService} を使用して
+     * ユーザー情報をロードし、パスワードの照合を行う
      * 
      * @param authentication 認証リクエストの詳細を含む {@link Authentication} オブジェクト
      * @return 認証に成功した場合、認証済みの {@link UsernamePasswordAuthenticationToken} を返す
@@ -44,30 +45,29 @@ public class CustomAuthenticationProvider implements AuthenticationProvider{
      */
 	@Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        
+      
+		// デバック用　後ほど削除
 		System.out.println("CustomAuthenticationProvider稼働");
-		
+		// authenticationからメールアドレスとパスワードを取得
 		String email = authentication.getName();
         String password = authentication.getCredentials().toString();
 
-        // ログインURLに基づいてUserDetailsServiceを切り替え
+        // ログインURLを取得
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
         String loginUrl2 = request.getRequestURL().toString();
         
-        System.out.println("loginUrl2:" + loginUrl2);
-        
-
         UserDetails userDetails;
+        // ログインURLに基づいてUserDetailsServiceを切り替え
         if (loginUrl2.contains("http://localhost:8080/admin/authentication")) {
             // 管理者ログイン用のUserDetailsServiceを使用
             userDetails = adminUserDetailsService.loadUserByUsername(email);
         } else if (loginUrl2.contains("http://localhost:8080/user/authentication")) {
             // ユーザー用のUserDetailsServiceを使用
             userDetails = userUserDetailsService.loadUserByUsername(email);
-        } else {
+        } else { 
             throw new UsernameNotFoundException("Login URL is not recognized");
         }
-
+        // データベースで管理者及び会員の情報が見つからなかった場合
         if (userDetails == null) {
             throw new UsernameNotFoundException("User not found: " + email);
         }
@@ -81,7 +81,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider{
     }
 	
 	/**
-     * この認証プロバイダが対応する認証トークンクラスを指定します。
+     * この認証プロバイダが対応する認証トークンクラスを指定
      * 
      * @param authentication 認証に使用されるトークンのクラス
      * @return {@code true} if {@link UsernamePasswordAuthenticationToken} に対応

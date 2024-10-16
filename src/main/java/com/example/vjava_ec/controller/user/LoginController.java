@@ -12,14 +12,10 @@ import lombok.RequiredArgsConstructor;
 @Controller
 @RequestMapping("/user/login")
 @RequiredArgsConstructor
-public class Login {
+public class LoginController {
 	
 	 /**
-     * 会員ログイン画面を表示するためのメソッド。
-     * 
-     * <p>GETリクエストを受け取り、"user/login" テンプレートを返します。
-     * このテンプレートは、会員のログインページを表示します。</p>
-     * 
+     * 会員ログイン画面を表示するためのメソッド
      * @return ログイン画面のビュー名（"user/login"）
      */
 	@GetMapping

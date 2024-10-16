@@ -18,10 +18,10 @@ import com.example.vjava_ec.repository.user.UserMapper;
 import lombok.RequiredArgsConstructor;
 
 /**
- * 認証に使用される {@link UserDetailsService} の実装クラス。
+ * 認証に使用される {@link UserDetailsService} の実装クラス
  * 
- * <p>このクラスは、データベースからユーザー情報を取得し、
- * Spring Securityの認証プロセスに必要な {@link UserDetails} を提供します。</p>
+ * データベースからユーザー情報を取得し、
+ * Spring Securityの認証プロセスに必要な {@link UserDetails} を提供</p>
  */
 @Service
 @RequiredArgsConstructor
@@ -31,11 +31,11 @@ public class UserUserDetailsServiceImpl  implements UserDetailsService{
 	private final UserMapper userMapper;
 	
 	/**
-     * 指定されたメールアドレスに対応するユーザーをロードします。
+     * 指定されたメールアドレスに対応するユーザーをロードするメソッド
      * 
-     * <p>このメソッドは、データベースからユーザーを検索し、該当するユーザーが存在する場合、
-     * {@link CustomUserDetails} のインスタンスを返します。
-     * ユーザーが見つからない場合は {@link UsernameNotFoundException} をスローします。</p>
+     * データベースからユーザーを検索し、該当するユーザーが存在する場合、
+     * {@link CustomUserDetails} のインスタンスを返す
+     * ユーザーが見つからない場合は {@link UsernameNotFoundException} をスロー
      * 
      * @param email ユーザーのメールアドレス
      * @return メールアドレスに対応する {@link UserDetails} オブジェクト
@@ -47,16 +47,15 @@ public class UserUserDetailsServiceImpl  implements UserDetailsService{
 		
 		System.out.println("'User'UserDetailsServiceには到達");
 		
-		// 「認証テーブル」からデータを取得
+		// 「会員テーブル」からデータを取得
 		User user = userMapper.selectUserByEmail(email);
 		// 対象データがあれば、UserDetailsの実装クラスを返す
 		if (user != null) {
-			// 対象データが存在する
-			// UserDetailsの実装クラスを返す
 			
 			// デバック用
 			System.out.println("Userテーブルでデータ発見");
 			
+			// UserDetailsの実装クラスを返す
 			return new CustomUserDetails(user.getEmail(),user.getPassword(),getAuthorityList(user.getRole()));
 		}else{
 			// 対象データが存在しない
@@ -65,10 +64,10 @@ public class UserUserDetailsServiceImpl  implements UserDetailsService{
 		}
 	}	
 	/**
-     * ユーザーの権限リストを取得します。
+     * ユーザーの権限リストを取得するメソッド
      * 
-     * <p>指定されたロールに基づいて権限をリストとして返します。
-     * ロールが ADMIN であれば、USER 権限も追加されます。</p>
+     * 指定されたロールに基づいて権限をリストとして返します。
+     * ロールが ADMIN であれば、USER 権限も追加
      * 
      * @param role ユーザーのロール（ADMIN または USER）
      * @return ユーザーの権限リスト

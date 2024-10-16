@@ -12,14 +12,10 @@ import lombok.RequiredArgsConstructor;
 @Controller
 @RequestMapping("/admin/item")
 @RequiredArgsConstructor
-public class AdminItem {
+public class AdminItemController {
 	
 	/**
-     * 商品リストを表示するためのメソッド。
-     * 
-     * <p>GETリクエスト "/admin/item/list" を受け取り、"admin/items" テンプレートを返します。
-     * このテンプレートは、管理者用の商品リストページを表示します。</p>
-     * 
+     * 商品リストを表示するためのメソッド
      * @return 商品リスト画面のビュー名（"admin/items"）
      */
 	@GetMapping("/list")

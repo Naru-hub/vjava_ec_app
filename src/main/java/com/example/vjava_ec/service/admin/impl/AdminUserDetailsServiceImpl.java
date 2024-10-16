@@ -18,22 +18,22 @@ import com.example.vjava_ec.repository.admin.AdminMapper;
 import lombok.RequiredArgsConstructor;
 
 /**
- * 管理者用の {@link UserDetailsService} の実装クラス。
+ * 管理者用の {@link UserDetailsService} の実装クラス
  * 
- * <p>このクラスは、データベースから管理者情報を取得し、Spring Securityの認証プロセスに必要な {@link UserDetails} を提供します。</p>
+ * データベースから管理者情報を取得し、Spring Securityの認証プロセスに必要な {@link UserDetails} を提供する
  */
 @Service
 @RequiredArgsConstructor
 public class AdminUserDetailsServiceImpl implements UserDetailsService {
-	/** DI */
+	// DI
 	private final AdminMapper adminMapper;
 
 	 /**
-     * 指定されたメールアドレスに対応する管理者をロードします。
+     * 指定されたメールアドレスに対応する管理者をロードするメソッド
      * 
-     * <p>このメソッドは、データベースから管理者を検索し、該当する管理者が存在する場合、
-     * {@link CustomUserDetails} のインスタンスを返します。
-     * 管理者が見つからない場合は {@link UsernameNotFoundException} をスローします。</p>
+     * データベースから管理者を検索し、該当する管理者が存在する場合、
+     * {@link CustomUserDetails} のインスタンスを返す。
+     * 管理者が見つからない場合は {@link UsernameNotFoundException} をスロー
      * 
      * @param email 管理者のメールアドレス
      * @return メールアドレスに対応する {@link UserDetails} オブジェクト
@@ -43,19 +43,18 @@ public class AdminUserDetailsServiceImpl implements UserDetailsService {
 	public UserDetails loadUserByUsername(String email)
 			throws UsernameNotFoundException {
 		
-		// デバック用
+		// デバック用 後ほど削除
 		System.out.println("'Admin'UserDetailsServiceに到達");
 		
-		// 「認証テーブル」からデータを取得
+		// 「管理者テーブル」からデータを取得
 		Admin admin = adminMapper.selectAdminByEmail(email);
 		// 対象データがあれば、UserDetailsの実装クラスを返す
 		if (admin != null) {
-			// 対象データが存在する
-			// UserDetailsの実装クラスを返す
 			
-			// デバック用
+			// デバック用　後ほど削除
 			System.out.println("Adminテーブルでデータ発見");
 			
+			// UserDetailsの実装クラスを返す
 			return new CustomUserDetails(admin.getEmail(),admin.getPassword(),getAuthorityList(admin.getRole()));
 		}else{
 			// 対象データが存在しない
@@ -64,10 +63,10 @@ public class AdminUserDetailsServiceImpl implements UserDetailsService {
 		}
 	}
 	/**
-     * 管理者の権限リストを取得します。
+     * 権限リストを取得するメソッド
      * 
-     * <p>指定されたロールに基づいて権限をリストとして返します。
-     * ロールが ADMIN であれば、USER 権限も追加されます。</p>
+     * 指定されたロールに基づいて権限をリストとして返す
+     * ロールが ADMIN であれば、USER 権限も追加
      * 
      * @param role 管理者のロール（ADMIN または USER）
      * @return 管理者の権限リスト
