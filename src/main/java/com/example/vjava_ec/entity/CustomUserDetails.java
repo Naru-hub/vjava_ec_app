@@ -27,19 +27,16 @@ public class CustomUserDetails implements UserDetails{
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO 自動生成されたメソッド・スタブ
 		return authorities;
 	}
 
 	@Override
 	public String getPassword() {
-		// TODO 自動生成されたメソッド・スタブ
 		return password;
 	}
 
 	@Override
 	public String getUsername() {
-		// TODO 自動生成されたメソッド・スタブ
 		return email;
 	}
 	

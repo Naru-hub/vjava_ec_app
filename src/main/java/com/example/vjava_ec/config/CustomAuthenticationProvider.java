@@ -32,6 +32,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider{
 	private final AdminUserDetailsServiceImpl adminUserDetailsService;
 	private final UserUserDetailsServiceImpl userUserDetailsService;
 	private final PasswordEncoder passwordEmcoder;
+	
 	/**
      * 認証を行うメソッド
      * 

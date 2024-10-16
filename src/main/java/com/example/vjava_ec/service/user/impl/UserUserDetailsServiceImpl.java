@@ -21,7 +21,7 @@ import lombok.RequiredArgsConstructor;
  * 認証に使用される {@link UserDetailsService} の実装クラス
  * 
  * データベースからユーザー情報を取得し、
- * Spring Securityの認証プロセスに必要な {@link UserDetails} を提供</p>
+ * Spring Securityの認証プロセスに必要な {@link UserDetails} を提供
  */
 @Service
 @RequiredArgsConstructor
@@ -45,6 +45,7 @@ public class UserUserDetailsServiceImpl  implements UserDetailsService{
 	public UserDetails loadUserByUsername(String email)
 			throws UsernameNotFoundException {
 		
+		// デバック用　後で削除
 		System.out.println("'User'UserDetailsServiceには到達");
 		
 		// 「会員テーブル」からデータを取得
@@ -52,7 +53,7 @@ public class UserUserDetailsServiceImpl  implements UserDetailsService{
 		// 対象データがあれば、UserDetailsの実装クラスを返す
 		if (user != null) {
 			
-			// デバック用
+			// デバック用　後で削除
 			System.out.println("Userテーブルでデータ発見");
 			
 			// UserDetailsの実装クラスを返す
@@ -66,7 +67,7 @@ public class UserUserDetailsServiceImpl  implements UserDetailsService{
 	/**
      * ユーザーの権限リストを取得するメソッド
      * 
-     * 指定されたロールに基づいて権限をリストとして返します。
+     * 指定されたロールに基づいて権限をリストとして返す
      * ロールが ADMIN であれば、USER 権限も追加
      * 
      * @param role ユーザーのロール（ADMIN または USER）
