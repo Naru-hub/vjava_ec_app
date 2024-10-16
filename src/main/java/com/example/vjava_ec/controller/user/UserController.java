@@ -1,21 +1,16 @@
 package com.example.vjava_ec.controller.user;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import lombok.RequiredArgsConstructor;
 
 /**
- * ホームコントローラ
+ * 会員コントローラ
  */
-@Controller
+@Controller("user")
 @RequestMapping("/user")
 @RequiredArgsConstructor
-public class Home {
-	
-	@GetMapping("")
-	public String showHome() {
-		return "user/home";
-	}
+public class UserController {
+
 }

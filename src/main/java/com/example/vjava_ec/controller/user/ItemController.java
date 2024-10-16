@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import lombok.RequiredArgsConstructor;
 
 /**
- * 注文コントローラ
+ * 商品コントローラ
  */
-@Controller("userOrder")
-@RequestMapping("/user/order")
+@Controller("userItem")
+@RequestMapping("/user/item")
 @RequiredArgsConstructor
-public class Order {
+public class ItemController {
 
 }

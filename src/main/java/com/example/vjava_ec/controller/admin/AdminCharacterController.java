@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import lombok.RequiredArgsConstructor;
 
 /**
- * ログインコントローラ
+ * キャラクタコントローラ
  */
-@Controller("adminLogin")
-@RequestMapping("/admin/login")
+@Controller
+@RequestMapping("/admin/character")
 @RequiredArgsConstructor
-public class AdminLogin {
+public class AdminCharacterController {
 
 }

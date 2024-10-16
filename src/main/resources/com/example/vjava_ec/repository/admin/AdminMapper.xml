@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.vjava_ec.repository.admin.AdminMapper">
+
+<!-- emailからAdminを探す -->
+<select id="selectAdminByEmail" resultType="com.example.vjava_ec.entity.Admin">
+	SELECT * FROM admin WHERE email = #{email}
+</select>
+
+</mapper>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="login-container">
+       <h2>Admin Sign In</h2>
+	<!-- エラー表示 -->
+		<div th:if="${param.error}">
+			<p style="color: red;">emailまたはpasswordが違います</p>
+		</div>
+		<!-- ログアウト表示 -->
+		<div th:if="${param.logout}">
+			<p style="color: blue">ログアウトしました</p>
+		</div>
+		<!-- サインアップ表示 -->
+		<div th:if="${success}">
+			<p th:text="${success}" style="color:green">登録しました</p>
+		</div>
+       <form th:action="@{/admin/authentication}" method="post">
+           <div class="form-group">
+               <label for="email">email</label>
+               <input type="text" id="email" name="email" required>
+           </div>
+           <div class="form-group">
+               <label for="password">Password</label>
+               <input type="password" id="password" name="password" required>
+           </div>
+           <button type="submit">Login</button>
+       </form>
+   </div>
+</body>
+</html>

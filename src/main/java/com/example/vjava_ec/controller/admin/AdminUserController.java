@@ -1,4 +1,4 @@
-package com.example.vjava_ec.controller.user;
+package com.example.vjava_ec.controller.admin;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,9 +8,9 @@ import lombok.RequiredArgsConstructor;
 /**
  * 会員コントローラ
  */
-@Controller("user")
-@RequestMapping("/user")
+@Controller
+@RequestMapping("/admin/user")
 @RequiredArgsConstructor
-public class User {
+public class AdminUserController {
 
 }
