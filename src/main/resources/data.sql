@@ -78,7 +78,7 @@ INSERT INTO admin
 VALUES
 (
    'admin@admin.com',
-   'admin',
+   '$2a$10$I53eTbgLsU7F3TJJIelTkuXcGHzOCMYTbKIRX1W1tsHWZbN3RzLa.',
    CURRENT_TIMESTAMP,
    CURRENT_TIMESTAMP
 );

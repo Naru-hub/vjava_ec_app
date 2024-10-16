@@ -40,7 +40,7 @@ public class SecurityConfig {
 				// パスワードのname属性を指定
 				.passwordParameter("password")
 				// ログイン成功時のリダイレクト先を指定
-				.defaultSuccessUrl("/admin/items")
+				.defaultSuccessUrl("/admin/item/list")
 				// ログイン失敗時のリダイレクト先を指定
 				.failureUrl("/admin/login?error"))
 		// ★ログアウト設定
