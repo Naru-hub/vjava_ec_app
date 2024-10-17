@@ -184,7 +184,7 @@ VALUES
    4000,
    5,
    3,
-   false,
+   true,
    '/images/default/default_goods3.jpg',
    CURRENT_TIMESTAMP,
    CURRENT_TIMESTAMP

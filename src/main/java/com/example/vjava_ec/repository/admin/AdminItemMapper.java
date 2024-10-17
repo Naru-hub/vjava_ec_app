@@ -3,6 +3,7 @@ package com.example.vjava_ec.repository.admin;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.example.vjava_ec.dto.admin.adminItemDTO;
 
@@ -19,4 +20,9 @@ public interface AdminItemMapper {
 	 */
 	List<adminItemDTO> selectAll();
 
+	/**
+   	 * 商品詳細情報を取得
+   	 * @return 商品の詳細情報
+   	 */
+   	adminItemDTO selectById(@Param("id") Integer id);
 }

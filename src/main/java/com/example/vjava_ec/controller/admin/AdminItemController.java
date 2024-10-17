@@ -2,6 +2,7 @@ package com.example.vjava_ec.controller.admin;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +23,10 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AdminItemController {
 
+	// 消費税率(定数)
+	@Value("${TAX_RATE}")
+	private double TAX_RATE;
+
 	// DI
 	private final AdminItemService adminItemService;
 
@@ -35,8 +40,6 @@ public class AdminItemController {
 	public String showItemList(Model model) {
 		// すべての商品一覧情報を取得
 		List<adminItemDTO> items = adminItemService.findAllItem();
-		// 消費税率 10%
-		final double TAX_RATE = 0.1;
 
 		// 各商品の税込み価格を計算し、元の商品のpriceに設定
 		for (adminItemDTO item : items) {
@@ -48,7 +51,7 @@ public class AdminItemController {
 
 		// モデルに商品一覧情報をセット
 		model.addAttribute("itemList", items);
-	
+
 		return "admin/item/list";
 	}
 
@@ -61,7 +64,27 @@ public class AdminItemController {
 	 */
 	@GetMapping("/{id}")
 	public String showItemDetail(@PathVariable Integer id, Model model, RedirectAttributes attributes) {
-		return "admin/item/detail";
+		// 商品IDに対応する商品詳細情報を取得
+		adminItemDTO item = adminItemService.findByIdItem(id);
+
+		// 対象データがあるか
+		if (item != null) {
+			// データがある場合
+			// 税込み価格を計算してint型にキャスト
+			int priceWithTax = (int) Math.round(item.getPrice() * (1 + TAX_RATE));
+			// 計算した税込み価格を設定
+			item.setPriceWithTax(priceWithTax);
+
+			// モデルに格納
+			model.addAttribute("item", item);
+
+			return "admin/item/detail";
+		} else {
+			// 対象データがない場合
+			attributes.addFlashAttribute("errorMessage", "対象データがありません");
+
+			return "redirect:/list";
+		}
 	}
 
 	/**
@@ -71,7 +94,21 @@ public class AdminItemController {
 	 */
 	@GetMapping("/form")
 	public String showItemRegister() {
+
 		return "admin/item/new";
+	}
+
+	/**
+	 * 商品情報編集画面を表示
+	 * @param id
+	 * @param model
+	 * @param attributes
+	 * @return String 商品編集画面のビュー名（"admin/item/edit"）
+	 */
+	@GetMapping("/edit/{id}")
+	public String showEditItemDetail(@PathVariable Integer id, Model model, RedirectAttributes attributes) {
+		
+		return "admin/item/edit";
 	}
 
 }

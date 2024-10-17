@@ -36,4 +36,6 @@ public class adminItemDTO {
 	private LocalDateTime updatedAt;
 	/** キャラクタ名 */
 	private String characterName;
+	/** 税込み価格 */
+	private Integer priceWithTax;
 }

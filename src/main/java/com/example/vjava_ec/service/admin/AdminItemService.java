@@ -9,4 +9,9 @@ public interface AdminItemService {
 	 * 商品一覧情報を検索
 	 */
 	List<adminItemDTO> findAllItem();
+	
+	/**
+	 * 商品詳細情報を検索
+	 */
+	adminItemDTO findByIdItem(Integer id);
 }

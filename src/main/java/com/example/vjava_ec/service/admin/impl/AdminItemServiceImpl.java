@@ -24,7 +24,7 @@ public class AdminItemServiceImpl implements AdminItemService {
 	private final AdminItemMapper adminItemMapper;
 
 	/**
-	* 商品一覧情報取得メソッド
+	* 全商品一覧情報取得メソッド
 	* 
 	* @return 全商品一覧情報
 	*/
@@ -32,4 +32,16 @@ public class AdminItemServiceImpl implements AdminItemService {
 	public List<adminItemDTO> findAllItem() {
 		return adminItemMapper.selectAll();
 	}
+	
+	/**
+	 * 商品詳細情報取得メソッド
+	 * 
+	 * @return 商品詳細情報
+	 */
+	@Override
+	public adminItemDTO findByIdItem(Integer id) {
+		return adminItemMapper.selectById(id);
+	}
+
+	
 }

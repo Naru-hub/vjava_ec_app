@@ -41,7 +41,7 @@
 						<tr th:each="item : ${itemList}">
 							<td th:text="${item.itemId}"></td>
 							<td class="text-center">
-								<!-- 画像が存在する場合 -->
+								<!-- 画像の表示 -->
 								<span th:if="${item.imagePath != null and item.imagePath != ''}">
 									<img th:src="@{${item.imagePath}}" alt="Item Image" class="img-fluid"
 										style="max-width: 100%; height: 80px; object-fit: cover;">
