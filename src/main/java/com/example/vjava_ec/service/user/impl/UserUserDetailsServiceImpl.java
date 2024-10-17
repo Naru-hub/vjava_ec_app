@@ -26,8 +26,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class UserUserDetailsServiceImpl  implements UserDetailsService{
-	
-	// デバック用
+	// DI
 	private final UserMapper userMapper;
 	
 	/**
@@ -50,8 +49,9 @@ public class UserUserDetailsServiceImpl  implements UserDetailsService{
 		
 		// 「会員テーブル」からデータを取得
 		User user = userMapper.selectUserByEmail(email);
+		// 論理削除されている場合ログインできない
 		// 対象データがあれば、UserDetailsの実装クラスを返す
-		if (user != null) {
+		if (user != null && !(user.isDeleted())) {
 			
 			// デバック用　後で削除
 			System.out.println("Userテーブルでデータ発見");

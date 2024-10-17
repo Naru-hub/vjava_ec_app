@@ -4,7 +4,20 @@
 
 <!-- emailからUserを探す -->
 <select id="selectUserByEmail" resultType="com.example.vjava_ec.entity.User">
-	select * from users where email = #{email};
+	SELECT id, name, email, password, postcode, address, tel, is_deleted as isDeleted, role, created_at as createdAt, updated_at as updatedAt FROM users WHERE email = #{email};
 </select>
+
+<!-- Userの更新 -->
+<update id="updateUser">
+	UPDATE users SET name = #{name}, email = #{email}, postcode = #{postcode}, address = #{address}, tel = #{tel},
+		updated_at = current_timestamp
+	WHERE id = #{id}
+</update>
+
+<!-- 会員の論理削除 -->
+<update id="deleteUser">
+	UPDATE users SET is_deleted = TRUE
+	WHERE id = #{id}
+</update>
 
 </mapper>

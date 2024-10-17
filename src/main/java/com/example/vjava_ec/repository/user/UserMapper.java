@@ -19,5 +19,19 @@ public interface UserMapper {
      *         該当するユーザーが見つからない場合はnullを返す
      */
     User selectUserByEmail(String email);
+    
+    /**
+     * 会員情報の更新処理
+     * 
+     * @param user Userエンティティ
+     */
+    void updateUser(User user);
+    
+    /**
+     * 会員の論理削除
+     * 
+     * @param user　Userエンティティ
+     */
+    void deleteUser(User user);
 
 }

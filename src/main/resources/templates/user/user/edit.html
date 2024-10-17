@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>会員情報編集</h1>
+	<div th:if="${errors}" th:each="error : ${errors}">
+		<div th:text="${error}"></div>
+	</div>
+	<form th:action="@{/user/update}" method="post">
+		<input type="hidden" th:field="${form.userId}">
+		
+		<label for="name">名前　　　　　</label>
+		<input type="text" th:field="${form.name}">
+		<br>
+		<label for="email">メールアドレス</label>
+		<input type="text" th:field="${form.email}">
+		<br>
+		<label for="postcode">郵便番号　　　</label>
+		<input type="text" th:field="${form.postcode}">
+		<br>
+		<label for="address">住所　　　　　</label>
+		<input type="text" th:field="${form.address}">
+		<br>
+		<label for="tel">名電話番号前　</label>
+		<input type="text" th:field="${form.tel}">
+		
+		<button type="submit">保存</button>
+	</form>
+	<form action="/user/detail" method="get">
+		<button type="submit">キャンセル</button>
+	</form>
+
+</body>
+</html>
