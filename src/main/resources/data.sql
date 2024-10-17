@@ -131,7 +131,7 @@ VALUES
    20,
    1,
    false,
-   '/〇〇/1',
+   '/images/default/default_goods.jpg',
    CURRENT_TIMESTAMP,
    CURRENT_TIMESTAMP
 );
@@ -156,9 +156,9 @@ VALUES
    'クリアファイル',
    1000,
    10,
-   1,
+   2,
    false,
-   '/〇〇/2',
+   '/images/default/default_goods2.jpg',
    CURRENT_TIMESTAMP,
    CURRENT_TIMESTAMP
 );
@@ -183,9 +183,9 @@ VALUES
    '人形',
    4000,
    5,
-   1,
+   3,
    false,
-   '/〇〇/3',
+   '/images/default/default_goods3.jpg',
    CURRENT_TIMESTAMP,
    CURRENT_TIMESTAMP
 );

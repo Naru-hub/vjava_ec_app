@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.example.vjava_ec.repository.admin.AdminItemMapper">
+	
+	<!-- 商品全件検索 -->
+	<select id="selectAll"
+		resultType="com.example.vjava_ec.dto.admin.adminItemDTO">
+		SELECT i.id as itemId, i.character_id as characterId, i.name, i.detail, i.price,
+		i.stock, i.sale_status as saleStatus, is_limited as isLimited,
+		i.is_deleted isDeleted, i.image_path as imagePath, i.created_at as
+		createdAt,i.updated_at as updatedAt, c.name as characterName
+		FROM items i
+		LEFT JOIN characters c ON i.character_id = c.id
+	</select>
+	
+</mapper>
