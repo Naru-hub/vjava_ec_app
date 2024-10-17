@@ -14,7 +14,7 @@ public class TestItemService {
     private ItemMapper itemMapper;
 
     public List<Item> getAllItems() {
-        return itemMapper.findAll();
+        return itemMapper.selectAll();
     }
 
 }

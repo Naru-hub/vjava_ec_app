@@ -27,7 +27,7 @@ public class ItemController {
      * @param model 
      * @return user/itemList
      */
-    @GetMapping("/list") // 商品一覧を表示するURL
+    @GetMapping("/list") 
     public String showItemList(Model model) {
         // 商品一覧を取得
         List<Item> items = testItemService.getAllItems();
