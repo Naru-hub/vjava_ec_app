@@ -118,6 +118,7 @@ INSERT INTO items
    stock,
    sale_status,
    is_limited,
+   is_deleted,
    image_path,
    created_at,
    updated_at
@@ -131,6 +132,7 @@ VALUES
    20,
    1,
    false,
+   true,
    '/〇〇/1',
    CURRENT_TIMESTAMP,
    CURRENT_TIMESTAMP
@@ -145,6 +147,7 @@ INSERT INTO items
    stock,
    sale_status,
    is_limited,
+   is_deleted,
    image_path,
    created_at,
    updated_at
@@ -158,6 +161,7 @@ VALUES
    10,
    1,
    false,
+   true,
    '/〇〇/2',
    CURRENT_TIMESTAMP,
    CURRENT_TIMESTAMP
@@ -172,6 +176,7 @@ INSERT INTO items
    stock,
    sale_status,
    is_limited,
+   is_deleted,
    image_path,
    created_at,
    updated_at
@@ -185,6 +190,7 @@ VALUES
    5,
    1,
    false,
+   true,
    '/〇〇/3',
    CURRENT_TIMESTAMP,
    CURRENT_TIMESTAMP

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ユーザー新規登録</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <h1>ユーザー新規登録</h1>
+    
+    <!-- フォーム開始 -->
+	<form action="#" method="post" th:action="@{/user/register}" th:object="${signupUserForm}">
+        <div>
+            <label for="name">名前:</label>
+            <input type="text" id="name" name="name" th:field="*{name}" required>
+            <!-- エラー表示 -->
+            <div class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">名前を入力してください</div>
+        </div>
+        
+		<div>
+		    <label for="email">メールアドレス:</label>
+		    <input type="email" id="email" name="email" th:field="*{email}" required>
+		    <div class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">正しいメールアドレスを入力してください</div>
+		</div>
+
+		<div>
+		    <label for="password">パスワード:</label>
+		    <input type="password" id="password" name="password" th:field="*{password}" required>
+		    <div class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">パスワードを入力してください</div>
+		</div>
+
+		<div>
+		    <label for="passwordConfirm">パスワード確認:</label>
+		    <input type="password" id="passwordConfirm" name="passwordConfirm" th:field="*{passwordConfirm}" required>
+		    <div class="error" th:if="${#fields.hasErrors('passwordConfirm')}" th:errors="*{passwordConfirm}">パスワードが一致しません</div>
+		</div>
+
+		<div>
+		    <label for="postcode">郵便番号:</label>
+		    <input type="text" id="postcode" name="postcode" th:field="*{postcode}" pattern="\d{7}" title="7桁の郵便番号を入力してください" required>
+		    <div class="error" th:if="${#fields.hasErrors('postcode')}" th:errors="*{postcode}">郵便番号は7桁で入力してください</div>
+		</div>
+
+		<div>
+		    <label for="address">住所:</label>
+		    <input type="text" id="address" name="address" th:field="*{address}" required>
+		    <div class="error" th:if="${#fields.hasErrors('address')}" th:errors="*{address}">住所を入力してください</div>
+		</div>
+
+		<div>
+		    <label for="tel">電話番号:</label>
+		    <input type="text" id="tel" name="tel" th:field="*{tel}" pattern="\d{11}" title="11桁の電話番号を入力してください" required>
+		    <div class="error" th:if="${#fields.hasErrors('tel')}" th:errors="*{tel}">電話番号は11桁で入力してください</div>
+		</div>
+
+        <!-- 送信ボタン -->
+        <div>
+            <button type="submit">登録する</button>
+        </div>
+    </form>
+</body>
+</html>

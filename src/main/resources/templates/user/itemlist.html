@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>商品一覧</title>
+    <link rel="stylesheet" href="/css/style.css"> <!-- CSSファイルのリンク -->
+</head>
+<body>
+    <main>
+        <h1>商品一覧</h1>
+        <div class="item-grid">
+            <div th:each="item : ${items}" class="item-card">
+                <img th:src="${item.imagePath}" alt="商品画像" class="item-image">
+                <h2 th:text="${item.name}">商品名</h2>
+                <p th:text="${item.price} + '（税抜き）'">価格</p>
+                <a th:href="@{/user/item/{id}(id=${item.id})}" class="item-detail-link">商品詳細</a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

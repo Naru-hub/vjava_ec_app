@@ -6,6 +6,12 @@
 </head>
 <body>
 	<h1>ホーム画面</h1>
+	
+	<!-- フラッシュメッセージの表示 -->
+	<div th:if="${successMessage}" class="alert alert-success">
+	    <span th:text="${successMessage}"></span>
+	</div>
+	
 	<form th:action="@{/user/logout}" method="post">
 	        <input type="submit" value="ログアウト">
 	    </form>
