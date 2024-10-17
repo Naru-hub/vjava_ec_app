@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>会員ステータス変更確認</title>
+    <link rel="stylesheet" href="/css/style.css"> <!-- 必要に応じてCSSをリンク -->
+</head>
+<body>
+    <h1>会員ステータス変更確認</h1>
+
+    <div>
+        <table>
+            <tr>
+                <th>ID</th>
+                <td th:text="${member.id}">1</td>
+            </tr>
+            <tr>
+                <th>名前</th>
+                <td th:text="${member.name}">山田 太郎</td>
+            </tr>
+            <tr>
+                <th>メールアドレス</th>
+                <td th:text="${member.email}">yamada@example.com</td>
+            </tr>
+            <tr>
+                <th>郵便番号</th>
+                <td th:text="${member.postalCode}">123-4567</td>
+            </tr>
+            <tr>
+                <th>住所</th>
+                <td th:text="${member.address}">東京都渋谷区</td>
+            </tr>
+            <tr>
+                <th>電話番号</th>
+                <td th:text="${member.phoneNumber}">090-1234-5678</td>
+            </tr>
+            <tr>
+                <th>会員ステータス</th>
+                <td th:text="${member.status}">アクティブ</td>
+            </tr>
+            <tr>
+                <th>登録日時</th>
+                <td th:text="${member.createdAt}">2024-01-01 10:00</td>
+            </tr>
+            <tr>
+                <th>更新日時</th>
+                <td th:text="${member.updatedAt}">2024-01-15 15:30</td>
+            </tr>
+        </table>
+    </div>
+
+    <p>本当に会員ステータスを変更しますか？</p>
+
+    <!-- ステータス変更確認用の「はい」「いいえ」ボタン -->
+    <div>
+        <form th:action="@{/member/status/change/{id}(id=${member.id})}" method="post">
+            <input type="submit" value="はい">
+        </form>
+
+        <form th:action="@{/member/detail/{id}(id=${member.id})}" method="get">
+            <input type="submit" value="いいえ">
+        </form>
+    </div>
+</body>
+</html>
