@@ -31,7 +31,20 @@
 		createdAt,i.updated_at as updatedAt, c.name
 		as characterName
 		FROM items i
-		LEFT JOIN characters c ON i.character_id = c.id
+		LEFT JOIN characters c ON i.character_id =
+		c.id
 		WHERE i.id = #{id};
 	</select>
+
+	<!-- 商品登録 -->
+	<insert id="insertItem">
+		INSERT INTO items( character_id, name, detail, price,
+		stock, sale_status, is_limited, image_path, created_at,
+		updated_at)
+		VALUES (#{characterId}, #{name},
+		#{detail}, #{price}, #{stock},
+		#{saleStatus}, #{isLimited}, #{imagePath},
+		CURRENT_TIMESTAMP,
+		CURRENT_TIMESTAMP);
+	</insert>
 </mapper>

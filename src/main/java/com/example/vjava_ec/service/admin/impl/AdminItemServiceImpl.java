@@ -12,9 +12,9 @@ import com.example.vjava_ec.service.admin.AdminItemService;
 import lombok.RequiredArgsConstructor;
 
 /**
- * 管理者用の商品の実装クラス
+ * 管理者：商品の実装クラス
  * 
- * データベースから商品情報を取得
+ * データベースから商品情報を取得・作成
  */
 @Service
 @Transactional
@@ -36,6 +36,7 @@ public class AdminItemServiceImpl implements AdminItemService {
 	/**
 	 * 商品詳細情報取得メソッド
 	 * 
+	 * @param id 商品のid
 	 * @return 商品詳細情報
 	 */
 	@Override

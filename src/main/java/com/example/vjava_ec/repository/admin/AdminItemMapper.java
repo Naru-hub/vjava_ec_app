@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.example.vjava_ec.dto.admin.adminItemDTO;
+import com.example.vjava_ec.entity.Item;
 
 /*
  * 管理者：マッパーインターフェイス
@@ -25,4 +26,9 @@ public interface AdminItemMapper {
    	 * @return 商品の詳細情報
    	 */
    	adminItemDTO selectById(@Param("id") Integer id);
+   	
+   	/**
+   	 * 商品を登録
+   	 */
+   	void insertItem(Item item);
 }

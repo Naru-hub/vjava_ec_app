@@ -4,6 +4,9 @@ import java.util.List;
 
 import com.example.vjava_ec.dto.admin.adminItemDTO;
 
+/**
+ * 管理者側の商品のサービスクラスのインターフェース定義
+ */
 public interface AdminItemService {
 	/**
 	 * 商品一覧情報を検索

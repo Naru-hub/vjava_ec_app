@@ -8,19 +8,18 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * 商品新規登録・編集用のFormクラス
+ * 管理者：商品新規登録・編集用のFormクラス
  */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class adminItemForm {
+public class AdminItemForm {
 
 	/** ID */
 	private Integer itemId;
 
-	/** キャラクタ名 */
-	@NotBlank(message = "キャラクタ名は必須項目です。")
-	private String userName;
+	/** キャラクタid */
+	private Integer characterId;
 
 	/** 商品名 */
 	@NotBlank(message = "商品名は必須項目です。")
