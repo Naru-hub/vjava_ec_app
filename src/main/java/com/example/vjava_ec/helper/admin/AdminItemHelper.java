@@ -12,7 +12,7 @@ public class AdminItemHelper {
 	 * @param form
 	 * @return item 商品 オブジェクト
 	 */
-	public static Item convertPost(AdminItemForm form) {
+	public static Item convertItem(AdminItemForm form) {
 		Item item = new Item();
 		item.setCharacterId(form.getCharacterId());
 		item.setName(form.getName());

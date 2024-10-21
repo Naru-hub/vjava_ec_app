@@ -14,8 +14,14 @@
 			<div class="col-md-10 offset-md-1 mt-5 text-center">
 				<h1>商品詳細</h1>
 			</div>
+			<!-- フラッシュメッセージの表示 -->
+			<div th:if="${message}" th:text="${message}" class="col-md-5 offset-md-1alert alert-primary" role="alert">
+				完了メッセージ
+			</div>
 		</div>
+
 		<div class="row">
+
 			<div class="col-md-5 mt-5">
 				<!-- 画像の表示 -->
 				<span th:if="${item.imagePath != null and item.imagePath != ''}">

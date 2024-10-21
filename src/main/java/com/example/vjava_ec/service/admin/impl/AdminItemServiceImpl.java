@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.vjava_ec.dto.admin.adminItemDTO;
+import com.example.vjava_ec.entity.Item;
 import com.example.vjava_ec.repository.admin.AdminItemMapper;
 import com.example.vjava_ec.service.admin.AdminItemService;
 
@@ -44,5 +45,8 @@ public class AdminItemServiceImpl implements AdminItemService {
 		return adminItemMapper.selectById(id);
 	}
 
-	
+	@Override
+	public void insertItem(Item item) {
+		adminItemMapper.insert(item);
+	}
 }

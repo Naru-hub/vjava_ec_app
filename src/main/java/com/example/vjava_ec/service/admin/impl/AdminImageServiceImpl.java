@@ -42,7 +42,7 @@ public class AdminImageServiceImpl implements AdminImageService {
 		// アップロードする画像がItemかを判定(⭐︎後日、機能追加でキャラクタの画像が追加された際にnullに画像の保存先パスを設定する)
 		String uploadFolder = type.equals("item") ? itemImageUploadFolder : null;
 
-		// ファイルがnull・空じゃないことの確認
+		// ファイルがnullまたは空でない場合に保存処理を実行
 		if (file != null && !file.isEmpty()) {
 			File dir = new File(uploadFolder);
 			// ディレクトリが存在しない場合は作成

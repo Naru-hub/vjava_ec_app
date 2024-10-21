@@ -1,5 +1,6 @@
 package com.example.vjava_ec.controller.admin;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -15,7 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.vjava_ec.dto.admin.adminItemDTO;
+import com.example.vjava_ec.entity.Item;
 import com.example.vjava_ec.form.admin.AdminItemForm;
+import com.example.vjava_ec.helper.admin.AdminItemHelper;
+import com.example.vjava_ec.service.admin.AdminCharacterService;
+import com.example.vjava_ec.service.admin.AdminImageService;
 import com.example.vjava_ec.service.admin.AdminItemService;
 
 import lombok.RequiredArgsConstructor;
@@ -32,8 +37,13 @@ public class AdminItemController {
 	@Value("${TAX_RATE}")
 	private double TAX_RATE;
 
+	// 画像ファイル格納ディレクトリパス
+	private final String IMAGE_UPLOAD_DIR_PATH = "/images/item/";
+
 	// DI
 	private final AdminItemService adminItemService;
+	private final AdminImageService adminImageService;
+	private final AdminCharacterService adminCharacterService;
 
 	/**
 	 * 商品(すべて)の情報を取得し、商品一覧画面を表示
@@ -46,7 +56,7 @@ public class AdminItemController {
 		// すべての商品一覧情報を取得
 		List<adminItemDTO> items = adminItemService.findAllItem();
 
-		// 各商品の税込み価格を計算し、元の商品のpriceに設定
+		// 各商品の税込み価格を計算し、税込み価格(priceWithTax)に設定
 		for (adminItemDTO item : items) {
 			// 税込み価格計算してint型にキャスト
 			int priceWithTax = (int) Math.round(item.getPrice() * (1 + TAX_RATE));
@@ -98,7 +108,9 @@ public class AdminItemController {
 	 * @return String 商品新規登録画面のビュー名（"admin/item/new"）
 	 */
 	@GetMapping("/form")
-	public String showItemRegister(@ModelAttribute AdminItemForm form) {
+	public String showItemRegister(@ModelAttribute AdminItemForm form, Model model) {
+		// セレクトボックス用のキャラクタ一覧を取得
+		model.addAttribute("characterList", adminCharacterService.findAll());
 
 		return "admin/item/new";
 	}
@@ -113,18 +125,53 @@ public class AdminItemController {
 	@PostMapping("/create")
 	public String newItemRegister(@Validated AdminItemForm form,
 			BindingResult bindingResult,
-			RedirectAttributes attributes) {
+			RedirectAttributes attributes,
+			Model model) {
 		// === バリデーションチェック ===
+		// ファイルが選択されていない場合
+	    if (form.getFile() == null || form.getFile().isEmpty()) {
+	        bindingResult.rejectValue("file", "error.file", "ファイルを選択してください");
+	    }
+	    
 		// バリデーションエラーがある場合
 		if (bindingResult.hasErrors()) {
+			// セレクトボックス用のキャラクタ一覧を取得
+			model.addAttribute("characterList", adminCharacterService.findAll());
 			// 商品新規登録画面へ遷移
 			return "admin/item/new";
 		}
 
+		// 画像ファイルの処理
+		try {
+			if (form.getFile() != null && !form.getFile().isEmpty()) {
+				// 画像の格納パスを生成
+				String imagePath = this.IMAGE_UPLOAD_DIR_PATH + adminImageService.uploadImage(form.getFile(), "item");
+				form.setImagePath(imagePath);
+			}
+		} catch (IOException e) {
+			// エラーハンドリング
+			bindingResult.reject("errorMessage", "画像のアップロードに失敗しました。");
+			return "admin/item/new";
+		}
+
+		// エンティティへの変換(商品(Item)オブジェクトの作成)
+		Item item = AdminItemHelper.convertItem(form);
+		// 登録実行(データベースへ保存)
+		adminItemService.insertItem(item);
+
+		// 画像の保存処理が終わるまで待機
+		try {
+			Thread.sleep(3300);
+		} catch (Exception e) {
+		}
+
+		// 保存したアイテムのIDを取得
+		Integer savedItemId = item.getId();
+
 		// フラッシュメッセージ
-		attributes.addFlashAttribute("message", "新しい商品が登録されました");
+		attributes.addFlashAttribute("message", "商品が登録されました");
 		// RPGパターン
-		return "redirect:/{id}";
+		return "redirect:/admin/item/" + savedItemId;
 	}
 
 	/**

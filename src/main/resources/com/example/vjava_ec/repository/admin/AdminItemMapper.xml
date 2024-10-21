@@ -37,7 +37,7 @@
 	</select>
 
 	<!-- 商品登録 -->
-	<insert id="insertItem">
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO items( character_id, name, detail, price,
 		stock, sale_status, is_limited, image_path, created_at,
 		updated_at)
