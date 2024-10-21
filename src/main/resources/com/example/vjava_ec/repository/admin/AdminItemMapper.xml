@@ -10,13 +10,10 @@
 		i.name, i.detail, i.price,
 		i.stock, i.sale_status as saleStatus,
 		is_limited as isLimited,
-		i.is_deleted isDeleted, i.image_path as
-		imagePath, i.created_at as
-		createdAt,i.updated_at as updatedAt, c.name
-		as characterName
+		i.is_deleted isDeleted, i.image_path as imagePath,
+		i.created_at as createdAt, i.updated_at as updatedAt, c.name as characterName
 		FROM items i
-		LEFT JOIN characters c ON i.character_id =
-		c.id
+		LEFT JOIN characters c ON i.character_id = c.id
 	</select>
 
 	<!-- 商品1件検索 -->
@@ -28,23 +25,32 @@
 		is_limited as isLimited,
 		i.is_deleted isDeleted, i.image_path as
 		imagePath, i.created_at as
-		createdAt,i.updated_at as updatedAt, c.name
-		as characterName
+		createdAt,i.updated_at as updatedAt, c.name as characterName
 		FROM items i
-		LEFT JOIN characters c ON i.character_id =
-		c.id
+		LEFT JOIN characters c ON i.character_id = c.id
 		WHERE i.id = #{id};
 	</select>
 
 	<!-- 商品登録 -->
 	<insert id="insert" useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO items( character_id, name, detail, price,
-		stock, sale_status, is_limited, image_path, created_at,
-		updated_at)
-		VALUES (#{characterId}, #{name},
-		#{detail}, #{price}, #{stock},
-		#{saleStatus}, #{isLimited}, #{imagePath},
-		CURRENT_TIMESTAMP,
-		CURRENT_TIMESTAMP);
+		stock, sale_status, is_limited, image_path, created_at, updated_at)
+		VALUES (#{characterId}, #{name}, #{detail}, #{price}, #{stock},
+		#{saleStatus}, #{isLimited}, #{imagePath}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 	</insert>
+
+	<!-- 商品情報の更新 -->
+	<update id="update">
+		UPDATE items
+		SET character_id = #{characterId},
+		name = #{name},
+		detail = #{detail},
+		price = #{price},
+		stock = #{stock},
+		sale_status = #{saleStatus},
+		is_limited = #{isLimited},
+		image_path = #{imagePath},
+		updated_at = CURRENT_TIMESTAMP
+		WHERE id = #{itemId};
+	</update>
 </mapper>

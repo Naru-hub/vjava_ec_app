@@ -66,7 +66,7 @@ public class AdminItemController {
 
 		// モデルに商品一覧情報をセット
 		model.addAttribute("itemList", items);
-
+		// 商品一覧画面へ遷移
 		return "admin/item/list";
 	}
 
@@ -92,12 +92,12 @@ public class AdminItemController {
 
 			// モデルに格納
 			model.addAttribute("item", item);
-
+			// 商品詳細画面へ遷移
 			return "admin/item/detail";
 		} else {
 			// 対象データがない場合
 			attributes.addFlashAttribute("errorMessage", "対象データがありません");
-
+			// 商品一覧画面へリダイレクト
 			return "redirect:/list";
 		}
 	}
@@ -111,7 +111,7 @@ public class AdminItemController {
 	public String showItemRegister(@ModelAttribute AdminItemForm form, Model model) {
 		// セレクトボックス用のキャラクタ一覧を取得
 		model.addAttribute("characterList", adminCharacterService.findAll());
-
+		// 商品新規登録画面へ遷移
 		return "admin/item/new";
 	}
 
@@ -129,10 +129,10 @@ public class AdminItemController {
 			Model model) {
 		// === バリデーションチェック ===
 		// ファイルが選択されていない場合
-	    if (form.getFile() == null || form.getFile().isEmpty()) {
-	        bindingResult.rejectValue("file", "error.file", "ファイルを選択してください");
-	    }
-	    
+		if (form.getFile() == null || form.getFile().isEmpty()) {
+			bindingResult.rejectValue("file", "error.file", "ファイルを選択してください");
+		}
+
 		// バリデーションエラーがある場合
 		if (bindingResult.hasErrors()) {
 			// セレクトボックス用のキャラクタ一覧を取得
@@ -143,6 +143,7 @@ public class AdminItemController {
 
 		// 画像ファイルの処理
 		try {
+			// ファイルがnullでなく、空でなければ、処理を実行
 			if (form.getFile() != null && !form.getFile().isEmpty()) {
 				// 画像の格納パスを生成
 				String imagePath = this.IMAGE_UPLOAD_DIR_PATH + adminImageService.uploadImage(form.getFile(), "item");
@@ -151,6 +152,7 @@ public class AdminItemController {
 		} catch (IOException e) {
 			// エラーハンドリング
 			bindingResult.reject("errorMessage", "画像のアップロードに失敗しました。");
+			// 商品新規登録画面へ遷移
 			return "admin/item/new";
 		}
 
@@ -170,7 +172,7 @@ public class AdminItemController {
 
 		// フラッシュメッセージ
 		attributes.addFlashAttribute("message", "商品が登録されました");
-		// RPGパターン
+		// 商品詳細画面へリダイレクト
 		return "redirect:/admin/item/" + savedItemId;
 	}
 
@@ -183,8 +185,127 @@ public class AdminItemController {
 	 */
 	@GetMapping("/edit/{id}")
 	public String showEditItemDetail(@PathVariable Integer id, Model model, RedirectAttributes attributes) {
+		// IDに対応する商品を取得
+		adminItemDTO target = adminItemService.findByIdItem(id);
 
-		return "admin/item/edit";
+		// 編集対象の商品情報が取得できた場合
+		if (target != null) {
+			// Formに変換、編集画面に遷移
+			AdminItemForm form = AdminItemHelper.convertItemForm(target);
+			// モデルに格納
+			model.addAttribute("adminItemForm", form);
+
+			// セレクトボックス用のキャラクタ一覧を取得
+			model.addAttribute("characterList", adminCharacterService.findAll());
+			// 商品編集画面へ遷移
+			return "admin/item/edit";
+		} else {
+			// 対象データがない場合はフラッシュメッセージを表示
+			attributes.addFlashAttribute("errorMessage", "対象データがありません");
+			// 商品詳細画面へリダイレクト
+			return "redirect:/admin/item/" + id;
+		}
 	}
 
+	/**
+	 * 商品情報を編集する
+	 * @param form
+	 * @param bindingResult
+	 * @param attributes
+	 * @return String 商品詳細画面のビュー名（"admin/item/{id}"）
+	 */
+	@PostMapping("/update")
+	public String updateItemDetail(@Validated AdminItemForm form,
+			BindingResult bindingResult,
+			RedirectAttributes attributes, Model model) {
+		// === バリデーションチェック ===
+
+		// ファイルが選択されていない場合
+		if (form.getFile() == null || form.getFile().isEmpty()) {
+			bindingResult.rejectValue("file", "error.file", "ファイルを選択してください");
+		}
+		
+		// バリデーションエラーがある場合
+		if (bindingResult.hasErrors()) {
+			// セレクトボックス用のキャラクタ一覧を取得
+			model.addAttribute("characterList", adminCharacterService.findAll());
+			// 商品編集画面へ遷移
+			return "admin/item/edit";
+		}
+
+		// 元の商品情報の取得
+		adminItemDTO existingItem = adminItemService.findByIdItem(form.getItemId());
+
+		// 商品情報が見つからない場合
+		if (existingItem == null) {
+			// 対象データがない場合はフラッシュメッセージを表示
+			attributes.addFlashAttribute("errorMessage", "対象データがありません");
+			// 商品詳細画面へリダイレクト
+			return "redirect:/admin/item/" + form.getItemId();
+		}
+
+		// 編集するイメージファイル名とイメージパス
+		String newImageFilename = null;
+		String newImagePath = null;
+
+		try {
+			// 新しい画像ファイルの処理
+			if (form.getFile() != null && !form.getFile().isEmpty()) {
+				try {
+					// 新しい画像のファイル名を取得
+					newImageFilename = adminImageService.uploadImage(form.getFile(), "item");
+					// ファイルパスを相対パスでセットする
+					newImagePath = this.IMAGE_UPLOAD_DIR_PATH + newImageFilename;
+					form.setImagePath(newImagePath);
+
+				} catch (IOException e) {
+					// 画像のアップロードに失敗した場合の処理
+					bindingResult.reject("errorMessage", "画像のアップロードに失敗しました。");
+					// 商品編集画面へ遷移
+					return "admin/item/edit";
+				}
+			} else {
+				// 画像ファイルが選択されていない場合は既存の画像パスをそのまま使用
+				if (existingItem != null && existingItem.getImagePath() != null) {
+					form.setImagePath(existingItem.getImagePath());
+				}
+			}
+
+			// エンティティへの変換
+			Item item = AdminItemHelper.convertItem(form);
+			// 更新処理
+			adminItemService.updateItem(item);
+
+			// 古い画像ファイルの削除（更新処理が成功した場合のみ）
+			if (existingItem != null && existingItem.getImagePath() != null) {
+				// 相対パスからファイル名を取得
+				String oldImageFilename = existingItem.getImagePath().replace(this.IMAGE_UPLOAD_DIR_PATH, "");
+				if (newImageFilename != null && !oldImageFilename.equals(newImageFilename)) {
+					adminImageService.deleteImage(oldImageFilename, "post");
+				}
+			}
+
+			// 画像の保存処理が終わるまで待機
+			try {
+				Thread.sleep(3300);
+			} catch (Exception e) {
+			}
+
+			// フラッシュメッセージ
+			attributes.addFlashAttribute("message", "商品情報が更新されました");
+			// 商品詳細画面へリダイレクト
+			return "redirect:/admin/item/{id}";
+
+		} catch (Exception e) {
+			// 投稿の更新処理でエラーが発生した場合の処理
+			if (newImageFilename != null) {
+				// 新しい画像ファイルを削除
+				adminImageService.deleteImage(newImageFilename, "post");
+			}
+
+			bindingResult.reject("errorMesage", "商品情報の更新に失敗しました。");
+			// 商品編集画面へ遷移
+			return "admin/item/edit";
+		}
+	}
 }

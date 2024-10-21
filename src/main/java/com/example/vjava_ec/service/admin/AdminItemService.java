@@ -23,4 +23,9 @@ public interface AdminItemService {
 	 * 商品を新規作成
 	 */
 	void insertItem(Item item);
+	
+	/**
+	 * 商品情報を編集
+	 */
+	void updateItem(Item item);
 }

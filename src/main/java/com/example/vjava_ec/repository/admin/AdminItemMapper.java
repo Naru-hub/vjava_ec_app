@@ -31,4 +31,9 @@ public interface AdminItemMapper {
    	 * 商品を登録
    	 */
    	void insert(Item item);
+   	
+   	/**
+	 * 商品を編集
+	 */
+	void update(Item item);
 }

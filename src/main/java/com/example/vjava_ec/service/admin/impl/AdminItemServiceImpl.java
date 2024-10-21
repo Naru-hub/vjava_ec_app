@@ -49,4 +49,9 @@ public class AdminItemServiceImpl implements AdminItemService {
 	public void insertItem(Item item) {
 		adminItemMapper.insert(item);
 	}
+	
+	@Override
+	public void updateItem(Item item) {
+		adminItemMapper.update(item);
+	}
 }
