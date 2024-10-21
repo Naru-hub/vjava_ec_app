@@ -132,7 +132,7 @@ VALUES
    20,
    1,
    false,
-   true,
+   false,
    '/〇〇/1',
    CURRENT_TIMESTAMP,
    CURRENT_TIMESTAMP
@@ -161,7 +161,7 @@ VALUES
    10,
    1,
    false,
-   true,
+   false,
    '/〇〇/2',
    CURRENT_TIMESTAMP,
    CURRENT_TIMESTAMP
@@ -190,7 +190,7 @@ VALUES
    5,
    1,
    false,
-   true,
+   false,
    '/〇〇/3',
    CURRENT_TIMESTAMP,
    CURRENT_TIMESTAMP

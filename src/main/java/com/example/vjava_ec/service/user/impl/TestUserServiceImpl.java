@@ -2,25 +2,33 @@ package com.example.vjava_ec.service.user.impl;
 
 import java.time.LocalDateTime;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.vjava_ec.entity.User;
 import com.example.vjava_ec.form.user.SignupUserForm;
 import com.example.vjava_ec.repository.user.UserMapper;
+import com.example.vjava_ec.service.user.TestUserService;
+
+import lombok.RequiredArgsConstructor;
+
 
 @Service
-public class TestUserService {
+@RequiredArgsConstructor
+public class TestUserServiceImpl implements TestUserService{
 	
-	@Autowired
-	private UserMapper userMapper;
+	//DI
+	private final UserMapper userMapper;
 	
+    /**
+     *会員新規登録
+     *
+     * @param signupUserForm 
+     * @throws Exception 
+     */
 	
-	/*
-	 * 会員新規登録
-	 */
-	
+	@Override
 	public void NewRegisterUser(SignupUserForm  signupUserForm) throws Exception{
 		//メールアドレスの重複チェック
 		User checkUser = userMapper.selectUserByEmail(signupUserForm.getEmail());
@@ -44,8 +52,22 @@ public class TestUserService {
     user.setTel(signupUserForm.getTel());
 	user.setCreatedAt(LocalDateTime.now());
     user.setUpdatedAt(LocalDateTime.now()); 
+    
+    
     // データベースに挿入
     userMapper.insertUser(user);
 	}
 
+	@Override
+	public boolean IdentifyUser() {
+		final String email = SecurityContextHolder.getContext().getAuthentication().getName();		
+		System.out.println(email);
+		if(email.equals("anonymousUser") ) {
+			return false;
+		}
+		return true;
+	}
+
 }
+
+

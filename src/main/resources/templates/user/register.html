@@ -5,8 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ユーザー新規登録</title>
     <link rel="stylesheet" href="/css/style.css">
+	
+	<link th:href="@{/css/user/common/usercommon.css}" rel="stylesheet">
+
 </head>
 <body>
+	<div th:replace="usercommon :: header"></div>
     <h1>ユーザー新規登録</h1>
     
     <!-- フォーム開始 -->
@@ -59,5 +63,6 @@
             <button type="submit">登録する</button>
         </div>
     </form>
+	<div th:replace="usercommon :: footer"></div>
 </body>
 </html>

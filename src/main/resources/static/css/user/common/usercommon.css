@@ -1,0 +1,90 @@
+body {
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #f8f9fa;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+header img {
+    height: 70px;
+}
+
+header input[type="text"] {
+    width: 300px; /* 任意の幅に設定 */
+    max-width: 100%; /* レスポンシブ対応 */
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    flex-grow: 1;
+}
+
+.header-link {
+    margin-left: 15px;
+    padding: 8px 15px;
+    text-decoration: none;
+    color: rgb(0, 0, 255);
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.header-loginlink {
+    margin-left: 15px;
+    padding: 8px 15px;
+    text-decoration: none;
+    color: rgb(255, 0, 0);
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.header-link:hover {
+    background-color: rgb(128, 128, 128);
+}
+
+.header-loginlink:hover {
+    background-color: rgb(128, 128, 128);
+}
+
+main {
+    flex: 1;
+    padding: 20px;
+}
+
+footer {
+    background-color: #f8f9fa;
+    padding: 10px;
+    font-size: 1em;
+    color: rgb(0, 0, 0);
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+    header {
+        flex-wrap: wrap;
+    }
+
+    header img {
+        margin-bottom: 10px;
+    }
+
+    header input[type="text"] {
+        order: 1;
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .header-link {
+        margin: 5px;
+        font-size: 0.9em;
+    }
+}

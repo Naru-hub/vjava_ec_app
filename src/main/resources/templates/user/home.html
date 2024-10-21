@@ -3,8 +3,12 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
+	<link th:href="@{/css/user/common/usercommon.css}" rel="stylesheet">
 </head>
+
 <body>
+	<div th:replace="usercommon :: header"></div>
+	
 	<h1>ホーム画面</h1>
 	
 	<!-- フラッシュメッセージの表示 -->
@@ -15,5 +19,6 @@
 	<form th:action="@{/user/logout}" method="post">
 	        <input type="submit" value="ログアウト">
 	    </form>
+	<div th:replace="usercommon :: footer"></div>
 </body>
 </html>

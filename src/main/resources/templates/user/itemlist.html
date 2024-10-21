@@ -2,17 +2,31 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>商品一覧</title>
+	<link th:href="@{/css/user/item/itemlist.css}" rel="stylesheet">
+	<link th:href="@{/css/user/common/usercommon.css}" rel="stylesheet">
 </head>
 <body>
+    <div th:replace="usercommon :: header"></div>
+
     <h1>商品一覧</h1>
+
+    <!-- 商品がない場合のメッセージ -->
     <div th:if="${items.isEmpty()}">商品がありません。</div>
-    <div th:each="item : ${items}">
-        <div>
+
+    <!-- 商品リスト -->
+    <ul>
+        <li th:each="item : ${items}">
+            <!-- 商品画像 -->
             <img th:src="@{${item.imagePath}}" alt="商品画像">
+            <!-- 商品名 -->
             <p th:text="${item.name}">商品名</p>
-            <p th:text="${item.price}">価格</p>
-            <a th:href="@{"/user/item/detail/ + ${item.id}}">商品詳細</a>
-        </div>
-    </div>
+            <!-- 価格 -->
+            <p th:text="${item.price} + '円(税込)'">価格</p>
+            <!-- 商品詳細リンク -->
+            <a th:href="@{'/user/item/detail/' + ${item.id}}">商品詳細</a>
+        </li>
+    </ul>
+
+    <div th:replace="usercommon :: footer"></div>
 </body>
 </html>

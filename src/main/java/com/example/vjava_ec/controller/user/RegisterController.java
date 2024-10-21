@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.vjava_ec.form.user.SignupUserForm;
-import com.example.vjava_ec.service.user.impl.TestUserService;
+import com.example.vjava_ec.service.user.impl.TestUserServiceImpl;
 
 import lombok.RequiredArgsConstructor;
 
@@ -25,7 +25,7 @@ public class RegisterController {
 	
 	// ユーザー登録を処理するサービスクラス
 	@Autowired
-	private TestUserService testUserService;
+	private TestUserServiceImpl testUserService;
 	
     /**
      * 新規登録フォームを表示

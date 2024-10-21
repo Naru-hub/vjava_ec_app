@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>共通ヘッダーとフッター</title>
+	<link th:href="@{/css/user/common/usercommon.css}" rel="stylesheet">
+
+</head>
+<body>
+	<header>
+	    <img src="/images/user/logo.png" alt="ロゴ" style="height: 120px;">
+		<h1 style="margin: 0; padding-left: 10px;">　VJava ECサイト　</h1>
+	    <input type="text" placeholder="Search...">
+	    <a th:unless="${islogin}" th:href="@{/user/login}" class="header-loginlink">ログイン</a>
+	    <a th:if="${islogin}" th:href="@{/user/login}" class="header-loginlink">ログアウト</a>
+	    <a th:href="@{/user/item/list}" class="header-link">商品一覧</a>
+	    <a th:href="@{/user/detail}" class="header-link">プロフィール</a>
+	    <a th:href="@{/cart}" class="header-link">カート</a>
+	</header>
+
+<main>
+    <h2>ホームページコンテンツ</h2>
+    <!-- 追加のコンテンツ -->
+</main>
+
+<footer>
+    <p>© 2024 グループ開発 チームC. VJava ECサイト.</p>
+</footer>
+
+</body>
+</html>

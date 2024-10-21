@@ -3,8 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link th:href="@{/css/user/common/usercommon.css}" rel="stylesheet">
+
 </head>
 <body>
+	
+	<div th:replace="usercommon :: header"></div>
+	
 	<div class="login-container">
        <h2>Sign In</h2>
 	<!-- エラー表示 -->
@@ -34,5 +39,7 @@
            <p>アカウントをお持ちでない方は <a th:href="@{/user/register}" style="font-weight: bold;"> こちら </a></p>
        </div>
    </div>
+   
+   <div th:replace="usercommon :: footer"></div>
 </body>
 </html>
