@@ -3,11 +3,11 @@
 <head>
 	<meta charset="UTF-8">
 	<title>ホーム</title>
-	<link th:href="@{/css/user/common/usercommon.css}" rel="stylesheet">
+	<link th:href="@{/css/user/common/user_common.css}" rel="stylesheet">
 </head>
 
 <body>
-	<div th:replace="usercommon :: header"></div>
+	<div th:replace="user_common :: header"></div>
 	
 	<h1>ホーム画面</h1>
 	
@@ -19,6 +19,6 @@
 	<form th:action="@{/user/logout}" method="post">
 	        <input type="submit" value="ログアウト">
 	    </form>
-	<div th:replace="usercommon :: footer"></div>
+	<div th:replace="user_common :: footer"></div>
 </body>
 </html>
