@@ -26,12 +26,17 @@ public class TestItemServiceImpl implements TestItemService{
  // 消費税率(定数)
  	@Value("${TAX_RATE}")
  	private double TAX_RATE;
-
+ 	
+    /**
+     * 商品一覧を取得し、消費税込みの価格に変換
+     * 
+     * @return items
+     */
     @Override
     public List<Item> getAllItems() {
-    	
+    	 // 商品一覧を取得
     	List<Item> items = itemMapper.selectAll();
-    	
+    	// 各商品の価格を消費税込みに計算し直す
     	for(Item item : items) {
     		int price = (int)(item.getPrice() * (1 + TAX_RATE));
     		item.setPrice(price);

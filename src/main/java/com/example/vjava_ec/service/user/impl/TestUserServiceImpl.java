@@ -35,7 +35,6 @@ public class TestUserServiceImpl implements TestUserService{
 		if(checkUser != null) {
 			 throw new Exception("そのメールアドレスは既に登録されています");
 		}
-		
 		//パスワード一致チェック
 		if(!signupUserForm.getPassword().equals(signupUserForm.getPasswordConfirm())) {
 			throw new Exception("パスワードが一致しません");
@@ -59,7 +58,7 @@ public class TestUserServiceImpl implements TestUserService{
 	}
 	
 	/**
-	 * ログイン状態を確認
+	 * ユーザーのログイン状態を確認
 	 * ユーザーが登録したemailが合致している場合、trueを返してログアウトを表示
 	 * 合致していない場合、falseを返してログインを表示
 	 */

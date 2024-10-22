@@ -15,14 +15,15 @@ import lombok.RequiredArgsConstructor;
 
 /**
  * 商品コントローラ
+ * ユーザーのログイン状態の確認を行う
  */
 @Controller("userItem")
 @RequestMapping("/user/item")
 @RequiredArgsConstructor
 public class ItemController {
-	//商品情報を操作するサービスクラス
+	//商品情報を確認するサービスクラス
     private final TestItemService testItemService;
-    //ユーザー情報を操作するサービスクラス
+    //ユーザー情報を確認するサービスクラス
     private final TestUserService testUserService;
 
     /**
