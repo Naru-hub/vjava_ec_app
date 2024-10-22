@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 public class AdminItemForm {
 
 	/** ID */
-	private Integer itemId;
+	private Integer id;
 
 	/** キャラクタid */
 	@NotNull(message = "キャラクターを選択してください")
@@ -50,7 +50,6 @@ public class AdminItemForm {
 	private boolean limited;
 
 	/** 画像ファイル */
-	@NotNull(message = "ファイルを選択してください")
 	private MultipartFile file;
 
 	/** 画像のパス */

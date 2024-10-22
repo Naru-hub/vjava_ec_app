@@ -15,6 +15,7 @@ public class AdminItemHelper {
 	 */
 	public static Item convertItem(AdminItemForm form) {
 		Item item = new Item();
+		item.setId(form.getId());
 		item.setCharacterId(form.getCharacterId());
 		item.setName(form.getName());
 		item.setDetail(form.getDetail());
@@ -34,7 +35,7 @@ public class AdminItemHelper {
 	 */
 	public static AdminItemForm convertItemForm(adminItemDTO item) {
 		AdminItemForm form = new AdminItemForm();
-		form.setItemId(item.getItemId());
+		form.setId(item.getItemId());
 		form.setCharacterId(item.getCharacterId());
 		form.setName(item.getName());
 		form.setDetail(item.getDetail());

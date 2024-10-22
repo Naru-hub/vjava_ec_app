@@ -15,18 +15,23 @@
 			<div th:if="${errorMessage}" th:text="${errorMessage}" class="alert alert-danger col-md-5" role="alert">
 				エラーメッセージ
 			</div>
+
 			<div class="col-md-10 offset-md-1 mt-5">
 				<h1 class="mb-5 text-center">商品編集</h1>
 				<form th:action="@{/admin/item/update}" th:object="${adminItemForm}" method="post"
 					enctype="multipart/form-data">
 					<!-- idは更新時に必要なため、hiddenで持つ -->
-					<input type="hidden" th:field="*{itemId}">
-					
+					<div class="my-3 d-flex flex-row">
+						<input type="hidden" th:field="*{id}">
+						<label for="idInput" class="col-md-3 form-label">ID</label>
+						<span th:text="*{id}" class="col-md-8"></span>
+					</div>
+
 					<!-- キャラクタ選択 -->
 					<div class="my-3 d-flex flex-row">
 						<label for="characterId" class="col-md-3 form-label">キャラクター選択</label>
 						<select th:field="*{characterId}" id="characterId" class="col-md-8 form-control" required>
-							<option value="">選択してください</option>
+							<option value="">キャラクターを選択してください</option>
 							<th:block th:each="character : ${characterList}">
 								<option th:value="${character.id}" th:text="${character.name}"></option>
 							</th:block>

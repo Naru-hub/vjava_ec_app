@@ -73,7 +73,7 @@ public class AdminItemController {
 	/**
 	 * 商品の詳細情報を取得し、商品詳細画面を表示
 	 * @param id
-	 * @param model　モデルオブジェクト、商品の詳細情報をビューに渡す
+	 * @param model モデルオブジェクト、商品の詳細情報をビューに渡す
 	 * @param attributes
 	 * @return String 商品詳細画面のビュー名（"admin/item/{id}"）
 	 */
@@ -234,14 +234,14 @@ public class AdminItemController {
 		}
 
 		// 元の商品情報の取得
-		adminItemDTO existingItem = adminItemService.findByIdItem(form.getItemId());
+		adminItemDTO existingItem = adminItemService.findByIdItem(form.getId());
 
 		// 商品情報が見つからない場合
 		if (existingItem == null) {
 			// 対象データがない場合はフラッシュメッセージを表示
 			attributes.addFlashAttribute("errorMessage", "対象データがありません");
 			// 商品詳細画面へリダイレクト
-			return "redirect:/admin/item/" + form.getItemId();
+			return "redirect:/admin/item/" + form.getId();
 		}
 
 		// 編集するイメージファイル名とイメージパス
@@ -254,7 +254,7 @@ public class AdminItemController {
 				try {
 					// 新しい画像のファイル名を取得
 					newImageFilename = adminImageService.uploadImage(form.getFile(), "item");
-					// ファイルパスを相対パスでセットする
+					// ファイルパスを相対パスでセット
 					newImagePath = this.IMAGE_UPLOAD_DIR_PATH + newImageFilename;
 					form.setImagePath(newImagePath);
 
@@ -264,12 +264,7 @@ public class AdminItemController {
 					// 商品編集画面へ遷移
 					return "admin/item/edit";
 				}
-			} else {
-				// 画像ファイルが選択されていない場合は既存の画像パスをそのまま使用
-				if (existingItem != null && existingItem.getImagePath() != null) {
-					form.setImagePath(existingItem.getImagePath());
-				}
-			}
+			} 
 
 			// エンティティへの変換
 			Item item = AdminItemHelper.convertItem(form);
@@ -281,7 +276,7 @@ public class AdminItemController {
 				// 相対パスからファイル名を取得
 				String oldImageFilename = existingItem.getImagePath().replace(this.IMAGE_UPLOAD_DIR_PATH, "");
 				if (newImageFilename != null && !oldImageFilename.equals(newImageFilename)) {
-					adminImageService.deleteImage(oldImageFilename, "post");
+					adminImageService.deleteImage(oldImageFilename, "item");
 				}
 			}
 
@@ -294,13 +289,13 @@ public class AdminItemController {
 			// フラッシュメッセージ
 			attributes.addFlashAttribute("message", "商品情報が更新されました");
 			// 商品詳細画面へリダイレクト
-			return "redirect:/admin/item/{id}";
+			return "redirect:/admin/item/" + item.getId();
 
 		} catch (Exception e) {
 			// 投稿の更新処理でエラーが発生した場合の処理
 			if (newImageFilename != null) {
 				// 新しい画像ファイルを削除
-				adminImageService.deleteImage(newImageFilename, "post");
+				adminImageService.deleteImage(newImageFilename, "item");
 			}
 
 			bindingResult.reject("errorMesage", "商品情報の更新に失敗しました。");
