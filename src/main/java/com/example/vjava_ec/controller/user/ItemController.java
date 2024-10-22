@@ -20,8 +20,9 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/user/item")
 @RequiredArgsConstructor
 public class ItemController {
-
+	//商品情報を操作するサービスクラス
     private final TestItemService testItemService;
+    //ユーザー情報を操作するサービスクラス
     private final TestUserService testUserService;
 
     /**
