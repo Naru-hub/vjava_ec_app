@@ -6,26 +6,34 @@
 </head>
 <body>
 	<h1>会員情報編集</h1>
-	<div th:if="${errors}" th:each="error : ${errors}">
-		<div th:text="${error}"></div>
-	</div>
-	<form th:action="@{/user/update}" method="post">
-		<input type="hidden" th:field="${form.userId}">
+	<form th:object="${form}" th:action="@{/user/update}" method="post">
+		<input type="hidden" th:field="*{userId}">
 		
-		<label for="name">名前　　　　　</label>
-		<input type="text" th:field="${form.name}">
-		<br>
-		<label for="email">メールアドレス</label>
-		<input type="text" th:field="${form.email}">
-		<br>
-		<label for="postcode">郵便番号　　　</label>
-		<input type="text" th:field="${form.postcode}">
-		<br>
-		<label for="address">住所　　　　　</label>
-		<input type="text" th:field="${form.address}">
-		<br>
-		<label for="tel">名電話番号前　</label>
-		<input type="text" th:field="${form.tel}">
+		<div>
+			<label for="name">名前　　　　　</label>
+			<input type="text" id="name" th:field="*{name}">
+			<span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"style="color: red;"></span>
+		</div>
+		<div>
+			<label for="email">メールアドレス</label>
+			<input type="text" th:field="*{email}">
+			<span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"style="color: red;"></span>
+		</div>
+		<div>
+			<label for="postcode">郵便番号　　　</label>
+			<input type="text" th:field="*{postcode}">
+			<span th:if="${#fields.hasErrors('postcode')}" th:errors="*{postcode}"style="color: red;"></span>
+		</div>
+		<div>
+			<label for="address">住所　　　　　</label>
+			<input type="text" th:field="*{address}">
+			<span th:if="${#fields.hasErrors('address')}" th:errors="*{address}"style="color: red;"></span>
+		</div>
+		<div>
+			<label for="tel">名電話番号前　</label>
+			<input type="text" th:field="*{tel}">
+			<span th:if="${#fields.hasErrors('tel')}" th:errors="*{tel}"style="color: red;"></span>
+		</div>
 		
 		<button type="submit">保存</button>
 	</form>

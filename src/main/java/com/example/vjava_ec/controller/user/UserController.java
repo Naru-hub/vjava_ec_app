@@ -1,17 +1,14 @@
 package com.example.vjava_ec.controller.user;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -52,7 +49,7 @@ public class UserController {
 	/**
 	 * 会員情報編集画面表示
 	 * @param model
-	 * @return user/user/profile
+	 * @return user/user/edit
 	 */
 	@GetMapping("/edit")
 	public String showEditUserDetail(Model model) {
@@ -68,15 +65,10 @@ public class UserController {
 	 * @return redirect:/user/detail 
 	 */
 	@PostMapping("/update")
-	public String updateUserDetail(@Validated UserForm form,BindingResult bindingResult,RedirectAttributes attributes,Model model) {
+	public String updateUserDetail(@Validated @ModelAttribute("form") UserForm form,BindingResult bindingResult,RedirectAttributes attributes,Model model) {
 		// バリデーションチェック
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("form", form);
-			List<String> errers = new ArrayList<>();
-			for (ObjectError e: bindingResult.getAllErrors()) {
-				errers.add(e.getDefaultMessage());
-			}
-			model.addAttribute("errors", errers);
 			// 元の画面に戻る
 			return "user/user/edit";
 		}

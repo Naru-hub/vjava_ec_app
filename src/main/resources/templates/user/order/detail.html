@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link th:href="@{/css/user/order/detail.css}" rel="stylesheet">
+</head>
+<body>
+	<form action="/user/order/list" method="get">
+		<button type="submit" >注文履歴一覧へ戻る</button>
+	</form>
+	<h1>注文履歴詳細</h1>
+	<div class="order-info-container">
+		<div class="order-info-brank"></div>
+		<div class="order-info">
+			<span>注文ステータス：<span th:switch="${order.orderStatus}">
+				<span th:case="1">受付済み</span>
+				<span th:case="2">発送準備中</span>
+				<span th:case="3">発送済み</span>
+				<span th:case="4">キャンセル済み</span>
+			</span></span>
+			<span class="order-date">購入日：<span th:text="${#temporals.format(order.createdAt, 'yyyy年MM月dd日')}"></span></span>
+		</div>
+	</div>
+	
+	<div class="container">
+	    <div class="order-details">
+	        <div th:each="orderItem : ${order.orderItems}" class="order-items">
+	            <div class="item">
+	                <img src="${orderItem.item.imagePath}" alt="商品画像">
+	                <div class="item-infoname">
+						<p>商品名</p>
+	                    <p>価格</p>
+	                    <p>個数</p>
+					</div>
+					<div class="item-info">
+	                    <p th:text="${orderItem.item.name}"></p>
+	                    <p th:text="${orderItem.purchasePrice}"></p>
+	                    <p th:text="${orderItem.amount}"></p>
+	                </div>
+	                <div class="item-total">
+	                    <p>小計：[[${orderItem.purchasePrice * orderItem.amount}]]円</p>
+	                </div>
+	            </div>
+	        </div>
+	        <div class="pay-info">
+				<div class="payment">
+	         	   <span>支払い方法　</span>
+	         	   <span th:switch="${order.payment}">
+						<span th:case="1">代引き</span>
+						<span th:case="2">クレジットカード</span>
+						<span th:case="3">コンビニ払い</span>
+				   </span>
+				</div>
+				<div class="price-info">
+					<div class="postage">
+						<span class="postagename">送料</span>
+						<span class="postege-price">[[${order.postage}]] 円</span>
+					</div>
+					<div class="total-price">
+						<span class="postagename">合計</span>
+						<span class="postege-price">[[${order.totalPrice}]] 円</span>
+					</div>
+				</div>
+	        </div>
+	    </div>
+	    <div class="shipping-info-contents">
+	        <h2>配送先情報</h2>
+			<div class="shipping-info-area">
+				<div class="shipping-info-label">
+					<p>宛名</p>
+			        <p>郵便番号</p>
+			        <p>住所</p>
+			        <p>電話番号</p>
+				</div>
+				<div class="shipping-info">
+			        <p th:text="${order.deliveryName}"></p>
+			        <p th:text="${order.deliveryPostcode}"></p>
+			        <p th:text="${order.deliveryAddress}"></p>
+			        <p th:text="${order.deliveryTel}"></p>
+				</div>
+			</div>
+	    </div>
+	</div>
+
+</body>
+</html>

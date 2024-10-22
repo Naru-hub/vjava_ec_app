@@ -16,7 +16,7 @@ public class Item {
 	/** id */
 	private Integer id;
 	/** キャラクタid */
-	private Integer characterId;
+	private Character character;
 	/** 商品名 */
 	private String name;
 	/** 商品詳細 */

@@ -12,11 +12,11 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrderItems {
+public class OrderItem {
 	/** id */
 	private Integer id;
-	/** 商品id */
-	private Integer itemId;
+	/** 商品エンティティ */
+	private Item item;
 	/** 注文id */
 	private Integer orderId;
 	/** 数量 */

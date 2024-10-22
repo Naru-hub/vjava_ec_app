@@ -1,9 +1,17 @@
 package com.example.vjava_ec.service.user.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.vjava_ec.entity.CustomUserDetails;
 import com.example.vjava_ec.entity.User;
 import com.example.vjava_ec.repository.user.UserMapper;
 import com.example.vjava_ec.service.user.UserService;
@@ -29,9 +37,6 @@ public class UserServiceImpl implements UserService{
 	 */
 	@Override
 	public User selectUserByEmail(String email) {
-		
-		System.out.println(email);
-		
 		return userMapper.selectUserByEmail(email);
 	}
 
@@ -58,10 +63,37 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	/**
-	 * 会員情報を更新する
+	 * 会員情報の更新処理とメールアドレスが変更された際の認証情報の変更処理
 	 */
 	@Override
-	public void updateUser(User user) {
+	public void updateUser(User user) {		
+		// 現在の認証情報を取得
+	    Authentication currentAuth = SecurityContextHolder.getContext().getAuthentication();
+	    // メールアドレスに変更があった場合
+	    if(!user.getEmail().equals(currentAuth.getName())) {
+	    	 // 現在のユーザー情報を取得
+	    	CustomUserDetails currentUserDetails = (CustomUserDetails) currentAuth.getPrincipal();
+	    	// 権限リスト
+			List<GrantedAuthority> authorities = new ArrayList<>();
+			// 列挙型からロールを取得
+			authorities.add(new SimpleGrantedAuthority("USER"));
+	    	// 新しいユーザー名で CustomUserDetails を作成
+	        CustomUserDetails newUserDetails = new CustomUserDetails(
+	            user.getEmail(),  // 新しいユーザー名
+	            currentUserDetails.getPassword(),  // 既存のパスワード
+	            authorities// 既存の権限
+	        );
+
+	        // 新しい認証トークンを作成
+	        Authentication newAuth = new UsernamePasswordAuthenticationToken(
+	            newUserDetails,
+	            newUserDetails.getPassword(),
+	            newUserDetails.getAuthorities()
+	        );
+
+	        // 新しい認証情報をSecurityContextにセット
+	        SecurityContextHolder.getContext().setAuthentication(newAuth);
+	    }
 		userMapper.updateUser(user);		
 	}
 	
