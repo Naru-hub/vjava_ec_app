@@ -13,5 +13,6 @@ public interface TestUserService {
      */
     void NewRegisterUser(SignupUserForm signupUserForm) throws Exception;
     
+    //
     boolean IdentifyUser();
 }

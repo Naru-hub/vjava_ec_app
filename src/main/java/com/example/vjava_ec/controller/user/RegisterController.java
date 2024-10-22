@@ -25,6 +25,7 @@ public class RegisterController {
 	// ユーザー登録を処理するサービスクラス
 	private final TestUserServiceImpl testUserService;
 	
+	
     /**
      * 新規登録フォームを表示
      * 

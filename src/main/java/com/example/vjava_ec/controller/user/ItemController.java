@@ -26,7 +26,7 @@ public class ItemController {
     private final TestUserService testUserService;
 
     /**
-     * 商品一覧を表示するメソッド
+     * 商品一覧を表示
      * @param model 
      * @return user/itemList
      */
