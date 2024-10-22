@@ -7,18 +7,18 @@ import org.springframework.stereotype.Service;
 
 import com.example.vjava_ec.entity.Item;
 import com.example.vjava_ec.repository.user.ItemMapper;
-import com.example.vjava_ec.service.user.TestItemService;
+import com.example.vjava_ec.service.user.UserItemService;
 
 import lombok.RequiredArgsConstructor;
 
 /**
  * 商品情報を操作するサービスの実装クラス
- * {@link TestItemService} 商品の取得処理を提供
+ * {@link UserItemService} 商品の取得処理を提供
  */
 
  @Service
  @RequiredArgsConstructor
-public class TestItemServiceImpl implements TestItemService{
+public class UserItemServiceImpl implements UserItemService{
 	
 	 //DI
     private final ItemMapper itemMapper;
