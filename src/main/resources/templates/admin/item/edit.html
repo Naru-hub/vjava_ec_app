@@ -112,7 +112,9 @@
 
 					<!-- ボタン -->
 					<div class="my-5 col-md-8 offset-md-4 d-flex flex-row text-center">
-						<a th:href="@{/admin/item/list}" class="btn btn-outline-secondary mr-3">キャンセル</a>
+						<!-- キャンセルボタンを表示 -->
+						<a th:href="@{/admin/item/{id}(id=${id})}" class="btn btn-outline-secondary mr-3">キャンセル</a>
+						<!-- 保存ボタンを表示 -->
 						<input type="submit" value="保存" class="btn btn-outline-info mx-3">
 					</div>
 				</form>

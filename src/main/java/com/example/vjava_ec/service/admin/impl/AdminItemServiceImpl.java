@@ -25,10 +25,10 @@ public class AdminItemServiceImpl implements AdminItemService {
 	private final AdminItemMapper adminItemMapper;
 
 	/**
-	* 全商品一覧情報取得メソッド
-	* 
-	* @return 全商品一覧情報
-	*/
+	 * 全商品一覧情報取得メソッド
+	 * 
+	 * @return 全商品一覧情報
+	 */ 	
 	@Override
 	public List<adminItemDTO> findAllItem() {
 		return adminItemMapper.selectAll();
@@ -45,13 +45,33 @@ public class AdminItemServiceImpl implements AdminItemService {
 		return adminItemMapper.selectById(id);
 	}
 
+	/**
+	 * 商品登録メソッド
+	 * 
+	 * @param item 商品情報
+	 */
 	@Override
 	public void insertItem(Item item) {
 		adminItemMapper.insert(item);
 	}
 	
+	/**
+	 * 商品編集メソッド
+	 * 
+	 * @param item 商品情報
+	 */
 	@Override
 	public void updateItem(Item item) {
 		adminItemMapper.update(item);
+	}
+	
+	/**
+	 * 商品削除メソッド(論理削除)
+	 * 
+	 * @param item 商品情報
+	 */
+	@Override
+	public void deleteItem(adminItemDTO item) {
+		adminItemMapper.delete(item);
 	}
 }

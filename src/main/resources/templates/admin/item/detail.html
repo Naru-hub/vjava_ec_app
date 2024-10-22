@@ -5,6 +5,7 @@
 	<meta charset="UTF-8">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
 	<title>商品詳細</title>
 </head>
 
@@ -14,14 +15,18 @@
 			<div class="col-md-10 offset-md-1 mt-5 text-center">
 				<h1>商品詳細</h1>
 			</div>
+
+
 			<!-- フラッシュメッセージの表示 -->
-			<div th:if="${message}" th:text="${message}" class="col-md-5 offset-md-1alert alert-primary" role="alert">
+			<div th:if="${message}" th:text="${message}" class="col-md-5 alert alert-primary" role="alert">
 				完了メッセージ
+			</div>
+			<div th:if="${errorMessage}" th:text="${errorMessage}" class="col-md-5 alert alert-danger" role="alert">
+				エラーメッセージ
 			</div>
 		</div>
 
 		<div class="row">
-
 			<div class="col-md-5 mt-5">
 				<!-- 画像の表示 -->
 				<span th:if="${item.imagePath != null and item.imagePath != ''}">
@@ -76,28 +81,32 @@
 					</tr>
 					<tr>
 						<th>登録日時</th>
-						<td th:text="${item.createdAt.format(
-															T(java.time.format.DateTimeFormatter).
-															ofPattern('yyyy/MM/dd HH:mm:ss'))}">
+						<td
+							th:text="${item.createdAt.format(T(java.time.format.DateTimeFormatter).ofPattern('yyyy/MM/dd HH:mm:ss'))}">
 						</td>
 					</tr>
 					<tr>
 						<th>更新日時</th>
-						<td th:text="${item.updatedAt.format(
-														T(java.time.format.DateTimeFormatter).
-														ofPattern('yyyy/MM/dd HH:mm:ss'))}">
+						<td
+							th:text="${item.updatedAt.format(T(java.time.format.DateTimeFormatter).ofPattern('yyyy/MM/dd HH:mm:ss'))}">
 						</td>
 					</tr>
 				</table>
-				<div class="mt-5 ml-2">
+				<div class="mt-5 ml-2 col-md-10 offset-md-4 d-flex flex-row">
 					<!-- 一覧へ戻るボタンを表示 -->
-					<a th:href="@{/admin/item/list}" class="btn btn-outline-secondary mr-3">一覧へ戻る</a>
+					<a th:href="@{/admin/item/list}" class="btn btn-outline-secondary mr-4">一覧へ戻る</a>
 					<!-- 編集ボタンを表示 -->
-					<a th:href="@{/admin/item/edit/{id}(id=${item.itemId})}" class="btn btn-outline-info mx-3">編集</a>
+					<a th:href="@{/admin/item/edit/{id}(id=${item.itemId})}" class="btn btn-outline-info mr-4">編集</a>
+					<!-- 削除ボタンを表示 -->
+					<form th:action="@{/admin/item/delete/{id}(id=${id})}" method="post"
+						onsubmit="return confirmDelete()" ;>
+						<input type="submit" value="削除" class="btn btn-outline-danger" />
+					</form>
 				</div>
 			</div>
 		</div>
 	</div>
+	<script th:src="@{/js/admin/item/detail.js}"></script>
 </body>
 
 </html>

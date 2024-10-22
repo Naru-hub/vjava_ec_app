@@ -224,7 +224,7 @@ public class AdminItemController {
 		if (form.getFile() == null || form.getFile().isEmpty()) {
 			bindingResult.rejectValue("file", "error.file", "ファイルを選択してください");
 		}
-		
+
 		// バリデーションエラーがある場合
 		if (bindingResult.hasErrors()) {
 			// セレクトボックス用のキャラクタ一覧を取得
@@ -264,7 +264,7 @@ public class AdminItemController {
 					// 商品編集画面へ遷移
 					return "admin/item/edit";
 				}
-			} 
+			}
 
 			// エンティティへの変換
 			Item item = AdminItemHelper.convertItem(form);
@@ -302,5 +302,37 @@ public class AdminItemController {
 			// 商品編集画面へ遷移
 			return "admin/item/edit";
 		}
+	}
+
+	/**
+	 * 指定されたIDの商品を削除(論理削除)
+	 * 
+	 * 商品の削除ステータスを有効にする
+	 * 
+	 * @param id
+	 * @param attributes
+	 * @return String 商品一覧画面のビュー名（"admin/item/list"）
+	 */
+	@PostMapping("/delete/{id}")
+	public String updateItemDeleteStatus(@PathVariable Integer id, RedirectAttributes attributes) {
+		// 対象の商品情報の取得
+		adminItemDTO targetItem = adminItemService.findByIdItem(id);
+
+		// 商品情報が存在するか
+		if (targetItem != null) {
+			// 商品の削除フラグをTRUEにする
+			targetItem.setDeleted(true);
+
+			// 商品情報を削除
+			adminItemService.deleteItem(targetItem);
+			// フラッシュメッセージの設定（オプション）
+			attributes.addFlashAttribute("message", "商品が削除されました");
+		} else {
+			// 商品が見つからなかった場合の処理（オプション）
+			attributes.addFlashAttribute("errorMessage", "商品が見つかりませんでした");
+		}
+
+		// 商品一覧画面へリダイレクト
+		return "redirect:/admin/item/list";
 	}
 }

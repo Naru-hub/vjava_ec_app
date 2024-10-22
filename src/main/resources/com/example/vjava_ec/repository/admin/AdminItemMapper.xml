@@ -14,7 +14,8 @@
 		i.created_at as createdAt, i.updated_at as updatedAt, c.name as characterName
 		FROM items i
 		LEFT JOIN characters c ON i.character_id = c.id
-		ORDER BY i.id; 
+		WHERE i.is_deleted = false
+		ORDER BY i.id;
 	</select>
 
 	<!-- 商品1件検索 -->
@@ -53,5 +54,12 @@
 		image_path = #{imagePath},
 		updated_at = CURRENT_TIMESTAMP
 		WHERE id = #{id};
+	</update>
+	
+	<!-- 商品情報の削除(論理削除) -->
+	<update id="delete">
+		UPDATE items
+		SET is_deleted = #{isDeleted}
+		WHERE id = #{itemId};
 	</update>
 </mapper>

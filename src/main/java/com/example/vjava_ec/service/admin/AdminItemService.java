@@ -28,4 +28,9 @@ public interface AdminItemService {
 	 * 商品情報を編集
 	 */
 	void updateItem(Item item);
+	
+	/**
+	 * 商品情報を削除(論理削除)
+	 */
+	void deleteItem(adminItemDTO item);
 }
