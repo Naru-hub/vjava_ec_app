@@ -34,8 +34,9 @@ public class ItemController {
         // 商品一覧を取得
         List<Item> items = testItemService.getAllItems();
         // モデルに商品情報を追加
+         model.addAttribute("items", items);
+        // ユーザーがログイン中か確認する
         model.addAttribute("islogin",testUserService.IdentifyUser());
-        model.addAttribute("items", items);
         System.out.println(testUserService.IdentifyUser());
         return "user/itemList"; 
     }

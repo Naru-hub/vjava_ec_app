@@ -1,6 +1,5 @@
 package com.example.vjava_ec.controller.user;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,8 +23,7 @@ import lombok.RequiredArgsConstructor;
 public class RegisterController {
 	
 	// ユーザー登録を処理するサービスクラス
-	@Autowired
-	private TestUserServiceImpl testUserService;
+	private final TestUserServiceImpl testUserService;
 	
     /**
      * 新規登録フォームを表示
@@ -46,7 +44,7 @@ public class RegisterController {
      * @param signupUserForm 
      * @param result 
      * @param model 
-     * @return 成功時は成功ページにリダイレクト、失敗時はregister
+     * @return 成功時は成功ページにリダイレクト、失敗時は/register
      */
 	@PostMapping
 	public String newRegister(@ModelAttribute("signupUserForm") SignupUserForm signupUserForm, 
