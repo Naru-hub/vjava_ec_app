@@ -9,8 +9,10 @@
 </head>
 <body>
 	<header>
-	    <img src="/images/user/logo.png" alt="ロゴ" style="height: 120px;">
-		<h1 style="margin: 0; padding-left: 10px;">　VJava ECサイト　</h1>
+		<a th:href="@{/user}" class="logo-border">
+			<img src="/images/user/logo.png" alt="ロゴ" style="height: 120px;">
+		</a>
+		<h1 style="margin: 0; padding-left: 10px;">　- VJava ECサイト -　</h1>
 	    <input type="text" placeholder="Search...">
 	    <a th:unless="${islogin}" th:href="@{/user/login}" class="header-loginlink">ログイン</a>
 	    <a th:if="${islogin}" th:href="@{/user/login}" class="header-loginlink">ログアウト</a>
