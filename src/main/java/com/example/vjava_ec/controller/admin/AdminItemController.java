@@ -221,11 +221,6 @@ public class AdminItemController {
 			BindingResult bindingResult,
 			RedirectAttributes attributes, Model model) {
 		// === バリデーションチェック ===
-		// ファイルが選択されていない場合
-		if (form.getFile() == null || form.getFile().isEmpty()) {
-			bindingResult.rejectValue("file", "error.file", "ファイルを選択してください");
-		}
-
 		// バリデーションエラーがある場合
 		if (bindingResult.hasErrors()) {
 			// セレクトボックス用のキャラクタ一覧を取得
@@ -264,6 +259,11 @@ public class AdminItemController {
 					bindingResult.reject("errorMessage", "画像のアップロードに失敗しました。");
 					// 商品編集画面へ遷移
 					return "admin/item/edit";
+				}
+			} else {
+				// 画像ファイルが選択されていない場合は既存の画像パスをそのまま使用
+				if (existingItem != null && existingItem.getImagePath() != null) {
+					form.setImagePath(existingItem.getImagePath());
 				}
 			}
 
