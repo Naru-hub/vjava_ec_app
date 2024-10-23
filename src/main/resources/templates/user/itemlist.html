@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>商品一覧</title>
 	<link th:href="@{/css/user/item/itemlist.css}" rel="stylesheet">
 	<link th:href="@{/css/user/common/user_common.css}" rel="stylesheet">
+	<title>商品一覧</title>
 </head>
 <body>
-    <div th:replace="user_common :: header"></div>
+    <div th:insert="~{user_common :: header}"></div>
 
     <h1>商品一覧</h1>
 
@@ -26,7 +26,6 @@
             <a th:href="@{'/user/item/detail/' + ${item.id}}">商品詳細</a>
         </li>
     </ul>
-
-    <div th:replace="user_common :: footer"></div>
+    <div th:insert="~{user_common :: footer}"></div>
 </body>
 </html>

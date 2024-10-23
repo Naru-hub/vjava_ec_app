@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import com.example.vjava_ec.entity.CustomUserDetails;
 import com.example.vjava_ec.entity.Role;
 import com.example.vjava_ec.entity.User;
-import com.example.vjava_ec.repository.user.UserMapper;
+import com.example.vjava_ec.repository.user.TestUserMapper;
 
 import lombok.RequiredArgsConstructor;
 
@@ -28,7 +28,7 @@ import lombok.RequiredArgsConstructor;
 public class UserUserDetailsServiceImpl  implements UserDetailsService{
 	
 	// デバック用
-	private final UserMapper userMapper;
+	private final TestUserMapper userMapper;
 	
 	/**
      * 指定されたメールアドレスに対応するユーザーをロードするメソッド

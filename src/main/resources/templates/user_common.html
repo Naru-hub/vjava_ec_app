@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link th:href="@{/css/user/common/user_common.css}" rel="stylesheet">	
     <title>共通ヘッダーとフッター</title>
-	<link th:href="@{/css/user/common/user_common.css}" rel="stylesheet">
-
 </head>
 <body>
 	<header>
@@ -26,7 +25,6 @@
 	    	<a th:href="@{/user/detail}" class="header-usetdetaillink">プロフィール</a>
 	    	<a th:href="@{/cart}" class="header-cartlink">カート</a>
 	</header>
-
 <main>
     <h2>ホームページコンテンツ</h2>
     <!-- 追加のコンテンツ -->
@@ -35,6 +33,5 @@
 <footer>
     <p>© 2024 グループ開発 チームC. VJava ECサイト.</p>
 </footer>
-
 </body>
 </html>

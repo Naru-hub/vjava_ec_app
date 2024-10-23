@@ -15,21 +15,20 @@ import lombok.RequiredArgsConstructor;
 
 /**
  * 商品コントローラ
- * ユーザーのログイン状態の確認を行う
  */
 @Controller("userItem")
 @RequestMapping("/user/item")
 @RequiredArgsConstructor
 public class ItemController {
-	//商品情報を確認するサービスクラス
+	
+	//DI
     private final ItemService itemService;
-    //ユーザー情報を確認するサービスクラス
     private final TestUserService testUserService;
 
     /**
      * 商品一覧を表示
      * @param model 
-     * @return user/itemList
+     * @return user/itemList 商品一覧画面
      */
     @GetMapping("/list") 
     public String showItemList(Model model) {

@@ -11,20 +11,19 @@ import lombok.RequiredArgsConstructor;
 
 /**
  * ホームコントローラ
- * ユーザーのログイン状態の確認を行う
  */
 @Controller
 @RequestMapping("/user")
 @RequiredArgsConstructor
 public class HomeController {
 	
-    //ユーザー情報を確認するサービスクラス
+    //DI
     private final TestUserService testUserService;
 	
     /**
      * ホーム画面を表示
      * @param model
-     * @return user/home
+     * @return user/home ホーム画面
      */
 	@GetMapping("")
 	public String showHome(Model model) {

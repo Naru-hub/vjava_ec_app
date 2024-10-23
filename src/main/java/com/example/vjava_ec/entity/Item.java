@@ -37,23 +37,4 @@ public class Item {
 	private LocalDateTime createdAt;
 	/** 更新日時 */
 	private LocalDateTime updatedAt;
-	
-	
-	   @Override
-	    public String toString() {
-	        return "Item{" +
-	                "id=" + id +
-	                ", characterId=" + characterId +
-	                ", name='" + name + '\'' +
-	                ", detail='" + detail + '\'' +
-	                ", price=" + price +
-	                ", stock=" + stock +
-	                ", saleStatus=" + saleStatus +
-	                ", isLimited=" + isLimited +
-	                ", isDeleted=" + isDeleted +
-	                ", imagePath='" + imagePath + '\'' +
-	                ", createdAt=" + createdAt +
-	                ", updatedAt=" + updatedAt +
-	                '}';
-	    }
 }

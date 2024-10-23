@@ -23,21 +23,19 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class RegisterController {
 	
-	// ユーザー登録を処理するサービスクラス
+	//DI
 	private final TestUserServiceImpl testUserService;
 	
-	
     /**
-     * 新規登録フォームを表示
+     * 新規登録画面を表示
      * 
      * @param model 
-     * @return /register
+     * @return user/register 新規登録画面
      */
 	@GetMapping
 	public String showRegister(Model model) {
 		model.addAttribute("signupUserForm", new SignupUserForm());
 		return "user/register";
-		
 	}
 	
     /**
@@ -46,22 +44,25 @@ public class RegisterController {
      * @param signupUserForm 
      * @param result 
      * @param model 
-     * @return 成功時は成功ページにリダイレクト、失敗時は/register
+     * @param redirectAttributes
+     * @return 成功時はredirect:/user ホーム画面
+     * 			失敗時はuser/register 新規登録画面
      */
 	@PostMapping
 	public String newRegister(@Validated @ModelAttribute("signupUserForm") SignupUserForm signupUserForm, 
 							   BindingResult result, 
 							   RedirectAttributes redirectAttributes) {
+		//失敗時は新規登録画面に戻す
 		if(result.hasErrors()) {
 			return "user/register";
 		}
 		try {
 			testUserService.NewRegisterUser(signupUserForm);
 			// フラッシュメッセージを追加
-			 redirectAttributes.addFlashAttribute("successMessage", "登録が成功しました。"); 
+			redirectAttributes.addFlashAttribute("successMessage", "登録が成功しました。"); 
 		} catch(Exception e) {
-			 result.rejectValue("email", "error.user", e.getMessage());
-			 return "user/register";
+			result.rejectValue("email", "error.user", e.getMessage());
+			return "user/register";
 		}
 		// ホーム画面へのリダイレクト
 		return "redirect:/user";

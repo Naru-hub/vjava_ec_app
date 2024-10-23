@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.vjava_ec.entity.Item;
 import com.example.vjava_ec.repository.user.ItemMapper;
@@ -15,8 +16,8 @@ import lombok.RequiredArgsConstructor;
  * 商品情報を操作するサービスの実装クラス
  * {@link ItemService} 商品の取得処理を提供
  */
-
  @Service
+ @Transactional
  @RequiredArgsConstructor
 public class ItemServiceImpl implements ItemService{
 	
@@ -28,8 +29,7 @@ public class ItemServiceImpl implements ItemService{
  	private double TAX_RATE;
  	
     /**
-     * 商品一覧を取得し、消費税込みの価格に変換
-     * 
+     * 商品一覧を取得し、消費税込みの価格に変換 
      * @return items
      */
     @Override
@@ -41,12 +41,6 @@ public class ItemServiceImpl implements ItemService{
     		int price = (int)(item.getPrice() * (1 + TAX_RATE));
     		item.setPrice(price);
     	}
-    	
-        // 取得した商品情報をコンソールに表示（デバック用）
-        for (Item item : items) {
-            System.out.println(item);
-        }
-    	
         return items;
     }
 
