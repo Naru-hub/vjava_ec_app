@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.example.vjava_ec.entity.Item;
 
-public interface UserItemService {
+public interface ItemService {
 
     /**
      * すべての商品を取得

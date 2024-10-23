@@ -13,7 +13,6 @@ import com.example.vjava_ec.service.user.TestUserService;
 
 import lombok.RequiredArgsConstructor;
 
-
 @Service
 @RequiredArgsConstructor
 public class TestUserServiceImpl implements TestUserService{
@@ -30,32 +29,32 @@ public class TestUserServiceImpl implements TestUserService{
 	
 	@Override
 	public void NewRegisterUser(SignupUserForm  signupUserForm) throws Exception{
+		
 		//メールアドレスの重複チェック
 		User checkUser = userMapper.selectUserByEmail(signupUserForm.getEmail());
 		if(checkUser != null) {
 			 throw new Exception("そのメールアドレスは既に登録されています");
 		}
+		
 		//パスワード一致チェック
 		if(!signupUserForm.getPassword().equals(signupUserForm.getPasswordConfirm())) {
 			throw new Exception("パスワードが一致しません");
 		}
 	
-	
-	//フォームからエンティティに変換
-    User user = new User();
-    user.setName(signupUserForm.getName());
-    user.setEmail(signupUserForm.getEmail());
-    user.setPassword(new BCryptPasswordEncoder().encode(signupUserForm.getPassword()));
-    user.setPostcode(signupUserForm.getPostcode());
-    user.setAddress(signupUserForm.getAddress());
-    user.setTel(signupUserForm.getTel());
-	user.setCreatedAt(LocalDateTime.now());
-    user.setUpdatedAt(LocalDateTime.now()); 
+		//フォームからエンティティに変換
+		User user = new User();
+		user.setName(signupUserForm.getName());
+		user.setEmail(signupUserForm.getEmail());
+		user.setPassword(new BCryptPasswordEncoder().encode(signupUserForm.getPassword()));
+		user.setPostcode(signupUserForm.getPostcode());
+		user.setAddress(signupUserForm.getAddress());
+		user.setTel(signupUserForm.getTel());
+		user.setCreatedAt(LocalDateTime.now());
+		user.setUpdatedAt(LocalDateTime.now()); 
     
-    
-    // データベースに挿入
-    userMapper.insertUser(user);
-	}
+		// データベースに挿入
+		userMapper.insertUser(user);
+		}
 	
 	/**
 	 * ユーザーのログイン状態を確認

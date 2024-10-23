@@ -9,6 +9,6 @@ import com.example.vjava_ec.entity.Item;
 @Mapper
 public interface ItemMapper {
 	// 削除フラグがfalseの商品のみ取得
-	    List<Item> selectAll();
+	List<Item> selectAll();
 
 }

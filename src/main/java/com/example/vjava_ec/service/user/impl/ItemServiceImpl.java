@@ -7,23 +7,23 @@ import org.springframework.stereotype.Service;
 
 import com.example.vjava_ec.entity.Item;
 import com.example.vjava_ec.repository.user.ItemMapper;
-import com.example.vjava_ec.service.user.UserItemService;
+import com.example.vjava_ec.service.user.ItemService;
 
 import lombok.RequiredArgsConstructor;
 
 /**
  * 商品情報を操作するサービスの実装クラス
- * {@link UserItemService} 商品の取得処理を提供
+ * {@link ItemService} 商品の取得処理を提供
  */
 
  @Service
  @RequiredArgsConstructor
-public class UserItemServiceImpl implements UserItemService{
+public class ItemServiceImpl implements ItemService{
 	
-	 //DI
+	//DI
     private final ItemMapper itemMapper;
     
- // 消費税率(定数)
+    // 消費税率(定数)
  	@Value("${TAX_RATE}")
  	private double TAX_RATE;
  	

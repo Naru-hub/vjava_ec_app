@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.vjava_ec.entity.Item;
+import com.example.vjava_ec.service.user.ItemService;
 import com.example.vjava_ec.service.user.TestUserService;
-import com.example.vjava_ec.service.user.UserItemService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -22,7 +22,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ItemController {
 	//商品情報を確認するサービスクラス
-    private final UserItemService userItemService;
+    private final ItemService itemService;
     //ユーザー情報を確認するサービスクラス
     private final TestUserService testUserService;
 
@@ -34,7 +34,7 @@ public class ItemController {
     @GetMapping("/list") 
     public String showItemList(Model model) {
         // 商品一覧を取得
-        List<Item> items = userItemService.getAllItems();
+        List<Item> items = itemService.getAllItems();
         // モデルに商品情報を追加
          model.addAttribute("items", items);
         // ユーザーがログイン中か確認する
@@ -42,5 +42,4 @@ public class ItemController {
         System.out.println(testUserService.IdentifyUser());
         return "user/itemList"; 
     }
-
 }

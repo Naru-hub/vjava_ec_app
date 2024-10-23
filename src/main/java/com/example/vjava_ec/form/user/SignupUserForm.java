@@ -23,7 +23,7 @@ public class SignupUserForm {
     private String email;
 
     /** パスワード */
-    @NotBlank(message = "パスワードを入力してください")
+    @Size(min = 8, message = "8桁以上でパスワードを入力してください")
     private String password;
 
     /** 確認用パスワード */
@@ -31,8 +31,6 @@ public class SignupUserForm {
     private String passwordConfirm;
 
     /** 郵便番号 (7桁に制限) */
-    @NotBlank(message = "郵便番号を入力してください")
-    @Size(min = 7, max = 7, message = "郵便番号は7桁で入力してください")
     @Pattern(regexp = "\\d{7}", message = "郵便番号は7桁の数字で入力してください")
     private String postcode;
 
@@ -41,8 +39,6 @@ public class SignupUserForm {
     private String address;
 
     /** 電話番号 (11桁に制限) */
-    @NotBlank(message = "電話番号を入力してください")
-    @Size(min = 11, max = 11, message = "電話番号は11桁で入力してください")
     @Pattern(regexp = "\\d{11}", message = "電話番号は11桁の数字で入力してください")
     private String tel;
     
