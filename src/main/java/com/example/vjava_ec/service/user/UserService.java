@@ -32,7 +32,7 @@ public interface UserService {
 	
 	/**
 	 * 会員の論理削除
-	 * @param user
+	 * @param user Userエンティティ
 	 */
 	void deleteUser(User user);
 	

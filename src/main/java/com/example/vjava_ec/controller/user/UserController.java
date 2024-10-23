@@ -49,7 +49,7 @@ public class UserController {
 	/**
 	 * 会員情報編集画面表示
 	 * @param model
-	 * @return user/user/edit
+	 * @return user/user/edit 会員情報編集画面
 	 */
 	@GetMapping("/edit")
 	public String showEditUserDetail(Model model) {
@@ -59,7 +59,7 @@ public class UserController {
 	
 	/**
 	 * 会員情報更新処理
-	 * @param form
+	 * @param form UserFormフォームクラス
 	 * @param bindingResult
 	 * @param attributes
 	 * @return redirect:/user/detail 

@@ -28,7 +28,7 @@ public interface UserMapper {
     void updateUser(User user);
     
     /**
-     * 会員の論理削除
+     * 会員の論理削除処理
      * 
      * @param user　Userエンティティ
      */

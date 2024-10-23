@@ -32,6 +32,12 @@ public class OrderController {
 		return "user/order/list";
 	}
 	
+	/**
+	 * 注文履歴詳細画面表示
+	 * @param id 注文テーブルの主キー
+	 * @param model
+	 * @return "user/order/detail" 注文詳細画面
+	 */
 	@GetMapping("{id}")
 	public String showOrderDetail(@PathVariable Integer id,Model model) {
 		model.addAttribute("order", orderService.selectOrderById(id));

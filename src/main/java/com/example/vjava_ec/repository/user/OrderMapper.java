@@ -8,7 +8,7 @@ import com.example.vjava_ec.entity.Order;
 
 /**
  * 注文：マッパーインターフェイス
- * 会員Idから注文Listを取得
+ * 注文履歴情報を取得
  */
 @Mapper
 public interface OrderMapper {
@@ -21,8 +21,8 @@ public interface OrderMapper {
 	
 	/**
 	 * オーダーIdから注文履歴を取得
-	 * @param orderId
-	 * @return Order オーダーエンティティ
+	 * @param 取得したい注文のorderId
+	 * @return Order Orderエンティティ
 	 */
 	Order selectOrderByOrderId(int orderId);
 	

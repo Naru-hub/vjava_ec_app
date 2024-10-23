@@ -99,6 +99,7 @@ public class UserServiceImpl implements UserService{
 	
 	/**
 	 * 会員の論理削除
+	 * @param user Userエンティティ
 	 */
 	@Override
 	public void deleteUser(User user) {
