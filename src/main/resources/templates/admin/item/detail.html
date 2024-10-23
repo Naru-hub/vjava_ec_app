@@ -9,7 +9,7 @@
 </head>
 
 <body>
-	<div id="admin-header" th:insert="admin_common::admin-header"></div>
+	<div id="admin-header" th:insert="~{admin_common::admin-header}"></div>
 	<div class="container" style="min-height: 800px;">
 		<div class="row">
 			<div class="col-md-10 offset-md-1 mt-3 text-center">
@@ -106,7 +106,7 @@
 			</div>
 		</div>
 	</div>
-	<div id="admin-footer" th:insert="admin_common::admin-footer"></div>
+	<div id="admin-footer" th:insert="~{admin_common::admin-footer}"></div>
 	<script th:src="@{/js/admin/item/detail.js}"></script>
 </body>
 

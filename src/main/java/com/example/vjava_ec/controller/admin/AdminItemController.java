@@ -159,7 +159,7 @@ public class AdminItemController {
 		}
 
 		// エンティティへの変換(商品(Item)オブジェクトの作成)
-		Item item = AdminItemHelper.convertItem(form);
+		Item item = AdminItemHelper.convertItem(form, adminCharacterService);
 		// 登録実行(データベースへ保存)
 		adminItemService.insertItem(item);
 
@@ -268,7 +268,7 @@ public class AdminItemController {
 			}
 
 			// エンティティへの変換
-			Item item = AdminItemHelper.convertItem(form);
+			Item item = AdminItemHelper.convertItem(form, adminCharacterService);
 			// 更新処理
 			adminItemService.updateItem(item);
 

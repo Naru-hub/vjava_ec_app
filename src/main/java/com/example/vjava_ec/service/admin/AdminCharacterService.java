@@ -11,5 +11,11 @@ public interface AdminCharacterService {
 	/**
 	 * キャラクタ一覧情報を検索
 	 */
-	 List<Character> findAll();
+	List<Character> findAll();
+
+	/**
+	 * キャラクタの詳細情報を検索
+	 */
+	Character findByIdCharacter(Integer id);
+
 }

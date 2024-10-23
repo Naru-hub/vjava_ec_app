@@ -35,14 +35,14 @@
 	<insert id="insert" useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO items( character_id, name, detail, price,
 		stock, sale_status, is_limited, image_path, created_at, updated_at)
-		VALUES (#{characterId}, #{name}, #{detail}, #{price}, #{stock},
+		VALUES (#{character.id}, #{name}, #{detail}, #{price}, #{stock},
 		#{saleStatus}, #{isLimited}, #{imagePath}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 	</insert>
 
 	<!-- 商品情報の更新 -->
 	<update id="update">
 		UPDATE items
-		SET character_id = #{characterId},
+		SET character_id = #{character.id},
 		name = #{name},
 		detail = #{detail},
 		price = #{price},

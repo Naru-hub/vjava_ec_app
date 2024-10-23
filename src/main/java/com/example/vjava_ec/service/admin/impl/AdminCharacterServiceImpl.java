@@ -11,6 +11,9 @@ import com.example.vjava_ec.service.admin.AdminCharacterService;
 
 import lombok.RequiredArgsConstructor;
 
+/**
+ * 管理者：キャラクタの実装クラス
+ */
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -21,9 +24,20 @@ public class AdminCharacterServiceImpl implements AdminCharacterService {
 
 	/**
 	 * キャラクタ一覧情報を検索
+	 * @return List<Character> キャラクタ一覧情報のリスト
 	 */
 	@Override
 	public List<Character> findAll() {
 		return adminCharacterMapper.selectAll();
+	}
+
+	/**
+	 * キャラクタの詳細情報を検索
+	 * @param id
+	 * @return Character キャラクタの詳細情報
+	 */
+	@Override
+	public Character findByIdCharacter(Integer id) {
+		return adminCharacterMapper.selectById(id);
 	}
 }

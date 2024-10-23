@@ -14,7 +14,11 @@ import com.example.vjava_ec.entity.Character;
 public interface AdminCharacterMapper {
 	/**
 	 * 全てのキャラクタ情報を取得
-	 * @return キャラクタ情報のリスト
 	 */
 	List<Character> selectAll();
+
+	/**
+	 * 指定したIDのキャラクタ情報を取得
+	 */
+	Character selectById(Integer id);
 }

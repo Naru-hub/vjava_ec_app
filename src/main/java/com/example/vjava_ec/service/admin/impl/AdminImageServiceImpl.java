@@ -16,7 +16,6 @@ import com.example.vjava_ec.service.admin.AdminImageService;
 
 /**
  * 管理者：画像処理の実装クラス
- * 
  */
 @Service
 public class AdminImageServiceImpl implements AdminImageService {

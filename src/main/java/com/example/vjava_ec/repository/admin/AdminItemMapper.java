@@ -17,14 +17,11 @@ public interface AdminItemMapper {
 
 	/**
 	 * 全ての商品情報を取得
-	 * @return 商品のリスト
 	 */
 	List<adminItemDTO> selectAll();
 
 	/**
    	 * 商品詳細情報を取得
-   	 * @param id
-   	 * @return 商品の詳細情報
    	 */
    	adminItemDTO selectById(@Param("id") Integer id);
    	

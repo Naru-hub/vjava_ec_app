@@ -27,7 +27,7 @@ public class AdminItemServiceImpl implements AdminItemService {
 	/**
 	 * 全商品一覧情報取得メソッド
 	 * 
-	 * @return 全商品一覧情報
+	 * @return List<adminItemDTO> 全商品一覧情報
 	 */ 	
 	@Override
 	public List<adminItemDTO> findAllItem() {
