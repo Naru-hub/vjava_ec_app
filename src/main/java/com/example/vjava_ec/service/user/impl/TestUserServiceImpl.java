@@ -14,7 +14,7 @@ import com.example.vjava_ec.service.user.TestUserService;
 
 import lombok.RequiredArgsConstructor;
 
-/*
+/**
  * UserServiceインターフェースの実装クラス
  * 会員新規登録やログイン状態の確認を実装
  */
