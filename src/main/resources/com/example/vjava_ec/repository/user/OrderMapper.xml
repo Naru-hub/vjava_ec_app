@@ -1,147 +1,149 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.vjava_ec.repository.user.OrderMapper">
-
-<resultMap id="OrderResultMap" type="com.example.vjava_ec.entity.Order">
-    <!-- Orderのフィールド -->
-    <id property="id" column="id"/>
-    <result property="userId" column="user_id"/>
-    <result property="postage" column="postage"/>
-    <result property="totalPrice" column="total_price"/>
-    <result property="payment" column="payment"/>
-    <result property="deliveryName" column="delivery_name"/>
-    <result property="deliveryPostcode" column="delivery_postcode"/>
-    <result property="deliveryAddress" column="delivery_address"/>
-    <result property="deliveryTel" column="delivery_tel"/>
-    <result property="orderStatus" column="order_status"/>
-    <result property="createdAt" column="created_at"/>
-    <result property="updatedAt" column="updated_at"/>
-
-    <!-- OrderItemのマッピング -->
-    <collection property="orderItems" ofType="com.example.vjava_ec.entity.OrderItem">
-        <id property="id" column="order_item_id"/>
-        <result property="orderId" column="order_id"/>
-        <result property="amount" column="amount"/>
-        <result property="purchasePrice" column="purchase_price"/>
-        <result property="createdAt" column="order_item_created_at"/>
-        <result property="updatedAt" column="order_item_updated_at"/>
-
-        <!-- Itemのマッピング (OrderItemに関連付けられた) -->
-        <association property="item" javaType="com.example.vjava_ec.entity.Item">
-		    <id property="id" column="item_id"/>
- 		    <result property="name" column="name"/>
- 		    <result property="detail" column="detail"/>
- 		    <result property="price" column="price"/>
- 		    <result property="stock" column="stock"/>
- 		    <result property="saleStatus" column="sale_status"/>
- 		    <result property="isLimited" column="is_limited"/>
- 	 	    <result property="imagePath" column="image_path"/>
- 	   	    <result property="createdAt" column="item_created_at"/>
-  	        <result property="updatedAt" column="item_updated_at"/>
-
-			<!-- Characterのマッピング -->
-	 		<association property="character" javaType="com.example.vjava_ec.entity.Character">
-				<id property="id" column="character_id"/>
-				<result property="name" column="character_name"/>
-				<result property="createdAt" column="character_created_at"/>
-				<result property="updatedAt" column="character_updated_at"/>
+	
+	<resultMap id="OrderResultMap" type="com.example.vjava_ec.entity.Order">
+	    <!-- Orderのフィールド -->
+	    <id property="id" column="id"/>
+	    <result property="userId" column="user_id"/>
+	    <result property="postage" column="postage"/>
+	    <result property="totalPrice" column="total_price"/>
+	    <result property="payment" column="payment"/>
+	    <result property="deliveryName" column="delivery_name"/>
+	    <result property="deliveryPostcode" column="delivery_postcode"/>
+	    <result property="deliveryAddress" column="delivery_address"/>
+	    <result property="deliveryTel" column="delivery_tel"/>
+	    <result property="orderStatus" column="order_status"/>
+	    <result property="createdAt" column="created_at"/>
+	    <result property="updatedAt" column="updated_at"/>
+	
+	    <!-- OrderItemのマッピング -->
+	    <collection property="orderItems" ofType="com.example.vjava_ec.entity.OrderItem">
+	        <id property="id" column="order_item_id"/>
+	        <result property="orderId" column="order_id"/>
+	        <result property="amount" column="amount"/>
+	        <result property="purchasePrice" column="purchase_price"/>
+	        <result property="createdAt" column="order_item_created_at"/>
+	        <result property="updatedAt" column="order_item_updated_at"/>
+	
+	        <!-- Itemのマッピング (OrderItemに関連付けられた) -->
+	        <association property="item" javaType="com.example.vjava_ec.entity.Item">
+			    <id property="id" column="item_id"/>
+	 		    <result property="name" column="name"/>
+	 		    <result property="detail" column="detail"/>
+	 		    <result property="price" column="price"/>
+	 		    <result property="stock" column="stock"/>
+	 		    <result property="saleStatus" column="sale_status"/>
+	 		    <result property="isLimited" column="is_limited"/>
+	 	 	    <result property="imagePath" column="image_path"/>
+	 	   	    <result property="createdAt" column="item_created_at"/>
+	  	        <result property="updatedAt" column="item_updated_at"/>
+	
+				<!-- Characterのマッピング -->
+		 		<association property="character" javaType="com.example.vjava_ec.entity.Character">
+					<id property="id" column="character_id"/>
+					<result property="name" column="character_name"/>
+					<result property="createdAt" column="character_created_at"/>
+					<result property="updatedAt" column="character_updated_at"/>
+				</association>
 			</association>
-		</association>
-    </collection>
-</resultMap>
-
-<select id="selectOrderListByUserId" resultMap="OrderResultMap">
-    SELECT DISTINCT
-        o.id,
-        o.user_id,
-        o.postage,
-        o.total_price,
-        o.payment,
-        o.delivery_name,
-        o.delivery_postcode,
-        o.delivery_address,
-        o.delivery_tel,
-        o.order_status,
-        o.created_at,
-        o.updated_at,
-        oi.id AS order_item_id,
-        oi.order_id,
-        oi.amount,
-        oi.purchase_price,
-        oi.created_at AS order_item_created_at,
-        oi.updated_at AS order_item_updated_at,
-        i.id AS item_id,
-        i.character_id,
-        i.name,
-        i.detail,
-        i.price,
-        i.stock,
-        i.sale_status,
-        i.is_limited,
-        i.image_path,
-        i.created_at AS item_created_at,
-        i.updated_at AS item_updated_at,
-        c.id AS character_id,
-		c.name AS character_name,
-		c.created_at AS character_created_at,
-        c.updated_at AS character_updated_at
-    FROM
-        orders o
-    LEFT JOIN
-        order_items oi ON o.id = oi.order_id
-    LEFT JOIN
-        items i ON oi.item_id = i.id
-    LEFT JOIN
-    	characters c ON i.character_id = c.id
-    WHERE
-        o.user_id = #{user_id};
-</select>
-
-<select id="selectOrderByOrderId" resultMap="OrderResultMap">
-    SELECT DISTINCT
-        o.id,
-        o.user_id,
-        o.postage,
-        o.total_price,
-        o.payment,
-        o.delivery_name,
-        o.delivery_postcode,
-        o.delivery_address,
-        o.delivery_tel,
-        o.order_status,
-        o.created_at,
-        o.updated_at,
-        oi.id AS order_item_id,
-        oi.order_id,
-        oi.amount,
-        oi.purchase_price,
-        oi.created_at AS order_item_created_at,
-        oi.updated_at AS order_item_updated_at,
-        i.id AS item_id,
-        i.character_id,
-        i.name,
-        i.detail,
-        i.price,
-        i.stock,
-        i.sale_status,
-        i.is_limited,
-        i.image_path,
-        i.created_at AS item_created_at,
-        i.updated_at AS item_updated_at,
-        c.id AS character_id,
-		c.name AS character_name,
-		c.created_at AS character_created_at,
-        c.updated_at AS character_updated_at
-    FROM
-        orders o
-    LEFT JOIN
-        order_items oi ON o.id = oi.order_id
-    LEFT JOIN
-        items i ON oi.item_id = i.id
-    LEFT JOIN
-    	characters c ON i.character_id = c.id
-    WHERE
-        o.id = #{orderId};
-</select>
+	    </collection>
+	</resultMap>
+	
+	<!-- 特定の会員の注文履歴取得 -->
+	<select id="selectOrderListByUserId" resultMap="OrderResultMap">
+	    SELECT DISTINCT
+	        o.id,
+	        o.user_id,
+	        o.postage,
+	        o.total_price,
+	        o.payment,
+	        o.delivery_name,
+	        o.delivery_postcode,
+	        o.delivery_address,
+	        o.delivery_tel,
+	        o.order_status,
+	        o.created_at,
+	        o.updated_at,
+	        oi.id AS order_item_id,
+	        oi.order_id,
+	        oi.amount,
+	        oi.purchase_price,
+	        oi.created_at AS order_item_created_at,
+	        oi.updated_at AS order_item_updated_at,
+	        i.id AS item_id,
+	        i.character_id,
+	        i.name,
+	        i.detail,
+	        i.price,
+	        i.stock,
+	        i.sale_status,
+	        i.is_limited,
+	        i.image_path,
+	        i.created_at AS item_created_at,
+	        i.updated_at AS item_updated_at,
+	        c.id AS character_id,
+			c.name AS character_name,
+			c.created_at AS character_created_at,
+	        c.updated_at AS character_updated_at
+	    FROM
+	        orders o
+	    LEFT JOIN
+	        order_items oi ON o.id = oi.order_id
+	    LEFT JOIN
+	        items i ON oi.item_id = i.id
+	    LEFT JOIN
+	    	characters c ON i.character_id = c.id
+	    WHERE
+	        o.user_id = #{user_id};
+	</select>
+	
+	<!-- 特定のIDの注文履歴を取得 -->
+	<select id="selectOrderByOrderId" resultMap="OrderResultMap">
+	    SELECT DISTINCT
+	        o.id,
+	        o.user_id,
+	        o.postage,
+	        o.total_price,
+	        o.payment,
+	        o.delivery_name,
+	        o.delivery_postcode,
+	        o.delivery_address,
+	        o.delivery_tel,
+	        o.order_status,
+	        o.created_at,
+	        o.updated_at,
+	        oi.id AS order_item_id,
+	        oi.order_id,
+	        oi.amount,
+	        oi.purchase_price,
+	        oi.created_at AS order_item_created_at,
+	        oi.updated_at AS order_item_updated_at,
+	        i.id AS item_id,
+	        i.character_id,
+	        i.name,
+	        i.detail,
+	        i.price,
+	        i.stock,
+	        i.sale_status,
+	        i.is_limited,
+	        i.image_path,
+	        i.created_at AS item_created_at,
+	        i.updated_at AS item_updated_at,
+	        c.id AS character_id,
+			c.name AS character_name,
+			c.created_at AS character_created_at,
+	        c.updated_at AS character_updated_at
+	    FROM
+	        orders o
+	    LEFT JOIN
+	        order_items oi ON o.id = oi.order_id
+	    LEFT JOIN
+	        items i ON oi.item_id = i.id
+	    LEFT JOIN
+	    	characters c ON i.character_id = c.id
+	    WHERE
+	        o.id = #{orderId};
+	</select>
 
 </mapper>
