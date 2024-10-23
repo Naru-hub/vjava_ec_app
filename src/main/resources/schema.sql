@@ -36,6 +36,7 @@ CREATE TABLE characters
 (
    id SERIAL PRIMARY KEY,
    name VARCHAR (255) UNIQUE NOT NULL,
+   is_deleted BOOLEAN DEFAULT FALSE NOT NULL,
    created_at TIMESTAMP without time zone NOT NULL,
    updated_at TIMESTAMP without time zone NOT NULL
 );
@@ -50,6 +51,7 @@ CREATE TABLE items
    stock INTEGER NOT NULL,
    sale_status INTEGER NOT NULL,
    is_limited BOOLEAN DEFAULT FALSE NOT NULL,
+   is_deleted BOOLEAN DEFAULT FALSE NOT NULL,
    image_path TEXT NOT NULL UNIQUE,
    created_at TIMESTAMP without time zone NOT NULL,
    updated_at TIMESTAMP without time zone NOT NULL,

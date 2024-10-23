@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<title> 商品一覧</title>
+</head>
+
+<body>
+	<div id="admin-header" th:insert="~{admin_common::admin-header}"></div>
+	<div class="container mt-4" style="min-height: 780px;">
+		<div class="row justify-content-center">
+			<div class="col-md-8 text-center">
+				<h1>商品一覧</h1>
+			</div>
+			<div class="col-md-2 offset-md-1  text-end">
+				<a th:href="@{/admin/item/form}" class="btn btn-sm btn-outline-info mt-2">新規登録</a>
+			</div>
+		</div>
+		<div class="row">
+			<!-- フラッシュメッセージの表示 -->
+			<div th:if="${message}" th:text="${message}" class="col-md-5 alert alert-primary" role="alert">
+				完了メッセージ
+			</div>
+			<div th:if="${errorMessage}" th:text="${errorMessage}" class="col-md-5 alert alert-danger" role="alert">
+				エラーメッセージ
+			</div>
+			<div class="col-md-12">
+				<!-- 商品一覧 -->
+				<table class="table table-hover table-bordered">
+					<thead class="table-info">
+						<tr>
+							<th>ID</th>
+							<th>画像</th>
+							<th>商品名</th>
+							<th>価格（税込）</th>
+							<th>在庫数</th>
+							<th>キャラクター名</th>
+							<th>販売ステータス</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="item : ${itemList}">
+							<td th:text="${item.itemId}"></td>
+							<td class="text-center">
+								<!-- 画像の表示 -->
+								<span th:if="${item.imagePath != null and item.imagePath != ''}">
+									<img th:src="@{${item.imagePath}}" alt="Item Image" class="img-fluid"
+										style="max-width: 100%; height: 100px; object-fit: cover;">
+								</span>
+							</td>
+							<td th:text="${item.name}"></td>
+							<td th:text="${item.priceWithTax}"></td>
+							<td th:text="${item.stock}"></td>
+							<td th:text="${item.characterName}"></td>
+							<td>
+								<span th:if="${item.saleStatus == 1}" th:text="'販売中'"></span>
+								<span th:if="${item.saleStatus == 2}" th:text="'入荷待ち'"></span>
+								<span th:if="${item.saleStatus == 3}" th:text="'販売終了'"></span>
+							</td>
+							<td>
+								<a th:href="@{/admin/item/{id}(id=${item.itemId})}"
+									class="btn btn-sm btn-outline-info">詳細</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div id="admin-footer" th:insert="~{admin_common::admin-footer}"></div>
+</body>
+
+</html>
