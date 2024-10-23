@@ -1,6 +1,7 @@
 package com.example.vjava_ec.entity;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -33,6 +34,8 @@ public class Order {
 	private String deliveryTel;
 	/** 注文ステータス */
 	private Integer orderStatus;
+	/** 注文商品List */
+	private List<OrderItem> orderItems;
 	/** 作成日時 */
 	private LocalDateTime createdAt;
 	/** 更新日時 */

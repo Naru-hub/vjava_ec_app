@@ -1,0 +1,64 @@
+@charset "UTF-8";
+body {
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    text-align: center;
+}
+
+.orderCard {
+    border: 3px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.orderItemCard {
+	border: 2px solid #ccc;
+	padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.itemImage img {
+    width: 150px;
+    height: 150px;
+    border: 1px solid #ccc;
+}
+
+.itemDetails {
+    padding-left: 20px;
+}
+
+.dots {
+    text-align: center;
+    font-size: 12px;
+    margin: 20px 0;
+    transform: rotate(90deg);
+}
+
+.orderDate {
+    font-size: 16px;
+    color: #666;
+    margin-top: 10px;
+}
+
+.detailLink {
+    color: blue;
+    text-decoration: none;
+}
+
+.totalPrice {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.totalPrice span {
+    color: #333;
+}

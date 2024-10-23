@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>退会しますか？</h1>
+	<form action="/user/detail" method="get">
+		<button type="submit" >キャンセル</button>
+	</form>
+	<form th:action="@{/user/delete}" method="post">
+		<button type="submit" >退会</button>
+	</form>
+</body>
+</html>

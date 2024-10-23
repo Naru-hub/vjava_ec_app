@@ -13,11 +13,17 @@ public interface UserMapper {
 
     /**
      * 指定されたメールアドレスを使用してデータベースからユーザーを検索
-     * 
-     * @param email ユーザーを検索するためのメールアドレス
-     * @return メールアドレスに対応する {@link User} オブジェクト
-     *         該当するユーザーが見つからない場合はnullを返す
      */
     User selectUserByEmail(String email);
+    
+    /**
+     * 会員情報の更新処理
+     */
+    void updateUser(User user);
+    
+    /**
+     * 会員の論理削除処理
+     */
+    void deleteUser(User user);
 
 }
