@@ -23,6 +23,7 @@ public class UserHelper {
 		user.setTel(form.getTel());
 		return user;
 	}
+	
 	/**
 	 * UserエンティティをUserFormクラスに変換
 	 * @param user Userエンティティ
@@ -38,6 +39,4 @@ public class UserHelper {
 		form.setTel(user.getTel());
 		return form;				
 	}
-	
-	
 }

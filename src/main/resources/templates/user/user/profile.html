@@ -8,13 +8,13 @@
 	<h1>会員情報詳細</h1>
 	
 	<div>
-		<form action="/user/item/list" method="get">
+		<form th:action="@{/user/item/list}" method="get">
 			<button type="submit" >一覧に戻る</button>
 		</form>
 		<form th:action="@{/user/delete/confirm}" method="get">
 			<button type="submit" >退会</button>
 		</form>
-		<form action="/user/order/list" method="get">
+		<form th:action="@{/user/order/list}" method="get">
 			<button type="submit" >注文履歴</button>
 		</form>
 	</div>
@@ -36,7 +36,7 @@
 		</div>
 	</div>
 	<div>
-		<form action="/user/edit" method="get">
+		<form th:action="@{/user/edit}" method="get">
 			<button type="submit" >編集</button>
 		</form>
 	</div>

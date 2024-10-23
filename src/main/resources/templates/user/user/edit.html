@@ -30,7 +30,7 @@
 			<span th:if="${#fields.hasErrors('address')}" th:errors="*{address}"style="color: red;"></span>
 		</div>
 		<div>
-			<label for="tel">名電話番号前　</label>
+			<label for="tel">電話番号　　　</label>
 			<input type="text" th:field="*{tel}">
 			<span th:if="${#fields.hasErrors('tel')}" th:errors="*{tel}"style="color: red;"></span>
 		</div>
@@ -40,6 +40,5 @@
 	<form action="/user/detail" method="get">
 		<button type="submit">キャンセル</button>
 	</form>
-
 </body>
 </html>

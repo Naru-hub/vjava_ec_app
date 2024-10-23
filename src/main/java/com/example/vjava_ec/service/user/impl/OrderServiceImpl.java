@@ -15,7 +15,6 @@ import lombok.RequiredArgsConstructor;
 
 /**
  * OrderServiceインターフェースの実装クラス
- * 
  */
 @Service
 @Transactional

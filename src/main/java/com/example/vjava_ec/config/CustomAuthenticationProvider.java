@@ -46,13 +46,9 @@ public class CustomAuthenticationProvider implements AuthenticationProvider{
      */
 	@Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-      
-		// デバック用　後ほど削除
-		System.out.println("CustomAuthenticationProvider稼働");
 		// authenticationからメールアドレスとパスワードを取得
 		String email = authentication.getName();
         String password = authentication.getCredentials().toString();
-
         // ログインURLを取得
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
         String loginUrl2 = request.getRequestURL().toString();

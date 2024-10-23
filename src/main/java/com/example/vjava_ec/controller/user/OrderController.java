@@ -24,9 +24,9 @@ public class OrderController {
 	/**
 	 * 注文履歴一覧画面表示
 	 * @param model
-	 * @return "user/user/orderList" 注文履歴一覧画面
+	 * @return "user/order/list" 注文履歴一覧画面
 	 */
-	@GetMapping("list")
+	@GetMapping("/list")
 	public String showOrderList(Model model) {
 		model.addAttribute("orderList", orderService.selectOrderList());
 		return "user/order/list";
@@ -38,7 +38,7 @@ public class OrderController {
 	 * @param model
 	 * @return "user/order/detail" 注文詳細画面
 	 */
-	@GetMapping("{id}")
+	@GetMapping("/{id}")
 	public String showOrderDetail(@PathVariable Integer id,Model model) {
 		model.addAttribute("order", orderService.selectOrderById(id));
 		return "user/order/detail";

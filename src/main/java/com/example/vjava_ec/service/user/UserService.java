@@ -4,13 +4,11 @@ import com.example.vjava_ec.entity.User;
 
 /**
  * UserServiceのInterfaceクラス
- * 
  */
 public interface UserService {
 	
 	/**
 	 * メールアドレスからユーザを探す
-	 * @param email メールアドレス
 	 */
 	User selectUserByEmail(String email);
 	
@@ -26,13 +24,11 @@ public interface UserService {
 	
 	/**
 	 * 会員情報の更新
-	 * @param user Userエンティティ
 	 */
 	void updateUser(User user);
 	
 	/**
 	 * 会員の論理削除
-	 * @param user Userエンティティ
 	 */
 	void deleteUser(User user);
 	

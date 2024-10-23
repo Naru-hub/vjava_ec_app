@@ -52,6 +52,7 @@ public class UserServiceImpl implements UserService{
 		}
 		return email;
 	}
+	
 	/**
 	 * 認証情報からUserエンティティを取得
 	 * @return User 取得したUserエンティティ
@@ -64,6 +65,7 @@ public class UserServiceImpl implements UserService{
 	
 	/**
 	 * 会員情報の更新処理とメールアドレスが変更された際の認証情報の変更処理
+	 * @param user Userエンティティ
 	 */
 	@Override
 	public void updateUser(User user) {		
@@ -79,9 +81,9 @@ public class UserServiceImpl implements UserService{
 			authorities.add(new SimpleGrantedAuthority("USER"));
 	    	// 新しいユーザー名で CustomUserDetails を作成
 	        CustomUserDetails newUserDetails = new CustomUserDetails(
-	            user.getEmail(),  // 新しいユーザー名
-	            currentUserDetails.getPassword(),  // 既存のパスワード
-	            authorities// 既存の権限
+	            user.getEmail(),  
+	            currentUserDetails.getPassword(), 
+	            authorities
 	        );
 
 	        // 新しい認証トークンを作成

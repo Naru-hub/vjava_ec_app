@@ -34,7 +34,7 @@ public class Order {
 	private String deliveryTel;
 	/** 注文ステータス */
 	private Integer orderStatus;
-	/** 注文ステータス */
+	/** 注文商品List */
 	private List<OrderItem> orderItems;
 	/** 作成日時 */
 	private LocalDateTime createdAt;

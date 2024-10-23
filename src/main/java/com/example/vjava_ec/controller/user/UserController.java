@@ -39,9 +39,6 @@ public class UserController {
 	 */
 	@GetMapping("/detail")
 	public String showUserDetail(Model model) {
-		
-		System.out.println(userService.selectLoginUser().toString());
-		
 		model.addAttribute("user", userService.selectLoginUser());
 		return "user/user/profile";
 	}
@@ -65,10 +62,9 @@ public class UserController {
 	 * @return redirect:/user/detail 
 	 */
 	@PostMapping("/update")
-	public String updateUserDetail(@Validated @ModelAttribute("form") UserForm form,BindingResult bindingResult,RedirectAttributes attributes,Model model) {
+	public String updateUserDetail(@Validated @ModelAttribute("form") UserForm form,BindingResult bindingResult,RedirectAttributes attributes) {
 		// バリデーションチェック
 		if(bindingResult.hasErrors()) {
-			model.addAttribute("form", form);
 			// 元の画面に戻る
 			return "user/user/edit";
 		}
@@ -98,30 +94,14 @@ public class UserController {
 		userService.deleteUser(userService.selectLoginUser());
 		 // 現在の認証情報を取得
 	    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-	 // 認証情報がある場合（ユーザーがログインしている場合）
+	    // 認証情報がある場合（ユーザーがログインしている場合）
 	    if (authentication != null) {
 	        // SecurityContextLogoutHandlerのインスタンスを作成
 	        SecurityContextLogoutHandler logoutHandler = new SecurityContextLogoutHandler();
 	        // ログアウト処理を実行
-	        logoutHandler.logout(request, response, authentication);
 	        // セッションの無効化やCookieの削除などを行い、セキュリティコンテキストをクリアします
+	        logoutHandler.logout(request, response, authentication);
 	    }
 		return "redirect:/user";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
