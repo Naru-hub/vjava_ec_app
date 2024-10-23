@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link th:href="@{/css/user/order/list.css}" rel="stylesheet">
+</head>
+<body>
+    <h1>注文履歴一覧</h1>
+    <div>
+        <div th:if="${orderList == null || orderList.empty}">
+            <div>注文履歴はありません</div>
+        </div>
+        <div th:if="${orderList}" th:each="order : ${orderList}">
+            <div class="orderCard">
+                <div class="orderItemCard">
+                    <div class="itemImage">
+                        <!-- 商品の画像を表示する -->
+                        <img th:src="${order.orderItems[0].item.imagePath}" alt="商品画像">
+                    </div>
+                    <div th:object="${order.orderItems[0]}" class="itemDetails">
+                        <div th:text="*{item.name}">商品名</div>
+                        <div><span th:text="*{amount}">1</span>個</div>
+                        <div>小計：<span th:text="*{purchasePrice * amount}"></span>円</div>
+                    </div>
+                </div>
+                <div class="dots">・・・</div>
+				<div th:switch="${order.orderStatus}">注文ステータス：
+					<span th:case="1">受付済み</span>
+					<span th:case="2">発送準備中</span>
+					<span th:case="3">発送済み</span>
+					<span th:case="4">キャンセル済み</span>
+				</div>
+                <div class="orderDate" th:text="${#strings.substring(order.createdAt, 0, 10)}"></div>
+                <a th:href="@{/user/order/{id}(id=${order.id})}" class="detailLink">詳細を見る</a>
+                <div class="totalPrice">合計　<span th:text="${order.totalPrice}"></span>円</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.vjava_ec.entity.Item;
 import com.example.vjava_ec.service.user.ItemService;
-import com.example.vjava_ec.service.user.TestUserService;
+import com.example.vjava_ec.service.user.UserService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -23,7 +23,7 @@ public class ItemController {
 	
 	//DI
     private final ItemService itemService;
-    private final TestUserService testUserService;
+    private final UserService userService;
 
     /**
      * 商品一覧を表示
@@ -37,8 +37,8 @@ public class ItemController {
         // モデルに商品情報を追加
          model.addAttribute("items", items);
         // ユーザーがログイン中か確認する
-        model.addAttribute("islogin",testUserService.IdentifyUser());
-        System.out.println(testUserService.IdentifyUser());
+        model.addAttribute("islogin",userService.IdentifyUser());
+        System.out.println(userService.IdentifyUser());
         return "user/itemList"; 
     }
 }

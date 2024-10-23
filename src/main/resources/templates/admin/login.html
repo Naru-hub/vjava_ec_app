@@ -1,35 +1,55 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<title>管理者ログイン</title>
 </head>
+
 <body>
-	<div class="login-container">
-       <h2>Admin Sign In</h2>
-	<!-- エラー表示 -->
-		<div th:if="${param.error}">
-			<p style="color: red;">emailまたはpasswordが違います</p>
+	<div id="admin-header" th:insert="~{admin_common::admin-header}"></div>
+	<div class="container mt-4" style="min-height: 780px;">
+		<div class="col-md-8 text-center">
+			<h1>管理者ログイン</h1>
 		</div>
-		<!-- ログアウト表示 -->
-		<div th:if="${param.logout}">
-			<p style="color: blue">ログアウトしました</p>
+		<div class="row">
+			<!-- フラッシュメッセージの表示 -->
+			<!-- エラー表示 -->
+			<div th:if="${param.error}" class="alert alert-primary col-md-5">
+				emailまたはpasswordが違います
+			</div>
+			<!-- ログアウト表示 -->
+			<div th:if="${param.logout}" class="alert alert-primary col-md-5">
+				ログアウトしました
+			</div>
+
+			<div class="col-md-12">
+				<form th:action="@{/admin/authentication}" method="post">
+					<!-- メールアドレス -->
+					<div class="my-5 d-flex flex-row">
+						<label for="email" class="col-md-2 form-label">メールアドレス</label>
+						<input type="text" id="email" name="email" class="col-md-8 form-control"
+							placeholder="メールアドレスを入力" required>
+					</div>
+
+					<!-- パスワード -->
+					<div class="my-5 d-flex flex-row">
+						<label for="password" class="col-md-2 form-label">パスワード</label>
+						<input type="password" id="password" name="password" class="col-md-8 form-control"
+							placeholder="パスワードを入力" required>
+					</div>
+
+					<!-- ボタン -->
+					<div class="my-4 col-md-8 offset-md-4 d-flex flex-row text-center">
+						<button type="submit" value="登録" class="btn btn-outline-info mx-3 ">Login</button>
+					</div>
+				</form>
+			</div>
 		</div>
-		<!-- サインアップ表示 -->
-		<div th:if="${success}">
-			<p th:text="${success}" style="color:green">登録しました</p>
-		</div>
-       <form th:action="@{/admin/authentication}" method="post">
-           <div class="form-group">
-               <label for="email">email</label>
-               <input type="text" id="email" name="email" required>
-           </div>
-           <div class="form-group">
-               <label for="password">Password</label>
-               <input type="password" id="password" name="password" required>
-           </div>
-           <button type="submit">Login</button>
-       </form>
-   </div>
+	</div>
+	<div id="admin-footer" th:insert="~{admin_common::admin-footer}"></div>
 </body>
+
 </html>

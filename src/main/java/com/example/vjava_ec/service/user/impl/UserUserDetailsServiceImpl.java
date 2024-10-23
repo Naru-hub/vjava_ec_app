@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import com.example.vjava_ec.entity.CustomUserDetails;
 import com.example.vjava_ec.entity.Role;
 import com.example.vjava_ec.entity.User;
-import com.example.vjava_ec.repository.user.TestUserMapper;
+import com.example.vjava_ec.repository.user.UserMapper;
 
 import lombok.RequiredArgsConstructor;
 
@@ -26,9 +26,9 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class UserUserDetailsServiceImpl  implements UserDetailsService{
-	
-	// デバック用
-	private final TestUserMapper userMapper;
+
+	// DI
+	private final UserMapper userMapper;
 	
 	/**
      * 指定されたメールアドレスに対応するユーザーをロードするメソッド
@@ -44,18 +44,11 @@ public class UserUserDetailsServiceImpl  implements UserDetailsService{
 	@Override
 	public UserDetails loadUserByUsername(String email)
 			throws UsernameNotFoundException {
-		
-		// デバック用　後で削除
-		System.out.println("'User'UserDetailsServiceには到達");
-		
 		// 「会員テーブル」からデータを取得
 		User user = userMapper.selectUserByEmail(email);
+		// 論理削除されている場合ログインできない
 		// 対象データがあれば、UserDetailsの実装クラスを返す
-		if (user != null) {
-			
-			// デバック用　後で削除
-			System.out.println("Userテーブルでデータ発見");
-			
+		if (user != null && !(user.isDeleted())) {
 			// UserDetailsの実装クラスを返す
 			return new CustomUserDetails(user.getEmail(),user.getPassword(),getAuthorityList(user.getRole()));
 		}else{

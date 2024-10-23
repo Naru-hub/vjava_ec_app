@@ -15,7 +15,7 @@ VALUES
    'テスト',
    'test@test.com',
    '$2a$10$I53eTbgLsU7F3TJJIelTkuXcGHzOCMYTbKIRX1W1tsHWZbN3RzLa.',
-   '12345678',
+   '1234567',
    '〇〇県〇〇市〇〇町',
    '12345678910',
    CURRENT_TIMESTAMP,
@@ -38,7 +38,7 @@ VALUES
    'テスト2',
    'test2@test.com',
    '$2a$10$I53eTbgLsU7F3TJJIelTkuXcGHzOCMYTbKIRX1W1tsHWZbN3RzLa.',
-   '12345678',
+   '2345678',
    '〇〇県〇〇市〇〇町2丁目',
    '12345678912',
    CURRENT_TIMESTAMP,
@@ -61,7 +61,7 @@ VALUES
    'テスト3',
    'test3@test.com',
    '$2a$10$I53eTbgLsU7F3TJJIelTkuXcGHzOCMYTbKIRX1W1tsHWZbN3RzLa.',
-   '12345678',
+   '3456789',
    '〇〇県〇〇市〇〇町3丁目',
    '12345678913',
    CURRENT_TIMESTAMP,
@@ -133,7 +133,7 @@ VALUES
    1,
    false,
    false,
-   '/〇〇/1',
+   '/images/default/default_goods.jpg',
    CURRENT_TIMESTAMP,
    CURRENT_TIMESTAMP
 );
@@ -159,10 +159,10 @@ VALUES
    'クリアファイル',
    1000,
    10,
-   1,
+   2,
    false,
    false,
-   '/〇〇/2',
+   '/images/default/default_goods2.jpg',
    CURRENT_TIMESTAMP,
    CURRENT_TIMESTAMP
 );
@@ -188,10 +188,10 @@ VALUES
    '人形',
    4000,
    5,
-   1,
+   3,
    false,
-   false,
-   '/〇〇/3',
+   true,
+   '/images/default/default_goods3.jpg',
    CURRENT_TIMESTAMP,
    CURRENT_TIMESTAMP
 );
@@ -214,13 +214,13 @@ VALUES
 (
    1,
    800,
-   3000,
+   4100,
    1,
    '配達太郎',
    '1234567',
    '〇〇県〇〇市〇〇町3丁目',
    '12345678901',
-   1,
+   3,
    CURRENT_TIMESTAMP,
    CURRENT_TIMESTAMP
 );
@@ -238,7 +238,7 @@ VALUES
 (
    1,
    1,
-   1,
+   2,
    1100,
    CURRENT_TIMESTAMP,
    CURRENT_TIMESTAMP
@@ -282,7 +282,7 @@ VALUES
    1,
    800,
    5500,
-   1,
+   3,
    '配達花子',
    '1234567',
    '〇〇県〇〇市〇〇町5丁目',

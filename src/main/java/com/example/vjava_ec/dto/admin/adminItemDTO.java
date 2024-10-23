@@ -1,4 +1,4 @@
-package com.example.vjava_ec.entity;
+package com.example.vjava_ec.dto.admin;
 
 import java.time.LocalDateTime;
 
@@ -7,16 +7,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * 商品：エンティティ
+ * 商品：DTO
  */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Item {
+public class adminItemDTO {
 	/** id */
-	private Integer id;
+	private Integer itemId;
 	/** キャラクタid */
-	private Character character;
+	private Integer characterId;
 	/** 商品名 */
 	private String name;
 	/** 商品詳細 */
@@ -37,4 +37,8 @@ public class Item {
 	private LocalDateTime createdAt;
 	/** 更新日時 */
 	private LocalDateTime updatedAt;
+	/** キャラクタ名 */
+	private String characterName;
+	/** 税込み価格 */
+	private Integer priceWithTax;
 }

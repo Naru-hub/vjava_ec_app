@@ -5,7 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.vjava_ec.service.user.TestUserService;
+import com.example.vjava_ec.service.user.UserService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -18,7 +18,7 @@ import lombok.RequiredArgsConstructor;
 public class HomeController {
 	
     //DI
-    private final TestUserService testUserService;
+    private final UserService userService;
 	
     /**
      * ホーム画面を表示
@@ -28,8 +28,8 @@ public class HomeController {
 	@GetMapping("")
 	public String showHome(Model model) {
         // ユーザーがログイン中か確認
-        model.addAttribute("islogin",testUserService.IdentifyUser());
-        System.out.println(testUserService.IdentifyUser());
+        model.addAttribute("islogin",userService.IdentifyUser());
+        System.out.println(userService.IdentifyUser());
 		return "user/home";
 	}
 }

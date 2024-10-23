@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.vjava_ec.form.user.SignupUserForm;
-import com.example.vjava_ec.service.user.impl.TestUserServiceImpl;
+import com.example.vjava_ec.service.user.impl.UserServiceImpl;
 
 import lombok.RequiredArgsConstructor;
 
@@ -24,7 +24,7 @@ import lombok.RequiredArgsConstructor;
 public class RegisterController {
 	
 	//DI
-	private final TestUserServiceImpl testUserService;
+	private final UserServiceImpl userService;
 	
     /**
      * 新規登録画面を表示
@@ -57,7 +57,7 @@ public class RegisterController {
 			return "user/register";
 		}
 		try {
-			testUserService.NewRegisterUser(signupUserForm);
+			userService.NewRegisterUser(signupUserForm);
 			// フラッシュメッセージを追加
 			redirectAttributes.addFlashAttribute("successMessage", "登録が成功しました。"); 
 		} catch(Exception e) {

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<title>商品編集</title>
+</head>
+
+<body>
+	<div id="admin-header" th:insert="~{admin_common::admin-header}"></div>
+	<div class="container" style="min-height: 600px;">
+		<div class="row">
+			<!-- フラッシュメッセージの表示 -->
+			<div th:if="${errorMessage}" th:text="${errorMessage}" class="alert alert-danger col-md-5" role="alert">
+				エラーメッセージ
+			</div>
+
+			<div class="col-md-10 offset-md-1 mt-3">
+				<h1 class="text-center">商品編集</h1>
+				<form th:action="@{/admin/item/update}" th:object="${adminItemForm}" method="post"
+					enctype="multipart/form-data">
+					<!-- idは更新時に必要なため、hiddenで持つ -->
+					<div class="my-3 d-flex flex-row">
+						<input type="hidden" th:field="*{id}">
+						<label for="idInput" class="col-md-3 form-label">ID</label>
+						<span th:text="*{id}" class="col-md-8"></span>
+					</div>
+
+					<!-- キャラクタ選択 -->
+					<div class="my-3 d-flex flex-row">
+						<label for="characterId" class="col-md-3 form-label">キャラクター選択</label>
+						<select th:field="*{characterId}" id="characterId" class="col-md-8 form-control" required>
+							<option value="">キャラクターを選択してください</option>
+							<th:block th:each="character : ${characterList}">
+								<option th:value="${character.id}" th:text="${character.name}"></option>
+							</th:block>
+						</select>
+						<span th:if="${#fields.hasErrors('characterId')}" th:errors="*{characterId}" class="col-md-10"
+							style="color: red;"></span>
+					</div>
+
+					<!-- 商品名 -->
+					<div class="my-3 d-flex flex-row">
+						<label for="nameInput" class="col-md-3 form-label">商品名</label>
+						<input type="text" th:field="*{name}" class="col-md-8 form-control" id="nameInput"
+							placeholder="商品名を入力">
+						<span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="col-md-10"
+							style="color: red;"><span />
+					</div>
+
+					<!-- 商品詳細 -->
+					<div class="my-3 d-flex flex-row">
+						<label for="detailInput" class="col-md-3 form-label">商品詳細</label>
+						<textarea rows="10" th:field="*{detail}" class="col-md-8 form-control" id="detailInput"
+							placeholder="商品詳細を入力"></textarea>
+						<span th:if="${#fields.hasErrors('detail')}" th:errors="*{detail}" class="col-md-10"
+							style="color: red;"></span>
+					</div>
+
+					<!-- 価格(税抜) -->
+					<div class="my-3 d-flex flex-row">
+						<label for="priceInput" class="col-md-3 form-label">価格(税抜)</label>
+						<input type="text" th:field="*{price}" class="col-md-8 form-control" id="priceInput"
+							placeholder="数値を入力">
+						<p class="form-text ml-2">円</p>
+						<span th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="col-md-10"
+							style="color: red;"></span>
+					</div>
+
+					<!-- 在庫数 -->
+					<div class="my-3 d-flex flex-row">
+						<label for="stockInput" class="col-md-3 form-label">在庫数</label>
+						<input type="text" th:field="*{stock}" class="col-md-8 form-control" id="stockInput"
+							placeholder="数値を入力">
+						<p class="form-text ml-2">個</p>
+						<span th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}" class="col-md-10"
+							style="color: red;"></span>
+					</div>
+
+					<!-- 販売ステータス -->
+					<div class="my-3 d-flex flex-row">
+						<label for="saleStatus" class="col-md-3 form-label">販売ステータス</label>
+						<select th:field="*{saleStatus}" id="saleStatus" class="col-md-8 form-control" required>
+							<option value="">選択してください</option>
+							<option value="1">販売中</option>
+							<option value="2">入荷待ち</option>
+							<option value="3">販売終了</option>
+						</select>
+						<span th:if="${#fields.hasErrors('saleStatus')}" th:errors="*{saleStatus}" class="col-md-10"
+							style="color: red;"></span>
+					</div>
+
+					<!-- 期間限定商品 -->
+					<div class="my-3 d-flex flex-row">
+						<label for="isLimited" class="col-md-3 form-label">期間限定商品</label>
+						<div class="col-md-8">
+							<div class="form-check">
+								<input type="checkbox" th:field="*{limited}" class="form-check-input" id="isLimited">
+								<label class="form-check-label" for="isLimited">この商品は期間限定です</label>
+							</div>
+						</div>
+					</div>
+
+					<!-- 画像 -->
+					<div class="my-3 d-flex flex-row">
+						<label for="file" class="col-md-3 form-label">画像</label>
+						<input type="file" th:field="*{file}" class="col-md-8 form-control" id="file" name="file">
+						<span th:if="${#fields.hasErrors('file')}" th:errors="*{file}" class="col-md-10"
+							style="color: red;"></span>
+					</div>
+
+					<!-- ボタン -->
+					<div class="my-4 col-md-8 offset-md-4 d-flex flex-row text-center">
+						<!-- キャンセルボタンを表示 -->
+						<a th:href="@{/admin/item/{id}(id=${id})}" class="btn btn-outline-secondary mr-3">キャンセル</a>
+						<!-- 保存ボタンを表示 -->
+						<input type="submit" value="保存" class="btn btn-outline-info mx-3">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div id="admin-footer" th:insert="~{admin_common::admin-footer}"></div>
+</body>
+
+</html>
