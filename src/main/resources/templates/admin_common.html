@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<title>共通パーツ</title>
+</head>
+
+<body>
+	<!-- 管理者側：ヘッダー -->
+	<div th:fragment="admin-header">
+		<nav class="navbar bg-info border-bottom border-bottom-info navbar-expand-lg bg-body-tertiary" style="min-height: 50px;">
+			<div class="container-fluid d-flex justify-content-end">
+				<ul class="navbar-nav">
+					<li sec:authorize="isAuthenticated()" class="nav-item">
+						<a class="nav-link text-white mx-2" th:href="@{/admin/item/list}"><i class="fa-solid fa-cart-shopping"></i>
+							商品一覧</a>
+					</li>
+					<li sec:authorize="isAuthenticated()" class="nav-item">
+						<a class="nav-link text-white mx-2" th:href="@{/admin/user/list}"><i class="fa-solid fa-users"></i>
+							会員一覧</a>
+					</li>
+					<li sec:authorize="isAuthenticated()" class="nav-item">
+						<a class="nav-link text-white mx-2" th:href="@{/admin/order/list}"><i class="fa-solid fa-truck"></i>
+							注文履歴一覧</a>
+					</li>
+					<li sec:authorize="isAuthenticated()" class="nav-item">
+						<a class="nav-link text-white mx-2" th:href="@{/admin/character/list}"><i class="fa-solid fa-face-smile"></i>
+							キャラクタ一覧</a>
+					</li>
+					<li sec:authorize="isAuthenticated()" class="nav-item mx-2">
+						<form th:action="@{/admin/logout}" method="post">
+							<button type="submit" class="nav-link bg-info text-white border border-0">
+								<i class="fa-solid fa-sign-out-alt"></i> ログアウト
+							</button>
+						</form>
+					</li>
+				</ul>
+			</div>
+		</nav>
+	</div>
+
+	<!-- 管理者側：フッター -->
+	<div th:fragment="admin-footer">
+		<div class="container-fluid">
+			<div class="row bg-info border-bottom border-bottom-info">
+				<div class="mx-auto text-white mt-1">
+					<p>© 2024 グループ開発 チームC. VJava ECサイト.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
