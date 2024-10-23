@@ -25,5 +25,10 @@ public interface UserMapper {
      * 会員の論理削除処理
      */
     void deleteUser(User user);
+    
+    /**
+     * 新規会員情報をデータベースに登録
+     */
+    void insertUser(User user);
 
 }

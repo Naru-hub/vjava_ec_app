@@ -26,6 +26,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class UserUserDetailsServiceImpl  implements UserDetailsService{
+
 	// DI
 	private final UserMapper userMapper;
 	

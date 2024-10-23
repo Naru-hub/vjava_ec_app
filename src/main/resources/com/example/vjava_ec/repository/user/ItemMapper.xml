@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.vjava_ec.repository.user.ItemMapper">
+
+	<!-- DBから商品一覧情報を取得 -->
+	<select id="selectAll" resultType="com.example.vjava_ec.entity.Item">
+		 SELECT id, character_id as characterId, name, detail, price, stock, sale_status as saleStatus, is_limited as isLimited, is_deleted as isDeleted, image_path as imagePath, created_at as createdAt, updated_at as updatedAt 
+	     FROM items 
+	     WHERE is_deleted = false
+	</select>
+	
+</mapper>

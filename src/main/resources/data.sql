@@ -118,6 +118,7 @@ INSERT INTO items
    stock,
    sale_status,
    is_limited,
+   is_deleted,
    image_path,
    created_at,
    updated_at
@@ -130,6 +131,7 @@ VALUES
    1000,
    20,
    1,
+   false,
    false,
    '/images/default/default_goods.jpg',
    CURRENT_TIMESTAMP,
@@ -145,6 +147,7 @@ INSERT INTO items
    stock,
    sale_status,
    is_limited,
+   is_deleted,
    image_path,
    created_at,
    updated_at
@@ -157,6 +160,7 @@ VALUES
    1000,
    10,
    2,
+   false,
    false,
    '/images/default/default_goods2.jpg',
    CURRENT_TIMESTAMP,
@@ -172,6 +176,7 @@ INSERT INTO items
    stock,
    sale_status,
    is_limited,
+   is_deleted,
    image_path,
    created_at,
    updated_at
@@ -184,6 +189,7 @@ VALUES
    4000,
    5,
    3,
+   false,
    true,
    '/images/default/default_goods3.jpg',
    CURRENT_TIMESTAMP,

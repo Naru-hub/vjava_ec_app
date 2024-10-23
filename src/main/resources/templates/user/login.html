@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<link th:href="@{/css/user/common/user_common.css}" rel="stylesheet">
+	<title>ログイン画面</title>
 </head>
 <body>
+	
+	<div th:insert="~{user_common :: header}"></div>
+	
 	<div class="login-container">
        <h2>Sign In</h2>
 	<!-- エラー表示 -->
@@ -31,8 +35,10 @@
            <button type="submit">Login</button>
        </form>
        <div class="register-link">
-           <p>アカウントをお持ちでない方は <a th:href="@{/signup}" style="font-weight: bold;"> こちら </a></p>
+           <p>アカウントをお持ちでない方は <a th:href="@{/user/register}" style="font-weight: bold;"> こちら </a></p>
        </div>
    </div>
+   
+   <div th:insert="~{user_common :: footer}"></div>
 </body>
 </html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link th:href="@{/css/user/common/user_common.css}" rel="stylesheet">	
+    <title>共通ヘッダーとフッター</title>
+</head>
+<body>
+	<header>
+		<a th:href="@{/user}" class="logo-border">
+			<img src="/images/user/logo.png" alt="ロゴ" style="height: 120px;">
+		</a>
+		<h1 style="margin: 0; padding-left: 10px;" class="heading-1" >　　VJava ECサイト　　　</h1>
+		<form action="#" class="search-form-3">
+		    <button type="submit" aria-label="検索"></button>
+		    <label>
+		        <input type="text" placeholder="キーワードを入力">
+		    </label>
+		</form>
+		<div class="nav-links">
+	    	<a th:unless="${islogin}" th:href="@{/user/login}" class="header-loginlink">ログイン</a>
+	    	<a th:if="${islogin}" th:href="@{/user/login}" class="header-loginlink">ログアウト</a>
+	    	<a th:href="@{/user/item/list}" class="header-useritemlistlink">商品一覧</a>
+	    	<a th:href="@{/user/detail}" class="header-usetdetaillink">プロフィール</a>
+	    	<a th:href="@{/cart}" class="header-cartlink">カート</a>
+	</header>
+<main>
+    <h2>ホームページコンテンツ</h2>
+    <!-- 追加のコンテンツ -->
+</main>
+
+<footer>
+    <p>© 2024 グループ開発 チームC. VJava ECサイト.</p>
+</footer>
+</body>
+</html>

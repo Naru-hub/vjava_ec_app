@@ -1,0 +1,19 @@
+ul {
+    list-style-type: none; /* リストの点を非表示にする */
+    padding: 0;
+    display: flex; /* 横並びに表示 */
+    flex-wrap: wrap; /* 複数行に折り返す */
+}
+
+li {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid rgb(0, 0, 0);
+    width: 400px;
+    text-align: center;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
