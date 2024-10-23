@@ -11,7 +11,7 @@
 <body>
 	<!-- 管理者側：ヘッダー -->
 	<div th:fragment="admin-header">
-		<nav class="navbar bg-info border-bottom border-bottom-info navbar-expand-lg bg-body-tertiary">
+		<nav class="navbar bg-info border-bottom border-bottom-info navbar-expand-lg bg-body-tertiary" style="min-height: 50px;">
 			<div class="container-fluid d-flex justify-content-end">
 				<ul class="navbar-nav">
 					<li sec:authorize="isAuthenticated()" class="nav-item">

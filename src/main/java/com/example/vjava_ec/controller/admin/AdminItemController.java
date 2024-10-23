@@ -105,6 +105,7 @@ public class AdminItemController {
 	/**
 	 * 商品の新規登録画面を表示
 	 * @param form
+	 * @param model
 	 * @return String 商品新規登録画面のビュー名（"admin/item/new"）
 	 */
 	@GetMapping("/form")
@@ -120,6 +121,7 @@ public class AdminItemController {
 	 * @param form
 	 * @param bindingResult
 	 * @param attributes
+	 * @param model
 	 * @return String 商品詳細画面のビュー名（"admin/item/{id}"）
 	 */
 	@PostMapping("/create")
@@ -145,7 +147,7 @@ public class AdminItemController {
 		try {
 			// ファイルがnullでなく、空でなければ、処理を実行
 			if (form.getFile() != null && !form.getFile().isEmpty()) {
-				// 画像の格納パスを生成
+				// 画像の格納パスを生成、フォームにセット
 				String imagePath = this.IMAGE_UPLOAD_DIR_PATH + adminImageService.uploadImage(form.getFile(), "item");
 				form.setImagePath(imagePath);
 			}
@@ -167,7 +169,7 @@ public class AdminItemController {
 		} catch (Exception e) {
 		}
 
-		// 保存したアイテムのIDを取得
+		// 保存した商品のIDを取得
 		Integer savedItemId = item.getId();
 
 		// フラッシュメッセージ
@@ -219,7 +221,6 @@ public class AdminItemController {
 			BindingResult bindingResult,
 			RedirectAttributes attributes, Model model) {
 		// === バリデーションチェック ===
-
 		// ファイルが選択されていない場合
 		if (form.getFile() == null || form.getFile().isEmpty()) {
 			bindingResult.rejectValue("file", "error.file", "ファイルを選択してください");
@@ -325,10 +326,10 @@ public class AdminItemController {
 
 			// 商品情報を削除
 			adminItemService.deleteItem(targetItem);
-			// フラッシュメッセージの設定（オプション）
+			// フラッシュメッセージの設定
 			attributes.addFlashAttribute("message", "商品が削除されました");
 		} else {
-			// 商品が見つからなかった場合の処理（オプション）
+			// 商品が見つからなかった場合の処理
 			attributes.addFlashAttribute("errorMessage", "商品が見つかりませんでした");
 		}
 

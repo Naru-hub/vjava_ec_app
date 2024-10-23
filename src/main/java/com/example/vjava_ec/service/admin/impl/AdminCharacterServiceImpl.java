@@ -19,6 +19,9 @@ public class AdminCharacterServiceImpl implements AdminCharacterService {
 	// DI
 	private final AdminCharacterMapper adminCharacterMapper;
 
+	/**
+	 * キャラクタ一覧情報を検索
+	 */
 	@Override
 	public List<Character> findAll() {
 		return adminCharacterMapper.selectAll();

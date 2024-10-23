@@ -23,6 +23,7 @@ public interface AdminItemMapper {
 
 	/**
    	 * 商品詳細情報を取得
+   	 * @param id
    	 * @return 商品の詳細情報
    	 */
    	adminItemDTO selectById(@Param("id") Integer id);
