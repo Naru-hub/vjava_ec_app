@@ -10,13 +10,11 @@
 
 <body>
 	<div id="admin-header" th:insert="~{admin_common::admin-header}"></div>
-	<div class="container" style="min-height: 800px;">
-		<div class="row">
-			<div class="col-md-10 offset-md-1 mt-3 text-center">
+	<div class="container container-fluid" style="min-height: 800px;">
+		<div class="row no-gutters">
+			<div class="col-md-12 mt-3 text-center">
 				<h1>注文履歴詳細</h1>
 			</div>
-
-
 			<!-- フラッシュメッセージの表示 -->
 			<div th:if="${message}" th:text="${message}" class="col-md-5 alert alert-primary" role="alert">
 				完了メッセージ
@@ -26,25 +24,96 @@
 			</div>
 		</div>
 
-		<div class="row">
+		<div class="row no-gutters">
 			<div class="col-md-6 mt-5">
 				<div class="d-flex flex-row">
-					<p class="fs-5">注文ステータス</p>
-					<p class="text-end">
+					<dt class="ml-5">注文ステータス：</dt>
+					<dd class="mx-3">
 						<span th:if="${orderDetail.orderStatus == 1}" th:text="'受付済'"></span>
 						<span th:if="${orderDetail.orderStatus == 2}" th:text="'発送準備中'"></span>
 						<span th:if="${orderDetail.orderStatus == 3}" th:text="'発送済'"></span>
 						<span th:if="${orderDetail.orderStatus == 4}" th:text="'キャンセル済'"></span>
-					</p>
+					</dd>
 				</div>
+				<div class="d-flex flex-row">
+					<dt class="ml-5">支払い方法：</dt>
+					<dd class="mx-3">
+						<span th:if="${orderDetail.payment == 1}" th:text="'代引き'"></span>
+						<span th:if="${orderDetail.payment == 2}" th:text="'クレジットカード'"></span>
+						<span th:if="${orderDetail.payment == 3}" th:text="'コンビニ払い'"></span>
+					</dd>
+				</div>
+				<div class="d-flex flex-row">
+					<dt class="ml-5">送料：</dt>
+					<dd class="mx-3" th:text="${orderDetail.postage} + '円'">
+					</dd>
+					<div class="d-flex flex-row">
+						<dt class="ml-5">合計：</dt>
+						<dd class="mx-3" th:text="${orderDetail.totalPrice} + '円'">
+						</dd>
+					</div>
 
 
+				</div>
+				<div class="col-md-6 mt-5">
+					<!-- <table class="table table-borderless">
+					<tr>
+						<th>購入日</th>
+						<td
+							th:text="${orderDetail.createdAt.format(T(java.time.format.DateTimeFormatter).ofPattern('yyyy/MM/dd HH:mm'))}">
+						</td>
+					</tr>
+					<tr>
+						<th>更新日</td>
+						<td
+							th:text="${orderDetail.updatedAt.format(T(java.time.format.DateTimeFormatter).ofPattern('yyyy/MM/dd HH:mm'))}">
+						</td>
+					</tr>
+				</table> -->
+					<div class="d-flex flex-row">
+						<dt class="ml-5">購入日：</dt>
+						<dd class="mx-3"
+							th:text="${orderDetail.createdAt.format(T(java.time.format.DateTimeFormatter).ofPattern('yyyy/MM/dd HH:mm'))}">
+						</dd>
+					</div>
+					<div class="d-flex flex-row">
+						<dt class="ml-5">更新日：</dt>
+						<dd class="mx-3"
+							th:text="${orderDetail.updatedAt.format(T(java.time.format.DateTimeFormatter).ofPattern('yyyy/MM/dd HH:mm'))}">
+						</dd>
+					</div>
+
+				</div>
 			</div>
-			<div class="col-md-6 mt-5">
-
+			<div th:each="orderItem : ${orderDetail.orderItemList}" class="card">
+				<div class="row no-gutters">
+					<div class="col-md-3">
+						<img th:src="@{${orderItem.imagePath}}" class="card-img-left img-fluid" alt="Card image">
+					</div>
+					<div class="col-md-6">
+						<div class="card-body">
+							<div class="d-flex flex-row mt-4">
+								<dt class="ml-5">商品名：</dt>
+								<dd class="mx-3" th:text="${orderItem.itemName}"></dd>
+							</div>
+							<div class="d-flex flex-row">
+								<dt class="ml-5">価格：</dt>
+								<dd class="mx-3" th:text="${orderItem.purchasePrice} + '円'"></dd>
+							</div>
+							<div class="d-flex flex-row">
+								<dt class="ml-5">個数：</dt>
+								<dd class="mx-3" th:text="${orderItem.amount}"></dd>
+							</div>
+							<div class="d-flex flex-row">
+								<dt class="ml-5">小計：</dt>
+								<dd class="mx-3" th:text="${orderItem.subtotalPrice} + '円'"></dd>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
+	</div>	
 	<div id="admin-footer" th:insert="~{admin_common::admin-footer}"></div>
 
 </body>

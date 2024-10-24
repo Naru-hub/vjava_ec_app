@@ -13,6 +13,8 @@ import lombok.NoArgsConstructor;
 public class AdminOrderItemDTO {
 	/** 商品名 */
 	private String itemName;
+	/** 商品画像 */
+	private String imagePath;
 	/** 価格(税込) */
 	private Integer purchasePrice;
 	/** 個数 */

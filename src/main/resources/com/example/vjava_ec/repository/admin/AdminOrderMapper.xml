@@ -24,7 +24,7 @@
             <result property="itemName" column="itemName"/>
             <result property="purchasePrice" column="purchasePrice"/>
             <result property="amount" column="amount"/>
-<!--            <result property="subtotalPrice" column="subtotalPrice"/>-->
+		    <result property="imagePath" column="imagePath"/>
         </collection>
     </resultMap>
 	
