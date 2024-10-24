@@ -2,10 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<link th:href="@{/css/user/common/user_common.css}" rel="stylesheet">
 <link th:href="@{/css/user/order/list.css}" rel="stylesheet">
+<title>注文履歴一覧</title>
 </head>
 <body>
+	<div th:insert="~{user_common :: header}"></div>
+	
     <h1>注文履歴一覧</h1>
     <div>
         <div th:if="${orderList == null || orderList.empty}">
@@ -37,5 +40,7 @@
             </div>
         </div>
     </div>
+	
+	<div th:insert="~{user_common :: footer}"></div>
 </body>
 </html>

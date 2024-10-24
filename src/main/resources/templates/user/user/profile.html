@@ -2,9 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<link th:href="@{/css/user/common/user_common.css}" rel="stylesheet">
+<title>会員情報詳細</title>
 </head>
 <body>
+	<div th:insert="~{user_common :: header}"></div>
+
 	<h1>会員情報詳細</h1>
 	
 	<div>
@@ -41,5 +44,6 @@
 		</form>
 	</div>
 
+	<div th:insert="~{user_common :: footer}"></div>
 </body>
 </html>
