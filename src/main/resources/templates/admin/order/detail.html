@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<title>注文履歴詳細</title>
+</head>
+
+<body>
+	<div id="admin-header" th:insert="~{admin_common::admin-header}"></div>
+	<div class="container" style="min-height: 800px;">
+		<div class="row">
+			<div class="col-md-10 offset-md-1 mt-3 text-center">
+				<h1>注文履歴詳細</h1>
+			</div>
+
+
+			<!-- フラッシュメッセージの表示 -->
+			<div th:if="${message}" th:text="${message}" class="col-md-5 alert alert-primary" role="alert">
+				完了メッセージ
+			</div>
+			<div th:if="${errorMessage}" th:text="${errorMessage}" class="col-md-5 alert alert-danger" role="alert">
+				エラーメッセージ
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-6 mt-5">
+				<div class="d-flex flex-row">
+					<p class="fs-5">注文ステータス</p>
+					<p class="text-end">
+						<span th:if="${orderDetail.orderStatus == 1}" th:text="'受付済'"></span>
+						<span th:if="${orderDetail.orderStatus == 2}" th:text="'発送準備中'"></span>
+						<span th:if="${orderDetail.orderStatus == 3}" th:text="'発送済'"></span>
+						<span th:if="${orderDetail.orderStatus == 4}" th:text="'キャンセル済'"></span>
+					</p>
+				</div>
+
+
+			</div>
+			<div class="col-md-6 mt-5">
+
+			</div>
+		</div>
+	</div>
+	<div id="admin-footer" th:insert="~{admin_common::admin-footer}"></div>
+
+</body>
+
+</html>
