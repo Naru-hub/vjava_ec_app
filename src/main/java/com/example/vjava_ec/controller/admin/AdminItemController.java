@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.example.vjava_ec.dto.admin.adminItemDTO;
+import com.example.vjava_ec.dto.admin.AdminItemDTO;
 import com.example.vjava_ec.entity.Item;
 import com.example.vjava_ec.form.admin.AdminItemForm;
 import com.example.vjava_ec.helper.admin.AdminItemHelper;
@@ -54,10 +54,10 @@ public class AdminItemController {
 	@GetMapping("/list")
 	public String showItemList(Model model) {
 		// すべての商品一覧情報を取得
-		List<adminItemDTO> items = adminItemService.findAllItem();
+		List<AdminItemDTO> items = adminItemService.findAllItem();
 
 		// 各商品の税込み価格を計算し、税込み価格(priceWithTax)に設定
-		for (adminItemDTO item : items) {
+		for (AdminItemDTO item : items) {
 			// 税込み価格計算してint型にキャスト
 			int priceWithTax = (int) Math.round(item.getPrice() * (1 + TAX_RATE));
 			// 計算した税込み価格を設定
@@ -80,7 +80,7 @@ public class AdminItemController {
 	@GetMapping("/{id}")
 	public String showItemDetail(@PathVariable Integer id, Model model, RedirectAttributes attributes) {
 		// 商品IDに対応する商品詳細情報を取得
-		adminItemDTO item = adminItemService.findByIdItem(id);
+		AdminItemDTO item = adminItemService.findByIdItem(id);
 
 		// 対象データがあるか
 		if (item != null) {
@@ -98,7 +98,7 @@ public class AdminItemController {
 			// 対象データがない場合
 			attributes.addFlashAttribute("errorMessage", "対象データがありません");
 			// 商品一覧画面へリダイレクト
-			return "redirect:/list";
+			return "redirect:/admin/item/list";
 		}
 	}
 
@@ -188,7 +188,7 @@ public class AdminItemController {
 	@GetMapping("/edit/{id}")
 	public String showEditItemDetail(@PathVariable Integer id, Model model, RedirectAttributes attributes) {
 		// IDに対応する商品を取得
-		adminItemDTO target = adminItemService.findByIdItem(id);
+		AdminItemDTO target = adminItemService.findByIdItem(id);
 
 		// 編集対象の商品情報が取得できた場合
 		if (target != null) {
@@ -230,7 +230,7 @@ public class AdminItemController {
 		}
 
 		// 元の商品情報の取得
-		adminItemDTO existingItem = adminItemService.findByIdItem(form.getId());
+		AdminItemDTO existingItem = adminItemService.findByIdItem(form.getId());
 
 		// 商品情報が見つからない場合
 		if (existingItem == null) {
@@ -317,7 +317,7 @@ public class AdminItemController {
 	@PostMapping("/delete/{id}")
 	public String updateItemDeleteStatus(@PathVariable Integer id, RedirectAttributes attributes) {
 		// 対象の商品情報の取得
-		adminItemDTO targetItem = adminItemService.findByIdItem(id);
+		AdminItemDTO targetItem = adminItemService.findByIdItem(id);
 
 		// 商品情報が存在するか
 		if (targetItem != null) {
