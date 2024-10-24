@@ -42,6 +42,8 @@ public class SecurityConfig {
 				.anyRequest().authenticated())
 		// ★フォームベースのログイン設定
 		.formLogin(form -> form
+				// カスタムログインページのURLを指定
+				.loginPage("/admin/login")
 				// ログイン処理のURLを指定
 				.loginProcessingUrl("/admin/authentication")
 				// メールアドレスのname属性を指定
