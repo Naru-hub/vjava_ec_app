@@ -14,4 +14,9 @@ public interface ItemService {
      */
 	List<Item> getAllItems();
 	
+	/**
+	 * IDから特定のItemエンティティを取得
+	 */
+	Item selectItemById(int id);
+	
 }

@@ -1,12 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.vjava_ec.repository.user.ItemMapper">
+	
+	<resultMap type="com.example.vjava_ec.entity.Item" id="ItemResultMap">
+		<id property="id" column="id"/>
+		<result property="name" column="name"/>
+		<result property="detail" column="detail"/>
+		<result property="price" column="price"/>
+		<result property="stock" column="stock"/>
+		<result property="saleStatus" column="sale_status"/>
+		<result property="isLimited" column="is_limited"/>
+		<result property="imagePath" column="image_path"/>
+		<result property="createdAt" column="item_created_at"/>
+		<result property="updatedAt" column="item_updated_at"/>
+		<!-- Characterのマッピング -->
+		<association property="character" javaType="com.example.vjava_ec.entity.Character">
+			<id property="id" column="character_id"/>
+			<result property="name" column="character_name"/>
+			<result property="createdAt" column="character_created_at"/>
+			<result property="updatedAt" column="character_updated_at"/>
+		</association>
+	</resultMap>
 
 	<!-- DBから商品一覧情報を取得 -->
 	<select id="selectAll" resultType="com.example.vjava_ec.entity.Item">
-		 SELECT id, character_id as characterId, name, detail, price, stock, sale_status as saleStatus, is_limited as isLimited, is_deleted as isDeleted, image_path as imagePath, created_at as createdAt, updated_at as updatedAt 
-	     FROM items 
-	     WHERE is_deleted = false
+		SELECT id, character_id as characterId, name, detail, price, stock, sale_status as saleStatus, is_limited as isLimited, is_deleted as isDeleted, image_path as imagePath, created_at as createdAt, updated_at as updatedAt 
+		FROM items 
+		WHERE is_deleted = false
+	</select>
+	<!-- 商品IDから特定のItemエンティティを取得 -->
+	<select id="selectItemById" resultMap="ItemResultMap">
+		SELECT 
+			i.id, 
+			i.name, 
+			i.detail, 
+			i.price, 
+			i.stock, 
+			i.sale_status, 
+			i.is_limited, 
+			i.is_deleted, 
+			i.image_path, 
+			i.created_at AS item_created_at,
+			i.updated_at AS item_updated_at,
+			c.id AS character_id,
+			c.name AS character_name,
+			c.created_at AS character_created_at,
+			c.updated_at AS character_updated_at
+		FROM
+			items i
+		LEFT JOIN
+			characters c ON i.character_id = c.id
+		WHERE
+			i.id = #{id};
 	</select>
 	
 </mapper>

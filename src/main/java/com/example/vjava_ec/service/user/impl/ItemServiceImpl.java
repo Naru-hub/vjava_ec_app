@@ -34,7 +34,7 @@ public class ItemServiceImpl implements ItemService{
      */
     @Override
     public List<Item> getAllItems() {
-    	 // 商品一覧を取得
+    	// 商品一覧を取得
     	List<Item> items = itemMapper.selectAll();
     	// 各商品の価格を消費税込みに計算し直す
     	for(Item item : items) {
@@ -43,5 +43,19 @@ public class ItemServiceImpl implements ItemService{
     	}
         return items;
     }
+    
+    /**
+     * IDから税込価格を再設定した特定のItemエンティティを取得
+     * @param id
+     * @return Item Itemエンティティ
+     */
+	@Override
+	public Item selectItemById(int id) {
+		// idからItemエンティティを取得
+		Item item = itemMapper.selectItemById(id);
+		// 税込価格を再設定
+		item.setPrice((int)(item.getPrice() * (1 + TAX_RATE)));
+		return item;
+	}
 
 }

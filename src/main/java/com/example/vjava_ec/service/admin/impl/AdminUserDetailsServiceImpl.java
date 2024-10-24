@@ -70,11 +70,6 @@ public class AdminUserDetailsServiceImpl implements UserDetailsService {
 		List<GrantedAuthority> authorities = new ArrayList<>();
 		// 列挙型からロールを取得
 		authorities.add(new SimpleGrantedAuthority(role.name()));
-		// ADMIN ロールの場合、USERの権限も付与
-		if (role == Role.ADMIN) {
-			authorities.add(
-					new SimpleGrantedAuthority(Role.USER.toString()));
-		}
 		return authorities;
 	}
 }

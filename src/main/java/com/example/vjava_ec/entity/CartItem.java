@@ -17,8 +17,8 @@ public class CartItem {
 	private Integer id;
 	/** 会員id */
 	private Integer userId;
-	/** 商品id */
-	private Integer itemId;
+	/** 商品エンティティ */
+	private Item item;
 	/** 商品の数量 */
 	private Integer amount;
 	/** 作成日時 */

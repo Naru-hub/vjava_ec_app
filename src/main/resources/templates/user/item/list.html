@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<link th:href="@{/css/user/item/itemlist.css}" rel="stylesheet">
+	<link th:href="@{/css/user/item/list.css}" rel="stylesheet">
 	<link th:href="@{/css/user/common/user_common.css}" rel="stylesheet">
 	<title>商品一覧</title>
 </head>
@@ -23,7 +23,7 @@
             <!-- 価格 -->
             <p th:text="${item.price} + '円(税込)'">価格</p>
             <!-- 商品詳細リンク -->
-            <a th:href="@{'/user/item/detail/' + ${item.id}}">商品詳細</a>
+            <a th:href="@{'/user/item/' + ${item.id}}">商品詳細</a>
         </li>
     </ul>
     <div th:insert="~{user_common :: footer}"></div>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<link th:href="@{/css/user/item/detail.css}" rel="stylesheet">
+	<link th:href="@{/css/user/common/user_common.css}" rel="stylesheet">
+	<title>商品詳細</title>
+</head>
+<body>
+	<div th:insert="~{user_common :: header}"></div>
+	
+	<div class="container">
+		<div class="left-contents">
+			<img th:src="@{${item.imagePath}}" alt="Item Image" class="image">
+		</div>
+		<div class="right-contents">
+			<div class="item-info">
+				<div class="name" th:text="${item.name}"></div>
+				<div th:text="${item.character.name}"></div>
+				<div th:text="${item.detail}"></div>
+				<div th:text="${item.price}"></div>
+				<div th:switch="${item.saleStatus}">
+					<spna th:case="1">販売中</spna>
+					<spna th:case="2">入荷待ち</spna>
+					<spna th:case="3">販売終了</spna>
+				</div>
+				<form id="cartForm">
+				    <input type="hidden" id="quantity-input" value="1" min="1" max="99">
+				</form>
+				<div class="quantity">
+					<span>数量：</span>
+					<span class="quantity-box">
+					    <button class="quantity-btn" onclick="decreaseQuantity()">-</button>
+						<span class="quantity-display">1</span>
+					    <button class="quantity-btn" onclick="increaseQuantity()">+</button>
+					</span>
+				</div>
+			</div>
+			<div class="button-container">
+				<button onclick="window.location.href='/user/item/list'">一覧へ戻る</button>
+				<button onclick="submitForm()">カートに追加</button>
+			</div>
+		</div>
+	</div>
+	
+	<div th:insert="~{user_common :: footer}"></div>
+	<script th:src="@{/js/user/item/detail.js}"></script>
+</body>
+</html>
