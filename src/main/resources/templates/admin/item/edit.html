@@ -31,8 +31,7 @@
 					<!-- キャラクタ選択 -->
 					<div class="my-3 d-flex flex-row">
 						<label for="characterId" class="col-md-3 form-label">キャラクター選択</label>
-						<select th:field="*{characterId}" id="characterId" class="col-md-8 form-control" required>
-							<option value="">キャラクターを選択してください</option>
+						<select th:field="*{characterId}" id="characterId" class="col-md-8 form-control">
 							<th:block th:each="character : ${characterList}">
 								<option th:value="${character.id}" th:text="${character.name}"></option>
 							</th:block>
@@ -82,8 +81,7 @@
 					<!-- 販売ステータス -->
 					<div class="my-3 d-flex flex-row">
 						<label for="saleStatus" class="col-md-3 form-label">販売ステータス</label>
-						<select th:field="*{saleStatus}" id="saleStatus" class="col-md-8 form-control" required>
-							<option value="">選択してください</option>
+						<select th:field="*{saleStatus}" id="saleStatus" class="col-md-8 form-control">
 							<option value="1">販売中</option>
 							<option value="2">入荷待ち</option>
 							<option value="3">販売終了</option>

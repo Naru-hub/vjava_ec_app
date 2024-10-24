@@ -42,17 +42,11 @@ public class AdminUserDetailsServiceImpl implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String email)
 			throws UsernameNotFoundException {
-		
-		// デバック用 後ほど削除
-		System.out.println("'Admin'UserDetailsServiceに到達");
-		
+	
 		// 「管理者テーブル」からデータを取得
 		Admin admin = adminMapper.selectAdminByEmail(email);
 		// 対象データがあれば、UserDetailsの実装クラスを返す
 		if (admin != null) {
-			
-			// デバック用　後ほど削除
-			System.out.println("Adminテーブルでデータ発見");
 			
 			// UserDetailsの実装クラスを返す
 			return new CustomUserDetails(admin.getEmail(),admin.getPassword(),getAuthorityList(admin.getRole()));
