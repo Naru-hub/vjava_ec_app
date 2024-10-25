@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+.info-base {
+	/* 白っぽいグレー */
+	background-color: rgba(255, 255, 255, 0.8);
+	/* 角を丸くする */
+	border-radius: 15px;
+	/* 浮き上がった印象 */
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+	/* 内側の余白 */
+	padding: 20px;
+	/* 下部の余白 */
+	margin-bottom: 20px;
+}

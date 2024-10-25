@@ -71,7 +71,6 @@ public class AdminOrderController {
 
 			// モデルに格納
 			model.addAttribute("orderDetail", orderDetailInfo);
-			System.out.println(orderDetailInfo);
 
 			// 注文履歴詳細画面へ遷移
 			return "admin/order/detail";
