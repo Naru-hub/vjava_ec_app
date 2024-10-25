@@ -24,8 +24,9 @@
 					<spna th:case="2">入荷待ち</spna>
 					<spna th:case="3">販売終了</spna>
 				</div>
-				<form id="cartForm">
-				    <input type="hidden" id="quantity-input" value="1" min="1" max="99">
+				<form th:action="@{/user/cart/add}" method="post" id="cartForm">
+					<input type="hidden" name="itemId" id="itemId-input" th:value="${item.id}">
+				    <input type="hidden" name="amount" id="quantity-input" value="1" min="1" max="99">
 				</form>
 				<div class="quantity">
 					<span>数量：</span>
@@ -37,7 +38,7 @@
 				</div>
 			</div>
 			<div class="button-container">
-				<button onclick="window.location.href='/user/item/list'">一覧へ戻る</button>
+				<button id="backButton">一覧へ戻る</button>
 				<button onclick="submitForm()">カートに追加</button>
 			</div>
 		</div>

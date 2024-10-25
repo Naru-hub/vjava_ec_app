@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<link th:href="@{/css/user/cart/cart.css}" rel="stylesheet">
+	<link th:href="@{/css/user/common/user_common.css}" rel="stylesheet">
+	<title>カート</title>
+</head>
+<body>
+	<div th:insert="~{user_common :: header}"></div>
+	
+	<div class="container">
+		<div class="top-contents">
+			<div>
+				<button id="continueShopping">買い物を続ける</button>
+			</div>
+			<h1>カート</h1>
+			<form th:action="@{/user/cart/delete/all}" method="post">
+				<button id="delete-cart">カートを空にする</button>
+			</form>
+		</div>
+		<div th:if="${#lists.isEmpty(cart.cartItems) == false}" class="main-contents">
+			<div class="cart-item-area">
+				<div class="label">
+					<div class="label-image"></div>
+					<div class="label-item">
+						<div>商品</div>
+					</div>
+					<div class="label-amount">
+						<div>数量</div>
+					</div>
+					<div class="label-total">
+						<div>小計</div>
+					</div>
+				</div>
+				<div class="cart-item-card" th:each="cartItem : ${cart.cartItems}">
+					<!-- 商品画像 -->
+					<img class="image" th:data-id="${cartItem.item.id}" th:src="${cartItem.item.imagePath}" alt="商品画像">
+					<div class="cart-item-info">
+						<!-- 商品名と価格 -->
+						<div th:text="${cartItem.item.name}"></div>
+						<div>￥[[${cartItem.displayPrice}]]</div>
+					</div>
+					<!-- 数量変更と削除 -->
+					<div class="cart-item-amount">
+						<form class="cart-item-amount-edit" th:action="@{/user/cart/edit/{id}(id=${cartItem.item.id})}" method="post">
+							<input type="number" name="amount" th:value="${cartItem.amount}" min="1" max="99">
+							<button type="submit">変更</button>
+						</form>
+					</div>
+					<div class="cart-item-subtotal">
+						<div>￥[[${cartItem.displayTotalPrice}]]</div>
+					</div>
+					<div class="delete-button">
+						<form th:action="@{/user/cart/delete/{id}(id=${cartItem.item.id})}" method="post">
+							<button type="submit">削除</button>
+						</form>
+					</div>
+				</div>
+			</div>
+			<!-- 合計金額と購入へ進むボタン -->
+			<div class="total-price-area">
+				<div class="total-price-card">
+					<div>
+						合計　￥
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		<div class="cart-empty-box" th:if="${#lists.isEmpty(cart.cartItems)}">
+			<div class="cart-empty">カートは空です</div>
+		</div>
+	</div>
+
+	<div th:insert="~{user_common :: footer}"></div>
+	<script th:src="@{/js/user/cart/cart.js}"></script>
+</body>
+</html>

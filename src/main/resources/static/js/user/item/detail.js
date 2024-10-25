@@ -2,6 +2,7 @@
  * 会員：商品詳細画面 JavaScriptファイル
  */
 
+/** 数量-１ボタン */
 function decreaseQuantity() {
     var quantityInput = document.getElementById("quantity-input");
     var quantityDisplay = document.querySelector(".quantity-display")
@@ -12,6 +13,7 @@ function decreaseQuantity() {
     }
 }
 
+/** 数量+１ボタン */
 function increaseQuantity() {
     var quantityInput = document.getElementById("quantity-input");
     var quantityDisplay = document.querySelector(".quantity-display")
@@ -20,8 +22,14 @@ function increaseQuantity() {
         quantityInput.value = currentValue + 1;
         quantityDisplay.textContent = currentValue + 1;
     }
-}
+};
 
+/** 一覧に戻るボタン */
+document.getElementById("backButton").onclick = function() {
+    window.location.href = '/user/item/list';
+};
+
+/** カートに商品を追加ボタン */ 
 function submitForm() {
-    document.getElementById("cartForm").submit();
-  }
+	document.getElementById("cartForm").submit();
+}
