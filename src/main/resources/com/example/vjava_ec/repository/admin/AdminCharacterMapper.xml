@@ -5,15 +5,30 @@
 	<!-- キャラクタ全検索 -->
 	<select id="selectAll"
 		resultType="com.example.vjava_ec.entity.Character">
-		SELECT id, name FROM characters;
+		SELECT id, name, height, debut_date as debutDate, description, is_deleted as isDeleted, 
+      	image_path as imagePath, created_at as createdAt, updated_at as updatedAt 
+		FROM characters;
 	</select>
 
 	<!-- キャラクタ1件検索 -->
 	<select id="selectById"
 		resultType="com.example.vjava_ec.entity.Character">
-		SELECT id, name, is_deleted as isDeleted, created_at as
-		createdAt, updated_at as updatedAt
+		SELECT id, name, height, debut_date as debutDate, description, is_deleted as isDeleted, 
+      	image_path as imagePath, created_at as createdAt, updated_at as updatedAt 
 		FROM characters
 		WHERE id = #{id};
 	</select>
+	
+	<!-- キャラクタ新規登録 -->
+	<insert id="insertCharacter" parameterType="com.example.vjava_ec.entity.Character">
+    	INSERT INTO characters (name, height, debut_date, description, is_deleted, image_path, created_at, updated_at)
+    	VALUES (#{name}, #{height}, #{debutDate}, #{description}, #{isDeleted}, #{imagePath}, #{createdAt}, #{updatedAt});
+	</insert>
+	
+	<!-- キャラクタ情報の更新 -->
+	<update id="updateCharacter" parameterType="com.example.vjava_ec.entity.Character">
+   		UPDATE characters SET name = #{name}, height = #{height},debut_date = #{debutDate},description = #{description},
+   		is_deleted = #{isDeleted},image_path = #{imagePath}, updated_at = CURRENT_TIMESTAMP
+    	WHERE id = #{id};
+	</update>
 </mapper>
