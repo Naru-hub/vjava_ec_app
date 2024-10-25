@@ -26,37 +26,47 @@
 		</div>
 
 		<div class="row mt-3">
-			<!-- 注文者情報 -->
+			<!-- 注文情報 -->
 			<div class="col-md-6 info-base">
 				<h3 class="text-center">注文情報</h3>
-				<div class="d-flex flex-row">
-					<dt class="ml-5">注文ステータス：</dt>
-					<dd class="mx-3">
-						<span th:if="${orderDetail.orderStatus == 1}" th:text="'受付済'"></span>
-						<span th:if="${orderDetail.orderStatus == 2}" th:text="'発送準備中'"></span>
-						<span th:if="${orderDetail.orderStatus == 3}" th:text="'発送済'"></span>
-						<span th:if="${orderDetail.orderStatus == 4}" th:text="'キャンセル済'"></span>
-					</dd>
-				</div>
-				<div class="d-flex flex-row">
-					<dt class="ml-5">支払い方法：</dt>
-					<dd class="mx-3">
-						<span th:if="${orderDetail.payment == 1}" th:text="'代引き'"></span>
-						<span th:if="${orderDetail.payment == 2}" th:text="'クレジットカード'"></span>
-						<span th:if="${orderDetail.payment == 3}" th:text="'コンビニ払い'"></span>
-					</dd>
-				</div>
-				<div class="d-flex flex-row">
-					<dt class="ml-5">購入日：</dt>
-					<dd class="mx-3"
-						th:text="${orderDetail.createdAt.format(T(java.time.format.DateTimeFormatter).ofPattern('yyyy/MM/dd HH:mm'))}">
-					</dd>
-				</div>
-				<div class="d-flex flex-row">
-					<dt class="ml-5">更新日：</dt>
-					<dd class="mx-3"
-						th:text="${orderDetail.updatedAt.format(T(java.time.format.DateTimeFormatter).ofPattern('yyyy/MM/dd HH:mm'))}">
-					</dd>
+				<div class="row">
+					<div class="col-md-6">
+						<dl>
+							<div class="d-flex flex-row">
+								<dt class="ml-5">注文ステータス：</dt>
+								<dd class="mx-3">
+									<span th:if="${orderDetail.orderStatus == 1}" th:text="'受付済'"></span>
+									<span th:if="${orderDetail.orderStatus == 2}" th:text="'発送準備中'"></span>
+									<span th:if="${orderDetail.orderStatus == 3}" th:text="'発送済'"></span>
+									<span th:if="${orderDetail.orderStatus == 4}" th:text="'キャンセル済'"></span>
+								</dd>
+							</div>
+							<div class="d-flex flex-row">
+								<dt class="ml-5">支払い方法：</dt>
+								<dd class="mx-3">
+									<span th:if="${orderDetail.payment == 1}" th:text="'代引き'"></span>
+									<span th:if="${orderDetail.payment == 2}" th:text="'クレジットカード'"></span>
+									<span th:if="${orderDetail.payment == 3}" th:text="'コンビニ払い'"></span>
+								</dd>
+							</div>
+						</dl>
+					</div>
+					<div class="col-md-6">
+						<dl>
+							<div class="d-flex flex-row">
+								<dt class="ml-5">購入日：</dt>
+								<dd class="mx-3"
+									th:text="${orderDetail.createdAt.format(T(java.time.format.DateTimeFormatter).ofPattern('yyyy/MM/dd HH:mm'))}">
+								</dd>
+							</div>
+							<div class="d-flex flex-row">
+								<dt class="ml-5">更新日：</dt>
+								<dd class="mx-3"
+									th:text="${orderDetail.updatedAt.format(T(java.time.format.DateTimeFormatter).ofPattern('yyyy/MM/dd HH:mm'))}">
+								</dd>
+							</div>
+						</dl>
+					</div>
 				</div>
 
 				<div class="col-md-12 mt-1">
@@ -67,23 +77,25 @@
 									alt="Card image">
 							</div>
 							<div class="col-md-9">
-								<div class="card-body">
-									<div class="d-flex flex-row">
-										<dt class="ml-5">商品名：</dt>
-										<dd class="mx-3" th:text="${orderItem.itemName}"></dd>
-									</div>
-									<div class="d-flex flex-row">
-										<dt class="ml-5">価格：</dt>
-										<dd class="mx-3" th:text="${orderItem.purchasePrice} + '円'"></dd>
-									</div>
-									<div class="d-flex flex-row">
-										<dt class="ml-5">個数：</dt>
-										<dd class="mx-3" th:text="${orderItem.amount} + '個'"></dd>
-									</div>
-									<div class="d-flex flex-row">
-										<dt class="ml-5">小計：</dt>
-										<dd class="mx-3" th:text="${orderItem.subtotalPrice} + '円'"></dd>
-									</div>
+								<div class="card-body mt-1">
+									<dl>
+										<div class="d-flex flex-row">
+											<dt class="ml-5">商品名：</dt>
+											<dd class="mx-3" th:text="${orderItem.itemName}"></dd>
+										</div>
+										<div class="d-flex flex-row">
+											<dt class="ml-5">価格：</dt>
+											<dd class="mx-3" th:text="${orderItem.purchasePrice} + '円'"></dd>
+										</div>
+										<div class="d-flex flex-row">
+											<dt class="ml-5">個数：</dt>
+											<dd class="mx-3" th:text="${orderItem.amount} + '個'"></dd>
+										</div>
+										<div class="d-flex flex-row">
+											<dt class="ml-5">小計：</dt>
+											<dd class="mx-3" th:text="${orderItem.subtotalPrice} + '円'"></dd>
+										</div>
+									</dl>
 								</div>
 							</div>
 						</div>
@@ -91,64 +103,77 @@
 				</div>
 
 				<div class="col-md-12 mt-3">
-					<div class="d-flex justify-content-end">
-						<div class="d-flex flex-row align-items-center mr-3">
-							<dt>送料：</dt>
-							<dd class="mx-3" th:text="${orderDetail.postage} + '円'"></dd>
+					<dl>
+						<div class="d-flex justify-content-end">
+							<div class="d-flex flex-row mr-3">
+								<dt>送料：</dt>
+								<dd class="mx-3" th:text="${orderDetail.postage} + '円'"></dd>
+							</div>
 						</div>
-					</div>
-					<hr>
-					<div class="d-flex justify-content-end">
-						<div class="d-flex flex-row align-items-center mr-3">
-							<dt>合計：</dt>
-							<dd class="mx-3" th:text="${orderDetail.totalPrice} + '円'"></dd>
+						<hr>
+						<div class="d-flex justify-content-end">
+							<div class="d-flex flex-row mr-3">
+								<dt>合計：</dt>
+								<dd class="mx-3" th:text="${orderDetail.totalPrice} + '円'"></dd>
+							</div>
 						</div>
-					</div>
+					</dl>
 				</div>
 			</div>
-			
+
 			<div class="col-md-6 mb-1">
 				<!-- 注文者情報 -->
 				<div class="col-md-12 mb-1 info-base">
 					<h3 class="text-center">注文者情報</h3>
-					<div class="d-flex flex-row">
-						<dt class="ml-5">名前：</dt>
-						<dd class="mx-3" th:text="${orderDetail.userName}"></dd>
-					</div>
-					<div class="d-flex flex-row">
-						<dt class="ml-5">郵便番号：</dt>
-						<dd class="mx-3" th:text="${orderDetail.userPostcode}"></dd>
-					</div>
-					<div class="d-flex flex-row">
-						<dt class="ml-5">住所：</dt>
-						<dd class="mx-3" th:text="${orderDetail.userAddress}"></dd>
-					</div>
-					<div class="d-flex flex-row">
-						<dt class="ml-5">電話番号：</dt>
-						<dd class="mx-3" th:text="${orderDetail.userTel}"></dd>
-					</div>
+					<dl>
+						<div class="d-flex flex-row">
+							<dt class="ml-5">名前：</dt>
+							<dd class="mx-3" th:text="${orderDetail.userName}"></dd>
+						</div>
+						<div class="d-flex flex-row">
+							<dt class="ml-5">郵便番号：</dt>
+							<dd class="mx-3" th:text="${#strings.substring(orderDetail.userPostcode, 0, 3)} + ' - ' + ${#strings.substring(orderDetail.userPostcode, 3)}"></dd>
+						</div>
+						<div class="d-flex flex-row">
+							<dt class="ml-5">住所：</dt>
+							<dd class="mx-3" th:text="${orderDetail.userAddress}"></dd>
+						</div>
+						<div class="d-flex flex-row">
+							<dt class="ml-5">電話番号：</dt>
+							<dd class="mx-3" th:text="${orderDetail.userTel}"></dd>
+						</div>
+					</dl>
 				</div>
+				
 				<!-- 配送先情報 -->
 				<div class="col-md-12 mt-3 mb-1	info-base">
 					<div>
 						<h3 class="text-center">配送先情報</h3>
-						<div class="d-flex flex-row">
-							<dt class="ml-5">宛名：</dt>
-							<dd class="mx-3" th:text="${orderDetail.deliveryName}"></dd>
-						</div>
-						<div class="d-flex flex-row">
-							<dt class="ml-5">郵便番号：</dt>
-							<dd class="mx-3" th:text="${orderDetail.deliveryPostcode}"></dd>
-						</div>
-						<div class="d-flex flex-row">
-							<dt class="ml-5">住所：</dt>
-							<dd class="mx-3" th:text="${orderDetail.deliveryAddress}"></dd>
-						</div>
-						<div class="d-flex flex-row">
-							<dt class="ml-5">電話番号：</dt>
-							<dd class="mx-3" th:text="${orderDetail.deliveryTel}"></dd>
-						</div>
+						<dl>
+							<div class="d-flex flex-row">
+								<dt class="ml-5">宛名：</dt>
+								<dd class="mx-3" th:text="${orderDetail.deliveryName}"></dd>
+							</div>
+							<div class="d-flex flex-row">
+								<dt class="ml-5">郵便番号：</dt>
+								<dd class="mx-3" th:text="${#strings.substring(orderDetail.deliveryPostcode, 0, 3)} + ' - ' + ${#strings.substring(orderDetail.userPostcode, 3)}"></dd>
+							</div>
+							<div class="d-flex flex-row">
+								<dt class="ml-5">住所：</dt>
+								<dd class="mx-3" th:text="${orderDetail.deliveryAddress}"></dd>
+							</div>
+							<div class="d-flex flex-row">
+								<dt class="ml-5">電話番号：</dt>
+								<dd class="mx-3" th:text="${orderDetail.deliveryTel}"></dd>
+							</div>
+						</dl>
 					</div>
+				</div>
+				<div class="mt-5 col-md-8 offset-md-4 d-flex flex-row text-center">
+					<!-- 一覧へ戻るボタンを表示 -->
+					<a th:href="@{/admin/order/list}" class="btn btn-outline-secondary mr-4">一覧へ戻る</a>
+					<!-- 編集ボタンを表示 -->
+					<a th:href="@{/admin/order/edit/{id}(id=${id})}" class="btn btn-outline-info">編集</a>
 				</div>
 			</div>
 		</div>

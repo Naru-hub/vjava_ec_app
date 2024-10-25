@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
+/* 詳細情報の背景 */
 .info-base {
 	/* 白っぽいグレー */
 	background-color: rgba(255, 255, 255, 0.8);
@@ -11,4 +12,10 @@
 	padding: 20px;
 	/* 下部の余白 */
 	margin-bottom: 20px;
+}
+
+/* 画像の調整 */
+.card-img-left {
+    height: 100%; /* 親要素の高さに合わせる */
+    object-fit: cover; /* 画像を親要素にフィットさせる */
 }
