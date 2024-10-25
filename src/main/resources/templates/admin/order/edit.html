@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link th:href="@{/css/admin/order/edit.css}" rel="stylesheet">
+	<title>注文履歴編集</title>
+</head>
+
+<body>
+	<div id="admin-header" th:insert="~{admin_common::admin-header}"></div>
+	<div class="my-4 mx-5" style="min-height: 800px;">
+		<div class="row">
+			<div class="col-md-12 mt-3 text-center">
+				<h1>注文履歴編集</h1>
+			</div>
+			<!-- フラッシュメッセージの表示 -->
+			<div th:if="${message}" th:text="${message}" class="col-md-5 alert alert-primary" role="alert">
+				完了メッセージ
+			</div>
+			<div th:if="${errorMessage}" th:text="${errorMessage}" class="col-md-5 alert alert-danger" role="alert">
+				エラーメッセージ
+			</div>
+		</div>
+
+		<div class="row mt-3">
+			<!-- 注文情報 -->
+			<div class="col-md-6 info-base">
+				<h3 class="text-center">注文情報</h3>
+				<div class="row">
+					<div class="col-md-8">
+
+						<form th:action="@{/admin/order/update}" th:object="${adminOrderForm}" method="post">
+							<!-- idは更新時に必要なため、hiddenで持つ -->
+							<span class="my-3 d-flex flex-row">
+								<input type="hidden" th:field="*{orderId}">
+							</span>
+
+							<!-- 注文ステータス -->
+							<div class="my-3 d-flex flex-row">
+								<label for="orderStatus" class="col-md-3 form-label">注文ステータス</label>
+								<select th:field="*{orderStatus}" id="orderStatus" class="col-md-8 form-control">
+									<option value="1">受付済</option>
+									<option value="2">発送準備中</option>
+									<option value="3">発送済</option>
+									<option value="4">キャンセル済</option>
+								</select>
+								<span th:if="${#fields.hasErrors('orderStatus')}" th:errors="*{orderStatus}"
+									class="col-md-10" style="color: red;"></span>
+							</div>
+					</div>
+					<div class="col-md-4">
+						<dl>
+							<div class="d-flex flex-row">
+								<dt class="ml-5">支払い方法：</dt>
+								<dd class="mx-3">
+									<span th:if="${orderDetail.payment == 1}" th:text="'代引き'"></span>
+									<span th:if="${orderDetail.payment == 2}" th:text="'クレジットカード'"></span>
+									<span th:if="${orderDetail.payment == 3}" th:text="'コンビニ払い'"></span>
+								</dd>
+							</div>
+							<div class="d-flex flex-row">
+								<dt class="ml-5">購入日：</dt>
+								<dd class="mx-3"
+									th:text="${orderDetail.createdAt.format(T(java.time.format.DateTimeFormatter).ofPattern('yyyy/MM/dd HH:mm'))}">
+								</dd>
+							</div>
+							<div class="d-flex flex-row">
+								<dt class="ml-5">更新日：</dt>
+								<dd class="mx-3"
+									th:text="${orderDetail.updatedAt.format(T(java.time.format.DateTimeFormatter).ofPattern('yyyy/MM/dd HH:mm'))}">
+								</dd>
+							</div>
+						</dl>
+					</div>
+				</div>
+
+				<div class="col-md-12 mt-1">
+					<div th:each="orderItem : ${orderDetail.orderItemList}" class="card mt-2">
+						<div class="row">
+							<div class="col-md-3">
+								<img th:src="@{${orderItem.imagePath}}" class="card-img-left img-fluid"
+									alt="Card image">
+							</div>
+							<div class="col-md-9">
+								<div class="card-body mt-1">
+									<dl>
+										<div class="d-flex flex-row">
+											<dt class="ml-5">商品名：</dt>
+											<dd class="mx-3" th:text="${orderItem.itemName}"></dd>
+										</div>
+										<div class="d-flex flex-row">
+											<dt class="ml-5">価格：</dt>
+											<dd class="mx-3" th:text="${orderItem.purchasePrice} + '円'"></dd>
+										</div>
+										<div class="d-flex flex-row">
+											<dt class="ml-5">個数：</dt>
+											<dd class="mx-3" th:text="${orderItem.amount} + '個'"></dd>
+										</div>
+										<div class="d-flex flex-row">
+											<dt class="ml-5">小計：</dt>
+											<dd class="mx-3" th:text="${orderItem.subtotalPrice} + '円'"></dd>
+										</div>
+									</dl>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-12 mt-3">
+					<dl>
+						<div class="d-flex justify-content-end">
+							<div class="d-flex flex-row mr-3">
+								<dt>送料：</dt>
+								<dd class="mx-3" th:text="${orderDetail.postage} + '円'"></dd>
+							</div>
+						</div>
+						<hr>
+						<div class="d-flex justify-content-end">
+							<div class="d-flex flex-row mr-3">
+								<dt>合計：</dt>
+								<dd class="mx-3" th:text="${orderDetail.totalPrice} + '円'"></dd>
+							</div>
+						</div>
+					</dl>
+				</div>
+			</div>
+
+			<div class="col-md-6 mb-1">
+				<!-- 注文者情報 -->
+				<div class="col-md-12 mb-1 info-base">
+					<h3 class="text-center">注文者情報</h3>
+					<dl>
+						<div class="d-flex flex-row">
+							<dt class="ml-5">名前：</dt>
+							<dd class="mx-3" th:text="${orderDetail.userName}"></dd>
+						</div>
+						<div class="d-flex flex-row">
+							<dt class="ml-5">郵便番号：</dt>
+							<dd class="mx-3"
+								th:text="${#strings.substring(orderDetail.userPostcode, 0, 3)} + ' - ' + ${#strings.substring(orderDetail.userPostcode, 3)}">
+							</dd>
+						</div>
+						<div class="d-flex flex-row">
+							<dt class="ml-5">住所：</dt>
+							<dd class="mx-3" th:text="${orderDetail.userAddress}"></dd>
+						</div>
+						<div class="d-flex flex-row">
+							<dt class="ml-5">電話番号：</dt>
+							<dd class="mx-3" th:text="${orderDetail.userTel}"></dd>
+						</div>
+					</dl>
+				</div>
+
+				<!-- 配送先情報 -->
+				<div class="col-md-12 mt-3 mb-1	info-base">
+					<div>
+						<h3 class="text-center">配送先情報</h3>
+						<dl>
+							<div class="d-flex flex-row">
+								<dt class="ml-5">宛名：</dt>
+								<dd class="mx-3" th:text="${orderDetail.deliveryName}"></dd>
+							</div>
+							<div class="d-flex flex-row">
+								<dt class="ml-5">郵便番号：</dt>
+								<dd class="mx-3"
+									th:text="${#strings.substring(orderDetail.deliveryPostcode, 0, 3)} + ' - ' + ${#strings.substring(orderDetail.userPostcode, 3)}">
+								</dd>
+							</div>
+							<div class="d-flex flex-row">
+								<dt class="ml-5">住所：</dt>
+								<dd class="mx-3" th:text="${orderDetail.deliveryAddress}"></dd>
+							</div>
+							<div class="d-flex flex-row">
+								<dt class="ml-5">電話番号：</dt>
+								<dd class="mx-3" th:text="${orderDetail.deliveryTel}"></dd>
+							</div>
+						</dl>
+					</div>
+				</div>
+				<div class="mt-5 col-md-8 offset-md-4 d-flex flex-row text-center">
+					<!-- キャンセルボタンを表示 -->
+					<a th:href="@{/admin/order/{id}(id=${orderDetail.orderId})}"
+						class="btn btn-outline-secondary mr-4">キャンセル</a>
+					<!-- 保存ボタンを表示 -->
+					<input type="submit" value="保存" class="btn btn-outline-info mx-3">
+				</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div id="admin-footer" th:insert="~{admin_common::admin-footer}"></div>
+
+</body>
+
+</html>

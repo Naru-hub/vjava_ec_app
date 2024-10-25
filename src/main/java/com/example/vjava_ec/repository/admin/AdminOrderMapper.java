@@ -23,4 +23,9 @@ public interface AdminOrderMapper {
    	 * 注文履歴情報を取得
    	 */
    	AdminOrderDetailDTO selectById(@Param("Id") Integer id);
+   	
+   	/**
+	 * 注文履歴情報を編集
+	 */
+	void update(AdminOrderDetailDTO orderDetail);
 }

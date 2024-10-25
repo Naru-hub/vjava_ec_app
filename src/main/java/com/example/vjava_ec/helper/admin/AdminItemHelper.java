@@ -13,6 +13,7 @@ public class AdminItemHelper {
 	/**
 	 * Itemへの変換
 	 * @param form
+	 * @param adminCharacterService キャラクタ オブジェクト
 	 * @return item 商品 オブジェクト
 	 */
 	public static Item convertItem(AdminItemForm form, AdminCharacterService adminCharacterService) {

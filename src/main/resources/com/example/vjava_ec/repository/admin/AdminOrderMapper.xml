@@ -2,32 +2,34 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper
 	namespace="com.example.vjava_ec.repository.admin.AdminOrderMapper">
-	 <!-- 注文履歴詳細のマッピング定義 -->
-	 <resultMap id="AdminOrderDetailResult" type="com.example.vjava_ec.dto.admin.AdminOrderDetailDTO">
-        <result property="orderId" column="orderId"/>
-        <result property="orderStatus" column="orderStatus"/>
-        <result property="payment" column="payment"/>
-        <result property="postage" column="postage"/>
-        <result property="totalPrice" column="totalPrice"/>
-        <result property="createdAt" column="createdAt"/>
-        <result property="updatedAt" column="updatedAt"/>
-        <result property="userName" column="userName"/>
-        <result property="userPostcode" column="userPostcode"/>
-        <result property="userAddress" column="userAddress"/>
-        <result property="userTel" column="userTel"/>
-        <result property="deliveryName" column="deliveryName"/>
-        <result property="deliveryPostcode" column="deliveryPostcode"/>
-        <result property="deliveryAddress" column="deliveryAddress"/>
-        <result property="deliveryTel" column="deliveryTel"/>
-        <!-- 注文商品リストのマッピング定義 -->
-        <collection property="orderItemList" ofType="com.example.vjava_ec.dto.admin.AdminOrderItemDTO">
-            <result property="itemName" column="itemName"/>
-            <result property="purchasePrice" column="purchasePrice"/>
-            <result property="amount" column="amount"/>
-		    <result property="imagePath" column="imagePath"/>
-        </collection>
-    </resultMap>
-	
+	<!-- 注文履歴詳細のマッピング定義 -->
+	<resultMap id="AdminOrderDetailResult"
+		type="com.example.vjava_ec.dto.admin.AdminOrderDetailDTO">
+		<result property="orderId" column="orderId" />
+		<result property="orderStatus" column="orderStatus" />
+		<result property="payment" column="payment" />
+		<result property="postage" column="postage" />
+		<result property="totalPrice" column="totalPrice" />
+		<result property="createdAt" column="createdAt" />
+		<result property="updatedAt" column="updatedAt" />
+		<result property="userName" column="userName" />
+		<result property="userPostcode" column="userPostcode" />
+		<result property="userAddress" column="userAddress" />
+		<result property="userTel" column="userTel" />
+		<result property="deliveryName" column="deliveryName" />
+		<result property="deliveryPostcode" column="deliveryPostcode" />
+		<result property="deliveryAddress" column="deliveryAddress" />
+		<result property="deliveryTel" column="deliveryTel" />
+		<!-- 注文商品リストのマッピング定義 -->
+		<collection property="orderItemList"
+			ofType="com.example.vjava_ec.dto.admin.AdminOrderItemDTO">
+			<result property="itemName" column="itemName" />
+			<result property="purchasePrice" column="purchasePrice" />
+			<result property="amount" column="amount" />
+			<result property="imagePath" column="imagePath" />
+		</collection>
+	</resultMap>
+
 	<!-- 注文履歴全件検索 -->
 	<select id="selectAll"
 		resultType="com.example.vjava_ec.dto.admin.AdminOrderHistoryDTO">
@@ -42,19 +44,33 @@
 	</select>
 
 	<!-- 注文履歴1件検索 -->
-	<select id="selectById" parameterType="Integer" resultMap="AdminOrderDetailResult">
+	<select id="selectById" parameterType="Integer"
+		resultMap="AdminOrderDetailResult">
 		SELECT u.name AS userName, u.postcode AS userPostcode,
 		u.address AS userAddress, u.tel AS userTel,
-		i.name AS itemName,i.image_path AS ImagePath,
-		o.id AS orderId,o.postage, o.total_price AS totalPrice,
-		o.payment, o.delivery_name AS deliveryName,
-		o.delivery_postcode AS deliveryPostcode, o.delivery_address AS deliveryAddress,
-		o.delivery_tel AS deliveryTel, o.order_status AS orderStatus,
-		o.created_at AS createdAt, o.updated_at AS updatedAt, 
-		oi.amount, oi.purchase_price AS purchasePrice 
-		FROM orders o 
-		JOIN users u ON o.user_id = u.id 
-		JOIN order_items oi ON o.id = oi.order_id 
+		i.name AS
+		itemName,i.image_path AS ImagePath,
+		o.id AS orderId,o.postage,
+		o.total_price AS totalPrice,
+		o.payment, o.delivery_name AS
+		deliveryName,
+		o.delivery_postcode AS deliveryPostcode,
+		o.delivery_address AS deliveryAddress,
+		o.delivery_tel AS deliveryTel,
+		o.order_status AS orderStatus,
+		o.created_at AS createdAt, o.updated_at
+		AS updatedAt,
+		oi.amount, oi.purchase_price AS purchasePrice
+		FROM orders o
+		JOIN users u ON o.user_id = u.id
+		JOIN order_items oi ON o.id = oi.order_id
 		JOIN items i ON oi.item_id = i.id WHERE o.id = #{Id};
 	</select>
+
+	<!-- 注文履歴詳細情報の更新 -->
+	<update id="update">
+		UPDATE orders
+		SET order_status = #{orderStatus}
+		WHERE id = #{orderId};
+	</update>
 </mapper>
