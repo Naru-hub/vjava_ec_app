@@ -40,6 +40,8 @@ public class UserController {
 	@GetMapping("/detail")
 	public String showUserDetail(Model model) {
 		model.addAttribute("user", userService.selectLoginUser());
+        // ユーザーがログイン中か確認する
+        model.addAttribute("islogin",userService.IdentifyUser());
 		return "user/user/profile";
 	}
 	
@@ -51,6 +53,8 @@ public class UserController {
 	@GetMapping("/edit")
 	public String showEditUserDetail(Model model) {
 		model.addAttribute("form", UserHelper.convertUserForm(userService.selectLoginUser()));
+        // ユーザーがログイン中か確認する
+        model.addAttribute("islogin",userService.IdentifyUser());
 		return "user/user/edit";
 	}
 	
@@ -78,7 +82,10 @@ public class UserController {
 	 * @return user/user/deleteConfirm 退会確認画面
 	 */
 	@GetMapping("/delete/confirm")
-	public String showConfirmUserDelete() {
+	public String showConfirmUserDelete(Model model) {
+        // ユーザーがログイン中か確認する
+        // ユーザーがログイン中か確認する
+        model.addAttribute("islogin",userService.IdentifyUser());
 		return "user/user/deleteConfirm";
 	}
 	
