@@ -14,4 +14,9 @@ public interface ItemService {
      */
 	List<Item> getAllItems();
 	
+    /**
+     * 商品名で部分一致検索
+     */
+    List<Item> searchItems(String keyword);
+	
 }
