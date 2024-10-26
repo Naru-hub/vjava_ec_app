@@ -57,7 +57,8 @@
 	<!-- 商品情報の削除(論理削除) -->
 	<update id="delete">
 		UPDATE items
-		SET is_deleted = #{isDeleted}
+		SET is_deleted = #{isDeleted},
+		updated_at = CURRENT_TIMESTAMP
 		WHERE id = #{itemId};
 	</update>
 </mapper>

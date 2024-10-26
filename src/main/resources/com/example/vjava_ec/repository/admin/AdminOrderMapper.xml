@@ -70,7 +70,8 @@
 	<!-- 注文履歴詳細情報の更新 -->
 	<update id="update">
 		UPDATE orders
-		SET order_status = #{orderStatus}
+		SET order_status = #{orderStatus},
+		updated_at = CURRENT_TIMESTAMP
 		WHERE id = #{orderId};
 	</update>
 </mapper>
