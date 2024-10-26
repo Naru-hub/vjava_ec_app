@@ -85,7 +85,7 @@
 										</div>
 										<div class="d-flex flex-row">
 											<dt class="ml-5">価格：</dt>
-											<dd class="mx-3" th:text="${orderItem.purchasePrice} + '円'"></dd>
+											<dd class="mx-3" th:text="${#numbers.formatInteger(orderItem.purchasePrice,3,'COMMA')} + '円'"></dd>
 										</div>
 										<div class="d-flex flex-row">
 											<dt class="ml-5">個数：</dt>
@@ -93,7 +93,7 @@
 										</div>
 										<div class="d-flex flex-row">
 											<dt class="ml-5">小計：</dt>
-											<dd class="mx-3" th:text="${orderItem.subtotalPrice} + '円'"></dd>
+											<dd class="mx-3" th:text="${#numbers.formatInteger(orderItem.subtotalPrice,3,'COMMA')} + '円'"></dd>
 										</div>
 									</dl>
 								</div>
@@ -107,14 +107,14 @@
 						<div class="d-flex justify-content-end">
 							<div class="d-flex flex-row mr-3">
 								<dt>送料：</dt>
-								<dd class="mx-3" th:text="${orderDetail.postage} + '円'"></dd>
+								<dd class="mx-3" th:text="${#numbers.formatInteger(orderDetail.postage,3,'COMMA')} + '円'"></dd>
 							</div>
 						</div>
 						<hr>
 						<div class="d-flex justify-content-end">
 							<div class="d-flex flex-row mr-3">
 								<dt>合計：</dt>
-								<dd class="mx-3" th:text="${orderDetail.totalPrice} + '円'"></dd>
+								<dd class="mx-3" th:text="${#numbers.formatInteger(orderDetail.totalPrice,3,'COMMA')} + '円'"></dd>
 							</div>
 						</div>
 					</dl>

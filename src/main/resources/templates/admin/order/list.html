@@ -43,7 +43,7 @@
 							<td th:text="${order.orderId}"></td>
 							<td th:text="${order.userName}"></td>
 							<td th:text="${order.createdAt.format(T(java.time.format.DateTimeFormatter).ofPattern('yyyy/MM/dd HH:mm'))}"></td>
-							<td th:text="${order.totalPrice}"></td>
+							<td th:text="${#numbers.formatInteger(order.totalPrice,3,'COMMA')} + '円'"></td>
 							<td>
 								<span th:if="${order.orderStatus == 1}" th:text="'受付済'"></span>
 								<span th:if="${order.orderStatus == 2}" th:text="'発送準備中'"></span>
