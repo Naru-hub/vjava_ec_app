@@ -19,6 +19,7 @@
 				<a th:href="@{/admin/character/form}" class="btn btn-sm btn-outline-info mt-2">新規登録</a>
 			</div>
 		</div>
+		
 		<div class="row">
 			<!-- フラッシュメッセージの表示 -->
 			<div th:if="${message}" th:text="${message}" class="col-md-5 alert alert-primary" role="alert">
@@ -27,6 +28,9 @@
 			<div th:if="${errorMessage}" th:text="${errorMessage}" class="col-md-5 alert alert-danger" role="alert">
 				エラーメッセージ
 			</div>
+		</div>
+		
+		<div class="row">
 			<div class="col-md-12">
 				<!-- キャラクタ一覧 -->
 				<table class="table table-hover table-bordered">

@@ -18,12 +18,12 @@ public class Character {
 	private Integer id;
 	/** キャラクタ名 */
 	private String name;
+	/** 紹介文 */
+	private String description;
 	/** 身長 */
 	private Integer height;
 	/** デビュー日 */
 	private LocalDate debutDate;
-	/** 紹介文 */
-	private String description;
 	/** 削除フラグ */
 	private boolean isDeleted;
 	/** 画像パス */
