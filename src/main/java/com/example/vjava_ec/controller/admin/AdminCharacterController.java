@@ -27,9 +27,10 @@ public class AdminCharacterController {
 	 * @param model
 	 * @return admin/character/list キャラクタ一覧画面
 	 */
-	@GetMapping
+	@GetMapping("/list")
 	public String showCharacterList(Model model) {
-		model.addAttribute("character",adminCharacterService.findAll());
+		// キャラクタ一覧情報を取得し、モデルに追加
+		model.addAttribute("characterList", adminCharacterService.findAll());
 		return "admin/character/list";
 	}
 	
@@ -41,6 +42,7 @@ public class AdminCharacterController {
 	 */
 	@GetMapping("/{id}")
 	public String showCharacterDetail(@PathVariable("id") Integer id, Model model) {
+		// キャラクタ詳細情報を取得し、モデルに追加
 		 model.addAttribute("character", adminCharacterService.findByIdCharacter(id));
 		 return "admin/character/detail";
 	}
