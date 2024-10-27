@@ -293,7 +293,7 @@ public class AdminItemController {
 			return "redirect:/admin/item/" + item.getId();
 
 		} catch (Exception e) {
-			// 投稿の更新処理でエラーが発生した場合の処理
+			// 更新処理でエラーが発生した場合の処理
 			if (newImageFilename != null) {
 				// 新しい画像ファイルを削除
 				adminImageService.deleteImage(newImageFilename, "item");
