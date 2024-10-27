@@ -2,6 +2,7 @@ package com.example.vjava_ec.form.admin;
 
 import java.time.LocalDate;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
 import jakarta.validation.constraints.NotBlank;
@@ -37,6 +38,7 @@ public class AdminCharacterForm {
 	private Integer height;
 
 	/** デビュー日 */
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@NotNull(message = "デビュー日を入力してください")
 	@Past(message = "デビュー日は過去の日付で入力してください") 
 	private LocalDate debutDate;

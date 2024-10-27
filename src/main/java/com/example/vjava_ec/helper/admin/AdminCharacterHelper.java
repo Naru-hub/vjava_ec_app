@@ -23,4 +23,27 @@ public class AdminCharacterHelper {
 		character.setImagePath(form.getImagePath());
 		return character;
 	}
+
+	/**
+	 * CharacterFormへの変換
+	 * @param character
+	 * @return form (characterの値をセット)
+	 */
+	public static AdminCharacterForm convertCharacterForm(Character character) {
+		AdminCharacterForm form = new AdminCharacterForm();
+		form.setId(character.getId());
+		form.setName(character.getName());
+		form.setDescription(character.getDescription());
+		form.setHeight(character.getHeight());
+		if (character.getDebutDate() != null) {
+	        form.setDebutDate(character.getDebutDate());  // LocalDateをそのままセット
+	    }
+//		form.setDebutDate(character.getDebutDate());
+		/** 画像のパスをセット */
+		form.setImagePath(character.getImagePath());
+		
+		System.out.println("debutDate in form: " + form.getDebutDate()); // デバッグ出力
+		
+		return form;
+	}
 }

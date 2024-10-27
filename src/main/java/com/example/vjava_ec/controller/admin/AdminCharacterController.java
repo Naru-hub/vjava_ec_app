@@ -74,7 +74,7 @@ public class AdminCharacterController {
 		// 新規登録画面へ遷移
 		return "admin/character/new";
 	}
-	
+
 	/**
 	 * キャラクタを新規登録する
 	 * @param form
@@ -105,7 +105,8 @@ public class AdminCharacterController {
 			// ファイルがnullでなく、空でなければ、処理を実行
 			if (form.getFile() != null && !form.getFile().isEmpty()) {
 				// 画像の格納パスを生成、フォームにセット
-				String imagePath = this.IMAGE_UPLOAD_DIR_PATH + adminImageService.uploadImage(form.getFile(), "character");
+				String imagePath = this.IMAGE_UPLOAD_DIR_PATH
+						+ adminImageService.uploadImage(form.getFile(), "character");
 				form.setImagePath(imagePath);
 			}
 		} catch (IOException e) {
@@ -117,7 +118,6 @@ public class AdminCharacterController {
 
 		// エンティティへの変換(キャラクタオブジェクトの作成)
 		Character character = AdminCharacterHelper.convertCharacter(form);
-		System.out.println(character); // 後で削除
 		// 登録実行(データベースへ保存)
 		adminCharacterService.createCharacter(character);
 
@@ -134,5 +134,129 @@ public class AdminCharacterController {
 		attributes.addFlashAttribute("message", "キャラクタが登録されました");
 		// 詳細画面へリダイレクト
 		return "redirect:/admin/character/" + savedCharacterId;
+	}
+
+	/**
+	 * キャラクタの情報編集画面を表示
+	 * @param id
+	 * @param model
+	 * @param attributes
+	 * @return admin/character/edit キャラクタ編集画面
+	 */
+	@GetMapping("/edit/{id}")
+	public String showEditCharacterDetail(@PathVariable Integer id, Model model, RedirectAttributes attributes) {
+		// IDに対応するキャラクタを取得
+		Character target = adminCharacterService.findByIdCharacter(id);
+
+		// 編集対象のキャラクタ情報が取得できた場合
+		if (target != null) {
+			// Formに変換、編集画面に遷移
+			AdminCharacterForm form = AdminCharacterHelper.convertCharacterForm(target);
+			// モデルに格納
+			model.addAttribute("adminCharacterForm", form);
+
+			// 編集画面へ遷移
+			return "admin/character/edit";
+		} else {
+			// 対象データがない場合はフラッシュメッセージを表示
+			attributes.addFlashAttribute("errorMessage", "対象データがありません");
+			// 詳細画面へリダイレクト
+			return "redirect:/admin/character/" + id;
+		}
+	}
+	
+	/**
+	 * キャラクタ情報を編集する
+	 * @param form
+	 * @param bindingResult
+	 * @param attributes
+	 * @param model
+	 * @return admin/character/{id} キャラクタ詳細画面
+	 */
+	@PostMapping("/update")
+	public String updateCharacterDetail(@Validated AdminCharacterForm form,
+			BindingResult bindingResult,
+			RedirectAttributes attributes, Model model) {
+		// === バリデーションチェック ===
+		// バリデーションエラーがある場合
+		if (bindingResult.hasErrors()) {
+			// 編集画面へ遷移
+			return "admin/character/edit";
+		}
+
+		// 元のキャラクタ情報の取得
+		Character existingCharacter = adminCharacterService.findByIdCharacter(form.getId());
+
+		// キャラクタ情報が見つからない場合
+		if (existingCharacter == null) {
+			// 対象データがない場合はフラッシュメッセージを表示
+			attributes.addFlashAttribute("errorMessage", "対象データがありません");
+			// 詳細画面へリダイレクト
+			return "redirect:/admin/character/" + form.getId();
+		}
+
+		// 編集するイメージファイル名とイメージパス
+		String newImageFilename = null;
+		String newImagePath = null;
+
+		try {
+			// 新しい画像ファイルの処理
+			if (form.getFile() != null && !form.getFile().isEmpty()) {
+				try {
+					// 新しい画像のファイル名を取得
+					newImageFilename = adminImageService.uploadImage(form.getFile(), "character");
+					// ファイルパスを相対パスでセット
+					newImagePath = this.IMAGE_UPLOAD_DIR_PATH + newImageFilename;
+					form.setImagePath(newImagePath);
+
+				} catch (IOException e) {
+					// 画像のアップロードに失敗した場合の処理
+					bindingResult.reject("errorMessage", "画像のアップロードに失敗しました。");
+					// 編集画面へ遷移
+					return "admin/character/edit";
+				}
+			} else {
+				// 画像ファイルが選択されていない場合は既存の画像パスをそのまま使用
+				if (existingCharacter != null && existingCharacter.getImagePath() != null) {
+					form.setImagePath(existingCharacter.getImagePath());
+				}
+			}
+
+			// エンティティへの変換
+			Character character = AdminCharacterHelper.convertCharacter(form);
+			// 更新処理
+			adminCharacterService.updateCharacter(character);
+
+			// 古い画像ファイルの削除（更新処理が成功した場合のみ）
+			if (existingCharacter != null && existingCharacter.getImagePath() != null) {
+				// 相対パスからファイル名を取得
+				String oldImageFilename = existingCharacter.getImagePath().replace(this.IMAGE_UPLOAD_DIR_PATH, "");
+				if (newImageFilename != null && !oldImageFilename.equals(newImageFilename)) {
+					adminImageService.deleteImage(oldImageFilename, "item");
+				}
+			}
+
+			// 画像の保存処理が終わるまで待機
+			try {
+				Thread.sleep(3300);
+			} catch (Exception e) {
+			}
+
+			// フラッシュメッセージ
+			attributes.addFlashAttribute("message", "キャラクタ情報が更新されました");
+			// 詳細画面へリダイレクト
+			return "redirect:/admin/character/" + character.getId();
+
+		} catch (Exception e) {
+			// 更新処理でエラーが発生した場合の処理
+			if (newImageFilename != null) {
+				// 新しい画像ファイルを削除
+				adminImageService.deleteImage(newImageFilename, "character");
+			}
+
+			bindingResult.reject("errorMesage", "キャラクタ情報の更新に失敗しました。");
+			// 編集画面へ遷移
+			return "admin/character/edit";
+		}
 	}
 }

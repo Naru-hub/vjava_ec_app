@@ -31,8 +31,8 @@
 
 	<!-- キャラクタ情報の更新 -->
 	<update id="updateCharacter" parameterType="com.example.vjava_ec.entity.Character">
-		UPDATE characters SET name = #{name}, height = #{height},
-		debut_date = #{debutDate}, description = #{description},
+		UPDATE characters SET name = #{name}, description = #{description},
+		height = #{height}, debut_date = #{debutDate}, 
 		image_path = #{imagePath}, updated_at = CURRENT_TIMESTAMP
 		WHERE id = #{id};
 	</update>
