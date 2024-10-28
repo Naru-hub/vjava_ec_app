@@ -19,7 +19,7 @@ public class AdminCharacterHelper {
 		character.setDescription(form.getDescription());
 		character.setHeight(form.getHeight());
 		character.setDebutDate(form.getDebutDate());
-		/** 画像のパスをセット */
+		// 画像のパスをセット
 		character.setImagePath(form.getImagePath());
 		return character;
 	}
@@ -36,14 +36,12 @@ public class AdminCharacterHelper {
 		form.setDescription(character.getDescription());
 		form.setHeight(character.getHeight());
 		if (character.getDebutDate() != null) {
-	        form.setDebutDate(character.getDebutDate());  // LocalDateをそのままセット
+			// LocalDateをそのままセット
+	        form.setDebutDate(character.getDebutDate());  
 	    }
-//		form.setDebutDate(character.getDebutDate());
-		/** 画像のパスをセット */
+		// 画像のパスをセット
 		form.setImagePath(character.getImagePath());
-		
-		System.out.println("debutDate in form: " + form.getDebutDate()); // デバッグ出力
-		
+			
 		return form;
 	}
 }
