@@ -259,4 +259,36 @@ public class AdminCharacterController {
 			return "admin/character/edit";
 		}
 	}
+	
+	/**
+	 * 指定されたIDのキャラクタを削除(論理削除)
+	 * 
+	 * キャラクタの削除ステータスを有効にする
+	 * 
+	 * @param id
+	 * @param attributes
+	 * @return 　admin/character/list キャラクタ一覧画面
+	 */
+	@PostMapping("/delete/{id}")
+	public String updateCharacterDeleteStatus(@PathVariable Integer id, RedirectAttributes attributes) {
+		// 対象のキャラクタ情報の取得
+		Character targetCharacter = adminCharacterService.findByIdCharacter(id);
+
+		// キャラクタ情報が存在するか
+		if (targetCharacter != null) {
+			// 削除フラグをTRUEにする
+			targetCharacter.setDeleted(true);
+
+			// キャラクタ情報を削除
+			adminCharacterService.deleteCharacter(targetCharacter);
+			// フラッシュメッセージの設定
+			attributes.addFlashAttribute("message", "キャラクタが削除されました");
+		} else {
+			// 商品が見つからなかった場合の処理
+			attributes.addFlashAttribute("errorMessage", "キャラクタが見つかりませんでした");
+		}
+
+		// 一覧画面へリダイレクト
+		return "redirect:/admin/character/list";
+	}
 }

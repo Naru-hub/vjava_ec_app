@@ -7,7 +7,9 @@
 		description, is_deleted as isDeleted,
 		image_path as imagePath,
 		created_at as createdAt, updated_at as updatedAt
-		FROM characters;
+		FROM characters
+		WHERE is_deleted = false
+		ORDER BY id;
 	</select>
 
 	<!-- キャラクタ1件検索 -->
@@ -34,6 +36,13 @@
 		UPDATE characters SET name = #{name}, description = #{description},
 		height = #{height}, debut_date = #{debutDate}, 
 		image_path = #{imagePath}, updated_at = CURRENT_TIMESTAMP
+		WHERE id = #{id};
+	</update>
+	
+	<!--キャラクタ情報の削除(論理削除) -->
+	<update id="deleteCharacter">
+		UPDATE characters
+		SET is_deleted = #{isDeleted}, updated_at = CURRENT_TIMESTAMP
 		WHERE id = #{id};
 	</update>
 </mapper>

@@ -58,4 +58,13 @@ public class AdminCharacterServiceImpl implements AdminCharacterService {
 	public void updateCharacter(Character character) {
 		adminCharacterMapper.updateCharacter(character);
 	}
+	
+	/**
+	 * キャラクタ情報を削除(論理削除)
+	 * @param character
+	 */
+	@Override
+	public void deleteCharacter(Character character) {
+		adminCharacterMapper.deleteCharacter(character);
+	}
 }

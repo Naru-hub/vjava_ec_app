@@ -28,4 +28,8 @@ public interface AdminCharacterService {
 	 */
 	void updateCharacter(Character character);
 
+	/**
+	 * キャラクタ情報を削除(論理削除)
+	 */
+	void deleteCharacter(Character character);
 }
