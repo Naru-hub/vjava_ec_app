@@ -32,4 +32,9 @@ public interface CartService {
 	 * カートを空にする
 	 */
 	Cart deleteAllCartItem(Cart cart);
+	
+	/**
+	 * 表示用の合計金額を取得する
+	 */
+	String getDisplayTotalPrice(Cart cart);
 }

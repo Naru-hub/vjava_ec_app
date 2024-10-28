@@ -118,6 +118,19 @@
 	height: 100px;
 	display: flex;
 	background-color: lightgray;
+	border-radius: 10px;
+	padding: 20px;
+	flex-direction: column;
+	justify-content: space-around;
+}
+
+.total-price-cart-under {
+	text-align: center;
+	font-size: x-large;
+}
+
+.total-price-card-under {
+	text-align: center;
 }
 
 .cart-empty-box {

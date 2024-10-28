@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link th:href="@{/css/user/order/form.css}" rel="stylesheet">
+	<link th:href="@{/css/user/common/user_common.css}" rel="stylesheet">
+	<meta charset="UTF-8">
+	<title>購入情報入力</title>
+</head>
+<body>
+	<div th:insert="~{user_common :: header}"></div>
+		
+	<div class="container">
+		<div class="title">
+			<h1>購入情報入力画面</h1>
+		</div>
+		<form class="form">
+			<div class="label">
+				<label for="name">宛名</label>
+				<label for="name">郵便局</label>
+				<label for="name">住所</label>
+				<label for="name">電話番号</label>
+				<label for="name">支払い方法</label>
+			</div>
+			<div class="input">
+				<input name="name" type="text">
+				<input name="postcod" type="text">
+				<input name="address" type="text">
+				<input name="tel" type="text">
+				<div>
+					<input type="radio" name="payment" value="1">
+					代引き
+					<input type="radio" name="payment" value="2">
+					クレジットカード
+					<input type="radio" name="payment" value="3">
+					コンビニ払い
+				</div>
+			</div>
+		</form>
+		<div class="button-area">
+			<button id="backButton">カートへ戻る</button>
+			<button id="nextButton">確認画面へ進む</button>
+		</div>
+	</div>
+	
+	<div th:insert="~{user_common :: footer}"></div>
+	<script th:src="@{/js/user/order/form.js}"></script>
+</body>
+</html>

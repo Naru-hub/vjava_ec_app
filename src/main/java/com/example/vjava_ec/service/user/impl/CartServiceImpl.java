@@ -82,9 +82,26 @@ public class CartServiceImpl implements CartService{
 		return cart;
 	}
 
+	/**
+	 * カートの内容を全削除
+	 * @param cart
+	 * @return Cart Cartエンティティ
+	 */
 	@Override
 	public Cart deleteAllCartItem(Cart cart) {
 		cart.getCartItems().clear();
 		return cart;
+	}
+
+	/**
+	 * 表示用の合計金額を取得
+	 * @param cart
+	 * @return String 合計金額
+	 */
+	@Override
+	public String getDisplayTotalPrice(Cart cart) {
+		int totalPrice = getTotalPrice(cart);
+		String displayTotalPrice = NumberFormat.getNumberInstance(Locale.JAPAN).format(totalPrice);
+		return displayTotalPrice;
 	}
 }

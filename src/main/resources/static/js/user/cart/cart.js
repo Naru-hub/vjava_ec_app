@@ -3,12 +3,12 @@
  */
 
 /** 買い物を続けるボタン */
- document.getElementById("continueShopping").onclick = function(){
+document.getElementById("continueShopping").onclick = function(){
 	window.location.href = '/user/item/list';
- };
+};
  
- /** 詳細画面に遷移 */
- document.addEventListener('DOMContentLoaded', function() {
+/** 詳細画面に遷移 */
+document.addEventListener('DOMContentLoaded', function() {
     // すべての画像に対してクリックイベントを設定
     document.querySelectorAll('.image').forEach(function(image) {
         image.addEventListener('click', function() {
@@ -19,3 +19,8 @@
         });
     });
 });
+
+/** 購入へ進むボタン */
+document.getElementById("nextButton").onclick = function(){
+	window.location.href = '/user/order/form';
+};

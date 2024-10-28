@@ -21,6 +21,11 @@ public class OrderController {
 	// DI
 	private final OrderService orderService;
 	
+	@GetMapping("/form")
+	public String showOrderForm(Model model) {
+		return "user/order/form";
+	}
+	
 	/**
 	 * 注文履歴一覧画面表示
 	 * @param model

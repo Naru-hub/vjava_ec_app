@@ -61,6 +61,7 @@ public class CartController {
             session.setAttribute("cart", cart);
         }
         model.addAttribute("cart", cart);
+        model.addAttribute("displayTotalPrice", cartService.getDisplayTotalPrice(cart));
         return "user/cart/cart";
     }
     
