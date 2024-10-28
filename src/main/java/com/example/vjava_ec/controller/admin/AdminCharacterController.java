@@ -56,7 +56,7 @@ public class AdminCharacterController {
 	 * @return	admin/character/detail キャラクタ詳細画面
 	 */
 	@GetMapping("/{id}")
-	public String showCharacterDetail(@PathVariable("id") Integer id, Model model) {
+	public String showCharacterDetail(@PathVariable Integer id, Model model) {
 		// キャラクタ詳細情報を取得し、モデルに追加
 		model.addAttribute("character", adminCharacterService.findByIdCharacter(id));
 		// 詳細画面へ遷移
