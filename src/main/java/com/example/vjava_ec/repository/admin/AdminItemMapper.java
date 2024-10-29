@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import com.example.vjava_ec.dto.admin.adminItemDTO;
+import com.example.vjava_ec.dto.admin.AdminItemDTO;
 import com.example.vjava_ec.entity.Item;
 
 /*
@@ -18,12 +18,12 @@ public interface AdminItemMapper {
 	/**
 	 * 全ての商品情報を取得
 	 */
-	List<adminItemDTO> selectAll();
+	List<AdminItemDTO> selectAll();
 
 	/**
    	 * 商品詳細情報を取得
    	 */
-   	adminItemDTO selectById(@Param("id") Integer id);
+   	AdminItemDTO selectById(@Param("id") Integer id);
    	
    	/**
    	 * 商品を登録
@@ -38,5 +38,5 @@ public interface AdminItemMapper {
 	/**
 	 * 商品を削除
 	 */
-	void delete(adminItemDTO item);
+	void delete(AdminItemDTO item);
 }

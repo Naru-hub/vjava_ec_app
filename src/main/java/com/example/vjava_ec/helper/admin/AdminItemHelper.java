@@ -1,6 +1,6 @@
 package com.example.vjava_ec.helper.admin;
 
-import com.example.vjava_ec.dto.admin.adminItemDTO;
+import com.example.vjava_ec.dto.admin.AdminItemDTO;
 import com.example.vjava_ec.entity.Character;
 import com.example.vjava_ec.entity.Item;
 import com.example.vjava_ec.form.admin.AdminItemForm;
@@ -12,7 +12,9 @@ import com.example.vjava_ec.service.admin.AdminCharacterService;
 public class AdminItemHelper {
 	/**
 	 * Itemへの変換
+	 * 
 	 * @param form
+	 * @param adminCharacterService キャラクタサービス
 	 * @return item 商品 オブジェクト
 	 */
 	public static Item convertItem(AdminItemForm form, AdminCharacterService adminCharacterService) {
@@ -38,7 +40,7 @@ public class AdminItemHelper {
 	 * @param item
 	 * @return form (itemの値をセット)
 	 */
-	public static AdminItemForm convertItemForm(adminItemDTO item) {
+	public static AdminItemForm convertItemForm(AdminItemDTO item) {
 		AdminItemForm form = new AdminItemForm();
 		form.setId(item.getItemId());
 		form.setCharacterId(item.getCharacterId());

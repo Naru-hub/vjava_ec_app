@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class adminItemDTO {
+public class AdminItemDTO {
 	/** id */
 	private Integer itemId;
 	/** キャラクタid */

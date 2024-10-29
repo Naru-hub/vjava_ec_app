@@ -46,6 +46,10 @@
 					<dd th:text="${character.name}" class="mx-5"></dd>
 				</dl>
 				<dl class="d-flex flex-row">
+					<dt>紹介文</dt>
+					<dd th:text="${character.description}" class="mx-5"></dd>
+				</dl>
+				<dl class="d-flex flex-row">
 					<dt>身長</dt>
 					<dd th:text="${character.height} + 'cm'" class="mx-5"></dd>
 				</dl>
@@ -53,10 +57,6 @@
 					<dt>デビュー日</dt>
 					<dd th:text="${character.debutDate.format(T(java.time.format.DateTimeFormatter).ofPattern('yyyy年 M月 dd日'))}"
 						class="mx-5"></dd>
-				</dl>
-				<dl class="d-flex flex-row">
-					<dt>紹介文</dt>
-					<dd th:text="${character.description}" class="mx-5"></dd>
 				</dl>
 				<dl class="d-flex flex-row">
 					<dt>削除フラグ</dt>
