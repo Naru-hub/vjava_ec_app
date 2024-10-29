@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+	<meta charset="UTF-8">
 	<link th:href="@{/css/user/item/itemlist.css}" rel="stylesheet">
 	<link th:href="@{/css/user/common/user_common.css}" rel="stylesheet">
 	<title>商品一覧</title>
@@ -11,8 +12,10 @@
     <h1>商品一覧</h1>
 
     <!-- 商品がない場合のメッセージ -->
-    <div th:if="${items.isEmpty()}">商品がありません。</div>
-
+    <div th:if="${items.isEmpty() and message == null}">商品がありません。</div>
+	
+	<!-- 検索結果がない場合のメッセージ -->
+	<div th:if="${message != null}">[[${message}]]</div>
     <!-- 商品リスト -->
     <ul>
         <li th:each="item : ${items}">

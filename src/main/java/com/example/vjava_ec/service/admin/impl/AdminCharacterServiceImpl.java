@@ -40,4 +40,31 @@ public class AdminCharacterServiceImpl implements AdminCharacterService {
 	public Character findByIdCharacter(Integer id) {
 		return adminCharacterMapper.selectById(id);
 	}
+
+	/**
+	 * 新規キャラクタを登録
+	 * @param character
+	 */
+	@Override
+	public void createCharacter(Character character) {
+		adminCharacterMapper.insertCharacter(character);
+	}
+
+	/**
+	 * キャラクタ情報を更新
+	 * @param character
+	 */
+	@Override
+	public void updateCharacter(Character character) {
+		adminCharacterMapper.updateCharacter(character);
+	}
+	
+	/**
+	 * キャラクタ情報を削除(論理削除)
+	 * @param character
+	 */
+	@Override
+	public void deleteCharacter(Character character) {
+		adminCharacterMapper.deleteCharacter(character);
+	}
 }

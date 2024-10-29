@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.vjava_ec.service.user.OrderService;
+import com.example.vjava_ec.service.user.UserService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -20,6 +21,8 @@ public class OrderController {
 	
 	// DI
 	private final OrderService orderService;
+    private final UserService userService;
+
 	
 	/**
 	 * 注文履歴一覧画面表示
@@ -29,6 +32,8 @@ public class OrderController {
 	@GetMapping("/list")
 	public String showOrderList(Model model) {
 		model.addAttribute("orderList", orderService.selectOrderList());
+        // ユーザーがログイン中か確認する
+        model.addAttribute("islogin",userService.IdentifyUser());
 		return "user/order/list";
 	}
 	
@@ -41,6 +46,8 @@ public class OrderController {
 	@GetMapping("/{id}")
 	public String showOrderDetail(@PathVariable Integer id,Model model) {
 		model.addAttribute("order", orderService.selectOrderById(id));
+        // ユーザーがログイン中か確認する
+        model.addAttribute("islogin",userService.IdentifyUser());
 		return "user/order/detail";
 	}
 	
