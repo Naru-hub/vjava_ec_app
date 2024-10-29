@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link th:href="@{/css/admin/character/detail.css}" rel="stylesheet">
+	<title>キャラクタ詳細</title>
+</head>
+
+<body>
+	<div id="admin-header" th:insert="~{admin_common::admin-header}"></div>
+	<div class="container my-4" style="min-height: 780px;">
+		<div class="row">
+			<div class="col-md-10 mt-3 text-center">
+				<h1>キャラクター詳細</h1>
+			</div>
+		</div>
+		
+		<div class="row">
+			<!-- フラッシュメッセージの表示 -->
+			<div th:if="${message}" th:text="${message}" class="col-md-5 alert alert-primary" role="alert">
+				完了メッセージ
+			</div>
+			<div th:if="${errorMessage}" th:text="${errorMessage}" class="col-md-5 alert alert-danger" role="alert">
+				エラーメッセージ
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-4">
+				<!-- 画像の表示 -->
+				<span th:if="${character != null and character.imagePath != null and character.imagePath != ''}">
+					<img th:src="@{${character.imagePath}}" alt="Character Image" class="img-fluid"
+						style="max-width: 100%; height: 500px; object-fit: cover;">
+				</span>
+			</div>
+			<div class="col-md-8 mt-5">
+				<dl class="d-flex flex-row">
+					<dt>ID</dt>
+					<dd th:text="${character.id}" class="mx-5"></dd>
+				</dl>
+				<dl class="d-flex flex-row">
+					<dt>キャラクター名</dt>
+					<dd th:text="${character.name}" class="mx-5"></dd>
+				</dl>
+				<dl class="d-flex flex-row">
+					<dt>身長</dt>
+					<dd th:text="${character.height} + 'cm'" class="mx-5"></dd>
+				</dl>
+				<dl class="d-flex flex-row">
+					<dt>デビュー日</dt>
+					<dd th:text="${character.debutDate.format(T(java.time.format.DateTimeFormatter).ofPattern('yyyy年 M月 dd日'))}"
+						class="mx-5"></dd>
+				</dl>
+				<dl class="d-flex flex-row">
+					<dt>紹介文</dt>
+					<dd th:text="${character.description}" class="mx-5"></dd>
+				</dl>
+				<dl class="d-flex flex-row">
+					<dt>削除フラグ</dt>
+					<dd th:if="${character.isDeleted == true}" th:text="'有効'" class="mx-5"></dd>
+					<dd th:if="${character.isDeleted == false}" th:text="'無効'" class="mx-5"></dd>
+				</dl>
+				<dl class="d-flex flex-row">
+					<dt>作成日時</dt>
+					<dd th:text="${character.createdAt.format(T(java.time.format.DateTimeFormatter)
+						.ofPattern('yyyy/MM/dd HH:mm:ss'))}" class="mx-5">
+					</dd>
+				</dl>
+				<dl class="d-flex flex-row">
+					<dt>更新日時</dt>
+					<dd th:text="${character.updatedAt.format(T(java.time.format.DateTimeFormatter)
+						.ofPattern('yyyy/MM/dd HH:mm:ss'))}" class="mx-5">
+					</dd>
+				</dl>
+				<div class="my-5 ml-5 col-md-10 offset-md-4 d-flex flex-row">
+					<!-- 一覧へ戻るボタンを表示 -->
+					<a th:href="@{/admin/character/list}" class="btn btn-outline-secondary mr-4">一覧へ戻る</a>
+					<!-- 編集ボタンを表示 -->
+					<a th:href="@{/admin/character/edit/{id}(id=${character.id})}"
+						class="btn btn-outline-info mr-4">編集</a>
+					<!-- 削除ボタンを表示 -->
+					<form th:action="@{/admin/character/delete/{id}(id=${character.id})}" method="post"
+						onsubmit="return confirmDelete()" ;>
+						<input type="submit" value="削除" class="btn btn-outline-danger" />
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="admin-footer" th:insert="~{admin_common::admin-footer}"></div>
+	<script th:src="@{/js/admin/character/detail.js}"></script>
+</body>
+
+</html>

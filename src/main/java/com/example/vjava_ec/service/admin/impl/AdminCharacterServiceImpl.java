@@ -1,6 +1,5 @@
 package com.example.vjava_ec.service.admin.impl;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -46,19 +45,26 @@ public class AdminCharacterServiceImpl implements AdminCharacterService {
 	 * 新規キャラクタを登録
 	 * @param character
 	 */
-    @Override
-    public void createCharacter(Character character) {
-        character.setCreatedAt(LocalDateTime.now());
-        character.setUpdatedAt(LocalDateTime.now());
-        adminCharacterMapper.insertCharacter(character);
-    }
-    
-    /**
-     * キャラクタ情報を更新
-     * @param character
-     */
-    @Override
-    public void updateCharacter(Character character) {
-        adminCharacterMapper.updateCharacter(character);
-    }
+	@Override
+	public void createCharacter(Character character) {
+		adminCharacterMapper.insertCharacter(character);
+	}
+
+	/**
+	 * キャラクタ情報を更新
+	 * @param character
+	 */
+	@Override
+	public void updateCharacter(Character character) {
+		adminCharacterMapper.updateCharacter(character);
+	}
+	
+	/**
+	 * キャラクタ情報を削除(論理削除)
+	 * @param character
+	 */
+	@Override
+	public void deleteCharacter(Character character) {
+		adminCharacterMapper.deleteCharacter(character);
+	}
 }

@@ -86,9 +86,9 @@ VALUES
 INSERT INTO characters
 (
    name,
+   description,
    height,
    debut_date,
-   description,
    is_deleted,
    image_path,
    created_at,
@@ -97,11 +97,11 @@ INSERT INTO characters
 VALUES
 (
    '胡桃のあ',
+   '胡桃のあの紹介文です。',
    155,
    '2020-03-14',
-   '胡桃のあの紹介文です。',
    false,
-   '/images/character/005-kurumi_noah.png',
+   '/images/default/005-kurumi_noah.png',
    CURRENT_TIMESTAMP,
    CURRENT_TIMESTAMP
 );
@@ -109,9 +109,9 @@ VALUES
 INSERT INTO characters
 (
    name,
+   description,
    height,
    debut_date,
-   description,
    is_deleted,
    image_path,
    created_at,
@@ -120,11 +120,11 @@ INSERT INTO characters
 VALUES
 (
    '橘ひなの',
+   '橘ひなのの紹介文です。',
    154,
    '2020-08-14',
-   '橘ひなのの紹介文です。',
    false,
-   '/images/character/008-tachibana_hinano.png',
+   '/images/default/008-tachibana_hinano.png',
    CURRENT_TIMESTAMP,
    CURRENT_TIMESTAMP
 );

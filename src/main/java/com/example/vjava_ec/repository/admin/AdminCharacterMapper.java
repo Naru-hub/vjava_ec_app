@@ -21,14 +21,19 @@ public interface AdminCharacterMapper {
 	 * 指定したIDのキャラクタ情報を取得
 	 */
 	Character selectById(Integer id);
-	
+
 	/**
 	 * 新規キャラクタ情報をデータベースに登録
 	 */
 	void insertCharacter(Character character);
-	
+
 	/**
 	 * キャラクタ情報を更新
 	 */
 	void updateCharacter(Character character);
+	
+	/**
+	 * キャラクタ情報を削除(論理削除)
+	 */
+	void deleteCharacter(Character character);
 }

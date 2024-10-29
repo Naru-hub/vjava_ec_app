@@ -20,12 +20,16 @@ import com.example.vjava_ec.service.admin.AdminImageService;
 @Service
 public class AdminImageServiceImpl implements AdminImageService {
 
-	// 商品画像保存先フォルダのパス(⭐︎後日、機能追加でキャラクタの画像が追加された際に画像の保存先パスを設定する)
+	// 商品画像保存先フォルダのパス
 	private final String itemImageUploadFolder;
+	private final String characterImageUploadFolder;
 
-	// コンストラクタで保存先のファイルパスを指定(⭐︎後日、機能追加でキャラクタの画像が追加された際に画像の保存先パスをコンストラクタで設定する)
-	public AdminImageServiceImpl(@Value("${images.item.path}") String itemImageUploadFolder) {
+	// コンストラクタで保存先のファイルパスを指定
+	public AdminImageServiceImpl(
+			@Value("${images.item.path}") String itemImageUploadFolder,
+			@Value("${images.character.path}") String characterImageUploadFolder) {
 		this.itemImageUploadFolder = itemImageUploadFolder;
+		this.characterImageUploadFolder = characterImageUploadFolder;
 	}
 
 	/**
@@ -38,8 +42,8 @@ public class AdminImageServiceImpl implements AdminImageService {
 	 */
 	@Override
 	public String uploadImage(MultipartFile file, String type) throws IOException {
-		// アップロードする画像がItemかを判定(⭐︎後日、機能追加でキャラクタの画像が追加された際にnullに画像の保存先パスを設定する)
-		String uploadFolder = type.equals("item") ? itemImageUploadFolder : null;
+		// アップロードする画像が商品かキャラクタかを判定
+		String uploadFolder = type.equals("item") ? itemImageUploadFolder : characterImageUploadFolder;
 
 		// ファイルがnullまたは空でない場合に保存処理を実行
 		if (file != null && !file.isEmpty()) {
@@ -73,8 +77,8 @@ public class AdminImageServiceImpl implements AdminImageService {
 	 */
 	@Override
 	public void deleteImage(String filename, String type) {
-		// アップロードする画像がItemかを判定(⭐︎後日、機能追加でキャラクタの画像が追加された際にnullに画像の保存先パスを設定する)
-		String uploadFolder = type.equals("item") ? itemImageUploadFolder : null;
+		// アップロードする画像がItemかを判定
+		String uploadFolder = type.equals("item") ? itemImageUploadFolder : characterImageUploadFolder;
 
 		// ファイル名がnullまたは空でない場合に削除処理を実行
 		if (filename != null && !filename.isEmpty()) {

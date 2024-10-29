@@ -1,34 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper
-	namespace="com.example.vjava_ec.repository.admin.AdminCharacterMapper">
+<mapper namespace="com.example.vjava_ec.repository.admin.AdminCharacterMapper">
 	<!-- キャラクタ全検索 -->
-	<select id="selectAll"
-		resultType="com.example.vjava_ec.entity.Character">
-		SELECT id, name, height, debut_date as debutDate, description, is_deleted as isDeleted, 
-      	image_path as imagePath, created_at as createdAt, updated_at as updatedAt 
-		FROM characters;
+	<select id="selectAll" resultType="com.example.vjava_ec.entity.Character">
+		SELECT id, name, height, debut_date as debutDate,
+		description, is_deleted as isDeleted,
+		image_path as imagePath,
+		created_at as createdAt, updated_at as updatedAt
+		FROM characters
+		WHERE is_deleted = false
+		ORDER BY id;
 	</select>
 
 	<!-- キャラクタ1件検索 -->
-	<select id="selectById"
-		resultType="com.example.vjava_ec.entity.Character">
-		SELECT id, name, height, debut_date as debutDate, description, is_deleted as isDeleted, 
-      	image_path as imagePath, created_at as createdAt, updated_at as updatedAt 
+	<select id="selectById" resultType="com.example.vjava_ec.entity.Character">
+		SELECT id, name, height, debut_date as debutDate,
+		description, is_deleted as isDeleted,
+		image_path as imagePath,
+		created_at as createdAt, updated_at as updatedAt
 		FROM characters
-		WHERE id = #{id};
+		WHERE
+		id = #{id};
 	</select>
-	
+
 	<!-- キャラクタ新規登録 -->
-	<insert id="insertCharacter" parameterType="com.example.vjava_ec.entity.Character">
-    	INSERT INTO characters (name, height, debut_date, description, is_deleted, image_path, created_at, updated_at)
-    	VALUES (#{name}, #{height}, #{debutDate}, #{description}, #{isDeleted}, #{imagePath}, #{createdAt}, #{updatedAt});
+	<insert id="insertCharacter" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO characters( name, description, height,
+		debut_date, image_path, created_at, updated_at)
+		VALUES (#{name}, #{description}, #{height},
+		#{debutDate}, #{imagePath}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 	</insert>
-	
+
 	<!-- キャラクタ情報の更新 -->
 	<update id="updateCharacter" parameterType="com.example.vjava_ec.entity.Character">
-   		UPDATE characters SET name = #{name}, height = #{height},debut_date = #{debutDate},description = #{description},
-   		is_deleted = #{isDeleted},image_path = #{imagePath}, updated_at = CURRENT_TIMESTAMP
-    	WHERE id = #{id};
+		UPDATE characters SET name = #{name}, description = #{description},
+		height = #{height}, debut_date = #{debutDate}, 
+		image_path = #{imagePath}, updated_at = CURRENT_TIMESTAMP
+		WHERE id = #{id};
+	</update>
+	
+	<!--キャラクタ情報の削除(論理削除) -->
+	<update id="deleteCharacter">
+		UPDATE characters
+		SET is_deleted = #{isDeleted}, updated_at = CURRENT_TIMESTAMP
+		WHERE id = #{id};
 	</update>
 </mapper>

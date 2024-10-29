@@ -17,15 +17,19 @@ public interface AdminCharacterService {
 	 * キャラクタの詳細情報を検索
 	 */
 	Character findByIdCharacter(Integer id);
-	
+
 	/**
 	 * 新規キャラクタを登録
 	 */
 	void createCharacter(Character character);
-	
-    /**
-     * キャラクタ情報を更新
-     */
-    void updateCharacter(Character character);
 
+	/**
+	 * キャラクタ情報を更新
+	 */
+	void updateCharacter(Character character);
+
+	/**
+	 * キャラクタ情報を削除(論理削除)
+	 */
+	void deleteCharacter(Character character);
 }
