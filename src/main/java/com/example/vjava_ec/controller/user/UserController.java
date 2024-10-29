@@ -84,7 +84,6 @@ public class UserController {
 	@GetMapping("/delete/confirm")
 	public String showConfirmUserDelete(Model model) {
         // ユーザーがログイン中か確認する
-        // ユーザーがログイン中か確認する
         model.addAttribute("islogin",userService.IdentifyUser());
 		return "user/user/deleteConfirm";
 	}

@@ -50,20 +50,21 @@ public class ItemController {
      */
     @GetMapping("/search") 
     public String showSearchedItemList(@RequestParam(name = "keyword", required = false) String keyword, Model model) {
-    	List<Item> Searchitems;
+    	//検索結果を入れるリスト
+    	List<Item> searchItemsList;
     	// 検索キーワードがある場合は部分一致検索を行う
     	if(keyword != null && !keyword.isEmpty()) {
-    	   Searchitems = itemService.searchItems(keyword);
-    	   	// 検索結果が空の場合にメッセージを表示するためのフラグを追加
-    	   if(Searchitems.isEmpty()) {
+    	   searchItemsList = itemService.searchItems(keyword);
+    	   // 検索結果が空の場合にメッセージを表示するためのフラグを追加
+    	   if(searchItemsList.isEmpty()) {
     		   	model.addAttribute("message", "関連した商品はありませんでした");
     	   }
-    	}else {
+    	} else {
     		// キーワードがない場合は全商品を取得
-    		 	Searchitems = itemService.getAllItems();
+    		searchItemsList = itemService.getAllItems();
     	}
         // モデルに商品情報を追加
-        model.addAttribute("items", Searchitems);
+        model.addAttribute("items", searchItemsList);
         // ユーザーがログイン中か確認する
         model.addAttribute("islogin", userService.IdentifyUser());
         // 検索キーワードをモデルに追加

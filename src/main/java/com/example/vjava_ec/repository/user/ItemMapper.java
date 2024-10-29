@@ -21,6 +21,6 @@ public interface ItemMapper {
 	/**
 	 * 削除フラグがfalseの商品からkeywordに部分一致検索した商品を取得
 	 */
-	List<Item> findItemSearching(@Param("keyword") String keyword);
+	List<Item> findItemSearch(@Param("keyword") String keyword);
 
 }

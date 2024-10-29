@@ -22,6 +22,7 @@ public class AdminImageServiceImpl implements AdminImageService {
 
 	// 商品画像保存先フォルダのパス
 	private final String itemImageUploadFolder;
+	//キャラクタ画像保存先フォルダのパス
 	private final String characterImageUploadFolder;
 
 	// コンストラクタで保存先のファイルパスを指定

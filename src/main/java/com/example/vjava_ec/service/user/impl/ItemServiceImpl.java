@@ -49,7 +49,7 @@ public class ItemServiceImpl implements ItemService{
      * @return keywordに部分一致した商品
      */
     public List<Item> searchItems(String keyword) {
-        return itemMapper.findItemSearching(keyword);
+        return itemMapper.findItemSearch(keyword);
     }
 }
 

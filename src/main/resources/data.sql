@@ -101,7 +101,7 @@ VALUES
    155,
    '2020-03-14',
    false,
-   '/images/default/005-kurumi_noah.png',
+   '/images/default/admin/character/005-kurumi_noah.png',
    CURRENT_TIMESTAMP,
    CURRENT_TIMESTAMP
 );
@@ -124,7 +124,7 @@ VALUES
    154,
    '2020-08-14',
    false,
-   '/images/default/008-tachibana_hinano.png',
+   '/images/default/admin/character/008-tachibana_hinano.png',
    CURRENT_TIMESTAMP,
    CURRENT_TIMESTAMP
 );
@@ -153,7 +153,7 @@ VALUES
    1,
    false,
    false,
-   '/images/default/default_goods.jpg',
+   '/images/default/admin/item/default_goods.jpg',
    CURRENT_TIMESTAMP,
    CURRENT_TIMESTAMP
 );
@@ -182,7 +182,7 @@ VALUES
    2,
    false,
    false,
-   '/images/default/default_goods2.jpg',
+   '/images/default/admin/item/default_goods2.jpg',
    CURRENT_TIMESTAMP,
    CURRENT_TIMESTAMP
 );
@@ -211,7 +211,7 @@ VALUES
    3,
    false,
    true,
-   '/images/default/default_goods3.jpg',
+   '/images/default/admin/item/default_goods3.jpg',
    CURRENT_TIMESTAMP,
    CURRENT_TIMESTAMP
 );
@@ -301,7 +301,7 @@ VALUES
 (
    1,
    800,
-   5500,
+   6300,
    3,
    '配達花子',
    '1234567',
@@ -368,7 +368,7 @@ VALUES
 (
    2,
    800,
-   5500,
+   6300,
    1,
    '配達次郎',
    '1234568',
