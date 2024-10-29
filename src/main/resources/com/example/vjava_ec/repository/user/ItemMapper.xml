@@ -6,7 +6,14 @@
 	<select id="selectAll" resultType="com.example.vjava_ec.entity.Item">
 		 SELECT id, character_id as characterId, name, detail, price, stock, sale_status as saleStatus, is_limited as isLimited, is_deleted as isDeleted, image_path as imagePath, created_at as createdAt, updated_at as updatedAt 
 	     FROM items 
-	     WHERE is_deleted = false
+	     WHERE is_deleted = false;
 	</select>
 	
+	<!-- keywordに部分一致した商品を検索 -->
+    <select id="findItemSearch" parameterType="String" resultType="com.example.vjava_ec.entity.Item">
+         SELECT id, character_id as characterId, name, detail, price, stock, sale_status as saleStatus, is_limited as isLimited, is_deleted as isDeleted, image_path as imagePath, created_at as createdAt, updated_at as updatedAt 
+         FROM items 
+         WHERE is_deleted = false
+         AND name ILIKE '%' || #{keyword} || '%';
+    </select>
 </mapper>

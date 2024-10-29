@@ -1,0 +1,20 @@
+@charset "UTF-8";
+
+/* dt要素に幅を指定 */
+dl.d-flex dt {
+	width: 120px;
+	/* 文字の折り返しを防止 */
+	white-space: nowrap;
+}
+
+dl.d-flex dd {
+	/* dtの幅 + マージン */
+	width: calc(100% - 130px);
+	display: inline-block;
+	margin-left: 10px;
+	text-align: left;
+	/* 折り返しを有効化 */
+	white-space: normal;
+	/* テキストが長い場合に折り返し */
+	word-wrap: break-word;
+}

@@ -9,14 +9,15 @@
 <body>
 	<header>
 		<a th:href="@{/user}" class="logo-border">
-			<img src="/images/user/logo.png" alt="ロゴ" style="height: 120px;">
+			<img src="/images/default/user/logo/logo-1.png" alt="ロゴ" style="height: 90px;">
 		</a>
-		<h1 style="margin: 0; padding-left: 10px;" class="heading-1" >　　VJava ECサイト　　　</h1>
-		<form action="#" class="search-form-3">
-		    <button type="submit" aria-label="検索"></button>
+		<h1 style="margin: 0; padding-left: 10px;" class="heading-1" >　VJava ECサイト　　　</h1>
+		<!-- 検索フォーム -->
+		<form  th:action="@{/user/item/search}" method="get" class="search-form">
 		    <label>
-		        <input type="text" placeholder="キーワードを入力">
-		    </label>
+		        <input type="text"  name="keyword" placeholder="キーワードを入力" required>
+		    </label>			
+		    <button type="submit" aria-label="検索"></button>
 		</form>
 		<div class="nav-links">
 	    	<a th:unless="${islogin}" th:href="@{/user/login}" class="header-loginlink">ログイン</a>
