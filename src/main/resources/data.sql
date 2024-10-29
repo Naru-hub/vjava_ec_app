@@ -101,7 +101,7 @@ VALUES
    155,
    '2020-03-14',
    false,
-   '/images/character/005-kurumi_noah.png',
+   '/images/default/005-kurumi_noah.png',
    CURRENT_TIMESTAMP,
    CURRENT_TIMESTAMP
 );
@@ -124,7 +124,7 @@ VALUES
    154,
    '2020-08-14',
    false,
-   '/images/character/008-tachibana_hinano.png',
+   '/images/default/008-tachibana_hinano.png',
    CURRENT_TIMESTAMP,
    CURRENT_TIMESTAMP
 );

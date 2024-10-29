@@ -232,7 +232,7 @@ public class AdminCharacterController {
 				// 相対パスからファイル名を取得
 				String oldImageFilename = existingCharacter.getImagePath().replace(this.IMAGE_UPLOAD_DIR_PATH, "");
 				if (newImageFilename != null && !oldImageFilename.equals(newImageFilename)) {
-					adminImageService.deleteImage(oldImageFilename, "item");
+					adminImageService.deleteImage(oldImageFilename, "character");
 				}
 			}
 
