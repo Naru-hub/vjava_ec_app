@@ -82,13 +82,15 @@
 					<tr>
 						<th>登録日時</th>
 						<td
-							th:text="${item.createdAt.format(T(java.time.format.DateTimeFormatter).ofPattern('yyyy/MM/dd HH:mm:ss'))}">
+							th:text="${item.createdAt.format(T(java.time.format.DateTimeFormatter)
+								.ofPattern('yyyy/MM/dd HH:mm:ss'))}">
 						</td>
 					</tr>
 					<tr>
 						<th>更新日時</th>
 						<td
-							th:text="${item.updatedAt.format(T(java.time.format.DateTimeFormatter).ofPattern('yyyy/MM/dd HH:mm:ss'))}">
+							th:text="${item.updatedAt.format(T(java.time.format.DateTimeFormatter)
+								.ofPattern('yyyy/MM/dd HH:mm:ss'))}">
 						</td>
 					</tr>
 				</table>

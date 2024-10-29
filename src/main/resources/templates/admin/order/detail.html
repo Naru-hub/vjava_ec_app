@@ -55,14 +55,14 @@
 						<dl>
 							<div class="d-flex flex-row">
 								<dt class="ml-5">購入日：</dt>
-								<dd class="mx-3"
-									th:text="${orderDetail.createdAt.format(T(java.time.format.DateTimeFormatter).ofPattern('yyyy/MM/dd HH:mm'))}">
+								<dd class="mx-3" th:text="${orderDetail.createdAt.format(T(java.time.format.DateTimeFormatter)
+									.ofPattern('yyyy/MM/dd HH:mm'))}">
 								</dd>
 							</div>
 							<div class="d-flex flex-row">
 								<dt class="ml-5">更新日：</dt>
-								<dd class="mx-3"
-									th:text="${orderDetail.updatedAt.format(T(java.time.format.DateTimeFormatter).ofPattern('yyyy/MM/dd HH:mm'))}">
+								<dd class="mx-3" th:text="${orderDetail.updatedAt.format(T(java.time.format.DateTimeFormatter)
+									.ofPattern('yyyy/MM/dd HH:mm'))}">
 								</dd>
 							</div>
 						</dl>
@@ -73,8 +73,7 @@
 					<div th:each="orderItem : ${orderDetail.orderItemList}" class="card mt-2">
 						<div class="row">
 							<div class="col-md-3">
-								<img th:src="@{${orderItem.imagePath}}" class="card-img-left img-fluid"
-									alt="Card image">
+								<img th:src="@{${orderItem.imagePath}}" class="card-img-left img-fluid" alt="Card image">
 							</div>
 							<div class="col-md-9">
 								<div class="card-body mt-1">

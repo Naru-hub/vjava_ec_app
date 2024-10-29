@@ -44,7 +44,8 @@
 						<tr th:each="order : ${orderList}">
 							<td th:text="${order.orderId}"></td>
 							<td th:text="${order.userName}"></td>
-							<td th:text="${order.createdAt.format(T(java.time.format.DateTimeFormatter).ofPattern('yyyy/MM/dd HH:mm'))}"></td>
+							<td th:text="${order.createdAt.format(T(java.time.format.DateTimeFormatter)
+								.ofPattern('yyyy/MM/dd HH:mm'))}"></td>
 							<td th:text="${#numbers.formatInteger(order.totalPrice,3,'COMMA')} + '円'"></td>
 							<td>
 								<span th:if="${order.orderStatus == 1}" th:text="'受付済'"></span>
@@ -52,7 +53,8 @@
 								<span th:if="${order.orderStatus == 3}" th:text="'発送済'"></span>
 								<span th:if="${order.orderStatus == 4}" th:text="'キャンセル済'"></span>
 							</td>
-							<td th:text="${order.updatedAt.format(T(java.time.format.DateTimeFormatter).ofPattern('yyyy/MM/dd HH:mm'))}"></td>
+							<td th:text="${order.updatedAt.format(T(java.time.format.DateTimeFormatter)
+								.ofPattern('yyyy/MM/dd HH:mm'))}"></td>
 							<td>
 								<a th:href="@{/admin/order/{id}(id=${order.orderId})}"
 									class="btn btn-sm btn-outline-info">詳細</a>

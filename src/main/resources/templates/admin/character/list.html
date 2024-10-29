@@ -58,10 +58,12 @@
 							</td>
 							<td th:text="${character.name}"></td>
 							<td
-								th:text="${character.createdAt.format(T(java.time.format.DateTimeFormatter).ofPattern('yyyy/MM/dd HH:mm'))}">
+								th:text="${character.createdAt.format(T(java.time.format.DateTimeFormatter)
+									.ofPattern('yyyy/MM/dd HH:mm'))}">
 							</td>
 							<td
-								th:text="${character.updatedAt.format(T(java.time.format.DateTimeFormatter).ofPattern('yyyy/MM/dd HH:mm'))}">
+								th:text="${character.updatedAt.format(T(java.time.format.DateTimeFormatter)
+									.ofPattern('yyyy/MM/dd HH:mm'))}">
 							</td>
 							<td>
 								<a th:href="@{/admin/character/{id}(id=${character.id})}"
