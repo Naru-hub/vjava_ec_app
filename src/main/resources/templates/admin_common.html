@@ -28,7 +28,7 @@
 					</li>
 					<li sec:authorize="isAuthenticated()" class="nav-item">
 						<a class="nav-link text-white mx-2" th:href="@{/admin/character/list}"><i class="fa-solid fa-face-smile"></i>
-							キャラクタ一覧</a>
+							キャラクター一覧</a>
 					</li>
 					<li sec:authorize="isAuthenticated()" class="nav-item mx-2">
 						<form th:action="@{/admin/logout}" method="post">
