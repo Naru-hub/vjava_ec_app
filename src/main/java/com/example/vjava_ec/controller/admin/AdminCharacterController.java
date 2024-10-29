@@ -38,6 +38,7 @@ public class AdminCharacterController {
 
 	/**
 	 * キャラクタの一覧表示
+	 * 
 	 * @param model
 	 * @return admin/character/list キャラクタ一覧画面
 	 */
@@ -51,6 +52,7 @@ public class AdminCharacterController {
 
 	/**
 	 * キャラクタの詳細表示
+	 * 
 	 * @param id
 	 * @param model
 	 * @return	admin/character/detail キャラクタ詳細画面
@@ -65,6 +67,7 @@ public class AdminCharacterController {
 
 	/**
 	 * キャラクタの新規登録画面を表示
+	 * 
 	 * @param form
 	 * @param model
 	 * @return admin/character/new キャラクタ新規登録画面
@@ -77,6 +80,7 @@ public class AdminCharacterController {
 
 	/**
 	 * キャラクタを新規登録する
+	 * 
 	 * @param form
 	 * @param bindingResult
 	 * @param attributes
@@ -138,6 +142,7 @@ public class AdminCharacterController {
 
 	/**
 	 * キャラクタの情報編集画面を表示
+	 * 
 	 * @param id
 	 * @param model
 	 * @param attributes
@@ -167,6 +172,7 @@ public class AdminCharacterController {
 	
 	/**
 	 * キャラクタ情報を編集する
+	 * 
 	 * @param form
 	 * @param bindingResult
 	 * @param attributes

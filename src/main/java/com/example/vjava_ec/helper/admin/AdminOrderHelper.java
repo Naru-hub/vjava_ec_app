@@ -9,6 +9,7 @@ import com.example.vjava_ec.form.admin.AdminOrderForm;
 public class AdminOrderHelper {
 	/**
 	 * orderDetailへの変換
+	 * 
 	 * @param form
 	 * @return orderDetail 注文履歴 オブジェクト
 	 */

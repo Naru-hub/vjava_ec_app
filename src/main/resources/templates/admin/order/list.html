@@ -25,6 +25,8 @@
 				エラーメッセージ
 			</div>
 			<div class="col-md-12">
+				<!-- 注文履歴データがない場合のメッセージ -->
+				<div th:if="${orderList.isEmpty() and message == null}" class="col-md-5 alert alert-danger">注文履歴データがありません。</div>
 				<!-- 注文履歴一覧 -->
 				<table class="table table-hover table-bordered">
 					<thead class="table-info">
