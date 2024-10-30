@@ -43,14 +43,14 @@ public class ItemController {
     }
     
     /**
-     * 商品検索ツール
+     * 商品検索
      * @param keyword 検索ワード
      * @param model
      * @return user/itemList 商品検索結果一覧画面
      */
     @GetMapping("/search") 
     public String showSearchedItemList(@RequestParam(name = "keyword", required = false) String keyword, Model model) {
-    	//検索結果を入れるリスト
+    	// 検索結果を入れるリスト
     	List<Item> searchItemsList;
     	// 検索キーワードがある場合は部分一致検索を行う
     	if(keyword != null && !keyword.isEmpty()) {

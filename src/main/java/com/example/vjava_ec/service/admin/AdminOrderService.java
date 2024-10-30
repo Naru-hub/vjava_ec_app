@@ -30,12 +30,12 @@ public interface AdminOrderService {
 	void updateOrderDetail(AdminOrderDetailDTO orderDetail);
 	
 	/**
-	 * 注文IDまたは注文者名で検索
+	 * 注文IDで検索
 	 */
 	List<AdminOrderHistoryDTO> findSearchOrderId(Integer orderId);
 	
 	/**
-	 * 注文IDまたは注文者名で検索
+	 * 注文者名で検索
 	 */
 	List<AdminOrderHistoryDTO> findSearchUserName(String userName);
 

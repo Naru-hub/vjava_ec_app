@@ -94,7 +94,7 @@
         u.id AS userId, u.name AS userName
     	FROM orders o
     	LEFT JOIN users u ON o.user_id = u.id
-    	WHERE u.name LIKE CONCAT('%', #{userName}, '%')
+    	WHERE u.name ILIKE CONCAT('%', #{userName}, '%')
     	ORDER BY o.id;
 	</select>
 </mapper>

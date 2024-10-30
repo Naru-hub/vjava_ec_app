@@ -153,7 +153,7 @@ public class AdminOrderController {
 	}
 
 	/**
-	 * 注文一覧検索ツール
+	 * 注文一覧検索
 	 * @param search 注文IDまたは注文者名
 	 * @param model
 	 * @return admin/order/list 注文検索結果一覧画面
@@ -161,31 +161,25 @@ public class AdminOrderController {
 	@GetMapping("/search")
 	public String searchOrder(@RequestParam(required = false) String search, Model model) {
 		List<AdminOrderHistoryDTO> searchResults;
-		// 検索ワードが指定されていない場合、全注文一覧を表示
-		if (search == null || search.isEmpty()) {
-			searchResults = adminOrderService.findAllOrder();
-		} else {
-			// 検索ワードがある場合は検索を実行
-			Integer orderId = null;
-			String userName = null;
-			
-			// 入力された検索ワードが数字の場合は注文IDとして扱う
-			try {
-				orderId = Integer.valueOf(search);
-				// 注文IDで検索
-				searchResults = adminOrderService.findSearchOrderId(orderId);
-			} catch (NumberFormatException e) {
-				// 数字でない場合は注文者名として扱う
-				userName = search;
-				// 注文者名で検索
-				searchResults = adminOrderService.findSearchUserName(userName);
-			}
-			// 検索結果が空の場合、メッセージを設定
-			if (searchResults.isEmpty()) {
-				model.addAttribute("message", "みつかりませんでした");
-			}
-		}
-		model.addAttribute("orderList", searchResults);
-		return "admin/order/list";
+	    // 検索ワードが指定されていない場合、全注文一覧を表示
+	    if (search == null || search.isEmpty()) {
+	        searchResults = adminOrderService.findAllOrder();
+	    } else {
+	        // 数字かどうかを判定する正規表現を使用
+	        if (search.matches("\\d+")) {
+	            // 数字で構成されている場合は注文IDで検索
+	            Integer orderId = Integer.valueOf(search);
+	            searchResults = adminOrderService.findSearchOrderId(orderId);
+	        } else {
+	            // 文字列の場合は注文者名で検索
+	            searchResults = adminOrderService.findSearchUserName(search);
+	        }
+	        // 検索結果が空の場合、メッセージを設定
+	        if (searchResults.isEmpty()) {
+	            model.addAttribute("message", "見つかりませんでした");
+	        }
+	    }
+	    model.addAttribute("orderList", searchResults);
+	    return "admin/order/list";
 	}
 }
