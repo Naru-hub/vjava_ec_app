@@ -43,7 +43,7 @@ public class ItemController {
     }
     
     /**
-     * 
+     * 商品検索ツール
      * @param keyword 検索ワード
      * @param model
      * @return user/itemList 商品検索結果一覧画面

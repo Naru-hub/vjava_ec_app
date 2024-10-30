@@ -28,5 +28,15 @@ public interface AdminOrderService {
 	 * 注文履歴情報を編集
 	 */
 	void updateOrderDetail(AdminOrderDetailDTO orderDetail);
+	
+	/**
+	 * 注文IDまたは注文者名で検索
+	 */
+	List<AdminOrderHistoryDTO> findSearchOrderId(Integer orderId);
+	
+	/**
+	 * 注文IDまたは注文者名で検索
+	 */
+	List<AdminOrderHistoryDTO> findSearchUserName(String userName);
 
 }

@@ -73,4 +73,28 @@
 		updated_at = CURRENT_TIMESTAMP
 		WHERE id = #{orderId};
 	</update>
+	
+	<!-- 注文履歴を注文IDで検索 -->
+	<select id="findByOrderId" resultType="com.example.vjava_ec.dto.admin.AdminOrderHistoryDTO">
+    	SELECT o.id AS orderId, o.created_at AS createdAt, 
+        o.total_price AS totalPrice, o.order_status AS orderStatus, 
+        o.updated_at AS updatedAt, 
+        u.id AS userId, u.name AS userName
+    	FROM orders o
+    	LEFT JOIN users u ON o.user_id = u.id
+    	WHERE o.id = #{orderId}
+    	ORDER BY o.id;
+	</select>
+
+	<!-- 注文履歴を注文者名で検索 -->
+	<select id="findByUserName" resultType="com.example.vjava_ec.dto.admin.AdminOrderHistoryDTO">
+    	SELECT o.id AS orderId, o.created_at AS createdAt, 
+        o.total_price AS totalPrice, o.order_status AS orderStatus, 
+        o.updated_at AS updatedAt, 
+        u.id AS userId, u.name AS userName
+    	FROM orders o
+    	LEFT JOIN users u ON o.user_id = u.id
+    	WHERE u.name LIKE CONCAT('%', #{userName}, '%')
+    	ORDER BY o.id;
+	</select>
 </mapper>

@@ -16,19 +16,30 @@
 				<h1>注文履歴一覧</h1>
 			</div>
 		</div>
+		
+		<!-- 検索フォーム -->
+		<div class="row justify-content-center my-4">
+		    <div class="col-md-8">
+		        <form th:action="@{/admin/order/search}" method="get" class="form-inline">
+		            <label for="search" class="mr-2">検索（注文IDまたは注文者名）:</label>
+		            <input type="text" id="search" name="search" class="form-control mr-4">
+		            <button type="submit" class="btn btn-primary">検索</button>
+		        </form>
+		    </div>
+		</div>
+		
+		<!-- 検索結果メッセージ -->
 		<div class="row">
-			<!-- フラッシュメッセージの表示 -->
-			<div th:if="${message}" th:text="${message}" class="col-md-5 alert alert-primary" role="alert">
-				完了メッセージ
-			</div>
-			<div th:if="${errorMessage}" th:text="${errorMessage}" class="col-md-5 alert alert-danger" role="alert">
-				エラーメッセージ
-			</div>
+		    <div th:if="${message}" th:text="${message}" class="col-md-5 alert alert-primary" role="alert"></div>
+		    <div th:if="${errorMessage}" th:text="${errorMessage}" class="col-md-5 alert alert-danger" role="alert">
+		</div>
+			
+		<div class="row">
 			<div class="col-md-12">
 				<!-- 注文履歴データがない場合のメッセージ -->
 				<div th:if="${orderList.isEmpty() and message == null}" class="col-md-5 alert alert-danger">注文履歴データがありません。</div>
 				<!-- 注文履歴一覧 -->
-				<table class="table table-hover table-bordered">
+				<table class="table table-hover table-bordered" th:if="${!orderList.isEmpty()}">
 					<thead class="table-info">
 						<tr>
 							<th>注文ID</th>

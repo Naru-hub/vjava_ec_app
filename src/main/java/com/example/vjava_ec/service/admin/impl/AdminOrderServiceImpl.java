@@ -78,4 +78,26 @@ public class AdminOrderServiceImpl implements AdminOrderService {
 	public void updateOrderDetail(AdminOrderDetailDTO orderDetail) {
 		adminOrderMapper.update(orderDetail);
 	}
+	
+	/**
+	 * 注文IDで検索するメソッド
+	 * 
+	 * @param orderId 注文ID
+	 * @return 注文IDで検索した情報
+	 */
+    @Override
+    public List<AdminOrderHistoryDTO> findSearchOrderId(Integer orderId) {
+        return adminOrderMapper.findByOrderId(orderId);
+    }
+    
+    /**
+     * 注文者名で検索するメソッド
+     * 
+     * @param userName 注文者名
+	 * @return 注文者名で検索した情報
+     */
+    @Override
+    public List<AdminOrderHistoryDTO> findSearchUserName(String userName) {
+        return adminOrderMapper.findByUserName(userName);
+    }
 }
