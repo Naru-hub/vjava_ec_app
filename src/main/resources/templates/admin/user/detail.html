@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>会員詳細</title>
+    <link rel="stylesheet" href="/css/style.css"> <!-- 必要に応じてCSSをリンク -->
+</head>
+<body>
+    <h1>会員詳細ページ</h1>
+
+    <div>
+        <table>
+			<tr>
+			    <th>ID</th>
+			    <td th:text="${user.id}"></td>
+			</tr>
+			<tr>
+			    <th>名前</th>
+			    <td th:text="${user.name}"></td>
+			</tr>
+			<tr>
+			    <th>メールアドレス</th>
+			    <td th:text="${user.email}"></td>
+			</tr>
+			<tr>
+			    <th>郵便番号</th>
+			    <td th:text="${user.postcode}"></td>
+			</tr>
+			<tr>
+			    <th>住所</th>
+			    <td th:text="${user.address}"></td>
+			</tr>
+			<tr>
+			    <th>電話番号</th>
+			    <td th:text="${user.tel}"></td>
+			</tr>
+			<tr>
+			    <th>会員ステータス</th>
+				<td th:text="${user.isDeleted ? '退会済' : '未退会'}"></td>
+			</tr>
+			<tr>
+			    <th>登録日時</th>
+			    <td th:text="${user.createdAt}"></td>
+			</tr>
+			<tr>
+			    <th>更新日時</th>
+			    <td th:text="${user.updatedAt}"></td>
+			</tr>
+        </table>
+    </div>
+
+    <!-- 会員ステータス変更確認ボタン -->
+    <div>
+        <form th:action="@{/admin/user/edit/{id}(id=${user.id})}" method="get">
+            <input type="submit" value="会員ステータス変更確認">
+        </form>
+    </div>
+
+    <!-- 一覧へ戻るボタン -->
+    <div>
+		<form th:action="@{/admin/user/list}" method="get">
+		    <button type="submit">一覧へ戻る</button>
+		</form>
+    </div>
+</body>
+</html>

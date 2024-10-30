@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>会員一覧</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <h2>会員一覧</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>名前</th>
+                    <th>メールアドレス</th>
+                    <th>会員ステータス</th>
+                    <th>詳細</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- 会員リストをループで表示 -->
+                <tr th:each="user : ${userList}">
+                    <td th:text="${user.id}"></td>
+                    <td th:text="${user.name}"></td>
+                    <td th:text="${user.email}"></td>
+					<td th:text="${user.isDeleted ? '退会済' : '未退会'}"></td>
+                    <td>
+						<a th:href="@{/admin/user/{id}(id=${user.id})}" class="btn btn-primary">詳細</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
