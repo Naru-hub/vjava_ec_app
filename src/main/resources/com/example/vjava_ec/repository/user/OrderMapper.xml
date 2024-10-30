@@ -50,6 +50,15 @@
 	    </collection>
 	</resultMap>
 	
+	<insert id="insertOrder" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO orders (user_id, postage, total_price, payment,
+		delivery_name, delivery_postcode, delivery_address, delivery_tel,
+		order_status, created_at, updated_at)
+		VALUES(#{userId}, #{postage}, #{totalPrice}, #{payment},
+		#{deliveryName}, #{deliveryPostcode}, #{deliveryAddress}, #{deliveryTel},
+		#{orderStatus}, current_timestamp, current_timestamp);
+	</insert>
+	
 	<!-- 特定の会員の注文履歴取得 -->
 	<select id="selectOrderListByUserId" resultMap="OrderResultMap">
 	    SELECT DISTINCT

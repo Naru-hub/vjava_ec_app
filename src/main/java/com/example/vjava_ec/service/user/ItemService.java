@@ -18,5 +18,4 @@ public interface ItemService {
 	 * IDから特定のItemエンティティを取得
 	 */
 	Item selectItemById(int id);
-	
 }

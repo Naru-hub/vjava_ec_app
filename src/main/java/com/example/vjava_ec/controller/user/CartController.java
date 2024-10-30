@@ -61,7 +61,7 @@ public class CartController {
             session.setAttribute("cart", cart);
         }
         model.addAttribute("cart", cart);
-        model.addAttribute("displayTotalPrice", cartService.getDisplayTotalPrice(cart));
+        model.addAttribute("totalPrice", cartService.getTotalPrice(cart));
         return "user/cart/cart";
     }
     
@@ -76,6 +76,10 @@ public class CartController {
     @PostMapping("/edit/{id}")
     public String updateCartItemAmount(@PathVariable Integer id,@RequestParam("amount") Integer amount,HttpSession session, Model model) {
     	Cart cart = (Cart) session.getAttribute("cart");
+    	if (cart == null) {
+			cart = new Cart();
+			session.setAttribute("cart", cart);
+		}
     	cartService.editCartItemAmount(cart, id, amount);
     	return "redirect:/user/cart/show";
     }
@@ -90,6 +94,10 @@ public class CartController {
     @PostMapping("/delete/{id}")
     public String deleteCartItem(@PathVariable Integer id,HttpSession session) {
     	Cart cart = (Cart) session.getAttribute("cart");
+    	if (cart == null) {
+			cart = new Cart();
+			session.setAttribute("cart", cart);
+		}
     	cartService.deleteCartItemByItemId(cart, id);
     	return "redirect:/user/cart/show";
     }
@@ -103,24 +111,11 @@ public class CartController {
     @PostMapping("/delete/all")
     public String allDeleteCartItems(HttpSession session, Model model) {
     	Cart cart = (Cart) session.getAttribute("cart");
+    	if (cart == null) {
+			cart = new Cart();
+			session.setAttribute("cart", cart);
+		}
     	cartService.deleteAllCartItem(cart);
     	return "redirect:/user/cart/show";
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }

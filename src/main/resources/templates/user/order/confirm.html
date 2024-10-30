@@ -1,28 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link th:href="@{/css/user/order/detail.css}" rel="stylesheet">
+	<meta charset="UTF-8">
+	<title>購入情報確認</title>
+	<link th:href="@{/css/user/order/confirm.css}" rel="stylesheet">
+	<link th:href="@{/css/user/common/user_common.css}" rel="stylesheet">
 </head>
 <body>
-	<form action="/user/order/list" method="get">
-		<button type="submit" >注文履歴一覧へ戻る</button>
-	</form>
-	<h1>注文履歴詳細</h1>
-	<div class="order-info-container">
-		<div class="order-info-brank"></div>
-		<div class="order-info">
-			<span>注文ステータス：<span th:switch="${order.orderStatus}">
-				<span th:case="1">受付済み</span>
-				<span th:case="2">発送準備中</span>
-				<span th:case="3">発送済み</span>
-				<span th:case="4">キャンセル済み</span>
-			</span></span>
-			<span class="order-date">購入日：<span th:text="${#temporals.format(order.createdAt, 'yyyy年MM月dd日')}"></span></span>
-		</div>
-	</div>
+	<div th:insert="~{user_common :: header}"></div>
 	
+	<form action="/user/order/form" method="get">
+		<button type="submit" >購入情報入力画面へ</button>
+	</form>
+	<h1>購入情報確認</h1>
 	<div class="container">
 	    <div class="order-details">
 	        <div th:each="orderItem : ${order.orderItems}" class="order-items">
@@ -31,15 +21,15 @@
 	                <div class="item-infoname">
 						<div>商品名</div>
 	                    <div>価格</div>
-	                    <div>個数</div>
-					</div>
-					<div class="item-info">
+						<div>個数</div>
+	                </div>
+	                <div class="item-info">
 	                    <div th:text="${orderItem.item.name}"></div>
 	                    <div th:text="${orderItem.purchasePrice}"></div>
 	                    <div th:text="${orderItem.amount}"></div>
 	                </div>
 	                <div class="item-total">
-	                    <p>小計：[[${orderItem.purchasePrice * orderItem.amount}]]円</p>
+	                    <div>小計：[[${orderItem.purchasePrice * orderItem.amount}]]円</div>
 	                </div>
 	            </div>
 	        </div>
@@ -55,14 +45,20 @@
 				<div class="price-info">
 					<div class="postage">
 						<span class="postagename">送料</span>
-						<span class="postege-price">[[${order.postage}]] 円</span>
+						<span class="postege-price">[[${#numbers.formatInteger(order.postage,3,'COMMA')}]] 円</span>
 					</div>
 					<div class="total-price">
 						<span class="postagename">合計</span>
-						<span class="postege-price">[[${order.totalPrice}]] 円</span>
+						<span class="postege-price">[[${#numbers.formatInteger(order.totalPrice,3,'COMMA')}]] 円</span>
 					</div>
 				</div>
 	        </div>
+			<div class="button-area">
+				<button id="canselButton" onclick="history.back()">キャンセルボタン</button>
+				<form th:action="@{/user/order/confirmed}" method="post">
+					<button type="submit">購入確定</button>
+				</form>
+			</div>
 	    </div>
 	    <div class="shipping-info-contents">
 	        <h2>配送先情報</h2>
@@ -82,5 +78,8 @@
 			</div>
 	    </div>
 	</div>
+	
+	<div th:insert="~{user_common :: footer}"></div>
+	<script th:src="@{/js/user/order/confirm.js}"></script>
 </body>
 </html>

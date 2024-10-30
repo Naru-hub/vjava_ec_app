@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<link th:href="@{/css/user/order/form.css}" rel="stylesheet">
 	<link th:href="@{/css/user/common/user_common.css}" rel="stylesheet">
@@ -13,17 +13,17 @@
 		<div class="title">
 			<h1>購入情報入力画面</h1>
 		</div>
-		<form class="form">
+		<form th:action="@{/user/order/validated}" method="post" id="form" class="form">
 			<div class="label">
 				<label for="name">宛名</label>
-				<label for="name">郵便局</label>
+				<label for="name">郵便番号</label>
 				<label for="name">住所</label>
 				<label for="name">電話番号</label>
 				<label for="name">支払い方法</label>
 			</div>
 			<div class="input">
 				<input name="name" type="text">
-				<input name="postcod" type="text">
+				<input name="postcode" type="text">
 				<input name="address" type="text">
 				<input name="tel" type="text">
 				<div>

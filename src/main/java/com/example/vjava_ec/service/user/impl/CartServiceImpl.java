@@ -1,8 +1,5 @@
 package com.example.vjava_ec.service.user.impl;
 
-import java.text.NumberFormat;
-import java.util.Locale;
-
 import org.springframework.stereotype.Service;
 
 import com.example.vjava_ec.entity.Cart;
@@ -63,8 +60,6 @@ public class CartServiceImpl implements CartService{
 			if(cartItem.getItem().getId() == itemId) {
 				// 新しい数量を設定する
 				cartItem.setAmount(newAmount);
-				// 数量変更に伴う表示小計の変更
-				cartItem.setDisplayTotalPrice(NumberFormat.getNumberInstance(Locale.JAPAN).format(cartItem.getItem().getPrice() * cartItem.getAmount()));
 			}
 		}
 		return cart;
@@ -91,17 +86,5 @@ public class CartServiceImpl implements CartService{
 	public Cart deleteAllCartItem(Cart cart) {
 		cart.getCartItems().clear();
 		return cart;
-	}
-
-	/**
-	 * 表示用の合計金額を取得
-	 * @param cart
-	 * @return String 合計金額
-	 */
-	@Override
-	public String getDisplayTotalPrice(Cart cart) {
-		int totalPrice = getTotalPrice(cart);
-		String displayTotalPrice = NumberFormat.getNumberInstance(Locale.JAPAN).format(totalPrice);
-		return displayTotalPrice;
 	}
 }

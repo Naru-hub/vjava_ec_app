@@ -39,7 +39,7 @@
 					<div class="cart-item-info">
 						<!-- 商品名と価格 -->
 						<div th:text="${cartItem.item.name}"></div>
-						<div>￥[[${cartItem.displayPrice}]]</div>
+						<div th:text="${#numbers.formatInteger(cartItem.item.price,3,'COMMA')} + '円'"></div>
 					</div>
 					<!-- 数量変更と削除 -->
 					<div class="cart-item-amount">
@@ -49,7 +49,7 @@
 						</form>
 					</div>
 					<div class="cart-item-subtotal">
-						<div>￥[[${cartItem.displayTotalPrice}]]</div>
+						<div th:text="${#numbers.formatInteger(cartItem.item.price * cartItem.amount,3,'COMMA')} + '円'"></div>
 					</div>
 					<div class="delete-button">
 						<form th:action="@{/user/cart/delete/{id}(id=${cartItem.item.id})}" method="post">
@@ -62,7 +62,7 @@
 			<div class="total-price-area">
 				<div class="total-price-card">
 					<div class="total-price-cart-under">
-						<span>合計　￥[[${displayTotalPrice}]]</span>
+						<span>合計　[[${#numbers.formatInteger(totalPrice,3,'COMMA')}]]円</span>
 					</div>
 					<div class="total-price-card-under">
 						<button id="nextButton">購入へ進む</button>

@@ -22,7 +22,7 @@
 	
 	<!-- 会員の論理削除 -->
 	<update id="deleteUser">
-		UPDATE users SET is_deleted = TRUE
+		UPDATE users SET is_deleted = TRUE, updated_ag = current_timestamp
 		WHERE id = #{id}
 	</update>
 

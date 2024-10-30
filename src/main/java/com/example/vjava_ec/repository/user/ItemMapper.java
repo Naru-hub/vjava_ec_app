@@ -3,6 +3,7 @@ package com.example.vjava_ec.repository.user;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.example.vjava_ec.entity.Item;
 
@@ -22,4 +23,14 @@ public interface ItemMapper {
 	 * IdからItemエンティティを取得
 	 */
 	Item selectItemById(int id);
+	
+	/**
+	 * 特定のIdの商品の在庫数を取得する
+	 */
+	int selectItemStockById(int id);
+	
+	/**
+	 * 特定のIdの商品の在庫数を更新する
+	 */
+	int updateItemStockById(@Param("id") int id,@Param("amount") int amount);
 }

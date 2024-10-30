@@ -12,6 +12,12 @@ import com.example.vjava_ec.entity.Order;
  */
 @Mapper
 public interface OrderMapper {
+	
+	/**
+	 * Order情報を保存
+	 */
+	void insertOrder(Order order);
+	
 	/**
 	 * 会員Idから注文履歴Listを取得
 	 */

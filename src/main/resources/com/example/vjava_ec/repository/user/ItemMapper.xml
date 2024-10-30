@@ -28,7 +28,7 @@
 		FROM items 
 		WHERE is_deleted = false
 	</select>
-	<!-- 商品IDから特定のItemエンティティを取得 -->
+	<!-- 商品Idから特定のItemエンティティを取得 -->
 	<select id="selectItemById" resultMap="ItemResultMap">
 		SELECT 
 			i.id, 
@@ -53,5 +53,14 @@
 		WHERE
 			i.id = #{id};
 	</select>
+	<!-- 商品Idから特定の商品の在庫数を取得 -->
+	<select id="selectItemStockById">
+		SELECT stock FROM items WHERE id = #{id} FOR UPDATE;
+	</select>
+	<!-- 商品Idから特定の商品の在庫数を更新 -->
+	<update id="updateItemStockById">
+		UPDATE items SET stock = #{amount} 
+		WHERE id = #{id} 
+	</update>
 	
 </mapper>
