@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
 	<meta charset="UTF-8">
+	<link th:href="@{/css/user/login/login.css}" rel="stylesheet">
 	<link th:href="@{/css/user/common/user_common.css}" rel="stylesheet">
 	<title>ログイン画面</title>
 </head>
+
 <body>
-	
+
 	<div th:insert="~{user_common :: header}"></div>
-	
+
 	<div class="login-container">
-       <h2>Sign In</h2>
-	<!-- エラー表示 -->
+		<h2>ログイン</h2>
+		<!-- エラー表示 -->
 		<div th:if="${param.error}">
 			<p style="color: red;">emailまたはpasswordが違います</p>
 		</div>
@@ -23,22 +26,25 @@
 		<div th:if="${success}">
 			<p th:text="${success}" style="color:green">登録しました</p>
 		</div>
-       <form th:action="@{/user/authentication}" method="post">
-           <div class="form-group">
-               <label for="email">email</label>
-               <input type="text" id="email" name="email" required>
-           </div>
-           <div class="form-group">
-               <label for="password">Password</label>
-               <input type="password" id="password" name="password" required>
-           </div>
-           <button type="submit">Login</button>
-       </form>
-       <div class="register-link">
-           <p>アカウントをお持ちでない方は <a th:href="@{/user/register}" style="font-weight: bold;"> こちら </a></p>
-       </div>
-   </div>
-   
-   <div th:insert="~{user_common :: footer}"></div>
+		<div class="login-form">
+			<form th:action="@{/user/authentication}" method="post">
+				<div class="form-group">
+					<label for="email">メールアドレス</label>
+					<input type="text" id="email" name="email" placeholder="メールアドレスを入力" required>
+				</div>
+				<div class="form-group">
+					<label for="password">パスワード</label>
+					<input type="password" id="password" name="password" placeholder="パスワードを入力" required>
+				</div>
+				<button type="submit">ログイン</button>
+			</form>
+		</div>
+		<div class="register-link">
+			<p>アカウントをお持ちでない方は <a th:href="@{/user/register}" style="font-weight: bold;"> こちら </a></p>
+		</div>
+	</div>
+
+	<div th:insert="~{user_common :: footer}"></div>
 </body>
+
 </html>

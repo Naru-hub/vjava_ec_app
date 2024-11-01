@@ -210,7 +210,7 @@ VALUES
    5,
    3,
    false,
-   true,
+   false,
    '/images/default/admin/item/default_goods3.jpg',
    CURRENT_TIMESTAMP,
    CURRENT_TIMESTAMP
