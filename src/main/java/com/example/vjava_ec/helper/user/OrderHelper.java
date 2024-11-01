@@ -3,6 +3,9 @@ package com.example.vjava_ec.helper.user;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
+
 import com.example.vjava_ec.entity.Cart;
 import com.example.vjava_ec.entity.CartItem;
 import com.example.vjava_ec.entity.Order;
@@ -52,5 +55,18 @@ public class OrderHelper {
 			orderItems.add(orderItem);
 		}
 		return orderItems;
+	}
+	
+	/**
+	 * エラーメッセージの取得
+	 * @param result
+	 * @return List<String> エラーメッセージが入っているList
+	 */
+	public static List<String> getErrorMessages(BindingResult result){
+		List<String> messages = new ArrayList<>();
+		for (ObjectError error : result.getAllErrors()) {
+			messages.add(error.getDefaultMessage());
+		}
+		return messages;
 	}
 }

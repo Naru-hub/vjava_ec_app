@@ -10,7 +10,7 @@ import com.example.vjava_ec.entity.Order;
 public interface OrderService {
 	
 	/**
-	 * Order情報の保存とその可否
+	 * Order情報の保存
 	 */
 	void insertOrder(Order order);
 	

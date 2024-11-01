@@ -1,7 +1,7 @@
 package com.example.vjava_ec.form.user;
 
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
+import org.hibernate.validator.constraints.Range;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
@@ -36,7 +36,6 @@ public class OrderForm {
 	private String tel;
 	
 	/** 支払い方法 */
-	@Min(1)
-	@Max(3)
+	@Range(min = 1, max = 3, message = "支払い方法を選択してください")
 	private int payment;
 }

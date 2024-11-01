@@ -39,7 +39,10 @@
 			</div>
 			<div class="button-container">
 				<button id="backButton">一覧へ戻る</button>
-				<button onclick="submitForm()">カートに追加</button>
+				<!-- 商品が販売中の時 -->
+				<button th:if="${item.saleStatus == 1}" onclick="submitForm()">カートに追加</button>
+				<!-- 販売中でない時 -->
+				<button th:unless="${item.saleStatus == 1}">在庫がありません</button>
 			</div>
 		</div>
 	</div>

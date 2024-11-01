@@ -18,4 +18,9 @@ public interface ItemService {
 	 * IDから特定のItemエンティティを取得
 	 */
 	Item selectItemById(int id);
+	
+	/**
+	 * 特定のIDの商品の販売ステータスを期間限定ステータスを考慮して変更する
+	 */
+	void updateSaleStatusById(int id);
 }

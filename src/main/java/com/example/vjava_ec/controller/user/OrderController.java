@@ -41,7 +41,8 @@ public class OrderController {
 	 * @return "user/order/form" 購入情報入力画面
 	 */
 	@GetMapping("/form")
-	public String showOrderForm() {
+	public String showOrderForm(@ModelAttribute OrderForm form, Model model) {
+		model.addAttribute("form", form);
 		return "user/order/form";
 	}
 	
@@ -53,8 +54,10 @@ public class OrderController {
 	 * @return redirect:/user/order/confirm 購入情報確認画面へリダイレクト
 	 */
 	@PostMapping("/validated")
-	public String validatedOrderForm(@Validated OrderForm form, BindingResult bindingResult, RedirectAttributes attributes) {
+	public String validatedOrderForm(@Validated OrderForm form, BindingResult bindingResult, RedirectAttributes attributes, Model model) {
 		if(bindingResult.hasErrors()) {
+			model.addAttribute("errors", OrderHelper.getErrorMessages(bindingResult));
+			model.addAttribute("form", form);
 			return "user/order/form";
 		}
 		// formにuserIdを設定
@@ -87,9 +90,10 @@ public class OrderController {
 	}
 	
 	/**
-	 * 
+	 * 購入実行エンドポイント
 	 * @param session
-	 * @return
+	 * @param attributes
+	 * @return redirect:/user/order/completed 購入完了画面へリダイレクト
 	 */
 	@PostMapping("/confirmed")
 	public String orderConfirmed(HttpSession session, RedirectAttributes attributes) {
@@ -111,10 +115,14 @@ public class OrderController {
 		// カートの内容全削除
 		Cart cart = (Cart) session.getAttribute("cart");
 		cartService.deleteAllCartItem(cart);
-		return "redirect:/user/order/thanks";
+		return "redirect:/user/order/completed";
 	}
 	
-	@GetMapping("/thanks")
+	/**
+	 * 購入完了画面表示
+	 * @return "user/order/completed"
+	 */
+	@GetMapping("/completed")
 	public String orderCompleted() {
 		return "user/order/completed";
 	}

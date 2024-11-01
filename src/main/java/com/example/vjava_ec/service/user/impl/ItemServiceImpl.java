@@ -58,4 +58,21 @@ public class ItemServiceImpl implements ItemService{
 		return item;
 	}
 
+	/**
+	 * 在庫が無くなった商品の販売ステータスを変更
+	 * @param id
+	 */
+	@Override
+	public void updateSaleStatusById(int id) {
+		Item item = itemMapper.selectItemById(id);
+		if(item.isLimited()) {
+			// 期間限定の場合販売終了(3)
+			item.setSaleStatus(3);
+		} else {
+			// 期間限定ではない場合在庫切れ(2)
+			item.setSaleStatus(2);
+		}
+		// データベースの情報更新
+		itemMapper.updateSaleStatusById(item);
+	}
 }

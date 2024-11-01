@@ -33,4 +33,9 @@ public interface ItemMapper {
 	 * 特定のIdの商品の在庫数を更新する
 	 */
 	int updateItemStockById(@Param("id") int id,@Param("amount") int amount);
+	
+	/**
+	 * 在庫が切れた特定のIdの商品のステータスを更新する
+	 */
+	void updateSaleStatusById(Item item);
 }

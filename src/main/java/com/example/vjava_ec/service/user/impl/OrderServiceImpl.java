@@ -13,6 +13,7 @@ import com.example.vjava_ec.repository.user.ItemMapper;
 import com.example.vjava_ec.repository.user.OrderItemMapper;
 import com.example.vjava_ec.repository.user.OrderMapper;
 import com.example.vjava_ec.repository.user.UserMapper;
+import com.example.vjava_ec.service.user.ItemService;
 import com.example.vjava_ec.service.user.OrderService;
 
 import lombok.RequiredArgsConstructor;
@@ -30,6 +31,7 @@ public class OrderServiceImpl implements OrderService{
 	private final UserMapper userMapper;
 	private final OrderItemMapper orderItemMapper;
 	private final ItemMapper itemMapper;
+	private final ItemService itemService;
 	
 	/**
 	 * 注文情報の保存
@@ -37,6 +39,7 @@ public class OrderServiceImpl implements OrderService{
 	 */
 	@Override
 	public void insertOrder(Order order) {
+		// 注文商品をひとつづつ処理
 		for (OrderItem orderItem : order.getOrderItems()) {
 			int itemId = orderItem.getItem().getId();
 			int stock = itemMapper.selectItemStockById(itemId);
@@ -48,6 +51,10 @@ public class OrderServiceImpl implements OrderService{
 			}
 			// 在庫数の更新
 			itemMapper.updateItemStockById(itemId, stock - amount);
+			if(itemMapper.selectItemStockById(itemId) == 0) {
+				// 在庫が無くなった時商品のステータスを変更
+				itemService.updateSaleStatusById(itemId);
+			}
 		}
 		orderMapper.insertOrder(order);
 		// orderIdの取得

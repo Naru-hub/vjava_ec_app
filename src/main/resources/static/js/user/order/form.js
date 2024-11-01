@@ -2,7 +2,7 @@
  * 会員：購入情報入力画面　JavaScriptファイル
  */
 
- /** カートに戻るボタン */
+/** カートに戻るボタン */
 document.getElementById("backButton").onclick = function(){
 	window.location.href = '/user/cart/show';
 };

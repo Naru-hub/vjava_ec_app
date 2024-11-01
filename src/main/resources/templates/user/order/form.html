@@ -13,6 +13,11 @@
 		<div class="title">
 			<h1>購入情報入力画面</h1>
 		</div>
+		<div class="error" th:if="${errors}">
+			<div th:each="error : ${errors}">
+				[[${error}]]
+			</div>
+		</div>
 		<form th:action="@{/user/order/validated}" method="post" id="form" class="form">
 			<div class="label">
 				<label for="name">宛名</label>
@@ -21,11 +26,11 @@
 				<label for="name">電話番号</label>
 				<label for="name">支払い方法</label>
 			</div>
-			<div class="input">
-				<input name="name" type="text">
-				<input name="postcode" type="text">
-				<input name="address" type="text">
-				<input name="tel" type="text">
+			<div class="input" th:object="${form}">
+				<input name="name" th:field="*{name}" type="text">
+				<input name="postcode" th:field="*{postcode}" type="text">
+				<input name="address" th:field="*{address}" type="text">
+				<input name="tel" th:field="*{tel}" type="text">
 				<div>
 					<input type="radio" name="payment" value="1">
 					代引き

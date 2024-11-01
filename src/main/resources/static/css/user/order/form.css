@@ -9,6 +9,11 @@
 	text-align: center;
 }
 
+.error {
+	text-align: center;
+	color: red;
+}
+
 .form {
 	display: flex;
 	justify-content: center;

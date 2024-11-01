@@ -33,7 +33,6 @@ public class InsufficientStockException extends IllegalStateException {
 	
 	/**
 	 * 商品IDのゲッター
-	 * @return
 	 */
 	public Item getItemId() {
 		return item;
@@ -41,12 +40,14 @@ public class InsufficientStockException extends IllegalStateException {
 	
 	/**
 	 * 在庫数のゲッター
-	 * @return
 	 */
 	public int getStock() {
 		return stock;
 	}
 	
+	/**
+	 * エラーメッセージのゲッター
+	 */
 	public List<String> getErrorMessage(){
 		return errorMessage;
 	}

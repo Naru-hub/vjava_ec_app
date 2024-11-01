@@ -1,11 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>購入完了</title>
+	<link th:href="@{/css/user/common/user_common.css}" rel="stylesheet">
+	<meta charset="UTF-8">
+	<title>購入完了</title>
 </head>
 <body>
+	<div th:insert="~{user_common :: header}"></div>
+	
 	<h1>ご購入ありがとうございました</h1>
-
+	<div>
+		<button id="homeButton">ホーム画面へ</button>
+	</div>
+	
+	<div th:insert="~{user_common :: footer}"></div>
+	<script th:src="@{/js/user/order/completed.js}"></script>
 </body>
 </html>
