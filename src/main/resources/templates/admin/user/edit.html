@@ -82,7 +82,7 @@
 					</div>
 					<div>
 						<!-- 「はい」	ボタン：ステータス変更確認 -->
-						<form th:action="@{/admin/user/statusUpdate/{id}(id=${user.id})}" method="post">
+						<form th:action="@{/admin/user/update/{id}(id=${user.id})}" method="post">
 							<input type="submit" value="はい" class="btn btn-outline-info">
 							<input type="hidden" name="${_csrf.parameterName}" th:value="${_csrf.token}">
 						</form>

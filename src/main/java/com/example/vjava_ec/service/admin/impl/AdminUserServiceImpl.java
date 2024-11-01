@@ -38,26 +38,14 @@ public class AdminUserServiceImpl implements AdminUserService {
 	}
 
 	/**
-	 * 会員削除メソッド(論理削除)
+	 * 会員ステータスを変更(論理削除)
 	 * 
-	 * @param user 会員情報
+	 * @param user
+	 * @return 
 	 */
 	@Override
-	public User changeUserStatus(Integer id) {
-		User user = findByIdUser(id);
-	    user.setDeleted(!user.isDeleted()); //現在のisDeleted値を反転
-	    adminUserMapper.update(user);
-		return user;
-	}
-
-	/**
-	 * 会員保存メソッド
-	 * 
-	 * @param user 会員情報
-	 */
-	@Override
-	public void save(User user) {
-		
+	public void changeUserStatus(User user) {
+		adminUserMapper.update(user);
 	}
 
 }

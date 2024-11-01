@@ -20,13 +20,8 @@ public interface AdminUserService {
 	User findByIdUser(Integer id);
 	
 	/**
-	 * 会員情報を削除(論理削除)
+	 * 会員ステータスを変更
 	 */
-	User changeUserStatus(Integer id);
-	
-	/**
-	 * 会員情報を保存
-	 */
-	void save(User user);
+	void changeUserStatus(User user);
 
 }
