@@ -42,10 +42,9 @@
 		<div class="row">
 			<div class="col-md-12">
 				<!-- 注文履歴データがない場合のメッセージ -->
-				<div th:if="${orderList.isEmpty() and message == null}" class="col-md-5 alert alert-danger">
-					注文履歴データがありません。</div>
+				<div th:if="${orderList.isEmpty()}" class="col-md-5 alert alert-danger">注文履歴データがありません。</div>
 				<!-- 注文履歴一覧 -->
-				<table class="table table-hover table-bordered" th:if="${!orderList.isEmpty()}">
+				<table th:if="${!orderList.isEmpty()}"  class="table table-hover table-bordered">
 					<thead class="table-info">
 						<tr>
 							<th>注文ID</th>

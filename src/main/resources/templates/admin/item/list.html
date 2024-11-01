@@ -29,10 +29,10 @@
 			</div>
 			<div class="col-md-12">
 				<!-- 商品データがない場合のメッセージ -->
-				<div th:if="${itemList.isEmpty() and message == null}" class="col-md-5 alert alert-danger">商品データがありません。</div>
+				<div th:if="${itemList.isEmpty()}" class="col-md-5 alert alert-danger">商品データがありません。</div>
 					
 				<!-- 商品一覧 -->
-				<table class="table table-hover table-bordered">
+				<table th:if="${!itemList.isEmpty()}" class="table table-hover table-bordered">
 					<thead class="table-info">
 						<tr>
 							<th>ID</th>
