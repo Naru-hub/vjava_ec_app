@@ -35,7 +35,7 @@ public interface AdminOrderMapper {
 	List<AdminOrderHistoryDTO> findByOrderId(Integer orderId);
 	
 	/**
-	 * 注文IDで検索
+	 * 注文者名で検索
 	 */
 	List<AdminOrderHistoryDTO> findByUserName(String userName);
 }
