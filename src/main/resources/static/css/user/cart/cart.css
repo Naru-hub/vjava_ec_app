@@ -15,6 +15,15 @@
 	padding: 0px 50px;
 }
 
+.error {
+	padding-bottom: 10px;
+	text-align: center;
+}
+
+.error div {
+	color: red;
+}
+
 .label {
 	display: flex;
 	border-bottom: 1px solid black;

@@ -21,6 +21,11 @@
 		</div>
 		<div th:if="${#lists.isEmpty(cart.cartItems) == false}" class="main-contents">
 			<div class="cart-item-area">
+				<!-- 在庫不足メッセージ -->
+				<div class="error" th:if="${insufficientStock}" th:each="string : ${insufficientStock}">
+					<div th:text=${string}></div>
+				</div>
+				<!-- ラベル -->
 				<div class="label">
 					<div class="label-image"></div>
 					<div class="label-item">
@@ -33,6 +38,7 @@
 						<div>小計</div>
 					</div>
 				</div>
+				<!-- カートアイテム -->
 				<div class="cart-item-card" th:each="cartItem : ${cart.cartItems}">
 					<!-- 商品画像 -->
 					<img class="image" th:data-id="${cartItem.item.id}" th:src="${cartItem.item.imagePath}" alt="商品画像">

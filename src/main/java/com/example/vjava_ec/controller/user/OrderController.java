@@ -103,7 +103,7 @@ public class OrderController {
 			orderService.insertOrder(order);
 		} catch(InsufficientStockException e) {
 			// 在庫数が足りなかった時
-			attributes.addFlashAttribute("insufficientStock", "在庫が足りませんでした");
+			attributes.addFlashAttribute("insufficientStock", e.getErrorMessage());
 			return "redirect:/user/cart/show";
 		}
 		// sessionから注文情報の削除

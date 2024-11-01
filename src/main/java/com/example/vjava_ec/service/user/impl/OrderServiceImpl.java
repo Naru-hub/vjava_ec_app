@@ -44,7 +44,7 @@ public class OrderServiceImpl implements OrderService{
 			// 在庫数が足りなかった時
 			if (stock < amount) {
 				// カスタムエラーをスロー
-				throw new InsufficientStockException(itemId,stock);
+				throw new InsufficientStockException(itemMapper.selectItemById(itemId),stock);
 			}
 			// 在庫数の更新
 			itemMapper.updateItemStockById(itemId, stock - amount);
