@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.vjava_ec.dto.admin.AdminOrderDetailDTO;
@@ -149,5 +150,36 @@ public class AdminOrderController {
 		attributes.addFlashAttribute("message", "注文履歴詳細情報が更新されました");
 		// 注文履歴詳細画面へリダイレクト
 		return "redirect:/admin/order/" + existingOrderDetail.getOrderId();
+	}
+
+	/**
+	 * 注文一覧検索
+	 * @param search 注文IDまたは注文者名
+	 * @param model
+	 * @return admin/order/list 注文検索結果一覧画面
+	 */
+	@GetMapping("/search")
+	public String searchOrder(@RequestParam(required = false) String search, Model model) {
+		List<AdminOrderHistoryDTO> searchResults;
+	    // 検索ワードが指定されていない場合、全注文一覧を表示
+	    if (search == null || search.isEmpty()) {
+	        searchResults = adminOrderService.findAllOrder();
+	    } else {
+	        // 数字かどうかを判定する正規表現を使用
+	        if (search.matches("\\d+")) {
+	            // 数字で構成されている場合は注文IDで検索
+	            Integer orderId = Integer.valueOf(search);
+	            searchResults = adminOrderService.findSearchOrderId(orderId);
+	        } else {
+	            // 文字列の場合は注文者名で検索
+	            searchResults = adminOrderService.findSearchUserName(search);
+	        }
+	        // 検索結果が空の場合、メッセージを設定
+	        if (searchResults.isEmpty()) {
+	            model.addAttribute("message", "見つかりませんでした");
+	        }
+	    }
+	    model.addAttribute("orderList", searchResults);
+	    return "admin/order/list";
 	}
 }

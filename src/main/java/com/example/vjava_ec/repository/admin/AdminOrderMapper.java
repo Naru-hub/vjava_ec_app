@@ -28,4 +28,14 @@ public interface AdminOrderMapper {
 	 * 注文履歴情報を編集
 	 */
 	void update(AdminOrderDetailDTO orderDetail);
+	
+	/**
+	 * 注文IDで検索
+	 */
+	List<AdminOrderHistoryDTO> findByOrderId(Integer orderId);
+	
+	/**
+	 * 注文者名で検索
+	 */
+	List<AdminOrderHistoryDTO> findByUserName(String userName);
 }
