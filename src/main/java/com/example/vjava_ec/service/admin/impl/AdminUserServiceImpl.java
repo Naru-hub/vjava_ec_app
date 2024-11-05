@@ -3,6 +3,7 @@ package com.example.vjava_ec.service.admin.impl;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.vjava_ec.entity.User;
 import com.example.vjava_ec.repository.admin.AdminUserMapper;
@@ -10,7 +11,11 @@ import com.example.vjava_ec.service.admin.AdminUserService;
 
 import lombok.RequiredArgsConstructor;
 
+/**
+ * 管理者：会員の実装クラス
+ */
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class AdminUserServiceImpl implements AdminUserService {
 	//DI
@@ -41,7 +46,6 @@ public class AdminUserServiceImpl implements AdminUserService {
 	 * 会員ステータスを変更(論理削除)
 	 * 
 	 * @param user
-	 * @return 
 	 */
 	@Override
 	public void changeUserStatus(User user) {

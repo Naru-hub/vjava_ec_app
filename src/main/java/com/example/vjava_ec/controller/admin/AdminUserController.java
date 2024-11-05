@@ -49,32 +49,42 @@ public class AdminUserController {
 	 * @return String 会員詳細画面のビュー名（"admin/user/detail"）
 	 */
 	@GetMapping("/{id}")
-	public String showUserDetail(@PathVariable Integer id, Model model) {
+	public String showUserDetail(@PathVariable Integer id, Model model, RedirectAttributes attributes) {
 		// 会員IDに対応する会員詳細情報を取得
 		User user = adminUserService.findByIdUser(id);
-		// モデルに格納
-		model.addAttribute("user", user);
-		// 会員詳細画面へ遷移
-		return "admin/user/detail";
+		// 会員情報が存在するか
+		if (user != null) {
+			// モデルに格納
+			model.addAttribute("user", user);
+			// 会員詳細画面へ遷移
+			return "admin/user/detail";
+		} else {
+			// フラッシュメッセージの設定
+			attributes.addFlashAttribute("errorMessage", "対象データがありません");
+			// 会員詳細画面へリダイレクト
+			return "redirect:/admin/user/" + id;
+		}
 	}
 
 	/**
 	 * 会員情報編集画面を表示
 	 * @param id
-	 * @param model
+	 * @param model モデルオブジェクト、会員の詳細情報をビューに渡す
 	 * @param attributes
 	 * @return String 会員ステータス変更確認画面のビュー名（"admin/user/edit"）
 	 */
 	@GetMapping("/edit/{id}")
 	public String showEditUserDetail(@PathVariable Integer id, Model model, RedirectAttributes attributes) {
-		// 会員IDに対応する会員詳細情報を取得
+		// 会員IDに対応する会員情報編集画面を取得
 		User editUser = adminUserService.findByIdUser(id);
-
+		// 会員情報が存在するか
 		if (editUser != null) {
+			// モデルに格納
 			model.addAttribute("user", editUser);
 			// 会員ステータス変更確認画面へ遷移
 			return "admin/user/edit";
 		} else {
+			// フラッシュメッセージの設定
 			attributes.addFlashAttribute("errorMessage", "対象データがありません");
 			// 会員詳細画面へリダイレクト
 			return "redirect:/admin/user/" + id;
