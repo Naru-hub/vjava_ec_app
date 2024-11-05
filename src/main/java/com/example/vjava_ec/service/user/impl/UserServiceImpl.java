@@ -149,6 +149,7 @@ public class UserServiceImpl implements UserService{
 	 * ユーザーのログイン状態を確認
 	 * ユーザーが登録したemailが合致している場合、trueを返してログアウトを表示
 	 * 合致していない場合、falseを返してログインを表示
+	 * @return boolean ログインの有無
 	 */
 	@Override
 	public boolean IdentifyUser() {
@@ -157,6 +158,18 @@ public class UserServiceImpl implements UserService{
 			return false;
 		}
 		return true;
+	}
+
+	/**
+	 * パスワードの更新
+	 * @param email
+	 * @param password
+	 */
+	@Override
+	public void updatePassword(String email, String password) {
+		User user = selectUserByEmail(email);
+		user.setPassword(new BCryptPasswordEncoder().encode(password));
+		userMapper.updatePassowrd(user);
 	}
 
 

@@ -16,9 +16,14 @@ function decreaseQuantity() {
 /** 数量+１ボタン */
 function increaseQuantity() {
     var quantityInput = document.getElementById("quantity-input");
+    var stock = quantityInput.getAttribute('max');
     var quantityDisplay = document.querySelector(".quantity-display")
     var currentValue = parseInt(quantityInput.value);
-    if (currentValue < 99) {  // 最大数量99に制限
+    var maxValue = 0;
+    if (stock < 99) {
+		maxValue = stock;
+	}
+    if (currentValue < maxValue) {  // 最大数量99に制限
         quantityInput.value = currentValue + 1;
         quantityDisplay.textContent = currentValue + 1;
     }

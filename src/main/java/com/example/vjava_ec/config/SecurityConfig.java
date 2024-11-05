@@ -83,7 +83,7 @@ public class SecurityConfig {
 		// ★HTTPリクエストに対するセキュリティ設定
 		.authorizeHttpRequests(authz -> authz
 				// 下記のアクセスは認証を必要としない
-				.requestMatchers("/user","/user/login","/user/logout","/user/register","/user/item/list").permitAll()
+				.requestMatchers("/user","/user/login/**","/user/logout","/user/register/**", "/user/item/list").permitAll()
 				// 【会員権限設定】url:/user/**は会員しかアクセスできない
 				.requestMatchers("/user/**").hasAuthority("USER")
 				// その他のリクエストは認証が必要

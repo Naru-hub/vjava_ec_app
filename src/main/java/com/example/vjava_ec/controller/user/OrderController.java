@@ -17,6 +17,7 @@ import com.example.vjava_ec.exception.user.InsufficientStockException;
 import com.example.vjava_ec.form.user.OrderForm;
 import com.example.vjava_ec.helper.user.OrderHelper;
 import com.example.vjava_ec.service.user.CartService;
+import com.example.vjava_ec.service.user.EmailService;
 import com.example.vjava_ec.service.user.OrderService;
 import com.example.vjava_ec.service.user.UserService;
 
@@ -35,9 +36,12 @@ public class OrderController {
 	private final OrderService orderService;
 	private final UserService userService;
 	private final CartService cartService;
+	private final EmailService emailService;
 	
 	/**
 	 * 購入情報入力画面表示
+	 * @param form
+	 * @param model
 	 * @return "user/order/form" 購入情報入力画面
 	 */
 	@GetMapping("/form")
@@ -53,8 +57,8 @@ public class OrderController {
 	 * @param attributes
 	 * @return redirect:/user/order/confirm 購入情報確認画面へリダイレクト
 	 */
-	@PostMapping("/validated")
-	public String validatedOrderForm(@Validated OrderForm form, BindingResult bindingResult, RedirectAttributes attributes, Model model) {
+	@PostMapping("/form")
+	public String validatedOrderForm(@Validated @ModelAttribute("form") OrderForm form, BindingResult bindingResult, RedirectAttributes attributes, Model model) {
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("errors", OrderHelper.getErrorMessages(bindingResult));
 			model.addAttribute("form", form);
@@ -110,6 +114,8 @@ public class OrderController {
 			attributes.addFlashAttribute("insufficientStock", e.getErrorMessage());
 			return "redirect:/user/cart/show";
 		}
+		// Thanksメールの送信
+		emailService.sendThanksEmail(order, userService.selectLoginUser());
 		// sessionから注文情報の削除
 		session.removeAttribute("order");
 		// カートの内容全削除

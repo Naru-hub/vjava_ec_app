@@ -30,7 +30,7 @@ public class ItemServiceImpl implements ItemService{
  	
     /**
      * 商品一覧を取得し、消費税込みの価格に変換 
-     * @return items
+     * @return List<Item> 商品のList
      */
     @Override
     public List<Item> getAllItems() {

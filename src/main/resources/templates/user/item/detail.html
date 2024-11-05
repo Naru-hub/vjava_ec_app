@@ -26,9 +26,9 @@
 				</div>
 				<form th:action="@{/user/cart/add}" method="post" id="cartForm">
 					<input type="hidden" name="itemId" id="itemId-input" th:value="${item.id}">
-				    <input type="hidden" name="amount" id="quantity-input" value="1" min="1" max="99">
+				    <input type="hidden" name="amount" id="quantity-input" value="1" min="1" th:max="${item.stock}">
 				</form>
-				<div class="quantity">
+				<div th:if="${item.saleStatus == 1}" class="quantity">
 					<span>数量：</span>
 					<span class="quantity-box">
 					    <button class="quantity-btn" onclick="decreaseQuantity()">-</button>
@@ -42,7 +42,7 @@
 				<!-- 商品が販売中の時 -->
 				<button th:if="${item.saleStatus == 1}" onclick="submitForm()">カートに追加</button>
 				<!-- 販売中でない時 -->
-				<button th:unless="${item.saleStatus == 1}">在庫がありません</button>
+				<div th:unless="${item.saleStatus == 1}">在庫なし</div>
 			</div>
 		</div>
 	</div>

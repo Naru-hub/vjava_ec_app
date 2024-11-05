@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<link th:href="@{/css/user/common/user_common.css}" rel="stylesheet">
+	<title>パスワードの再設定</title>
+</head>
+<body>
+	<div th:insert="~{user_common :: header}"></div>
+	
+	<h1>パスワードの再設定</h1>
+	<div>登録したメールアドレスを入力してください</div>
+	<div th:if="${success}" th:text="${success}" style="color: blue;"></div>
+	<form th:action="@{/user/login/reset}" method="post">
+		<div>
+			<input type="text" name="email">
+			<span th:if="${error}" th:text="${error}" style="color: red;"></span>
+		</div>
+		<button type="submit">再設定のメールを送る</button>
+	</form>
+
+	<div th:insert="~{user_common :: footer}"></div>
+</body>
+</html>

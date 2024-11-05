@@ -9,22 +9,9 @@
 	text-align: center;
 }
 
-.error {
-	text-align: center;
-	color: red;
-}
-
 .form {
 	display: flex;
 	justify-content: center;
-}
-
-.label {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	height: 200px;
-	padding-right: 10px;
 }
 
 .input {

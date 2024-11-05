@@ -16,7 +16,7 @@
 			</div>
 			<h1>カート</h1>
 			<form th:action="@{/user/cart/delete/all}" method="post">
-				<button id="delete-cart">カートを空にする</button>
+				<button th:if="${#lists.isEmpty(cart.cartItems) == false}" id="delete-cart">カートを空にする</button>
 			</form>
 		</div>
 		<div th:if="${#lists.isEmpty(cart.cartItems) == false}" class="main-contents">

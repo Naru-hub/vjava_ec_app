@@ -52,6 +52,9 @@ public class ItemController {
     public String showItemDetail(@PathVariable Integer id,Model model) {
     	// IDから特定のItemエンティティを取得
     	Item item = itemService.selectItemById(id);
+    	if (item == null) {
+    		return "user/item/list";
+    	}
     	// モデルに商品情報を追加
     	model.addAttribute("item", item);
     	return "user/item/detail";

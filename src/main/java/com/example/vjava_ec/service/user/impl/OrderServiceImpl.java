@@ -80,11 +80,12 @@ public class OrderServiceImpl implements OrderService{
 		List<Order> list = orderMapper.selectOrderListByUserId(userId);
 		return list;
 	}
-	 /**
-	  * IDから特定の注文履歴を取得
-	  * @param id OrderId
-	  * @return Order Orderエンティティ
-	  */
+	
+	/**
+	 * IDから特定の注文履歴を取得
+	 * @param id OrderId
+	 * @return Order Orderエンティティ
+	 */
 	@Override
 	public Order selectOrderById(int id) {
 		Order order = orderMapper.selectOrderByOrderId(id);
