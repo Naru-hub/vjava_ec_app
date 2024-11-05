@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link th:href="@{/css/admin/user/detail.css}" rel="stylesheet">
+	<title>会員詳細</title>
+</head>
+
+<body>
+	<div id="admin-header" th:insert="~{admin_common::admin-header}"></div>
+	<div class="container" style="min-height: 800px;">
+		<div class="row">
+			<div class="col-md-8 offset-md-2 mt-3 text-center">
+				<h1>会員詳細</h1>
+			</div>
+		</div>
+
+		<div class="row info-base mt-3">
+			<div class="col-md-10 offset-md-2">
+				<table class="table table-borderless">
+					<tr>
+						<th>ID</th>
+						<td th:text="${user.id}"></td>
+					</tr>
+					<tr>
+						<th>名前</th>
+						<td th:text="${user.name}"></td>
+					</tr>
+					<tr>
+						<th>メールアドレス</th>
+						<td th:text="${user.email}"></td>
+					</tr>
+					<tr>
+						<th>郵便番号</th>
+						<td th:text="${#strings.substring(user.postcode, 0, 3)} + 
+							' - ' + ${#strings.substring(user.postcode, 3)}">
+						</td>
+					</tr>
+					<tr>
+						<th>住所</th>
+						<td th:text="${user.address}"></td>
+					</tr>
+					<tr>
+						<th>電話番号</th>
+						<td th:text="${user.tel}"></td>
+					</tr>
+					<tr>
+						<th>会員ステータス</th>
+						<td th:text="${user.isDeleted ? '退会済' : '未退会'}"></td>
+					</tr>
+					<tr>
+						<th>登録日時</th>
+						<td th:text="${user.createdAt.format(T(java.time.format.DateTimeFormatter)
+							.ofPattern('yyyy/MM/dd HH:mm:ss'))}"></td>
+					</tr>
+					<tr>
+						<th>更新日時</th>
+						<td th:text="${user.updatedAt.format(T(java.time.format.DateTimeFormatter)
+							.ofPattern('yyyy/MM/dd HH:mm:ss'))}"></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+		<div th:if="${user.isDeleted == false}" class="row">
+			<div class="my-3 col-md-8 offset-md-2 d-flex justify-content-center">
+				<!-- 一覧へ戻るボタン -->
+				<div>
+					<form th:action="@{/admin/user/list}" method="get">
+						<button type="submit" class="btn btn-outline-secondary mx-5">一覧へ戻る</button>
+					</form>
+				</div>
+				<!-- 会員ステータス変更確認ボタン -->
+				<div>
+					<form th:action="@{/admin/user/edit/{id}(id=${user.id})}" method="get">
+						<input type="submit" value="会員ステータス変更確認" class="btn btn-outline-danger">
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- 会員ステータスが退会済なら「一覧へ戻る」ボタンを表示 -->
+		<div th:if="${user.isDeleted == true}" class="row">
+			<div class="my-3 mr-5 col-md-6 offset-md-5 d-flex flex-row text-center">
+				<!-- 一覧へ戻るボタンを表示 -->
+				<a th:href="@{/admin/user/list}" class="btn btn-outline-secondary mr-4">一覧へ戻る</a>
+			</div>
+		</div>
+	</div>
+	<div id="admin-footer" th:insert="~{admin_common::admin-footer}"></div>
+</body>
+
+</html>

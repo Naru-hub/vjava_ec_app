@@ -1,0 +1,119 @@
+@charset "UTF-8";
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    min-height: 800px;
+}
+
+.container {
+    background-color: white;
+    width: 80%;
+    height: auto;
+    max-width: 600px;
+    margin: 10px auto 30px auto;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 0px;
+    font-size: 40px;
+}
+
+.user-edit-form label {
+	display: block;
+	margin-bottom: 10px;
+	/* 増加 */
+	color: rgb(0, 0, 0);
+	font-size: 18px;
+}
+
+/* input要素をcontainer幅に合わせて拡張 */
+.user-edit-form input {
+	/*    width: calc(100% - 24px);  .containerのpadding分 (40px) に合わせる */
+	width: 100%;
+	padding: 12px;
+	border: 1px solid #a9a9a9;
+	border-radius: 4px;
+	box-sizing: border-box;
+	font-size: 16px;
+	margin-bottom: 10px;
+}
+
+.user-edit-form form-group {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	/* 全体を占める */
+}
+
+.user-edit-form input::placeholder{
+    color: #c0c0c0;
+}
+
+.button-keep {
+	width: 100%;
+	/* ボタンの幅も少し狭める */
+	padding: 10px;
+	background-color: #1e90ff;
+	color: white;
+	font-size: 1.1em;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+
+.button-keep:hover {
+	background-color: #4178F3;
+}
+
+
+.button-cancel {
+	width: 100%;
+	/* ボタンの幅も少し狭める */
+	padding: 10px;
+	background-color: rgb(128, 128, 128);
+	color: white;
+	font-size: 1.1em;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+
+.button-cancel:hover {
+	background-color: rgb(100, 100, 100);
+}
+
+label {
+	font-weight: bold;
+	color: #666;
+	margin-bottom: 5px;
+	width: 100%;
+	/*	 ラベルの幅も調整 */
+}
+
+.error {
+	color: #e74c3c;
+	font-size: 0.9em;
+	margin-top: 2px;
+	width: 60%;
+	/* エラー表示も幅を揃える */
+	text-align: left;
+	/* 左寄せ */
+	margin-bottom: 10px;
+}

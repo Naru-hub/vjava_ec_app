@@ -21,7 +21,7 @@ import lombok.RequiredArgsConstructor;
  @RequiredArgsConstructor
 public class ItemServiceImpl implements ItemService{
 	
-	//DI
+	// DI
     private final ItemMapper itemMapper;
     
     // 消費税率(定数)
@@ -75,4 +75,13 @@ public class ItemServiceImpl implements ItemService{
 		// データベースの情報更新
 		itemMapper.updateSaleStatusById(item);
 	}
+	
+	/**
+     * 商品名を部分一致検索
+     * @return keywordに部分一致した商品
+     */
+    public List<Item> searchItems(String keyword) {
+        return itemMapper.findItemSearch(keyword);
+    }
 }
+

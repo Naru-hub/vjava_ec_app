@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
 	<meta charset="UTF-8">
@@ -82,17 +82,19 @@
 					<tr>
 						<th>登録日時</th>
 						<td
-							th:text="${item.createdAt.format(T(java.time.format.DateTimeFormatter).ofPattern('yyyy/MM/dd HH:mm:ss'))}">
+							th:text="${item.createdAt.format(T(java.time.format.DateTimeFormatter)
+								.ofPattern('yyyy/MM/dd HH:mm:ss'))}">
 						</td>
 					</tr>
 					<tr>
 						<th>更新日時</th>
 						<td
-							th:text="${item.updatedAt.format(T(java.time.format.DateTimeFormatter).ofPattern('yyyy/MM/dd HH:mm:ss'))}">
+							th:text="${item.updatedAt.format(T(java.time.format.DateTimeFormatter)
+								.ofPattern('yyyy/MM/dd HH:mm:ss'))}">
 						</td>
 					</tr>
 				</table>
-				<div class="my-4 ml-2 col-md-10 offset-md-4 d-flex flex-row">
+				<div class="my-2 ml-2 col-md-10 offset-md-4 d-flex flex-row">
 					<!-- 一覧へ戻るボタンを表示 -->
 					<a th:href="@{/admin/item/list}" class="btn btn-outline-secondary mr-4">一覧へ戻る</a>
 					<!-- 編集ボタンを表示 -->

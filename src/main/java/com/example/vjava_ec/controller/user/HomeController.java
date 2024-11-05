@@ -29,7 +29,6 @@ public class HomeController {
 	public String showHome(Model model) {
         // ユーザーがログイン中か確認
         model.addAttribute("islogin",userService.IdentifyUser());
-        System.out.println(userService.IdentifyUser());
 		return "user/home";
 	}
 }

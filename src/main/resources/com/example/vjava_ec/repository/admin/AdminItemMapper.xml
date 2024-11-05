@@ -3,7 +3,7 @@
 <mapper namespace="com.example.vjava_ec.repository.admin.AdminItemMapper">
 	<!-- 商品全件検索 -->
 	<select id="selectAll"
-		resultType="com.example.vjava_ec.dto.admin.adminItemDTO">
+		resultType="com.example.vjava_ec.dto.admin.AdminItemDTO">
 		SELECT i.id as itemId, i.character_id as characterId,
 		i.name, i.detail, i.price,
 		i.stock, i.sale_status as saleStatus,
@@ -18,7 +18,7 @@
 
 	<!-- 商品1件検索 -->
 	<select id="selectById"
-		resultType="com.example.vjava_ec.dto.admin.adminItemDTO">
+		resultType="com.example.vjava_ec.dto.admin.AdminItemDTO">
 		SELECT i.id as itemId, i.character_id as characterId,
 		i.name, i.detail, i.price,
 		i.stock, i.sale_status as saleStatus,
@@ -57,7 +57,8 @@
 	<!-- 商品情報の削除(論理削除) -->
 	<update id="delete">
 		UPDATE items
-		SET is_deleted = #{isDeleted}
+		SET is_deleted = #{isDeleted},
+		updated_at = CURRENT_TIMESTAMP
 		WHERE id = #{itemId};
 	</update>
 </mapper>

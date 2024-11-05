@@ -24,6 +24,7 @@ public class AdminCharacterServiceImpl implements AdminCharacterService {
 
 	/**
 	 * キャラクタ一覧情報を検索
+	 * 
 	 * @return List<Character> キャラクタ一覧情報のリスト
 	 */
 	@Override
@@ -33,11 +34,42 @@ public class AdminCharacterServiceImpl implements AdminCharacterService {
 
 	/**
 	 * キャラクタの詳細情報を検索
+	 * 
 	 * @param id
 	 * @return Character キャラクタの詳細情報
 	 */
 	@Override
 	public Character findByIdCharacter(Integer id) {
 		return adminCharacterMapper.selectById(id);
+	}
+
+	/**
+	 * 新規キャラクタを登録
+	 * 
+	 * @param character
+	 */
+	@Override
+	public void createCharacter(Character character) {
+		adminCharacterMapper.insertCharacter(character);
+	}
+
+	/**
+	 * キャラクタ情報を更新
+	 * 
+	 * @param character
+	 */
+	@Override
+	public void updateCharacter(Character character) {
+		adminCharacterMapper.updateCharacter(character);
+	}
+	
+	/**
+	 * キャラクタ情報を削除(論理削除)
+	 * 
+	 * @param character
+	 */
+	@Override
+	public void deleteCharacter(Character character) {
+		adminCharacterMapper.deleteCharacter(character);
 	}
 }

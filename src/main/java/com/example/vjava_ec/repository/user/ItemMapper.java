@@ -38,4 +38,9 @@ public interface ItemMapper {
 	 * 在庫が切れた特定のIdの商品のステータスを更新する
 	 */
 	void updateSaleStatusById(Item item);
+	
+	/**
+	 * 削除フラグがfalseの商品からkeywordに部分一致検索した商品を取得
+	 */
+	List<Item> findItemSearch(@Param("keyword") String keyword);
 }

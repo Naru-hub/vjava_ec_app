@@ -1,44 +1,62 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<link th:href="@{/css/user/user/edit.css}" rel="stylesheet">
+	<link th:href="@{/css/user/common/user_common.css}" rel="stylesheet">
+	<title>会員情報編集</title>
 </head>
+
 <body>
-	<h1>会員情報編集</h1>
-	<form th:object="${form}" th:action="@{/user/update}" method="post">
-		<input type="hidden" th:field="*{userId}">
-		
-		<div>
-			<label for="name">名前　　　　　</label>
-			<input type="text" id="name" th:field="*{name}">
-			<span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"style="color: red;"></span>
-		</div>
-		<div>
-			<label for="email">メールアドレス</label>
-			<input type="text" th:field="*{email}">
-			<span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"style="color: red;"></span>
-		</div>
-		<div>
-			<label for="postcode">郵便番号　　　</label>
-			<input type="text" th:field="*{postcode}">
-			<span th:if="${#fields.hasErrors('postcode')}" th:errors="*{postcode}"style="color: red;"></span>
-		</div>
-		<div>
-			<label for="address">住所　　　　　</label>
-			<input type="text" th:field="*{address}">
-			<span th:if="${#fields.hasErrors('address')}" th:errors="*{address}"style="color: red;"></span>
-		</div>
-		<div>
-			<label for="tel">電話番号　　　</label>
-			<input type="text" th:field="*{tel}">
-			<span th:if="${#fields.hasErrors('tel')}" th:errors="*{tel}"style="color: red;"></span>
-		</div>
-		
-		<button type="submit">保存</button>
-	</form>
-	<form action="/user/detail" method="get">
-		<button type="submit">キャンセル</button>
-	</form>
+	<div th:insert="~{user_common :: header}"></div>
+	<h2>会員情報編集</h2>
+	<div class="container">
+		<form th:object="${form}" th:action="@{/user/update}" method="post">
+			<div class="user-edit-form">
+				<input type="hidden" th:field="*{userId}">
+
+				<div class="form-group">
+					<label for="name">名前　　　　　</label>
+					<input type="text" id="name" th:field="*{name}" placeholder="名前を入力">
+					<div class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+				</div>
+				<div class="form-group">
+					<label for="email">メールアドレス</label>
+					<input type="text" th:field="*{email}" placeholder="メールアドレスを入力">
+					<div class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+				</div>
+				<div class="form-group">
+					<label for="postcode">郵便番号　　　</label>
+					<input type="text" th:field="*{postcode}" placeholder="郵便番号を入力">
+					<div class="error" th:if="${#fields.hasErrors('postcode')}" th:errors="*{postcode}"></div>
+				</div>
+				<div class="form-group">
+					<label for="address">住所　　　　　</label>
+					<input type="text" th:field="*{address}" placeholder="住所を入力">
+					<div class="error" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></div>
+				</div>
+				<div class="form-group">
+					<label for="tel">電話番号　　　</label>
+					<input type="text" th:field="*{tel}" placeholder="電話番号を入力">
+					<div class="error" th:if="${#fields.hasErrors('tel')}" th:errors="*{tel}"></div>
+				</div>
+
+				<button class="button-keep" type="submit">保存</button>
+
+
+				<form action="/user/detail" method="get">
+					<button class="button-cancel" type="submit">キャンセル</button>
+				</form>
+
+			</div>
+
+		</form>
+
+	</div>
+
+
+	<div th:insert="~{user_common :: footer}"></div>
 </body>
-</html>
+
+</html>ml>

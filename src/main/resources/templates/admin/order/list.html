@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link th:href="@{/css/admin/order/list.css}" rel="stylesheet">
+	<title>注文履歴一覧</title>
+</head>
+
+<body>
+	<div id="admin-header" th:insert="~{admin_common::admin-header}"></div>
+	<div class="my-4 mx-5" style="min-height: 780px;">
+		<div class="row justify-content-center">
+			<div class="col-md-8 text-center mb-3">
+				<h1>注文履歴一覧</h1>
+			</div>
+		</div>
+
+		<!-- フラッシュメッセージの表示 -->
+		<div class="row">
+			<div th:if="${message}" th:text="${message}" class="col-md-4 alert alert-primary" role="alert"></div>
+			<div th:if="${errorMessage}" th:text="${errorMessage}" class="col-md-5 alert alert-danger" role="alert">
+			</div>
+		</div>
+
+		<!-- 検索フォーム -->
+		<div class="row">
+			<div class="col-md-12 info-base">
+				<form th:action="@{/admin/order/search}" method="get">
+					<div class="d-flex flex-row">
+						<label for="search" class="col-md-2 offset-md-1 text-right form-label mt-1">注文履歴検索：</label>
+						<input type="text" id="search" name="search" placeholder="注文IDまたは注文者名で検索"
+							class="col-md-5 form-control mr-3">
+						<button type="submit" class="col-md-1 btn btn-info">検索</button>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<!-- 注文履歴データがない場合のメッセージ -->
+				<div th:if="${orderList.isEmpty()}" class="col-md-5 alert alert-danger">注文履歴データがありません。</div>
+				<!-- 注文履歴一覧 -->
+				<table th:if="${!orderList.isEmpty()}"  class="table table-hover table-bordered">
+					<thead class="table-info">
+						<tr>
+							<th>注文ID</th>
+							<th>注文者</th>
+							<th>購入日</th>
+							<th>合計金額（税込）</th>
+							<th>注文ステータス</th>
+							<th>更新日</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="order : ${orderList}">
+							<td th:text="${order.orderId}"></td>
+							<td th:text="${order.userName}"></td>
+							<td th:text="${order.createdAt.format(T(java.time.format.DateTimeFormatter)
+								.ofPattern('yyyy/MM/dd HH:mm'))}"></td>
+							<td th:text="${#numbers.formatInteger(order.totalPrice,3,'COMMA')} + '円'"></td>
+							<td>
+								<span th:if="${order.orderStatus == 1}" th:text="'受付済'"></span>
+								<span th:if="${order.orderStatus == 2}" th:text="'発送準備中'"></span>
+								<span th:if="${order.orderStatus == 3}" th:text="'発送済'"></span>
+								<span th:if="${order.orderStatus == 4}" th:text="'キャンセル済'"></span>
+							</td>
+							<td th:text="${order.updatedAt.format(T(java.time.format.DateTimeFormatter)
+								.ofPattern('yyyy/MM/dd HH:mm'))}"></td>
+							<td>
+								<a th:href="@{/admin/order/{id}(id=${order.orderId})}"
+									class="btn btn-sm btn-outline-info">詳細</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div id="admin-footer" th:insert="~{admin_common::admin-footer}"></div>
+
+</body>
+
+</html>

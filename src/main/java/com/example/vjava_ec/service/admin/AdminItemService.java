@@ -2,7 +2,7 @@ package com.example.vjava_ec.service.admin;
 
 import java.util.List;
 
-import com.example.vjava_ec.dto.admin.adminItemDTO;
+import com.example.vjava_ec.dto.admin.AdminItemDTO;
 import com.example.vjava_ec.entity.Item;
 
 /**
@@ -12,12 +12,12 @@ public interface AdminItemService {
 	/**
 	 * 商品一覧情報を検索
 	 */
-	List<adminItemDTO> findAllItem();
+	List<AdminItemDTO> findAllItem();
 	
 	/**
 	 * 商品詳細情報を検索
 	 */
-	adminItemDTO findByIdItem(Integer id);
+	AdminItemDTO findByIdItem(Integer id);
 	
 	/**
 	 * 商品を新規作成
@@ -32,5 +32,5 @@ public interface AdminItemService {
 	/**
 	 * 商品情報を削除(論理削除)
 	 */
-	void deleteItem(adminItemDTO item);
+	void deleteItem(AdminItemDTO item);
 }

@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.vjava_ec.entity.Item;
 import com.example.vjava_ec.service.user.ItemService;
@@ -59,4 +60,36 @@ public class ItemController {
     	model.addAttribute("item", item);
     	return "user/item/detail";
     }
-}
+    
+    /**
+     * 商品検索
+     * @param keyword 検索ワード
+     * @param model
+     * @return user/itemList 商品検索結果一覧画面
+     */
+    @GetMapping("/search") 
+    public String showSearchedItemList(@RequestParam(name = "keyword", required = false) String keyword, Model model) {
+    	// 検索結果を入れるリスト
+    	List<Item> searchItemsList;
+    	// 検索キーワードがある場合は部分一致検索を行う
+    	if(keyword != null && !keyword.isEmpty()) {
+    	   searchItemsList = itemService.searchItems(keyword);
+    	   // 検索結果が空の場合にメッセージを表示するためのフラグを追加
+    	   if(searchItemsList.isEmpty()) {
+    		   	model.addAttribute("message", "関連した商品はありませんでした");
+    	   }
+    	} else {
+    		// キーワードがない場合は全商品を取得
+    		searchItemsList = itemService.getAllItems();
+    	}
+        // モデルに商品情報を追加
+        model.addAttribute("items", searchItemsList);
+        // ユーザーがログイン中か確認する
+        model.addAttribute("islogin", userService.IdentifyUser());
+        // 検索キーワードをモデルに追加
+        model.addAttribute("keyword", keyword);
+    		
+        return "user/itemList";
+    	}
+    }
+

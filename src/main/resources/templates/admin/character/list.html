@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<title>キャラクタ一覧</title>
+</head>
+
+<body>
+	<div id="admin-header" th:insert="~{admin_common::admin-header}"></div>
+	<div class="mt-4 mx-5" style="min-height: 780px;">
+		<div class="row justify-content-center">
+			<div class="col-md-8 offset-md-2 text-center">
+				<h1>キャラクター一覧</h1>
+			</div>
+			<div class="col-md-2 text-end">
+				<a th:href="@{/admin/character/form}" class="btn btn-sm btn-outline-info mt-2">新規登録</a>
+			</div>
+		</div>
+
+		<div class="row">
+			<!-- フラッシュメッセージの表示 -->
+			<div th:if="${message}" th:text="${message}" class="col-md-5 alert alert-primary" role="alert">
+				完了メッセージ
+			</div>
+			<div th:if="${errorMessage}" th:text="${errorMessage}" class="col-md-5 alert alert-danger" role="alert">
+				エラーメッセージ
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<!-- キャラクタデータがない場合のメッセージ -->
+				<div th:if="${characterList.isEmpty()}" class="col-md-5 alert alert-danger">キャラクタデータがありません。</div>
+				<!-- キャラクタ一覧 -->
+				<table th:if="${!characterList.isEmpty()}" class="table table-hover table-bordered">
+					<thead class="table-info">
+						<tr>
+							<th>ID</th>
+							<th>キャラクター画像</th>
+							<th>キャラクター名</th>
+							<th>作成日時</th>
+							<th>更新日時</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="character : ${characterList}">
+							<td th:text="${character.id}"></td>
+							<td class="text-center">
+								<!-- 画像の表示 -->
+								<span th:if="${character.imagePath != null and character.imagePath != ''}">
+									<img th:src="@{${character.imagePath}}" alt="Character Image" class="img-fluid"
+										style="max-width: 100%; height: 180px; object-fit: cover;">
+								</span>
+							</td>
+							<td th:text="${character.name}"></td>
+							<td
+								th:text="${character.createdAt.format(T(java.time.format.DateTimeFormatter)
+									.ofPattern('yyyy/MM/dd HH:mm'))}">
+							</td>
+							<td
+								th:text="${character.updatedAt.format(T(java.time.format.DateTimeFormatter)
+									.ofPattern('yyyy/MM/dd HH:mm'))}">
+							</td>
+							<td>
+								<a th:href="@{/admin/character/{id}(id=${character.id})}"
+									class="btn btn-sm btn-outline-info">詳細</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div id="admin-footer" th:insert="~{admin_common::admin-footer}"></div>
+</body>
+
+</html>

@@ -29,6 +29,7 @@
 		WHERE is_deleted = false
 		ORDER BY id;
 	</select>
+	
 	<!-- 商品Idから特定のItemエンティティを取得 -->
 	<select id="selectItemById" resultMap="ItemResultMap">
 		SELECT 
@@ -54,19 +55,30 @@
 		WHERE
 			i.id = #{id};
 	</select>
+	
 	<!-- 商品Idから特定の商品の在庫数を取得 -->
 	<select id="selectItemStockById">
 		SELECT stock FROM items WHERE id = #{id} FOR UPDATE;
 	</select>
+	
 	<!-- 商品Idから特定の商品の在庫数を更新 -->
 	<update id="updateItemStockById">
 		UPDATE items SET stock = #{amount} 
 		WHERE id = #{id};
 	</update>
+	
 	<!-- 在庫がきれた特定の商品の販売ステータスを更新 -->
 	<update id="updateSaleStatusById">
 		UPDATE items
 		SET sale_status = #{saleStatus}
 		WHERE id = #{id};
 	</update>
+	
+	<!-- keywordに部分一致した商品を検索 -->
+    <select id="findItemSearch" parameterType="String" resultType="com.example.vjava_ec.entity.Item">
+         SELECT id, character_id as characterId, name, detail, price, stock, sale_status as saleStatus, is_limited as isLimited, is_deleted as isDeleted, image_path as imagePath, created_at as createdAt, updated_at as updatedAt 
+         FROM items 
+         WHERE is_deleted = false
+         AND name ILIKE '%' || #{keyword} || '%';
+    </select>
 </mapper>

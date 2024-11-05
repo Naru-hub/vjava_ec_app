@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<title>キャラクタ新規登録</title>
+</head>
+
+<body>
+	<div id="admin-header" th:insert="~{admin_common::admin-header}"></div>
+	<div class="container" style="min-height: 750px;">
+		<div class="row">
+			<!-- フラッシュメッセージの表示 -->
+			<div th:if="${errorMessage}" th:text="${errorMessage}" class="alert alert-danger col-md-5" role="alert">
+				エラーメッセージ
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-md-10 offset-md-1 mt-3">
+				<h1 class="mb-4 text-center">キャラクター新規登録</h1>
+				<form th:action="@{/admin/character/create}" th:object="${adminCharacterForm}" method="post"
+					enctype="multipart/form-data">
+
+					<!-- キャラクタ名 -->
+					<div class="my-3 d-flex flex-row">
+						<label for="nameInput" class="col-md-3 form-label">キャラクター名</label>
+						<input type="text" th:field="*{name}" class="col-md-8 form-control" id="nameInput"
+							placeholder="キャラクター名を入力">
+						<span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="col-md-10"
+							style="color: red;"><span />
+					</div>
+
+					<!-- 紹介文 -->
+					<div class="my-3 d-flex flex-row">
+						<label for="descriptionInput" class="col-md-3 form-label">紹介文</label>
+						<textarea rows="10" th:field="*{description}" class="col-md-8 form-control"
+							id="descriptionInput" placeholder="キャラクターの紹介文を入力"></textarea>
+						<span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="col-md-10"
+							style="color: red;"></span>
+					</div>
+
+					<!-- 身長 -->
+					<div class="my-3 d-flex flex-row">
+						<label for="heightInput" class="col-md-3 form-label">身長</label>
+						<input type="text" th:field="*{height}" class="col-md-8 form-control" id="heightInput"
+							placeholder="身長を入力">
+						<p class="form-text ml-2">cm</p>
+						<span th:if="${#fields.hasErrors('height')}" th:errors="*{height}" class="col-md-10"
+							style="color: red;"></span>
+					</div>
+
+					<!-- デビュー日 -->
+					<div class="my-3 d-flex flex-row">
+						<label for="debutDateInput" class="col-md-3 form-label">デビュー日</label>
+						<input type="date" th:field="*{debutDate}" class="col-md-8 form-control" id="debutDateInput">
+						<span th:if="${#fields.hasErrors('debutDate')}" th:errors="*{debutDate}" class="col-md-10"
+							style="color: red;"></span>
+					</div>
+
+					<!-- 画像 -->
+					<div class="my-3 d-flex flex-row">
+						<label for="file" class="col-md-3 form-label">画像</label>
+						<input type="file" th:field="*{file}" class="col-md-8 form-control" id="file" name="file">
+						<span th:if="${#fields.hasErrors('file')}" th:errors="*{file}" class="col-md-10"
+							style="color: red;"></span>
+					</div>
+
+					<!-- ボタン -->
+					<div class="my-4 col-md-8 offset-md-4 d-flex flex-row text-center">
+						<!-- キャンセルボタンを表示 -->
+						<a th:href="@{/admin/character/list}" class="btn btn-outline-secondary mr-3">キャンセル</a>
+						<!-- 登録ボタンを表示 -->
+						<input type="submit" value="登録" class="btn btn-outline-info mx-3">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div id="admin-footer" th:insert="~{admin_common::admin-footer}"></div>
+</body>
+
+</html>

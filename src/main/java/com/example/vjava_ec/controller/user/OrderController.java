@@ -141,6 +141,8 @@ public class OrderController {
 	@GetMapping("/list")
 	public String showOrderList(Model model) {
 		model.addAttribute("orderList", orderService.selectOrderList());
+        // ユーザーがログイン中か確認する
+        model.addAttribute("islogin",userService.IdentifyUser());
 		return "user/order/list";
 	}
 	
@@ -153,6 +155,8 @@ public class OrderController {
 	@GetMapping("/{id}")
 	public String showOrderDetail(@PathVariable Integer id,Model model) {
 		model.addAttribute("order", orderService.selectOrderById(id));
+        // ユーザーがログイン中か確認する
+        model.addAttribute("islogin",userService.IdentifyUser());
 		return "user/order/detail";
 	}
 	
