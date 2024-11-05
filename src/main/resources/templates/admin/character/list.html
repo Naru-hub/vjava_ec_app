@@ -33,9 +33,9 @@
 		<div class="row">
 			<div class="col-md-12">
 				<!-- キャラクタデータがない場合のメッセージ -->
-				<div th:if="${characterList.isEmpty() and message == null}" class="col-md-5 alert alert-danger">キャラクタデータがありません。</div>
+				<div th:if="${characterList.isEmpty()}" class="col-md-5 alert alert-danger">キャラクタデータがありません。</div>
 				<!-- キャラクタ一覧 -->
-				<table class="table table-hover table-bordered">
+				<table th:if="${!characterList.isEmpty()}" class="table table-hover table-bordered">
 					<thead class="table-info">
 						<tr>
 							<th>ID</th>

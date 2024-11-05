@@ -5,6 +5,7 @@
 	<meta charset="UTF-8">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link th:href="@{/css/admin/order/list.css}" rel="stylesheet">
 	<title>注文履歴一覧</title>
 </head>
 
@@ -12,23 +13,38 @@
 	<div id="admin-header" th:insert="~{admin_common::admin-header}"></div>
 	<div class="my-4 mx-5" style="min-height: 780px;">
 		<div class="row justify-content-center">
-			<div class="col-md-8 text-center">
+			<div class="col-md-8 text-center mb-3">
 				<h1>注文履歴一覧</h1>
 			</div>
 		</div>
+
+		<!-- フラッシュメッセージの表示 -->
 		<div class="row">
-			<!-- フラッシュメッセージの表示 -->
-			<div th:if="${message}" th:text="${message}" class="col-md-5 alert alert-primary" role="alert">
-				完了メッセージ
-			</div>
+			<div th:if="${message}" th:text="${message}" class="col-md-4 alert alert-primary" role="alert"></div>
 			<div th:if="${errorMessage}" th:text="${errorMessage}" class="col-md-5 alert alert-danger" role="alert">
-				エラーメッセージ
 			</div>
+		</div>
+
+		<!-- 検索フォーム -->
+		<div class="row">
+			<div class="col-md-12 info-base">
+				<form th:action="@{/admin/order/search}" method="get">
+					<div class="d-flex flex-row">
+						<label for="search" class="col-md-2 offset-md-1 text-right form-label mt-1">注文履歴検索：</label>
+						<input type="text" id="search" name="search" placeholder="注文IDまたは注文者名で検索"
+							class="col-md-5 form-control mr-3">
+						<button type="submit" class="col-md-1 btn btn-info">検索</button>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<div class="row">
 			<div class="col-md-12">
 				<!-- 注文履歴データがない場合のメッセージ -->
-				<div th:if="${orderList.isEmpty() and message == null}" class="col-md-5 alert alert-danger">注文履歴データがありません。</div>
+				<div th:if="${orderList.isEmpty()}" class="col-md-5 alert alert-danger">注文履歴データがありません。</div>
 				<!-- 注文履歴一覧 -->
-				<table class="table table-hover table-bordered">
+				<table th:if="${!orderList.isEmpty()}"  class="table table-hover table-bordered">
 					<thead class="table-info">
 						<tr>
 							<th>注文ID</th>
