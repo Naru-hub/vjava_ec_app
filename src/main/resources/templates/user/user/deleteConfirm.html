@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<link th:href="@{/css/user/common/user_common.css}" rel="stylesheet">
-<title>退会確認</title>
+	<meta charset="UTF-8">
+	<link th:href="@{/css/user/user/deleteConfirm.css}" rel="stylesheet">
+	<link th:href="@{/css/user/common/user_common.css}" rel="stylesheet">
+	<title>退会確認</title>
 </head>
+
 <body>
 	<div th:insert="~{user_common :: header}"></div>
-
-	<h1>退会しますか？</h1>
-	<form action="/user/detail" method="get">
-		<button type="submit" >キャンセル</button>
-	</form>
-	<form th:action="@{/user/delete}" method="post">
-		<button type="submit" >退会</button>
-	</form>
-	
+	<div class="container">
+		<h2>退会しますか？</h2>
+		<form action="/user/detail" method="get">
+			<button type="submit">キャンセル</button>
+		</form>
+		<form th:action="@{/user/delete}" method="post">
+			<button type="submit">退会</button>
+		</form>
+	</div>
 	<div th:insert="~{user_common :: footer}"></div>
 </body>
+
 </html>

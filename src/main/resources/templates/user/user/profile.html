@@ -11,20 +11,8 @@
 <body>
 	<div th:insert="~{user_common :: header}"></div>
 
-	<div class="profile-container">
 		<h1 class="profile-title">会員情報詳細</h1>
 
-		<div class="button-group">
-			<form th:action="@{/user/item/list}" method="get">
-				<button type="submit" class="btn btn-back">一覧に戻る</button>
-			</form>
-			<form th:action="@{/user/delete/confirm}" method="get">
-				<button type="submit" class="btn btn-delete">退会</button>
-			</form>
-			<form th:action="@{/user/order/list}" method="get">
-				<button type="submit" class="btn btn-order">注文履歴</button>
-			</form>
-		</div>
 		<div class="profile-info">
 			<div class="info-item">
 				<div class="info-label">名前</div>
@@ -47,7 +35,21 @@
 				<div class="info-value"><span th:text="${user.tel}"></span></div>
 			</div>
 		</div>
-		<div class="edit-button">
+<!--		<div class="edit-button">-->
+<!--			<form th:action="@{/user/edit}" method="get">-->
+<!--				<button type="submit" class="btn btn-edit">編集</button>-->
+<!--			</form>-->
+<!--		</div>-->
+		<div class="button-group">
+			<form th:action="@{/user/item/list}" method="get">
+				<button type="submit" class="btn btn-back">一覧に戻る</button>
+			</form>
+			<form th:action="@{/user/delete/confirm}" method="get">
+				<button type="submit" class="btn btn-delete">退会</button>
+			</form>
+			<form th:action="@{/user/order/list}" method="get">
+				<button type="submit" class="btn btn-order">注文履歴</button>
+			</form>
 			<form th:action="@{/user/edit}" method="get">
 				<button type="submit" class="btn btn-edit">編集</button>
 			</form>

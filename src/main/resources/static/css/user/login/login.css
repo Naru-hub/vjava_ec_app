@@ -67,19 +67,19 @@ label {
     background-color: #0056b3;
 }
 
-.register-link {
+.login-link {
     text-align: center;
     margin-top: 25px;
     color: #666;
     font-size: 20px;
 }
 
-.register-link a {
+.login-link a {
     color: #007bff;
     text-decoration: none;
     font-weight: bold;
 }
 
-.register-link a:hover {
+.login-link a:hover {
     text-decoration: underline;
 }

@@ -30,17 +30,19 @@
 			<form th:action="@{/user/authentication}" method="post">
 				<div class="form-group">
 					<label for="email">メールアドレス</label>
-					<input type="text" id="email" name="email" placeholder="メールアドレスを入力" required>
+					<input type="text" id="email" name="email" placeholder="メールアドレスを入力" >
 				</div>
 				<div class="form-group">
 					<label for="password">パスワード</label>
-					<input type="password" id="password" name="password" placeholder="パスワードを入力" required>
+					<input type="password" id="password" name="password" placeholder="パスワードを入力" >
 				</div>
 				<button type="submit">ログイン</button>
 			</form>
 		</div>
-		<div class="register-link">
+		<div class="login-link">
 			<p>アカウントをお持ちでない方は <a th:href="@{/user/register}" style="font-weight: bold;"> こちら </a></p>
+
+			<p>パスワードを忘れた方は <a th:href="@{/user/login/reset}" style="font-weight: bold;"> こちら </a></p>
 		</div>
 	</div>
 
