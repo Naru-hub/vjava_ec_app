@@ -50,7 +50,7 @@
 					<!-- 数量変更と削除 -->
 					<div class="cart-item-amount">
 						<form class="cart-item-amount-edit" th:action="@{/user/cart/edit/{id}(id=${cartItem.item.id})}" method="post">
-							<input type="number" name="amount" th:value="${cartItem.amount}" min="1" max="99">
+							<input type="number" name="amount" th:value="${cartItem.amount}" min="1" th:max="${cartItem.item.isLimited ? 5 : 10}">
 							<button type="submit">変更</button>
 						</form>
 					</div>
