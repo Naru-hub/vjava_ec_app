@@ -14,6 +14,8 @@
     </select>
     <!-- 更新 -->
     <update id="update">
-	    UPDATE users SET is_deleted = true WHERE id = #{id}
+	    UPDATE users
+	    SET is_deleted = #{isDeleted}, updated_at = CURRENT_TIMESTAMP
+	    WHERE id = #{id}
     </update>
 </mapper>
