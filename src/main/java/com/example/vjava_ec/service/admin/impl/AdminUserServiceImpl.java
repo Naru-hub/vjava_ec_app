@@ -45,6 +45,8 @@ public class AdminUserServiceImpl implements AdminUserService {
 	 */
 	@Override
 	public void changeUserStatus(User user) {
+		// 削除フラグをTRUEにする
+		user.setDeleted(true);
 		adminUserMapper.update(user);
 	}
 

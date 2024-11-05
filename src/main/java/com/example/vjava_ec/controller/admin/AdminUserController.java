@@ -93,9 +93,6 @@ public class AdminUserController {
 		User user = adminUserService.findByIdUser(id);
 		// 会員情報が存在するか
 		if (user != null) {
-			// 削除フラグをTRUEにする
-			user.setDeleted(true);
-
 			// 会員情報を削除
 			adminUserService.changeUserStatus(user);
 			// フラッシュメッセージの設定
