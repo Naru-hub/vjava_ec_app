@@ -115,6 +115,6 @@ public class LoginController {
 			return "user/login/resetpassword";
 		}
 		userService.updatePassword(email,form.getPassword());
-		return "user/login/passwordreseted";
+		return "user/login/password-reset-complete";
 	}
 }
