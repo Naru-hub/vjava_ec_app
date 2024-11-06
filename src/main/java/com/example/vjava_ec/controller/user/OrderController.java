@@ -93,6 +93,23 @@ public class OrderController {
 	}
 	
 	/**
+	 * 
+	 * @param session
+	 * @return reditect:/user/item/list 商品一覧画面にリダイレクト
+	 */
+	@PostMapping("/cancel")
+	public String cancelOrder(HttpSession session) {
+		Cart cart = (Cart)session.getAttribute("cart");
+		if (cart == null) {
+			return "reditect:/user/cart/show";
+		}
+		// 保持情報の破棄
+		session.removeAttribute("order");
+		cartService.deleteAllCartItem(cart);
+		return "redirect:/user/item/list";
+	}
+	
+	/**
 	 * 購入実行エンドポイント
 	 * @param session
 	 * @param attributes

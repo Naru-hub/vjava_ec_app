@@ -54,7 +54,9 @@
 				</div>
 	        </div>
 			<div class="button-area">
-				<button id="canselButton" onclick="history.back()">キャンセルボタン</button>
+				<form th:action="@{/user/order/cancel}" method="post">
+					<button type="submit">キャンセル</button>
+				</form>
 				<form th:action="@{/user/order/create}" method="post">
 					<button type="submit">購入確定</button>
 				</form>
