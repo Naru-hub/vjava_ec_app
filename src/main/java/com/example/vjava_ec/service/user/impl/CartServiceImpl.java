@@ -48,7 +48,7 @@ public class CartServiceImpl implements CartService{
 	}
 
 	/**
-	 * カートアイテムの数量を変更、及び小計の更新
+	 * カートアイテムの数量を変更
 	 * @param cart
 	 * @param itemId
 	 * @param newAmount

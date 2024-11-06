@@ -39,7 +39,7 @@ public class RegisterController {
 	@GetMapping
 	public String showRegister(Model model) {
 		model.addAttribute("signupUserForm", new SignupUserForm());
-		return "user/register";
+		return "user/register/register";
 	}
 	
     /**
@@ -54,7 +54,7 @@ public class RegisterController {
      * 			失敗時はuser/register 新規登録画面
      */
 	@PostMapping
-	public String newRegister(@Validated @ModelAttribute("signupUserForm") SignupUserForm signupUserForm, 
+	public String sendAuthCodeEmail(@Validated @ModelAttribute("signupUserForm") SignupUserForm signupUserForm, 
 							   BindingResult result, 
 							   RedirectAttributes redirectAttributes,
 							   HttpSession session) {
@@ -77,29 +77,8 @@ public class RegisterController {
 	 * @return user/mailConfirm メールアドレス認証画面
 	 */
 	@GetMapping("/confirm")
-	public String emailCodeForm() {
-		return  "user/mailConfirm";
-	}
-	
-	/**
-	 * 認証メールの再送信
-	 * @param session
-	 * @return redirect:/user/register/confirm メールアドレス認証画面
-	 */
-	@PostMapping("/resend")
-	public String resendConfirmEmail(HttpSession session) {
-		SignupUserForm form = (SignupUserForm)session.getAttribute("signupUserForm");
-		if(form == null) {
-			return "redirect:/user/register";
-		}
-		// 認証メールの送信と認証コードの取得
-		int code = emailService.sendConfirmEmail(form.getEmail());
-		session.setAttribute("signupUserForm", form);
-		session.setAttribute("code", code);
-		// コードの有効期限を三分後に設定
-		session.setAttribute("codeLimit", System.currentTimeMillis() + (3 * 60 * 1000));
-		// メール認証ページへリダイレクト
-		return "redirect:/user/register/confirm";
+	public String authCodeConfirmForm() {
+		return  "user/register/mailConfirm";
 	}
 
 	/**
@@ -110,8 +89,8 @@ public class RegisterController {
 	 * @param model
 	 * @return redirect:/user ホーム画面
 	 */
-	@PostMapping("/confirm")
-	public String showCodeForm(@RequestParam("code") String codeInput,
+	@PostMapping("/complete")
+	public String newRegister(@RequestParam("code") String codeInput,
 								RedirectAttributes attributes,
 								HttpSession session,
 								Model model) {
@@ -125,20 +104,41 @@ public class RegisterController {
 		if(!codeInput.equals(code)) {
 			// コードが違う
 			model.addAttribute("codeError", "認証コードが違います");
-			return "user/mailConfirm";
+			return "user/register/mailConfirm";
 		}
 		if(codeLimit < System.currentTimeMillis()) {
 			// コードの期限切れ
 			model.addAttribute("codeError", "認証コードの期限が切れています");
-			return "user/mailConfirm";
+			return "user/register/mailConfirm";
 		}
 		try {
 			userService.NewRegisterUser(signupUserForm);
 			// フラッシュメッセージを追加
 			attributes.addFlashAttribute("successMessage", "登録が成功しました。"); 
 		} catch(Exception e) {
-			return "redirect/user/register";
+			return "redirect:/user/register";
 		}
 		return "redirect:/user";
+	}
+	
+	/**
+	 * 認証メールの再送信
+	 * @param session
+	 * @return redirect:/user/register/confirm メールアドレス認証画面
+	 */
+	@PostMapping("/resend")
+	public String resendAuthCodeEmail(HttpSession session) {
+		SignupUserForm form = (SignupUserForm)session.getAttribute("signupUserForm");
+		if(form == null) {
+			return "redirect:/user/register";
+		}
+		// 認証メールの送信と認証コードの取得
+		int code = emailService.sendConfirmEmail(form.getEmail());
+		session.setAttribute("signupUserForm", form);
+		session.setAttribute("code", code);
+		// コードの有効期限を三分後に設定
+		session.setAttribute("codeLimit", System.currentTimeMillis() + (3 * 60 * 1000));
+		// メール認証ページへリダイレクト
+		return "redirect:/user/register/confirm";
 	}
 }

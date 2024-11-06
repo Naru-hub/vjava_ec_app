@@ -8,10 +8,10 @@
 <body>
 	<div th:insert="~{user_common :: header}"></div>
 	
-	<h1>パスワードの再設定</h1>
+	<h1>パスワード再設定メールの送信</h1>
 	<div>登録したメールアドレスを入力してください</div>
 	<div th:if="${success}" th:text="${success}" style="color: blue;"></div>
-	<form th:action="@{/user/login/reset}" method="post">
+	<form th:action="@{/user/login/reset/mail}" method="post">
 		<div>
 			<input type="text" name="email">
 			<span th:if="${error}" th:text="${error}" style="color: red;"></span>

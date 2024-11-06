@@ -21,8 +21,6 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class EmailServiceImpl implements EmailService{
-	Random rand = new Random();
-	SecureRandom secureRandom = new SecureRandom();
 	// DI
 	private final JavaMailSender mailSender;	
 
@@ -64,6 +62,7 @@ public class EmailServiceImpl implements EmailService{
 	 */
 	@Override
 	public int sendConfirmEmail(String mailAddress) {
+		Random rand = new Random();
 		// コードの生成
 		int code = 100000 +  rand.nextInt(900000);
 		// メールの構築と送信
@@ -91,6 +90,7 @@ public class EmailServiceImpl implements EmailService{
 	 */
 	@Override
 	public String sendResetPasswordEmail(String emailAddress) {
+		SecureRandom secureRandom = new SecureRandom();
 		// 32バイトのトークンを生成
 		byte[] randomBytes = new byte[32]; 
 		secureRandom.nextBytes(randomBytes);

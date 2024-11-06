@@ -16,5 +16,4 @@ import lombok.NoArgsConstructor;
 public class Cart {
 	/** カートアイテムリスト */
 	private List<CartItem> cartItems = new ArrayList<>();
-	/** 表示用合計金額 */
 }

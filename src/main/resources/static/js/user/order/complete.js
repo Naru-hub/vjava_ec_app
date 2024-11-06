@@ -1,8 +1,8 @@
 /**
- * 
+ * 会員：購入完了画面　JavaScriptファイル
  */
 
-/** ホールに戻るボタン */
+/** ホームに戻るボタン */
 document.getElementById("homeButton").onclick = function(){
 	window.location.href = '/user';
 };

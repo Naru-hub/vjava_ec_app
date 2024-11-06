@@ -10,7 +10,7 @@
 		
 	<h1>メール認証</h1>
 	<div th;if="${codeError}" th:text="${codeError}" style=" color: red;"></div>
-	<form th:action="@{/user/register/confirm}" method="post">
+	<form th:action="@{/user/register/complete}" method="post">
 		<input name="code" type="text">
 		<button type="submit">認証する</button>
 	</form>

@@ -35,16 +35,16 @@ public class LoginController {
      */
 	@GetMapping
 	public String showLogin() {
-		return "user/login";
+		return "user/login/login";
 	}
 	
 	/**
 	 * パスワード再設定メール送信画面表示
 	 * @return user/reset パスワード再設定メール送信画面
 	 */
-	@GetMapping("/reset")
-	public String showReset() {
-		return "user/reset";
+	@GetMapping("/reset/mail")
+	public String showSendResetPasswordEmail() {
+		return "user/login/reset";
 	}
 
 	/**
@@ -54,12 +54,12 @@ public class LoginController {
 	 * @param model
 	 * @return user/reset パスワード再設定メール送信画面
 	 */
-	@PostMapping("/reset")
-	public String resetPassword(@RequestParam("email") String email,HttpSession session,Model model) {
+	@PostMapping("/reset/mail")
+	public String sendResetPasswordEmail(@RequestParam("email") String email,HttpSession session,Model model) {
 		// 入力されたメールアドレスの登録確認
 		if(userService.selectUserByEmail(email) == null) {
 			model.addAttribute("error", "そのメールアドレスは登録されていません");
-			return "user/reset";
+			return "user/login/reset";
 		}
 		String token = emailService.sendResetPasswordEmail(email);
 		session.setAttribute("resetToken", token);
@@ -67,7 +67,7 @@ public class LoginController {
 		// 五分後に期限を設定
 		session.setAttribute("resetLimit", System.currentTimeMillis() + (5 * 60 * 1000));
 		model.addAttribute("success", "パスワード再設定のメールを送信しました。");
-		return "user/reset";
+		return "user/login/reset";
 	}
 	
 	/**
@@ -78,14 +78,14 @@ public class LoginController {
 	 * @return user/resetpassword パスワード再設定画面
 	 */
 	@GetMapping("/reset/password")
-	public String showPasswordReset(@RequestParam("token") String token,@ModelAttribute("form") PasswordResetForm form, HttpSession session) {
+	public String showResetPassword(@RequestParam("token") String token,@ModelAttribute("form") PasswordResetForm form, HttpSession session) {
 		// セッションに保存しているトークンとトークン期限を取得
 		String resetToken = (String)session.getAttribute("resetToken");
 		Long resetLimit = (Long)session.getAttribute("resetLimit");
 		if(resetToken == null || !token.equals(resetToken) || resetLimit < System.currentTimeMillis()) {
 			return "redirect:/user/login/reset";
 		}
-		return "user/resetpassword";
+		return "user/login/resetpassword";
 	}
 	
 	/**
@@ -107,14 +107,14 @@ public class LoginController {
 		}
 		if(result.hasErrors()) {
 			model.addAttribute("form", form);
-			return "user/resetpassword";
+			return "user/login/resetpassword";
 		}
 		if(!form.getPassword().equals(form.getPasswordConfirm())) {
 			model.addAttribute("confirmError", "パスワードが一致していません");
 			model.addAttribute("form", form);
-			return "user/resetpassword";
+			return "user/login/resetpassword";
 		}
 		userService.updatePassword(email,form.getPassword());
-		return "user/passwordreseted";
+		return "user/login/passwordreseted";
 	}
 }

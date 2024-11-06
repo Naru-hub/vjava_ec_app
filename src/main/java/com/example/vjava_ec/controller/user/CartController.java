@@ -33,7 +33,7 @@ public class CartController {
 	 * カートに商品を追加
 	 * @param cartItem
 	 * @param session
-	 * @return "redirect:/cart" カート画面を表示
+	 * @return "redirect:/user/cart/show" カート画面を表示
 	 */
 	@PostMapping("/add")
 	public String addCartItem(@RequestParam("itemId") int itemId,@RequestParam("amount") int amount, HttpSession session) {
@@ -84,8 +84,8 @@ public class CartController {
     	return "redirect:/user/cart/show";
     }
    
-    /**カートアイテムを個別の削除
-     * 
+    /**
+     * カートアイテムを個別の削除
      * @param id
      * @param session
      * @param model
