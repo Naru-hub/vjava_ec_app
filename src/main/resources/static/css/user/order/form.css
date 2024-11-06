@@ -1,27 +1,94 @@
 @charset "UTF-8";
 
-.container {
+body {
+	font-family: Arial, sans-serif;
+	line-height: 1.6;
+	margin: 0;
+	padding: 0;
+	background-color: #f5f5f5;
+	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
 }
 
-.title {
+.container {
+	max-width: 1600px;
+	margin: 0px 330px 70px 330px;
+	padding: 60px;
+	border-radius: 15px;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+	background-color: #fff;
+}
+
+h1 {
 	text-align: center;
+	color: #333;
+	font-size: 40px;
 }
 
 .form {
 	display: flex;
-	justify-content: center;
+	flex-direction: column;
 }
 
-.input {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	height: 200px;
+.input>div {
+	margin-bottom: 20px;
+}
+
+label {
+	display: block;
+	margin-bottom: 5px;
+	font-weight: bold;
+}
+
+input[type="text"] {
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	font-size: 16px;
+}
+
+input[type="radio"] {
+	margin-right: 5px;
+}
+
+span[style="color: red;"] {
+	display: block;
+	margin-top: 5px;
+	font-size: 14px;
 }
 
 .button-area {
 	display: flex;
-	gap:20px;
+	justify-content: center;
+	margin-top: 30px;
+}
+
+button {
+	padding: 10px 20px;
+	margin: 0 30px;
+	border: none;
+	border-radius: 4px;
+	font-size: 16px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+
+#backButton {
+	background-color: rgb(128, 128, 128);
+	color: #fff;
+}
+
+#nextButton {
+	background-color: #1e90ff;
+	color: white;
+}
+
+#backButton:hover {
+	background-color: rgb(100, 100, 100);
+}
+
+#nextButton:hover {
+	background-color: #4178F3;
 }
