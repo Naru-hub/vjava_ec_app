@@ -1,53 +1,70 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
 	<meta charset="UTF-8">
 	<link th:href="@{/css/user/item/detail.css}" rel="stylesheet">
 	<link th:href="@{/css/user/common/user_common.css}" rel="stylesheet">
 	<title>商品詳細</title>
 </head>
+
 <body>
 	<div th:insert="~{user_common :: header}"></div>
-	
+
 	<div class="container">
 		<div class="left-contents">
 			<img th:src="@{${item.imagePath}}" alt="Item Image" class="image">
 		</div>
 		<div class="right-contents">
-			<div class="item-info">
-				<div class="name" th:text="${item.name}"></div>
-				<div th:text="${item.character.name}"></div>
-				<div th:text="${item.detail}"></div>
-				<div th:text="${item.price}"></div>
-				<div th:switch="${item.saleStatus}">
-					<spna th:case="1">販売中</spna>
-					<spna th:case="2">入荷待ち</spna>
-					<spna th:case="3">販売終了</spna>
-				</div>
+			<dd class="item-info">
+				<dl class="data-info">
+					<dt>商品名</dt>
+					<dd class="name" th:text="${item.name}"></dd>
+				</dl>
+				<dl>
+					<dt>キャラクタ名</dt>
+					<dd th:text="${item.character.name}"></dd>
+				</dl>
+				<dl>
+					<dt>商品詳細</dt>
+					<dd th:text="${item.detail}"></dd>
+				</dl>
+				<dl>
+					<dt>価格</dt>
+					<dd th:text="${item.price}"></dd>
+				</dl>
+				<dl>
+					<dt>販売状況</dt>
+					<dd th:switch="${item.saleStatus}">
+						<spna th:case="1">販売中</spna>
+						<spna th:case="2">入荷待ち</spna>
+						<spna th:case="3">販売終了</spna>
+					</dd>
+				</dl>
 				<form th:action="@{/user/cart/add}" method="post" id="cartForm">
 					<input type="hidden" name="itemId" id="itemId-input" th:value="${item.id}">
-				    <input type="hidden" name="amount" id="quantity-input" value="1" min="1" th:max="${item.isLimited ? 5 : 10}" th:data-isLimted="${item.isLimited}">
+					<input type="hidden" name="amount" id="quantity-input" value="1" min="1"
+						th:max="${item.isLimited ? 5 : 10}" th:data-isLimted="${item.isLimited}">
 				</form>
 				<div th:if="${item.saleStatus == 1}" class="quantity">
-					<span>数量：</span>
+					<span class="quantity-title">数量：</span>
 					<span class="quantity-box">
-					    <button class="quantity-btn" onclick="decreaseQuantity()">-</button>
+						<button class="quantity-btn" onclick="decreaseQuantity()">-</button>
 						<span class="quantity-display">1</span>
-					    <button class="quantity-btn" onclick="increaseQuantity()">+</button>
+						<button class="quantity-btn" onclick="increaseQuantity()">+</button>
 					</span>
 				</div>
-			</div>
-			<div class="button-container">
-				<button id="backButton">一覧へ戻る</button>
-				<!-- 商品が販売中の時 -->
-				<button th:if="${item.saleStatus == 1}" onclick="submitForm()">カートに追加</button>
-				<!-- 販売中でない時 -->
-				<div th:unless="${item.saleStatus == 1}">在庫なし</div>
-			</div>
+				<div class="button-container">
+					<button id="backButton">一覧へ戻る</button>
+					<!-- 商品が販売中の時 -->
+					<button th:if="${item.saleStatus == 1}" onclick="submitForm()">カートに追加</button>
+				</div>
 		</div>
 	</div>
-	
+	</div>
+
 	<div th:insert="~{user_common :: footer}"></div>
 	<script th:src="@{/js/user/item/detail.js}"></script>
 </body>
+
 </html>
