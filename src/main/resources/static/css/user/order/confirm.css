@@ -1,0 +1,116 @@
+@charset "UTF-8";
+h1 {
+    text-align: center;
+}
+
+.order-date {
+	text-align: right;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 40px;
+}
+
+.order-details{
+    width: 60%;
+    border: 2px solid #000;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.order-items {
+    margin-bottom: 10px;
+}
+
+.item {
+	padding: 10px;
+	border: 1px solid #000;
+    display: flex;
+    justify-content: space-between;
+}
+
+.item img {
+    width: 120px;
+    margin-right: 10px;
+}
+
+.item-infoname {
+	padding-right: 30px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+.item-info {
+	display: flex;
+    flex: 1;
+    margin-right: 10px;
+    flex-direction: column;
+	justify-content: space-between;
+}
+
+.item-total {
+	display: flex;
+    text-align: right;
+    align-items: flex-end;
+ 	padding-right: 20px;
+}
+
+.pay-info{
+	display: flex;
+	justify-content: space-between; /* 子要素を均等に並べる */
+}
+
+.payment {
+	width: 60%;
+	text-align: center;
+	padding-top: 40px;
+}
+
+
+
+.price-info {
+	width: 40%;
+	padding: 10px 20px 10px 0px;
+}
+
+
+.postage, .total-price {
+	display: flex;
+	justify-content: space-between; /* 子要素を均等に並べる */
+	border-bottom: 1px solid #000;
+	padding: 20px 20px 0px 20px;
+	font-size: large;
+}
+
+.button-area {
+	display: flex;
+	justify-content: center;
+	gap: 50px;
+}
+
+
+.shipping-info-contents {
+    flex: 0 0 auto; /* 右側の高さを固定 */
+    max-height: fit-content;
+    width: 38%;
+    border: 2px solid #000;
+    padding: 10px 50px 30px 50px;
+    box-sizing: border-box;
+}
+
+.shipping-info-contents h2 {
+	text-align: center;
+}
+
+.shipping-info-area {
+	display: flex;
+	justify-content: space-between; /* 子要素を均等に並べる */
+	gap: 10px;
+}
+
+.shipping-info-label {
+	padding-left: 20px;
+	text-align: left;
+}

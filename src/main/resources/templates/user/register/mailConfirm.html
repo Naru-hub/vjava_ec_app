@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<link th:href="@{/css/user/common/user_common.css}" rel="stylesheet">
+	<title>メール認証</title>
+</head>
+<body>
+	<div th:insert="~{user_common :: header}"></div>
+		
+	<h1>メール認証</h1>
+	<div th;if="${codeError}" th:text="${codeError}" style=" color: red;"></div>
+	<form th:action="@{/user/register/complete}" method="post">
+		<input name="code" type="text">
+		<button type="submit">認証する</button>
+	</form>
+	<form th:action="@{/user/register/resend}" method="post">
+		<button type="submit">コードを再発行する</button>
+	</form>
+
+	<div th:insert="~{user_common :: footer}"></div>
+</body>
+</html>

@@ -15,14 +15,12 @@
 		</a>
 		<h1 style="margin: 0; padding-left: 10px;" class="heading-1">　VJava ECサイト　　　</h1>
 		<!-- 検索フォーム -->
-<!--		<div class="search-form">-->
 			<form class="search-form" th:action="@{/user/item/search}" method="get">
 				<label>
 					<input type="text" name="keyword" placeholder="キーワードを入力" required>
 				</label>
 				<button type="submit" aria-label="検索"></button>
 			</form>
-<!--		</div>-->
 		<div class="nav-links">
 			<a th:unless="${islogin}" th:href="@{/user/login}" class="header-loginlink">ログイン</a>
 			<form th:action="@{/user/logout}" method="post">
@@ -32,7 +30,8 @@
 			</form>
 			<a th:href="@{/user/item/list}" class="header-useritemlistlink">商品一覧</a>
 			<a th:href="@{/user/detail}" class="header-usetdetaillink">プロフィール</a>
-			<a th:href="@{/cart}" class="header-cartlink">カート</a>
+			<a th:href="@{/user/cart/show}" class="header-cartlink">カート</a>
+		</div>
 	</header>
 	<main>
 		<h2>ホームページコンテンツ</h2>

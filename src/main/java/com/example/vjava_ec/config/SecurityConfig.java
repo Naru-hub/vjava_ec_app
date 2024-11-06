@@ -83,9 +83,9 @@ public class SecurityConfig {
 		// ★HTTPリクエストに対するセキュリティ設定
 		.authorizeHttpRequests(authz -> authz
 				// 下記のアクセスは認証を必要としない
-				.requestMatchers("/user","/user/login","/user/logout","/user/register","/user/item/list","/user/item/search").permitAll()
-				// 【管理者権限設定】url:/admin/**は管理者しかアクセスできない
-				.requestMatchers("/admin/**").hasAuthority("ADMIN")
+				.requestMatchers("/user","/user/login/**","/user/logout","/user/register/**", "/user/item/**", "/user/cart/**").permitAll()
+				// 【会員権限設定】url:/user/**は会員しかアクセスできない
+				.requestMatchers("/user/**").hasAuthority("USER")
 				// その他のリクエストは認証が必要
 				.anyRequest().authenticated())
 		// ★フォームベースのログイン設定

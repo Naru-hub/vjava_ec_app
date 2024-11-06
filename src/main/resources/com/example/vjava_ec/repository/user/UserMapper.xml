@@ -23,8 +23,14 @@
 	
 	<!-- 会員の論理削除 -->
 	<update id="deleteUser">
-		UPDATE users SET is_deleted = TRUE
+		UPDATE users SET is_deleted = TRUE, updated_at = current_timestamp
 		WHERE id = #{id};
 	</update>
-
+	
+	<!-- パスワードの更新 -->
+	<update id="updatePassowrd">
+		UPDATE users SET password = #{password}, updated_at = current_timestamp
+		WHERE id = #{id};
+	</update>
+	
 </mapper>

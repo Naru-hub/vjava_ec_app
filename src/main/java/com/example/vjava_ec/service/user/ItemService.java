@@ -14,9 +14,18 @@ public interface ItemService {
      */
 	List<Item> getAllItems();
 	
+	/**
+	 * IDから特定のItemエンティティを取得
+	 */
+	Item selectItemById(int id);
+	
+	/**
+	 * 特定のIDの商品の販売ステータスを期間限定ステータスを考慮して変更する
+	 */
+	void updateSaleStatusById(int id);
+	
     /**
      * 商品名で部分一致検索
      */
     List<Item> searchItems(String keyword);
-	
 }

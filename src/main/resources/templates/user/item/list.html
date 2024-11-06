@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<link th:href="@{/css/user/item/itemlist.css}" rel="stylesheet">
+	<link th:href="@{/css/user/item/list.css}" rel="stylesheet">
 	<link th:href="@{/css/user/common/user_common.css}" rel="stylesheet">
 	<title>商品一覧</title>
 </head>
@@ -25,7 +25,7 @@
 			<div class="item-details">
 				<h3 th:text="${item.name}">商品名</h3>
 				<p class="price" th:text="${item.price} + '円(税込)'">価格</p>
-				<a th:href="@{'/user/item/detail/' + ${item.id}}" class="detail-link">商品詳細</a>
+				<a th:href="@{'/user/item/' + ${item.id}}" class="detail-link">商品詳細</a>
 			</div>
 		</div>
 	</div>

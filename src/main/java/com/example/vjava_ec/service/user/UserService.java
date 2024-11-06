@@ -42,4 +42,9 @@ public interface UserService {
      * ユーザーのログイン状態を確認
      */
     boolean IdentifyUser();
+    
+    /**
+     * パスワードの更新
+     */
+    void updatePassword(String email, String password);
 }

@@ -30,5 +30,9 @@ public interface UserMapper {
      * 新規会員情報をデータベースに登録
      */
     void insertUser(User user);
-
+    
+    /**
+     * パスワードを更新する
+     */
+    void updatePassowrd(User user);
 }

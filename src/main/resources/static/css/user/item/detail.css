@@ -1,0 +1,131 @@
+@charset "UTF-8";
+
+body {
+	font-family: Arial, sans-serif;
+	line-height: 1.6;
+	margin: 0;
+	padding: 0;
+	background-color: #f5f5f5;
+	min-height: auto;
+}
+
+.container {
+	max-width: 1600px;
+	margin: 50px 100px;
+	border-radius: 15px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	background-color: #fff;
+	display: flex;
+	flex-wrap: nowrap;
+}
+
+.left-contents,
+.right-contents {
+	/* 各カラムを均等に広げる */
+	flex: 1;
+	padding: 40px;
+	box-sizing: border-box;
+}
+
+.image {
+	max-width: 100%;
+	height: auto;
+	margin-top: 20px;
+	margin-left: 50px;
+	border-radius: 8px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.item-info {
+	margin-bottom: 20px;
+}
+
+.data-info {
+	margin-bottom: 15px;
+
+}
+
+dl {
+	margin-left: 30px;
+}
+
+dt {
+	font-weight: bold;
+	margin-bottom: 5px;
+	color: black;
+}
+
+dd {
+	margin-left: 0;
+	margin-bottom: 10px;
+	font-size: 20px;
+	color: #696969;
+}
+
+.quantity-title {
+	font-size: 24px;
+	font-weight: bold;
+	color: black;
+	margin-left: 25px;
+}
+
+.quantity {
+	margin-top: 20px;
+}
+
+.quantity-box {
+	display: inline-flex;
+	align-items: center;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+}
+
+.quantity-btn {
+	background-color: #f0f0f0;
+	border: none;
+	padding: 5px 10px;
+	cursor: pointer;
+	font-size: 16px;
+}
+
+.quantity-display {
+	padding: 0 10px;
+	font-size: 16px;
+}
+
+.button-container {
+	margin-top: 20px;
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+
+button {
+	padding: 10px 50px;
+	font-size: 16px;
+	cursor: pointer;
+	border: none;
+	border-radius: 4px;
+	transition: 0.3s;
+}
+
+#backButton {
+	background-color: rgb(128, 128, 128);
+	color: white;
+	margin-right: 40px;
+	margin-top: 10px;
+}
+
+#backButton:hover {
+	background-color: rgb(100, 100, 100);
+}
+
+button[onclick="submitForm()"] {
+	background-color: #1e90ff;
+	color: white;
+	margin-top: 10px
+}
+
+button[onclick="submitForm()"]:hover {
+	background-color: #4178F3;
+}

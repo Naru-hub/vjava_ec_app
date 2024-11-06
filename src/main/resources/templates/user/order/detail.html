@@ -29,16 +29,16 @@
 	    <div class="order-details">
 	        <div th:each="orderItem : ${order.orderItems}" class="order-items">
 	            <div class="item">
-	                <img src="${orderItem.item.imagePath}" alt="商品画像">
+	                <img th:src="${orderItem.item.imagePath}" alt="商品画像">
 	                <div class="item-infoname">
-						<p>商品名</p>
-	                    <p>価格</p>
-	                    <p>個数</p>
+						<div>商品名</div>
+	                    <div>価格</div>
+	                    <div>個数</div>
 					</div>
 					<div class="item-info">
-	                    <p th:text="${orderItem.item.name}"></p>
-	                    <p th:text="${orderItem.purchasePrice}"></p>
-	                    <p th:text="${orderItem.amount}"></p>
+	                    <div th:text="${orderItem.item.name}"></div>
+	                    <div th:text="${orderItem.purchasePrice}"></div>
+	                    <div th:text="${orderItem.amount}"></div>
 	                </div>
 	                <div class="item-total">
 	                    <p>小計：[[${orderItem.purchasePrice * orderItem.amount}]]円</p>

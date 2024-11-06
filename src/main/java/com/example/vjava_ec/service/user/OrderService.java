@@ -8,6 +8,12 @@ import com.example.vjava_ec.entity.Order;
  * OrderServiceのInterfaceクラス
  */
 public interface OrderService {
+	
+	/**
+	 * Order情報の保存
+	 */
+	void insertOrder(Order order);
+	
 	/**
 	 * 現在ログインしている会員の注文履歴Listを取得
 	 */

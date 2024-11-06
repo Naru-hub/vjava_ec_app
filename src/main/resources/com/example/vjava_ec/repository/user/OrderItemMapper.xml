@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.vjava_ec.repository.user.OrderItemMapper">
+	
+	<insert id="insertItem" parameterType="list">
+		INSERT INTO order_items (
+			item_id, order_id, amount, purchase_price, created_at, updated_at
+		)
+		VALUES 
+		<foreach collection="list" item="orderItem" separator=",">
+			(#{orderItem.item.id}, #{orderItem.orderId}, #{orderItem.amount}, #{orderItem.purchasePrice}, current_timestamp, current_timestamp)
+		</foreach>	
+	</insert>
+	
+</mapper>
