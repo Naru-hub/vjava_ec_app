@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 body {
 	font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
 	margin: 0;
@@ -9,35 +11,43 @@ body {
 
 header {
 	background-color: rgb(255, 255, 255);
-	padding: 1px 30px;
+	padding: 10px 20px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 	height: 100px;
+	/* 768px以下では変更 */
+	flex-wrap: nowrap;
+}
+
+header h1 {
+	color: #333333;
+	margin: 0;
+	padding-left: 10px;
+	font-size: 2em;
 }
 
 header img {
 	height: 10px;
 }
 
-header input{
+header input {
 	width: 300px;
-/*	max-width: 100%;*/
 	padding: 8px;
 	border: 1px solid rgb(255, 255, 255);
 	border-radius: 4px;
 	height: 25px;
 }
 
-.nav-links {
-	display: flex;
-	align-items: center;
+#nav-links {
 	margin-left: auto;
 	/* 右寄せ */
+	display: flex;
+	align-items: center;
 }
 
-.nav-links a {
+#nav-links a {
 	margin-left: 20px;
 	padding: 10px 20px;
 	text-decoration: none;
@@ -46,15 +56,15 @@ header input{
 	transition: background-color 0.3s;
 }
 
-.nav-links a.header-loginlink {
+#nav-links a.header-loginlink {
 	color: #808080;
 }
 
-.nav-links a:hover {
+#nav-links a:hover {
 	color: rgb(0, 0, 0);
 }
 
-.nav-links button {
+#nav-links button {
 	display: inline-block;
 	padding: 10px 20px;
 	background-color: rgb(255, 255, 255);
@@ -63,11 +73,11 @@ header input{
 	border-radius: 5px;
 	transition: background-color 0.3s ease;
 	border: none;
-	font-size: 18px;
+	font-size: 16px;
 	cursor: pointer;
 }
 
-.nav-links button:hover {
+#nav-links button:hover {
 	color: rgb(0, 0, 0);
 }
 
@@ -79,40 +89,40 @@ main {
 footer {
 	background-color: rgb(255, 255, 255);
 	padding: 10px;
+	height: 50px;
 	font-size: 1em;
 	color: #808080;
 	text-align: center;
-}
-
-/* ロゴ部分に枠線を追加 */
-.logo-border {
-	display: inline-block;
-	padding: 5px;
-}
-
-/* 見出し */
-.heading-1 {
-	color: #333333;
-}
-
-.heading-1:first-letter {
-	color: rgb(0, 0, 0);
-	font-size: 2em;
-}
-
-/* 検索欄*/
-.search-form {
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
 	align-items: center;
-	overflow: hidden;
+	gap: 30px;
+}
+
+footer label,
+footer p {
+	margin: 0;
+}
+
+.logo-border {
+	margin-right: auto;
+	/* 左寄せ */
+}
+
+.search-form {
+	margin: 0 auto;
+	display: flex;
+	align-items: center;
 	border: 1px solid #a9a9a9;
 	border-radius: 3px;
 	height: 50px;
+	max-width: 300px;
+	width: 100%;
+	overflow: hidden;
 }
 
 .search-form input {
-	width: 250px;
+	width: 230px;
 	padding: 5px 15px;
 	border: none;
 	font-size: 1em;
@@ -142,24 +152,116 @@ footer {
 	content: '';
 }
 
-/* レスポンシブデザイン */
+/* ハンバーガーボタンのスタイル */
+.hamburger-btn {
+	display: none;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	background: none;
+	border: none;
+	width: 30px;
+	height: 20px;
+	cursor: pointer;
+}
+
+.hamburger-line {
+	width: 30px;
+	height: 3px;
+	background-color: #333;
+}
+
+/* 768px以下の画面用 */
 @media (max-width: 768px) {
 	header {
 		flex-wrap: wrap;
+		padding: 10px;
+		height: auto;
+		justify-content: space-between;
+		align-items: center;
 	}
 
 	header img {
+		height: 40px;
 		margin-bottom: 10px;
 	}
 
-	header input[type="text"] {
-		order: 1;
+	header h1 {
+		font-size: 1.5em;
+		margin: 0;
+		padding-left: 10px;
+		text-align: center;
+	}
+
+	.search-form {
 		width: 100%;
 		margin: 10px 0;
 	}
 
-	.header-link {
-		margin: 5px;
-		font-size: 0.9em;
+	.search-form input {
+		width: calc(100% - 60px);
+	}
+
+	.search-form button {
+		width: 50px;
+		height: 50px;
+	}
+
+	/* ナビゲーションリンクの初期状態で非表示 */
+	#nav-links {
+		flex-direction: column;
+		align-items: stretch;
+		width: 100%;
+		padding-left: 0;
+		margin-top: 10px;
+		display: none;
+		/* 初期状態で非表示 */
+	}
+
+	#nav-links.show {
+		display: block;
+		/* showクラスが付いた時に表示 */
+	}
+
+	/* #nav-links 内のリンクの縦並びスタイル */
+	#nav-links a {
+		display: block;
+		/* ブロック要素にして縦に並べる */
+		width: 100%;
+		/* 横幅を100%に */
+		text-align: left;
+		/* 左寄せ */
+		padding: 10px;
+		margin: 5px 0;
+		/* 上下のスペースを追加 */
+		text-decoration: none;
+		/* リンクの下線を消す */
+		color: #808080;
+		/* デフォルトの文字色 */
+		border-radius: 4px;
+		/* 角を丸くする */
+		transition: background-color 0.3s;
+		/* 背景色変更のアニメーション */
+	}
+
+	#nav-links button {
+		width: 100%;
+		padding: 10px;
+		font-size: 1em;
+		text-align: center;
+	}
+
+	.hidden {
+		display: none;
+	}
+
+	/* ハンバーガーボタンの表示 */
+	.hamburger-btn {
+		display: flex;
+	}
+
+	footer {
+		font-size: 0.8em;
+		padding: 8px;
 	}
 }
