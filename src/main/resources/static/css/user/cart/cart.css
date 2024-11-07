@@ -29,8 +29,7 @@ h1 {
 }
 
 button {
-	/**background-color: #3cb371;    あとで色選択！！！*/
-	background-color: #4CAF50;
+	background-color: #3cb371;
 	color: white;
 	border: none;
 	padding: 10px 15px;
@@ -45,8 +44,7 @@ button {
 }
 
 button:hover {
-	background-color: #45a049;
-	/**background-color: #2e8b57;　あとで色選択！！！ */
+	background-color: #2e8b57;
 }
 
 .main-contents {
@@ -77,8 +75,10 @@ button:hover {
 	font-weight: bold;
 }
 
-.label-item, .label-total, .label-amount {
-	margin-left: 180px;	
+.label-item,
+.label-total,
+.label-amount {
+	margin-left: 180px;
 }
 
 .cart-item-card {
@@ -100,7 +100,8 @@ button:hover {
 	flex-grow: 1;
 }
 
-.item-name, .item-price {
+.item-name,
+.item-price {
 	margin-bottom: 10px;
 	font-size: 18px;
 	font-weight: bold;
@@ -140,7 +141,7 @@ button:hover {
 
 .total-price-card-under-button {
 	display: flex;
-    justify-content: space-between;
+	justify-content: space-between;
 }
 
 #nextButton {
