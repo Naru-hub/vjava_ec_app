@@ -16,24 +16,25 @@ h1 {
 }
 
 button {
-	background-color: #3498db;
+	background-color: #1e90ff;
 	color: white;
 	border: none;
 	padding: 10px 20px;
 	cursor: pointer;
 	font-size: 16px;
 	transition: background-color 0.3s;
+	border-radius: 5px;
+
 }
 
 button:hover {
-	background-color: #2980b9;
+	background-color: #4178F3;
 }
 
 .back-button-form {
-	position: absolute;
-	bottom: 20px;
-	left: 20px;
-	/* order-details内の左下に配置 */
+	display: flex;
+	justify-content: center;
+	margin-top: 100px;
 }
 
 .order-info-container {
@@ -66,9 +67,8 @@ button:hover {
 	border-radius: 5px;
 	padding: 20px 40px 20px 20px;
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-	margin: 20px 20px 20px 50px;
+	margin: 0px 20px 20px 50px;
 	position: relative;
-	/* ボタンを相対的に配置するために追加 */
 }
 
 .order-items {
@@ -170,30 +170,33 @@ button:hover {
 }
 
 .shipping-info-contents {
+	width: 40%;
+	margin: 0px 50px 100px 0px;
+}
+
+.shipping-info-area-base {
 	background-color: white;
-	width: 30%;
 	border: 1px solid #ddd;
 	border-radius: 5px;
-	padding: 20px;
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-	margin: 20px 50px 300px 50px;
+	margin: 0px 0px 100px 0px;
 }
 
 .shipping-info-contents h2 {
 	text-align: center;
 	color: rgb(0, 0, 0);
+	margin-top: 50px;
 	margin-bottom: 20px;
 }
 
 .shipping-info-area {
 	display: flex;
 	justify-content: space-between;
-	gap: 20px;
+	/*	gap: 20px;*/
 	font-size: 20px;
 }
 
-.shipping-info-label,
-.shipping-info {
+.shipping-info-label {
 	display: flex;
 	flex-direction: column;
 	gap: 15px;
@@ -201,21 +204,34 @@ button:hover {
 	text-align: center;
 }
 
+.shipping-info {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	width: 48%;
+	text-align: center;
+	margin-bottom: 50px;
+}
+
 .shipping-info-label p,
 .shipping-info p {
-	font-size: 20px;
 	color: #696969;
 }
 
 .shipping-info-label p {
+	font-size: 20px;
 	font-weight: bold;
 	color: #696969;
+	padding-left: 80px;
+
 }
 
 .shipping-info p {
+	font-size: 20px;
 	color: #696969;
 	text-align: left;
 	line-height: 1.5;
+
 }
 
 @media (max-width: 768px) {
