@@ -24,7 +24,7 @@
 			<img th:src="@{${item.imagePath}}" alt="商品画像">
 			<div class="item-details">
 				<h3 th:text="${item.name}">商品名</h3>
-				<p class="price" th:text="${item.price} + '円(税込)'">価格</p>
+				<p class="price" th:text="*{#numbers.formatInteger(item.price,3,'COMMA')} + '円(税込)'">価格</p>
 				<a th:href="@{'/user/item/' + ${item.id}}" class="detail-link">商品詳細</a>
 			</div>
 		</div>

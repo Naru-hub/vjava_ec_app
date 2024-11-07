@@ -29,7 +29,7 @@
 	                    <div th:text="${orderItem.amount}"></div>
 	                </div>
 	                <div class="item-total">
-	                    <div>小計：[[${orderItem.purchasePrice * orderItem.amount}]]円</div>
+	                    <div>小計：[[${#numbers.formatInteger(orderItem.purchasePrice * orderItem.amount,3,'COMMA')}]]円</div>
 	                </div>
 	            </div>
 	        </div>

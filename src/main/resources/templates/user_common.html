@@ -13,15 +13,22 @@
 		<a th:href="@{/user}" class="logo-border">
 			<img src="/images/default/user/logo/logo-1.png" alt="ロゴ" style="height: 90px;">
 		</a>
-		<h1 style="margin: 0; padding-left: 10px;" class="heading-1">　VJava ECサイト　　　</h1>
+		<h1>VJava ECサイト</h1>
 		<!-- 検索フォーム -->
-			<form class="search-form" th:action="@{/user/item/search}" method="get">
-				<label>
-					<input type="text" name="keyword" placeholder="キーワードを入力" required>
-				</label>
-				<button type="submit" aria-label="検索"></button>
-			</form>
-		<div class="nav-links">
+		<form class="search-form" th:action="@{/user/item/search}" method="get">
+			<label>
+				<input type="text" name="keyword" placeholder="キーワードを入力" required>
+			</label>
+			<button type="submit" aria-label="検索"></button>
+		</form>
+		<!-- ハンバーガーメニューアイコン -->
+		<button class="hamburger-btn" id="hamburger-btn">
+			<span class="hamburger-line"></span>
+			<span class="hamburger-line"></span>
+			<span class="hamburger-line"></span>
+		</button>
+		<!-- ナビゲーションリンク -->
+		<div id="nav-links">
 			<a th:unless="${islogin}" th:href="@{/user/login}" class="header-loginlink">ログイン</a>
 			<form th:action="@{/user/logout}" method="post">
 				<button th:if="${islogin}" type="submit" class="header-loginlink">
@@ -39,8 +46,11 @@
 	</main>
 
 	<footer>
-		<p>© 2024 グループ開発 チームC. VJava ECサイト.</p>
+		<label>© 2024 グループ開発 チームC. VJava ECサイト.</label>
+		<p>引用元：<a href="https://vspo.jp/"target="_blank" rel="noopener noreferrer">ぶいすぽっ！</a></p>
 	</footer>
+	<script th:src="@{/js/user/common/user_common.js}"></script>
+
 </body>
 
 </html>
