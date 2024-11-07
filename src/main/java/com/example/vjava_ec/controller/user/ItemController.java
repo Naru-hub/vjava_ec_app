@@ -89,7 +89,7 @@ public class ItemController {
         // 検索キーワードをモデルに追加
         model.addAttribute("keyword", keyword);
     		
-        return "user/itemList";
+        return "user/item/list";
     	}
     }
 
