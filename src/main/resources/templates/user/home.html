@@ -1,25 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
+
 <head>
 	<meta charset="UTF-8">
+	<link th:href="@{/css/user/home/home.css}" rel="stylesheet">
 	<link th:href="@{/css/user/common/user_common.css}" rel="stylesheet">
 	<title>ホーム</title>
 </head>
 
 <body>
 	<div th:insert="~{user_common :: header}"></div>
-	
-	<h1>ホーム画面</h1>
-	
+
 	<!-- フラッシュメッセージの表示 -->
 	<div th:if="${successMessage}" class="alert alert-success">
-	    <span th:text="${successMessage}"></span>
+		<span th:text="${successMessage}"></span>
 	</div>
-	
-	<form th:action="@{/user/logout}" method="post">
-        <input type="submit" value="ログアウト">
-    </form>
+
+	<div class="img-area">
+		<h1>VJava ECサイト</h1>
+	</div>
 
 	<div th:insert="~{user_common :: footer}"></div>
 </body>
+
 </html>

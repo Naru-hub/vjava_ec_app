@@ -10,7 +10,7 @@
 
 <body>
 	<div th:insert="~{user_common :: header}"></div>
-
+	<h1>商品詳細</h1>
 	<div class="container">
 		<div class="left-contents">
 			<img th:src="@{${item.imagePath}}" alt="Item Image" class="image">
@@ -31,14 +31,14 @@
 				</dl>
 				<dl>
 					<dt>価格</dt>
-					<dd th:text="${item.price}"></dd>
+					<dd th:text="${#numbers.formatInteger(item.price,3,'COMMA')}+ '円(税込)'"></dd>
 				</dl>
 				<dl>
 					<dt>販売状況</dt>
 					<dd th:switch="${item.saleStatus}">
-						<spna th:case="1">販売中</spna>
-						<spna th:case="2">入荷待ち</spna>
-						<spna th:case="3">販売終了</spna>
+						<span th:case="1">販売中</span>
+						<span th:case="2">入荷待ち</spna>
+							<span th:case="3">販売終了</spna>
 					</dd>
 				</dl>
 				<form th:action="@{/user/cart/add}" method="post" id="cartForm">
