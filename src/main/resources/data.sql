@@ -96,12 +96,12 @@ INSERT INTO characters
 )
 VALUES
 (
-   '胡桃のあ',
-   '胡桃のあの紹介文です。',
-   155,
-   '2020-03-14',
+   '小雀とと',
+   'LVGで1番のマイペース。癒やし系の声が特徴で、いつもまったりとした雰囲気に包まれている。どのFPSでもスナイパー系の武器が大の得意で、敵に吸い付くようなエイムが見ていて癖になる。',
+   148,
+   '2019-04-18',
    false,
-   '/images/default/admin/character/005-kurumi_noah.png',
+   '/images/character/003-kogara_toto.png',
    CURRENT_TIMESTAMP,
    CURRENT_TIMESTAMP
 );
@@ -119,12 +119,150 @@ INSERT INTO characters
 )
 VALUES
 (
+   '胡桃のあ',
+   'よく笑いよく泣く僕っこVTuberで、天真爛漫な声と性格は周りの人を笑顔にする。ゲームへの向上心が高く、常に上達を目指し取り組んでいる。',
+   155,
+   '2020-03-14',
+   false,
+   '/images/character/005-kurumi_noah.png',
+   CURRENT_TIMESTAMP,
+   CURRENT_TIMESTAMP
+);
+-- キャラクタデータ3
+INSERT INTO characters
+(
+   name,
+   description,
+   height,
+   debut_date,
+   is_deleted,
+   image_path,
+   created_at,
+   updated_at
+)
+VALUES
+(
    '橘ひなの',
-   '橘ひなのの紹介文です。',
+   'ゲームと歌が大好きな、寂しがり屋な女の子。「Apex Legends」の腕前は「ぶいすぽっ！」でも随一で、ゲーム内の最高ランクに到達したこともある。',
    154,
    '2020-08-14',
    false,
-   '/images/default/admin/character/008-tachibana_hinano.png',
+   '/images/character/008-tachibana_hinano.png',
+   CURRENT_TIMESTAMP,
+   CURRENT_TIMESTAMP
+);
+-- キャラクタデータ4
+INSERT INTO characters
+(
+   name,
+   description,
+   height,
+   debut_date,
+   is_deleted,
+   image_path,
+   created_at,
+   updated_at
+)
+VALUES
+(
+   '英リサ',
+   'お絵かき、ゲーム、おいしいご飯が大好きなバーチャルお嬢様。食べ物の話をしているときは目が輝いている。元気で真面目な性格をしているが、ポンコツな一面も…。',
+   160,
+   '2020-08-15',
+   false,
+   '/images/character/009-hanabusa_lisa.png',
+   CURRENT_TIMESTAMP,
+   CURRENT_TIMESTAMP
+);
+-- キャラクタデータ5
+INSERT INTO characters
+(
+   name,
+   description,
+   height,
+   debut_date,
+   is_deleted,
+   image_path,
+   created_at,
+   updated_at
+)
+VALUES
+(
+   '猫汰つな',
+   '天真爛漫で情熱的な女の子。好きなことにはとことん夢中になれる性格。圧倒的な練習量とセンスから生み出されるゲームプレイは人を惹きつける。実はきゅうりが苦手。',
+   157,
+   '2022-06-24',
+   false,
+   '/images/character/015-nekota_tsuna.png',
+   CURRENT_TIMESTAMP,
+   CURRENT_TIMESTAMP
+);
+-- キャラクタデータ6
+INSERT INTO characters
+(
+   name,
+   description,
+   height,
+   debut_date,
+   is_deleted,
+   image_path,
+   created_at,
+   updated_at
+)
+VALUES
+(
+   '小森めと',
+   '宇宙から放り投げられてやってきた、ぶいすぽの引きこもりニート担当候補。数々のFPSタイトルをプレイしてきており、培われたゲームセンスは一級品。',
+   156,
+   '2020-05-30',
+   false,
+   '/images/character/017-komori_meto.png',
+   CURRENT_TIMESTAMP,
+   CURRENT_TIMESTAMP
+);
+-- キャラクタデータ7
+INSERT INTO characters
+(
+   name,
+   description,
+   height,
+   debut_date,
+   is_deleted,
+   image_path,
+   created_at,
+   updated_at
+)
+VALUES
+(
+   '夢野あかり',
+   'あかりん星のトップ、元気いっぱいの女の子。何事にも真っ直ぐ真剣に取り組むが、空回りしてしまう不憫な一面が見えることもしばしば…。',
+   149,
+   '2023-06-21',
+   false,
+   '/images/character/018-yumeno_akari.png',
+   CURRENT_TIMESTAMP,
+   CURRENT_TIMESTAMP
+);
+-- キャラクタデータ8
+INSERT INTO characters
+(
+   name,
+   description,
+   height,
+   debut_date,
+   is_deleted,
+   image_path,
+   created_at,
+   updated_at
+)
+VALUES
+(
+   '夜乃くろむ',
+   '子供っぽく見られがちだが、実は芯の強いしっかり者。ファッションやお絵描きが好きでクリエイター気質な一面も。将来の夢は素敵な大人のおねいさん。',
+   150,
+   '2023-11-24',
+   false,
+   '/images/character/019-yano_kuromu.png',
    CURRENT_TIMESTAMP,
    CURRENT_TIMESTAMP
 );
@@ -146,14 +284,14 @@ INSERT INTO items
 VALUES
 (
    1,
-   '胡桃のあキーホルダー',
-   'キーホルダー',
-   1000,
+   '缶バッジ 小雀とと ',
+   '小雀ととの缶バッジ。',
+   500,
    20,
    1,
    false,
    false,
-   '/images/default/admin/item/default_goods.jpg',
+   '/images/item/toto_kogara-01.jpg',
    CURRENT_TIMESTAMP,
    CURRENT_TIMESTAMP
 );
@@ -174,15 +312,15 @@ INSERT INTO items
 )
 VALUES
 (
-   1,
-   '胡桃のあクリアファイル',
-   'クリアファイル',
-   1000,
-   10,
    2,
+   'アクリルキーホルダー 胡桃のあ ',
+   '胡桃のあのアクリル製のキーホルダー。',
+   1000,
+   20,
+   1,
    false,
    false,
-   '/images/default/admin/item/default_goods2.jpg',
+   '/images/item/noa_kurumi-01.jpg',
    CURRENT_TIMESTAMP,
    CURRENT_TIMESTAMP
 );
@@ -203,15 +341,334 @@ INSERT INTO items
 )
 VALUES
 (
+   2,
+   'つままれキーホルダー 胡桃のあ',
+   '胡桃のあのアクリル製のキーホルダー。服をつままれ宙に浮いている。',
+   1000,
+   10,
    1,
-   '胡桃のあ人形',
-   '人形',
-   4000,
-   5,
-   3,
    false,
-   true,
-   '/images/default/admin/item/default_goods3.jpg',
+   false,
+   '/images/item/noa_kurumi-02.jpg',
+   CURRENT_TIMESTAMP,
+   CURRENT_TIMESTAMP
+);
+-- 商品データ4
+INSERT INTO items
+(
+   character_id,
+   name,
+   detail,
+   price,
+   stock,
+   sale_status,
+   is_limited,
+   is_deleted,
+   image_path,
+   created_at,
+   updated_at
+)
+VALUES
+(
+   2,
+   'キーボード 胡桃のあEdition ',
+   '初のキーボードが登場。タッチが軽く使いやすい。あとかわいい。',
+   7000,
+   5,
+   1,
+   false,
+   false,
+   '/images/item/noa_kurumi-03.jpg',
+   CURRENT_TIMESTAMP,
+   CURRENT_TIMESTAMP
+);
+-- 商品データ5
+INSERT INTO items
+(
+   character_id,
+   name,
+   detail,
+   price,
+   stock,
+   sale_status,
+   is_limited,
+   is_deleted,
+   image_path,
+   created_at,
+   updated_at
+)
+VALUES
+(
+   2,
+   '衣装メタルキーホルダー 胡桃のあ',
+   '胡桃のあの衣装メタルキーホルダー。',
+   1000,
+   10,
+   2,
+   false,
+   false,
+   '/images/item/noa_kurumi-04.jpg',
+   CURRENT_TIMESTAMP,
+   CURRENT_TIMESTAMP
+);
+-- 商品データ6
+INSERT INTO items
+(
+   character_id,
+   name,
+   detail,
+   price,
+   stock,
+   sale_status,
+   is_limited,
+   is_deleted,
+   image_path,
+   created_at,
+   updated_at
+)
+VALUES
+(
+   2,
+   'モチーフキーホルダー 胡桃のあ',
+   '胡桃のあの衣装モチーフキーホルダー。',
+   1000,
+   10,
+   2,
+   false,
+   false,
+   '/images/item/noa_kurumi-05.jpg',
+   CURRENT_TIMESTAMP,
+   CURRENT_TIMESTAMP
+);
+-- 商品データ7
+INSERT INTO items
+(
+   character_id,
+   name,
+   detail,
+   price,
+   stock,
+   sale_status,
+   is_limited,
+   is_deleted,
+   image_path,
+   created_at,
+   updated_at
+)
+VALUES
+(
+   3,
+   'アクリルキーホルダー 橘ひなの',
+   '橘ひなののアクリル製キーホルダー。',
+   1000,
+   10,
+   1,
+   false,
+   false,
+   '/images/item/hinano_tachibana-01.jpg',
+   CURRENT_TIMESTAMP,
+   CURRENT_TIMESTAMP
+);
+-- 商品データ8
+INSERT INTO items
+(
+   character_id,
+   name,
+   detail,
+   price,
+   stock,
+   sale_status,
+   is_limited,
+   is_deleted,
+   image_path,
+   created_at,
+   updated_at
+)
+VALUES
+(
+   3,
+   '缶バッジ 橘ひなの',
+   '橘ひなのの缶バッジ。',
+   500,
+   10,
+   1,
+   false,
+   false,
+   '/images/item/hinano_tachibana-04.jpg',
+   CURRENT_TIMESTAMP,
+   CURRENT_TIMESTAMP
+);
+-- 商品データ9
+INSERT INTO items
+(
+   character_id,
+   name,
+   detail,
+   price,
+   stock,
+   sale_status,
+   is_limited,
+   is_deleted,
+   image_path,
+   created_at,
+   updated_at
+)
+VALUES
+(
+   4,
+   '缶バッジ 英リサ',
+   '英リサの缶バッジ。',
+   500,
+   10,
+   1,
+   false,
+   false,
+   '/images/item/lisa_hanabusa-01.jpg',
+   CURRENT_TIMESTAMP,
+   CURRENT_TIMESTAMP
+);
+-- 商品データ10
+INSERT INTO items
+(
+   character_id,
+   name,
+   detail,
+   price,
+   stock,
+   sale_status,
+   is_limited,
+   is_deleted,
+   image_path,
+   created_at,
+   updated_at
+)
+VALUES
+(
+   5,
+   'アクリルキーホルダー 猫汰つな',
+   '猫汰つなのアクリル製キーホルダー。',
+   1000,
+   10,
+   1,
+   false,
+   false,
+   '/images/item/tsuna_nekota-01.jpg',
+   CURRENT_TIMESTAMP,
+   CURRENT_TIMESTAMP
+);
+-- 商品データ11
+INSERT INTO items
+(
+   character_id,
+   name,
+   detail,
+   price,
+   stock,
+   sale_status,
+   is_limited,
+   is_deleted,
+   image_path,
+   created_at,
+   updated_at
+)
+VALUES
+(
+   5,
+   '缶バッジ＆クリップ 猫汰つな',
+   '猫汰つなの缶バッジ＆アクリルクリップ。',
+   1500,
+   10,
+   2,
+   false,
+   false,
+   '/images/item/tsuna_nekota-03.jpg',
+   CURRENT_TIMESTAMP,
+   CURRENT_TIMESTAMP
+);
+-- 商品データ12
+INSERT INTO items
+(
+   character_id,
+   name,
+   detail,
+   price,
+   stock,
+   sale_status,
+   is_limited,
+   is_deleted,
+   image_path,
+   created_at,
+   updated_at
+)
+VALUES
+(
+   6,
+   'クリアポーチ 小森めと',
+   '小森めとのクリアポーチ。',
+   2000,
+   10,
+   1,
+   false,
+   false,
+   '/images/item/met_komori-01.jpg',
+   CURRENT_TIMESTAMP,
+   CURRENT_TIMESTAMP
+);
+-- 商品データ13
+INSERT INTO items
+(
+   character_id,
+   name,
+   detail,
+   price,
+   stock,
+   sale_status,
+   is_limited,
+   is_deleted,
+   image_path,
+   created_at,
+   updated_at
+)
+VALUES
+(
+   7,
+   'ステッカー 夢野あかり',
+   '夢野あかりのハイチュウコラボのステッカー。',
+   500,
+   10,
+   1,
+   false,
+   false,
+   '/images/item/akari_yumeno-01.jpg',
+   CURRENT_TIMESTAMP,
+   CURRENT_TIMESTAMP
+);
+-- 商品データ14
+INSERT INTO items
+(
+   character_id,
+   name,
+   detail,
+   price,
+   stock,
+   sale_status,
+   is_limited,
+   is_deleted,
+   image_path,
+   created_at,
+   updated_at
+)
+VALUES
+(
+   8,
+   'ステッカー 夜乃くろむ',
+   '夜乃くろむのハイチュウコラボのステッカー。',
+   500,
+   10,
+   1,
+   false,
+   false,
+   '/images/item/kuromu_yano-01.jpg',
    CURRENT_TIMESTAMP,
    CURRENT_TIMESTAMP
 );
