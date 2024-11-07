@@ -376,7 +376,7 @@ VALUES
    7000,
    5,
    1,
-   false,
+   true,
    false,
    '/images/item/noa_kurumi-03.jpg',
    CURRENT_TIMESTAMP,

@@ -44,7 +44,7 @@
 				<form th:action="@{/user/cart/add}" method="post" id="cartForm">
 					<input type="hidden" name="itemId" id="itemId-input" th:value="${item.id}">
 					<input type="hidden" name="amount" id="quantity-input" value="1" min="1"
-						th:max="${item.isLimited ? 5 : 10}" th:data-isLimted="${item.isLimited}">
+						th:max="${item.isLimited ? 5 : 10}" th:data-isLimited="${item.isLimited}">
 				</form>
 				<div th:if="${item.saleStatus == 1}" class="quantity">
 					<span class="quantity-title">数量：</span>

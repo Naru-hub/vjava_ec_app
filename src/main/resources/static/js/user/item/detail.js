@@ -20,6 +20,9 @@ function increaseQuantity() {
     var quantityDisplay = document.querySelector(".quantity-display")
     var currentValue = parseInt(quantityInput.value);
     var maxValue = 10;
+    
+    console.log(isLimited);
+    
     if (isLimited) {
 		maxValue = 5;
 	}
