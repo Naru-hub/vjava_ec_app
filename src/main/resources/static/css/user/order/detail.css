@@ -1,120 +1,261 @@
 @charset "UTF-8";
+
+body {
+	font-family: Arial, sans-serif;
+	background-color: #f5f5f5;
+	margin: 0;
+	padding: 0;
+	min-height: 800px;
+}
+
 h1 {
-    text-align: center;
+	text-align: center;
+	color: rgb(0, 0, 0);
+	margin-bottom: 30px;
+	font-size: 40px;
+}
+
+button {
+	background-color: #1e90ff;
+	color: white;
+	border: none;
+	padding: 10px 20px;
+	cursor: pointer;
+	font-size: 16px;
+	transition: background-color 0.3s;
+	border-radius: 5px;
+
+}
+
+button:hover {
+	background-color: #4178F3;
+}
+
+.back-button-form {
+	display: flex;
+	justify-content: center;
+	margin-top: 100px;
 }
 
 .order-info-container {
 	display: flex;
-	padding: 0px 40px;
 	justify-content: space-between;
-}
-
-.order-info-brank {
-	width: 60%;
+	margin-bottom: 20px;
 }
 
 .order-info {
-	margin-left: 5%;
-	width: 40%;
 	display: flex;
-	justify-content: space-between; /* 左右に要素を分ける */
-}
-
-.order-date {
-	text-align: right;
+	justify-content: space-between;
+	width: 100%;
+	background-color: #f5f5f5;
+	padding: 15px 70px 1px 70px;
+	border-radius: 5px;
 }
 
 .container {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 40px;
+	background-color: #f5f5f5;
+	display: flex;
+	justify-content: space-between;
+	gap: 20px;
+	height: 100%;
 }
 
-.order-details{
-    width: 60%;
-    border: 2px solid #000;
-    padding: 15px;
-    box-sizing: border-box;
+.order-details {
+	background-color: white;
+	width: 50%;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	padding: 20px 40px 20px 20px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	margin: 0px 20px 20px 50px;
+	position: relative;
 }
 
 .order-items {
-    margin-bottom: 10px;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	padding: 10px;
 }
 
 .item {
-	padding-top: 10px;
-	border: 1px solid #000;
-    display: flex;
-    justify-content: space-between;
+	display: flex;
+	align-items: center;
+	width: 100%;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	padding: 15px;
+	background-color: #ffffff;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	gap: 20px;
 }
 
 .item img {
-    width: 150px;
-    height: 150px;
-    margin-right: 10px;
+	width: 30%;
+	height: auto;
+	border-radius: 4px;
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
 
-.item-infoname {
-	padding-right: 30px;
-}
 .item-info {
-    margin-right: 10px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	width: 60%;
+}
+
+.item-row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.item-row .label {
+	width: 30%;
+	font-weight: bold;
+	color: #696969;
+	text-align: center;
+	font-size: 20px;
+}
+
+.item-row .value {
+	width: 70%;
+	color: #696969;
+	text-align: left;
+	font-size: 18px;
+
 }
 
 .item-total {
 	display: flex;
-    text-align: right;
-    align-items: flex-end;
- 	padding-right: 20px;
+	font-weight: bold;
+	color: #696969;
+	text-align: right;
+	margin-top: 200px;
+	margin-right: 40px;
 }
 
-.pay-info{
+.pay-info {
 	display: flex;
-	justify-content: space-between; /* 子要素を均等に並べる */
+	justify-content: flex-end;
+	gap: 40px;
+	margin-top: 20px;
 }
-
-.payment {
-	width: 60%;
-	text-align: center;
-	padding-top: 40px;
-}
-
-
 
 .price-info {
-	width: 40%;
-	padding: 10px 20px 10px 0px;
-}
-
-
-.postage, .total-price {
 	display: flex;
-	justify-content: space-between; /* 子要素を均等に並べる */
-	border-bottom: 1px solid #000;
-	padding: 20px 20px 0px 20px;
-	font-size: large;
+	flex-direction: column;
+	gap: 10px;
 }
 
+.postage,
+.total-price {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-bottom: 5px;
+	border-bottom: 1px solid #ddd;
+}
+
+.postagename {
+	margin-right: 50px;
+	font-weight: bold;
+	color: #333;
+}
+
+.postege-price {
+	color: #333;
+	font-weight: bold;
+}
 
 .shipping-info-contents {
-    flex: 0 0 auto; /* 右側の高さを固定 */
-    max-height: fit-content;
-    width: 38%;
-    border: 2px solid #000;
-    padding: 10px 50px 50px 50px;
-    box-sizing: border-box;
+	width: 40%;
+	margin: 0px 50px 100px 0px;
+}
+
+.shipping-info-area-base {
+	background-color: white;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	margin: 0px 0px 100px 0px;
 }
 
 .shipping-info-contents h2 {
 	text-align: center;
+	color: rgb(0, 0, 0);
+	margin-top: 50px;
+	margin-bottom: 20px;
 }
 
 .shipping-info-area {
 	display: flex;
-	justify-content: space-between; /* 子要素を均等に並べる */
+	justify-content: space-between;
+	/*	gap: 20px;*/
+	font-size: 20px;
 }
 
 .shipping-info-label {
-	padding-left: 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	width: 48%;
+	text-align: center;
+}
+
+.shipping-info {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	width: 48%;
+	text-align: center;
+	margin-bottom: 50px;
+}
+
+.shipping-info-label p,
+.shipping-info p {
+	color: #696969;
+}
+
+.shipping-info-label p {
+	font-size: 20px;
+	font-weight: bold;
+	color: #696969;
+	padding-left: 80px;
+
+}
+
+.shipping-info p {
+	font-size: 20px;
+	color: #696969;
 	text-align: left;
+	line-height: 1.5;
+
+}
+
+@media (max-width: 768px) {
+	.container {
+		flex-direction: column;
+	}
+
+	.order-details,
+	.shipping-info-contents {
+		width: 100%;
+	}
+
+	.shipping-info-area {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.shipping-info-label,
+	.shipping-info {
+		width: 100%;
+	}
+
+	.shipping-info-label p,
+	.shipping-info p {
+		font-size: 16px;
+	}
 }

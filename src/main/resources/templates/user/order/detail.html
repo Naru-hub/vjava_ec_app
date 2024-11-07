@@ -1,90 +1,112 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<link th:href="@{/css/user/common/user_common.css}" rel="stylesheet">
-<link th:href="@{/css/user/order/detail.css}" rel="stylesheet">
-<title>注文履歴詳細</title>
+	<meta charset="UTF-8">
+	<link th:href="@{/css/user/common/user_common.css}" rel="stylesheet">
+	<link th:href="@{/css/user/order/detail.css}" rel="stylesheet">
+	<title>注文履歴詳細</title>
 </head>
+
 <body>
+	<!-- ヘッダーのインクルード -->
 	<div th:insert="~{user_common :: header}"></div>
-	<form action="/user/order/list" method="get">
-		<button type="submit" >注文履歴一覧へ戻る</button>
-	</form>
+
+	<!-- 注文履歴詳細のタイトル -->
 	<h1>注文履歴詳細</h1>
+
+	<!-- 注文情報 -->
 	<div class="order-info-container">
 		<div class="order-info-brank"></div>
 		<div class="order-info">
-			<span>注文ステータス：<span th:switch="${order.orderStatus}">
-				<span th:case="1">受付済み</span>
-				<span th:case="2">発送準備中</span>
-				<span th:case="3">発送済み</span>
-				<span th:case="4">キャンセル済み</span>
-			</span></span>
-			<span class="order-date">購入日：<span th:text="${#temporals.format(order.createdAt, 'yyyy年MM月dd日')}"></span></span>
+			<span>注文ステータス <span th:switch="${order.orderStatus}">
+					<span th:case="1">受付済み</span>
+					<span th:case="2">発送準備中</span>
+					<span th:case="3">発送済み</span>
+					<span th:case="4">キャンセル済み</span>
+				</span></span>
+			<span class="order-date">購入日 <span
+					th:text="${#temporals.format(order.createdAt, 'yyyy年MM月dd日')}"></span></span>
 		</div>
 	</div>
-	
+
+	<!-- 注文詳細情報と配送先情報 -->
 	<div class="container">
-	    <div class="order-details">
-	        <div th:each="orderItem : ${order.orderItems}" class="order-items">
-	            <div class="item">
-	                <img th:src="${orderItem.item.imagePath}" alt="商品画像">
-	                <div class="item-infoname">
-						<div>商品名</div>
-	                    <div>価格</div>
-	                    <div>個数</div>
-					</div>
+		<!-- 注文詳細 -->
+		<div class="order-details">
+			<div th:each="orderItem : ${order.orderItems}" class="order-items">
+				<div class="item">
+					<img th:src="${orderItem.item.imagePath}" alt="商品画像">
 					<div class="item-info">
-	                    <div th:text="${orderItem.item.name}"></div>
-	                    <div th:text="${orderItem.purchasePrice}"></div>
-	                    <div th:text="${orderItem.amount}"></div>
-	                </div>
-	                <div class="item-total">
-	                    <p>小計：[[${orderItem.purchasePrice * orderItem.amount}]]円</p>
-	                </div>
-	            </div>
-	        </div>
-	        <div class="pay-info">
+						<div class="item-row">
+							<div class="label">商品名</div>
+							<div class="value" th:text="${orderItem.item.name}"></div>
+						</div>
+						<div class="item-row">
+							<div class="label">価格</div>
+							<div class="value" th:text="${#numbers.formatInteger(orderItem.purchasePrice,3,'COMMA')} + '円'"></div>
+						</div>
+						<div class="item-row">
+							<div class="label">個数</div>
+							<div class="value" th:text="${orderItem.amount} + '個'"></div>
+						</div>
+					</div>
+					<div class="item-total">
+						<p>小計：[[${#numbers.formatInteger(orderItem.purchasePrice * orderItem.amount,3,'COMMA')}]]円</p>
+					</div>
+				</div>
+			</div>
+
+			<!-- 支払い情報と料金 -->
+			<div class="pay-info">
 				<div class="payment">
-	         	   <span>支払い方法　</span>
-	         	   <span th:switch="${order.payment}">
+					<span>支払い方法　</span>
+					<span th:switch="${order.payment}">
 						<span th:case="1">代引き</span>
 						<span th:case="2">クレジットカード</span>
 						<span th:case="3">コンビニ払い</span>
-				   </span>
+					</span>
 				</div>
 				<div class="price-info">
 					<div class="postage">
 						<span class="postagename">送料</span>
-						<span class="postege-price">[[${order.postage}]] 円</span>
+						<span class="postege-price">[[${#numbers.formatInteger(order.postage,3,'COMMA')}]] 円</span>
 					</div>
 					<div class="total-price">
 						<span class="postagename">合計</span>
-						<span class="postege-price">[[${order.totalPrice}]] 円</span>
+						<span class="postege-price">[[${#numbers.formatInteger(order.totalPrice,3,'COMMA')}]] 円</span>
 					</div>
 				</div>
-	        </div>
-	    </div>
-	    <div class="shipping-info-contents">
-	        <h2>配送先情報</h2>
-			<div class="shipping-info-area">
-				<div class="shipping-info-label">
-					<p>宛名</p>
-			        <p>郵便番号</p>
-			        <p>住所</p>
-			        <p>電話番号</p>
-				</div>
-				<div class="shipping-info">
-			        <p th:text="${order.deliveryName}"></p>
-			        <p th:text="${order.deliveryPostcode}"></p>
-			        <p th:text="${order.deliveryAddress}"></p>
-			        <p th:text="${order.deliveryTel}"></p>
+			</div>
+		</div>
+
+		<!-- 配送先情報 -->
+		<div class="shipping-info-contents">
+			<div class="shipping-info-area-base">
+				<h2>配送先情報</h2>
+				<div class="shipping-info-area">
+					<div class="shipping-info-label">
+						<p>宛名</p>
+						<p>郵便番号</p>
+						<p>住所</p>
+						<p>電話番号</p>
+					</div>
+					<div class="shipping-info">
+						<p th:text="${order.deliveryName}"></p>
+						<p th:text="${order.deliveryPostcode}"></p>
+						<p th:text="${order.deliveryAddress}"></p>
+						<p th:text="${order.deliveryTel}"></p>
+					</div>
 				</div>
 			</div>
-	    </div>
+			<form action="/user/order/list" method="get" class="back-button-form">
+				<button type="submit">注文履歴一覧へ戻る</button>
+			</form>
+		</div>
 	</div>
-	
+
+	<!-- フッターのインクルード -->
 	<div th:insert="~{user_common :: footer}"></div>
 </body>
+
 </html>

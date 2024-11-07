@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+body {
+	font-family: Arial, sans-serif;
+	background-color: #f5f5f5;
+	margin: 0;
+	padding: 0;
+	min-height: auto;
+}
+
+h1 {
+	text-align: center;
+	color: #333;
+	margin-bottom: 30px;
+	font-size: 40px;
+}
+
+.img-area {
+	/* 画像のパスを指定 */
+	background-image: url('/images/default/user/home/home.png');
+	/* 画像が画面いっぱいに広がるように設定 */
+	background-size: 50% auto;
+	/* 画像を中央に配置 */
+	background-position: center center;
+	/* 画像が繰り返さないように設定 */
+	background-repeat: no-repeat;
+	/* ビューポート全体の高さに合わせる */
+	height: 100vh;
+	margin-top: 100px;
+	margin-bottom: 100px;
+	background-color: #dbdbff;
+}

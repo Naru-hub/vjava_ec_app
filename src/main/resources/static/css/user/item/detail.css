@@ -9,9 +9,15 @@ body {
 	min-height: auto;
 }
 
+h1 {
+    text-align: center;
+    color: #333;
+    font-size: 40px;
+}
+
 .container {
 	max-width: 1600px;
-	margin: 50px 100px;
+	margin: 0px 100px 50px 100px;
 	border-radius: 15px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 	background-color: #fff;

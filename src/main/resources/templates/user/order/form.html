@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
 	<link th:href="@{/css/user/order/form.css}" rel="stylesheet">
 	<link th:href="@{/css/user/common/user_common.css}" rel="stylesheet">
 	<meta charset="UTF-8">
 	<title>購入情報入力</title>
 </head>
+
 <body>
 	<div th:insert="~{user_common :: header}"></div>
-		
+
+	<div class="title">
+		<h1>購入情報入力画面</h1>
+	</div>
 	<div class="container">
-		<div class="title">
-			<h1>購入情報入力画面</h1>
-		</div>
 		<form th:action="@{/user/order/form}" method="post" id="form" class="form">
 			<div class="input" th:object="${form}">
 				<div>
@@ -52,8 +54,9 @@
 			<button id="nextButton">確認画面へ進む</button>
 		</div>
 	</div>
-	
+
 	<div th:insert="~{user_common :: footer}"></div>
 	<script th:src="@{/js/user/order/form.js}"></script>
 </body>
+
 </html>
