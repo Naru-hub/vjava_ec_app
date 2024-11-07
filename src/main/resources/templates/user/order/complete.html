@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
 	<link th:href="@{/css/user/order/complete.css}" rel="stylesheet">
@@ -14,13 +14,12 @@
 
 		<h1>ご購入ありがとうございました</h1>
 		<div class="button-area">
-
 			<button id="homeButton">ホーム画面へ</button>
 		</div>
 	</div>
 
 	<div th:insert="~{user_common :: footer}"></div>
-	<script> th: src = "@{/js/user/order/complete.js}" </script>
+	<script th:src="@{/js/user/order/complete.js}"></script>
 </body>
 
 </html>
