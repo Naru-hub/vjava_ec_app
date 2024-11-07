@@ -25,7 +25,7 @@ h1 {
 	/* 画像が繰り返さないように設定 */
 	background-repeat: no-repeat;
 	/* ビューポート全体の高さに合わせる */
-	height: 80vh;
+	height: 100vh;
 	margin-top: 100px;
 	margin-bottom: 100px;
 	background-color: #dbdbff;
