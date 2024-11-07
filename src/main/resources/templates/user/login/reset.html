@@ -14,15 +14,16 @@
 		<div th:if="${tokenError}" th:text="${tokenError}"></div>
 		<div>登録したメールアドレスを入力してください</div>
 		<div th:if="${success}" th:text="${success}" style="color: blue;"></div>
-		<form th:action="@{/user/login/reset/mail}" method="post">
+		<form th:action="@{/user/login/reset/mail}" method="post" onsubmit="return disableButton(this)">
 			<div>
 				<input type="text" name="email">
 				<span th:if="${error}" th:text="${error}" style="color: red;"></span>
 			</div>
-			<button type="submit">再設定のメールを送る</button>
+			<button type="submit" id="submitButton">再設定のメールを送る</button>
 		</form>
 	</div>	
 
 	<div th:insert="~{user_common :: footer}"></div>
+	<script th:src="@{/js/user/login/reset.js}"></script>
 </body>
 </html>

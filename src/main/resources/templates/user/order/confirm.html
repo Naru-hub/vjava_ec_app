@@ -57,8 +57,10 @@
 				<form th:action="@{/user/order/cancel}" method="post">
 					<button type="submit">キャンセル</button>
 				</form>
-				<form th:action="@{/user/order/create}" method="post">
-					<button type="submit">購入確定</button>
+				<form th:action="@{/user/order/create}" method="post" onsubmit="return disableButton(this)">
+				    <button type="submit" id="submitButton">
+				        購入確定
+				    </button>
 				</form>
 			</div>
 	    </div>

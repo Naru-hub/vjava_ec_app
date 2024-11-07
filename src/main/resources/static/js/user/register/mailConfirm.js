@@ -1,9 +1,9 @@
 /**
- * 会員：購入情報確認画面 JavaScriptファイル
+ * 会員：認証コード確認画面 JavaScriptファイル
  */
 
- function disableButton(form) {
-    const button = form.querySelector("#submitButton");
+function disableButton(form) {
+	const button = form.querySelector("#submitButton");
     
     // ボタンを無効化
     button.disabled = true;

@@ -27,11 +27,12 @@
 		<div>
 			メールが届かない場合
 		</div>
-		<form th:action="@{/user/register/resend}" method="post">
-			<button type="submit">メールを再送信する</button>
+		<form th:action="@{/user/register/resend}" method="post" onsubmit="return disableButton(this)">
+			<button type="submit" id="submitButton">メールを再送信する</button>
 		</form>
 	</div>
 
 	<div th:insert="~{user_common :: footer}"></div>
+	<script th:src="@{/js/user/register/mailConfirm.js}"></script>
 </body>
 </html>
