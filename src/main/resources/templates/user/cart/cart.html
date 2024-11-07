@@ -13,13 +13,7 @@
 
 	<div class="container">
 		<div class="top-contents">
-			<!--<div>
-				<button id="continueShopping">買い物を続ける</button>
-			</div> -->
 			<h1>カート</h1>
-			<!--<form th:action="@{/user/cart/delete/all}" method="post">
-				<button th:if="${#lists.isEmpty(cart.cartItems) == false}" id="delete-cart">カートを空にする</button>
-			</form>-->
 		</div>
 		<div th:if="${#lists.isEmpty(cart.cartItems) == false}" class="main-contents">
 			<div class="cart-item-area">
@@ -78,8 +72,8 @@
 					</div>
 					<div class="total-price-card-under-button">
 						<form th:action="@{/user/cart/delete/all}" method="post">
-							<button class="cart-item-all-delete-button" th:if="${#lists.isEmpty(cart.cartItems) == false}"
-								id="delete-cart">カートを空にする</button>
+							<button class="cart-item-all-delete-button"
+								th:if="${#lists.isEmpty(cart.cartItems) == false}" id="delete-cart">カートを空にする</button>
 						</form>
 						<div>
 							<button id="continueShopping">買い物を続ける</button>
@@ -91,6 +85,9 @@
 		</div>
 		<div class="cart-empty-box" th:if="${#lists.isEmpty(cart.cartItems)}">
 			<div class="cart-empty">カートは空です</div>
+			<div>
+				<button id="continueShopping">買い物を続ける</button>
+			</div>
 		</div>
 	</div>
 
