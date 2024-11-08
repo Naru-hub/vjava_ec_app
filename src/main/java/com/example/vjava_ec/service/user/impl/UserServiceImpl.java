@@ -143,21 +143,6 @@ public class UserServiceImpl implements UserService{
 		
 		// データベースに挿入
 		userMapper.insertUser(user);
-		}
-	
-	/**
-	 * ユーザーのログイン状態を確認
-	 * ユーザーが登録したemailが合致している場合、trueを返してログアウトを表示
-	 * 合致していない場合、falseを返してログインを表示
-	 * @return boolean ログインの有無
-	 */
-	@Override
-	public boolean IdentifyUser() {
-		final String email = SecurityContextHolder.getContext().getAuthentication().getName();		
-		if(email.equals("anonymousUser") ) {
-			return false;
-		}
-		return true;
 	}
 
 	/**

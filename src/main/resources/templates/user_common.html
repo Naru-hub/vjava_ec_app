@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
 <head>
 	<meta charset="UTF-8">
@@ -29,9 +30,9 @@
 		</button>
 		<!-- ナビゲーションリンク -->
 		<div id="nav-links">
-			<a th:unless="${islogin}" th:href="@{/user/login}" class="header-loginlink">ログイン</a>
+			<a sec:authorize="isAnonymous()" th:href="@{/user/login}" class="header-loginlink">ログイン</a>
 			<form th:action="@{/user/logout}" method="post">
-				<button th:if="${islogin}" type="submit" class="header-loginlink">
+				<button sec:authorize="isAuthenticated()" type="submit" class="header-loginlink">
 					ログアウト
 				</button>
 			</form>

@@ -27,8 +27,6 @@ public class HomeController {
      */
 	@GetMapping("")
 	public String showHome(Model model) {
-        // ユーザーがログイン中か確認
-        model.addAttribute("islogin",userService.IdentifyUser());
 		return "user/home";
 	}
 }
