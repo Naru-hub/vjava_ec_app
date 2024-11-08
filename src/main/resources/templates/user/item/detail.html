@@ -43,8 +43,8 @@
 					<dt>販売状況</dt>
 					<dd th:switch="${item.saleStatus}">
 						<span th:case="1">販売中</span>
-						<span th:case="2">入荷待ち</spna>
-							<span th:case="3">販売終了</spna>
+						<span th:case="2">入荷待ち</span>
+						<span th:case="3">販売終了</span>
 					</dd>
 				</dl>
 				<form th:action="@{/user/cart/add}" method="post" id="cartForm">
