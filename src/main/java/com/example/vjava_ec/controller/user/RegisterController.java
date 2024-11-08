@@ -118,7 +118,7 @@ public class RegisterController {
 		} catch(Exception e) {
 			return "redirect:/user/register";
 		}
-		return "redirect:/user";
+		return "redirect:/user/login";
 	}
 	
 	/**

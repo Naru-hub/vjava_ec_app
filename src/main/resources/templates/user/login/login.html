@@ -22,6 +22,10 @@
 		<div th:if="${param.logout}">
 			<p style="color: blue">ログアウトしました</p>
 		</div>
+		<!-- 登録完了表示 -->
+		<div th:if="${successMessage}" class="alert alert-success">
+			<p th:text="${successMessage}" style="color: green;"></p>
+		</div>
 		<!-- パスワードリセット完了表示 -->
 		<div th:if="${resetMessage}">
 			<p th:text="${resetMessage}" style="color: green;"></p>
