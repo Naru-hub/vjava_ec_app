@@ -60,7 +60,7 @@ public class RegisterController {
 							   HttpSession session) {
 		//失敗時は新規登録画面に戻す
 		if(result.hasErrors()) {
-			return "user/register";
+			return "user/register/register";
 		}
 		// 認証メールの送信と認証コードの取得
 		int code = emailService.sendConfirmEmail(signupUserForm.getEmail());

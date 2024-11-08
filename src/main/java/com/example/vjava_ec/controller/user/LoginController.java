@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.vjava_ec.form.user.PasswordResetForm;
 import com.example.vjava_ec.service.user.EmailService;
@@ -78,12 +79,13 @@ public class LoginController {
 	 * @return user/resetpassword パスワード再設定画面
 	 */
 	@GetMapping("/reset/password")
-	public String showResetPassword(@RequestParam("token") String token,@ModelAttribute("form") PasswordResetForm form, HttpSession session) {
+	public String showResetPassword(@RequestParam("token") String token,@ModelAttribute("form") PasswordResetForm form, HttpSession session,Model model) {
 		// セッションに保存しているトークンとトークン期限を取得
 		String resetToken = (String)session.getAttribute("resetToken");
 		Long resetLimit = (Long)session.getAttribute("resetLimit");
 		if(resetToken == null || !token.equals(resetToken) || resetLimit < System.currentTimeMillis()) {
-			return "redirect:/user/login/reset";
+			model.addAttribute("tokenError", "もう一度メールを送信してください");
+			return "user/login/reset";
 		}
 		return "user/login/resetpassword";
 	}
@@ -100,6 +102,7 @@ public class LoginController {
 	public String resetPassword(@Validated @ModelAttribute("form") PasswordResetForm form, 
 								BindingResult result, 
 								HttpSession session,
+								RedirectAttributes attributes,
 								Model model) {
 		String email = (String)session.getAttribute("email");
 		if(email == null) {
@@ -114,7 +117,9 @@ public class LoginController {
 			model.addAttribute("form", form);
 			return "user/login/resetpassword";
 		}
+		// パスワードの再設定
 		userService.updatePassword(email,form.getPassword());
-		return "user/login/password-reset-complete";
+		attributes.addFlashAttribute("resetMessage", "パスワードを再設定しました");
+		return "redirect:/user/login";
 	}
 }

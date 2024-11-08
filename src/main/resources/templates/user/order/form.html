@@ -12,7 +12,7 @@
 	<div th:insert="~{user_common :: header}"></div>
 
 	<div class="title">
-		<h1>購入情報入力画面</h1>
+		<h1>購入情報入力欄</h1>
 	</div>
 	<div class="container">
 		<form th:action="@{/user/order/form}" method="post" id="form" class="form">
@@ -39,11 +39,11 @@
 				</div>
 				<div>
 					<label for="payment">支払い方法</label>
-					<input type="radio" name="payment" value="1">
+					<input type="radio" name="payment" value="1" th:checked="${form.payment == 1}">
 					代引き
-					<input type="radio" name="payment" value="2">
+					<input type="radio" name="payment" value="2" th:checked="${form.payment == 2}">
 					クレジットカード
-					<input type="radio" name="payment" value="3">
+					<input type="radio" name="payment" value="3" th:checked="${form.payment == 3}">
 					コンビニ払い
 					<span th:if="${#fields.hasErrors('payment')}" th:errors="*{payment}" style="color: red;"><span />
 				</div>

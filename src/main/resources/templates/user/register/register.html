@@ -18,7 +18,7 @@
 	<!-- フォーム開始 -->
 	<div class="container">
 		<h2>会員新規登録</h2>
-		<form action="#" method="post" th:action="@{/user/register}" th:object="${signupUserForm}">
+		<form action="#" method="post" th:action="@{/user/register}" th:object="${signupUserForm}" onsubmit="return disableButton(this)">
 			<div class="register-form-input">
 				<div class="form-group">
 					<label for="name">名前　　　　　</label>
@@ -69,13 +69,14 @@
 
 				<!-- 送信ボタン -->
 				<div class="button-container">
-					<button type="submit">登録する</button>
+					<button type="submit" id="submitButton">登録する</button>
 				</div>
 			</div>
 		</form>
 	</div>
+	
 	<div th:insert="~{user_common :: footer}"></div>
-
+	<script th:src="@{/js/user/register/register.js}"></script>
 </body>
 
 </html>

@@ -1,5 +1,5 @@
 /**
- * 会員：購入情報確認画面 JavaScriptファイル
+ * 会員：パスワード再設定メール送信画面 JavaScriptファイル
  */
 
  function disableButton(form) {

@@ -22,9 +22,9 @@
 		<div th:if="${param.logout}">
 			<p style="color: blue">ログアウトしました</p>
 		</div>
-		<!-- サインアップ表示 -->
-		<div th:if="${success}">
-			<p th:text="${success}" style="color:green">登録しました</p>
+		<!-- パスワードリセット完了表示 -->
+		<div th:if="${resetMessage}">
+			<p th:text="${resetMessage}" style="color: green;"></p>
 		</div>
 		<div class="login-form">
 			<form th:action="@{/user/authentication}" method="post">

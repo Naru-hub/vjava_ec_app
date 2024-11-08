@@ -21,6 +21,10 @@ h1 {
     padding: 20px;
 }
 
+a {
+    text-decoration: none;
+}
+
 .item-card {
     background-color: #fff;
     border-radius: 8px;
@@ -28,14 +32,44 @@ h1 {
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     width: 100%;
-    height: 550px;
+    height: 500px;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 .item-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.status-label {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px 8px;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 3px;
+    z-index: 2; /* 画像よりも上に表示 */
+}
+
+.Limited-label {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: rgb(255, 69, 58); /* 鮮やかな赤色背景 */
+    color: white;
+    padding: 5px 10px;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 3px;
+    z-index: 2;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 少し浮いているような影 */
+    text-transform: uppercase; /* すべて大文字にして強調 */
+    letter-spacing: 1px; /* 文字間隔を広く */
 }
 
 .item-card img {

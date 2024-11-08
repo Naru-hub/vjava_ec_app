@@ -2,22 +2,37 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
+	<link th:href="@{/css/user/register/mailConfirm.css}" rel="stylesheet">
 	<link th:href="@{/css/user/common/user_common.css}" rel="stylesheet">
 	<title>メール認証</title>
 </head>
 <body>
 	<div th:insert="~{user_common :: header}"></div>
 		
-	<h1>メール認証</h1>
-	<div th;if="${codeError}" th:text="${codeError}" style=" color: red;"></div>
-	<form th:action="@{/user/register/complete}" method="post">
-		<input name="code" type="text">
-		<button type="submit">認証する</button>
-	</form>
-	<form th:action="@{/user/register/resend}" method="post">
-		<button type="submit">コードを再発行する</button>
-	</form>
+	<div class="container">
+		<h1>認証コード確認</h1>
+		<div>
+			ご入力いただいたメールアドレスに６桁の認証コードをお送りしました
+			<div>
+				有効期限は三分です
+			</div>
+		</div>
+		<div th;if="${codeError}" th:text="${codeError}" style=" color: red;"></div>
+		<form th:action="@{/user/register/complete}" method="post">
+			<div>
+				<input name="code" type="text" placeholder="認証コード">
+			</div>
+			<button class="submitButton" type="submit">認証する</button>
+		</form>
+		<div>
+			メールが届かない場合
+		</div>
+		<form th:action="@{/user/register/resend}" method="post" onsubmit="return disableButton(this)">
+			<button type="submit" id="submitButton">メールを再送信する</button>
+		</form>
+	</div>
 
 	<div th:insert="~{user_common :: footer}"></div>
+	<script th:src="@{/js/user/register/mailConfirm.js}"></script>
 </body>
 </html>

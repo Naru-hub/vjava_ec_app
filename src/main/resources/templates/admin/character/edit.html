@@ -51,8 +51,8 @@
 					<!-- 身長 -->
 					<div class="my-3 d-flex flex-row">
 						<label for="heightInput" class="col-md-3 form-label">身長</label>
-						<input type="text" th:field="*{height}" class="col-md-8 form-control" id="heightInput"
-							placeholder="身長を入力">
+						<input type="number" th:field="*{height}" class="col-md-8 form-control" id="heightInput"
+							min="0" placeholder="身長を入力">
 						<p class="form-text ml-2">cm</p>
 						<span th:if="${#fields.hasErrors('height')}" th:errors="*{height}" class="col-md-10"
 							style="color: red;"></span>
