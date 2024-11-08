@@ -1,0 +1,17 @@
+com.example.vjava_ec
+com.example.vjava_ec.config
+com.example.vjava_ec.controller.admin
+com.example.vjava_ec.controller.user
+com.example.vjava_ec.dto.admin
+com.example.vjava_ec.entity
+com.example.vjava_ec.exception.user
+com.example.vjava_ec.form.admin
+com.example.vjava_ec.form.user
+com.example.vjava_ec.helper.admin
+com.example.vjava_ec.helper.user
+com.example.vjava_ec.repository.admin
+com.example.vjava_ec.repository.user
+com.example.vjava_ec.service.admin
+com.example.vjava_ec.service.admin.impl
+com.example.vjava_ec.service.user
+com.example.vjava_ec.service.user.impl
