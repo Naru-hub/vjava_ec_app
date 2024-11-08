@@ -70,13 +70,6 @@ a {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 少し浮いているような影 */
     text-transform: uppercase; /* すべて大文字にして強調 */
     letter-spacing: 1px; /* 文字間隔を広く */
-    background-image: repeating-linear-gradient(
-        45deg,
-        rgba(255, 255, 255, 0.3) 0,
-        rgba(255, 255, 255, 0.3) 10px,
-        transparent 10px,
-        transparent 20px
-    ); /* 斜めのストライプ */
 }
 
 .item-card img {
