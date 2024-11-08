@@ -13,7 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.vjava_ec.form.user.SignupUserForm;
 import com.example.vjava_ec.service.user.EmailService;
-import com.example.vjava_ec.service.user.impl.UserServiceImpl;
+import com.example.vjava_ec.service.user.UserService;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -27,7 +27,7 @@ import lombok.RequiredArgsConstructor;
 public class RegisterController {
 	
 	//DI
-	private final UserServiceImpl userService;
+	private final UserService userService;
 	private final EmailService emailService;
 	
     /**

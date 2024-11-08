@@ -38,8 +38,6 @@ public class ItemController {
         List<Item> items = itemService.getAllItems();
         // モデルに商品情報を追加
          model.addAttribute("items", items);
-        // ユーザーがログイン中か確認する
-        model.addAttribute("islogin",userService.IdentifyUser());
         return "user/item/list"; 
     }
     
@@ -84,8 +82,6 @@ public class ItemController {
     	}
         // モデルに商品情報を追加
         model.addAttribute("items", searchItemsList);
-        // ユーザーがログイン中か確認する
-        model.addAttribute("islogin", userService.IdentifyUser());
         // 検索キーワードをモデルに追加
         model.addAttribute("keyword", keyword);
     		
