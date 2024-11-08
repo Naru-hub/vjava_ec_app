@@ -13,7 +13,7 @@ body {
 
 .container {
 	max-width: 1600px;
-	margin: 30px 330px 70px 330px;
+	margin: 100px 330px 100px 330px;
 	padding: 60px;
 	border-radius: 15px;
 	box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
@@ -44,12 +44,12 @@ button {
 }
 
 button#homeButton {
-	background-color: rgb(128, 128, 128);
+	background-color: #007bff;
 	color: white;
 	margin-right: 40px;
 	margin-top: 10px;
 }
 
 button#homeButton:hover {
-	background-color: rgb(100, 100, 100);
+	background-color: #0056b3;
 }
