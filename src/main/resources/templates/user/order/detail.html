@@ -52,7 +52,8 @@
 						</div>
 					</div>
 					<div class="item-total">
-						<p>小計：[[${#numbers.formatInteger(orderItem.purchasePrice * orderItem.amount,3,'COMMA')}]]円</p>
+						<p class="label">小計</p>
+						<p th:text="${#numbers.formatInteger(orderItem.purchasePrice * orderItem.amount,3,'COMMA')} + '円'"></p>
 					</div>
 				</div>
 			</div>

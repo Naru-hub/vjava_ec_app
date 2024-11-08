@@ -12,12 +12,12 @@ INSERT INTO users
 )
 VALUES
 (
-   'テスト',
+   'テスト太郎',
    'test@test.com',
    '$2a$10$I53eTbgLsU7F3TJJIelTkuXcGHzOCMYTbKIRX1W1tsHWZbN3RzLa.',
-   '1234567',
-   '〇〇県〇〇市〇〇町',
-   '12345678910',
+   '1034567',
+   '〇〇県〇〇市〇〇町3丁目1-8',
+   '09045678910',
    CURRENT_TIMESTAMP,
    CURRENT_TIMESTAMP
 );
@@ -35,12 +35,12 @@ INSERT INTO users
 )
 VALUES
 (
-   'テスト2',
-   'test2@test.com',
+   'テスト花子',
+   'testhana@test.com',
    '$2a$10$I53eTbgLsU7F3TJJIelTkuXcGHzOCMYTbKIRX1W1tsHWZbN3RzLa.',
-   '2345678',
+   '1015678',
    '〇〇県〇〇市〇〇町2丁目',
-   '12345678912',
+   '09055678912',
    CURRENT_TIMESTAMP,
    CURRENT_TIMESTAMP
 );
@@ -58,12 +58,12 @@ INSERT INTO users
 )
 VALUES
 (
-   'テスト3',
-   'test3@test.com',
+   '佐々木門左衛門',
+   'sasaki@test.com',
    '$2a$10$I53eTbgLsU7F3TJJIelTkuXcGHzOCMYTbKIRX1W1tsHWZbN3RzLa.',
-   '3456789',
+   '1036789',
    '〇〇県〇〇市〇〇町3丁目',
-   '12345678913',
+   '09045678413',
    CURRENT_TIMESTAMP,
    CURRENT_TIMESTAMP
 );
@@ -373,10 +373,10 @@ VALUES
    2,
    'キーボード 胡桃のあEdition ',
    '初のキーボードが登場。タッチが軽く使いやすい。あとかわいい。',
-   7000,
+   30000,
    5,
    1,
-   false,
+   true,
    false,
    '/images/item/noa_kurumi-03.jpg',
    CURRENT_TIMESTAMP,
@@ -433,7 +433,7 @@ VALUES
    '胡桃のあの衣装モチーフキーホルダー。',
    1000,
    10,
-   2,
+   3,
    false,
    false,
    '/images/item/noa_kurumi-05.jpg',
@@ -463,7 +463,7 @@ VALUES
    1000,
    10,
    1,
-   false,
+   true,
    false,
    '/images/item/hinano_tachibana-01.jpg',
    CURRENT_TIMESTAMP,
