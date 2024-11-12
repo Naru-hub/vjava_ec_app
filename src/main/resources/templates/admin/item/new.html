@@ -10,13 +10,14 @@
 
 <body>
 	<div id="admin-header" th:insert="~{admin_common::admin-header}"></div>
+
 	<div class="container" style="min-height: 600px;">
 		<div class="row">
 			<!-- フラッシュメッセージの表示 -->
 			<div th:if="${errorMessage}" th:text="${errorMessage}" class="alert alert-danger col-md-5" role="alert">
 				エラーメッセージ
 			</div>
-			
+
 			<div class="col-md-10 offset-md-1 mt-3">
 				<h1 class="mb-4 text-center">商品新規登録</h1>
 				<form th:action="@{/admin/item/create}" th:object="${adminItemForm}" method="post"
@@ -55,8 +56,8 @@
 					<!-- 価格 -->
 					<div class="my-3 d-flex flex-row">
 						<label for="priceInput" class="col-md-3 form-label">価格(税抜)</label>
-						<input type="number" th:field="*{price}" class="col-md-8 form-control" id="priceInput"
-							min="0" placeholder="数値を入力">
+						<input type="number" th:field="*{price}" class="col-md-8 form-control" id="priceInput" min="0"
+							placeholder="数値を入力">
 						<p class="form-text ml-2">円</p>
 						<span th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="col-md-10"
 							style="color: red;"></span>
@@ -65,8 +66,8 @@
 					<!-- 在庫数 -->
 					<div class="my-3 d-flex flex-row">
 						<label for="stockInput" class="col-md-3 form-label">在庫数</label>
-						<input type="number" th:field="*{stock}" class="col-md-8 form-control" id="stockInput"
-							min="0" placeholder="数値を入力">
+						<input type="number" th:field="*{stock}" class="col-md-8 form-control" id="stockInput" min="0"
+							placeholder="数値を入力">
 						<p class="form-text ml-2">個</p>
 						<span th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}" class="col-md-10"
 							style="color: red;"></span>
@@ -115,6 +116,7 @@
 			</div>
 		</div>
 	</div>
+
 	<div id="admin-footer" th:insert="~{admin_common::admin-footer}"></div>
 </body>
 
