@@ -13,12 +13,10 @@
 	<h1>商品詳細</h1>
 	<div class="container">
 		<div class="left-contents">
-			
+
 			<!-- 期間限定ラベル -->
-			<div class="Limited-label" 
-				th:if="${item.isLimited}" 
-				th:text="'期間限定!'"></div>
-				
+			<div class="Limited-label" th:if="${item.isLimited}" th:text="'期間限定!'"></div>
+
 			<img th:src="@{${item.imagePath}}" alt="Item Image" class="image">
 		</div>
 		<div class="right-contents">
@@ -71,6 +69,8 @@
 
 	<div th:insert="~{user_common :: footer}"></div>
 	<script th:src="@{/js/user/item/detail.js}"></script>
+	<script th:src="@{/js/user/common/user_common.js}"></script>
+
 </body>
 
 </html>

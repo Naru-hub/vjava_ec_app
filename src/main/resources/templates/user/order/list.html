@@ -26,7 +26,9 @@
 					<div th:object="${order.orderItems[0]}" class="itemDetails">
 						<div>商品名：<span th:text="*{item.name}"></span></div>
 						<div>個数：<span th:text="*{amount}">1</span>個</div>
-						<div>小計：<span th:text="*{#numbers.formatInteger(purchasePrice * amount,3,'COMMA')} + '円'"></span></div>
+						<div>小計：<span
+								th:text="*{#numbers.formatInteger(purchasePrice * amount,3,'COMMA')} + '円'"></span>
+						</div>
 					</div>
 				</div>
 				<div class="dots">・・・</div>
@@ -41,13 +43,16 @@
 					<div class="orderDate" th:text="${#strings.substring(order.createdAt, 0, 10)}"></div>
 				</div>
 				<a th:href="@{/user/order/{id}(id=${order.id})}" class="detailLink">詳細を見る</a>
-				<div class="totalPrice">合計　<span th:text="${#numbers.formatInteger(order.totalPrice,3,'COMMA')} + '円'"></span></div>
+				<div class="totalPrice">合計　<span
+						th:text="${#numbers.formatInteger(order.totalPrice,3,'COMMA')} + '円'"></span></div>
 
 			</div>
 		</div>
 	</div>
 
 	<div th:insert="~{user_common :: footer}"></div>
+	<script th:src="@{/js/user/common/user_common.js}"></script>
+
 </body>
 
 </html>
