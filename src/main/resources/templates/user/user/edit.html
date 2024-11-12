@@ -10,12 +10,12 @@
 
 <body>
 	<div th:insert="~{user_common :: header}"></div>
+
 	<h2>会員情報編集</h2>
 	<div class="container">
 		<form th:object="${form}" th:action="@{/user/update}" method="post">
 			<div class="user-edit-form">
 				<input type="hidden" th:field="*{userId}">
-
 				<div class="form-group">
 					<label for="name">名前　　　　　</label>
 					<input type="text" id="name" th:field="*{name}" placeholder="名前を入力">
@@ -41,23 +41,16 @@
 					<input type="text" th:field="*{tel}" placeholder="電話番号を入力">
 					<div class="error" th:if="${#fields.hasErrors('tel')}" th:errors="*{tel}"></div>
 				</div>
-
 				<button class="button-keep" type="submit">保存</button>
-
-
 				<form action="/user/detail" method="get">
 					<button class="button-cancel" type="submit">キャンセル</button>
 				</form>
-
 			</div>
-
 		</form>
-
 	</div>
 
 	<div th:insert="~{user_common :: footer}"></div>
 	<script th:src="@{/js/user/common/user_common.js}"></script>
-
 </body>
 
 </html>ml>

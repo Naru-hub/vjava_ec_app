@@ -9,10 +9,8 @@
 </head>
 
 <body>
-	<!-- ヘッダーのインクルード -->
 	<div th:insert="~{user_common :: header}"></div>
 
-	<!-- 注文履歴詳細のタイトル -->
 	<h1>注文履歴詳細</h1>
 
 	<!-- 注文情報 -->
@@ -44,7 +42,8 @@
 						</div>
 						<div class="item-row">
 							<div class="label">価格</div>
-							<div class="value" th:text="${#numbers.formatInteger(orderItem.purchasePrice,3,'COMMA')} + '円'"></div>
+							<div class="value"
+								th:text="${#numbers.formatInteger(orderItem.purchasePrice,3,'COMMA')} + '円'"></div>
 						</div>
 						<div class="item-row">
 							<div class="label">個数</div>
@@ -53,7 +52,9 @@
 					</div>
 					<div class="item-total">
 						<p class="label">小計</p>
-						<p th:text="${#numbers.formatInteger(orderItem.purchasePrice * orderItem.amount,3,'COMMA')} + '円'"></p>
+						<p
+							th:text="${#numbers.formatInteger(orderItem.purchasePrice * orderItem.amount,3,'COMMA')} + '円'">
+						</p>
 					</div>
 				</div>
 			</div>
@@ -106,10 +107,8 @@
 		</div>
 	</div>
 
-	<!-- フッターのインクルード -->
 	<div th:insert="~{user_common :: footer}"></div>
 	<script th:src="@{/js/user/common/user_common.js}"></script>
-
 </body>
 
 </html>
