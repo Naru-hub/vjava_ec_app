@@ -23,20 +23,14 @@
 
 		<a th:href="@{'/user/item/' + ${item.id}}" th:each="item : ${items}" class="item-card">
 			<!-- 在庫切れラベル -->
-		    <div class="status-label" 
-				th:if="${item.saleStatus == 2}" 
-				th:text="'在庫切れ'"></div>
-		    
-		    <!-- 販売終了ラベル -->
-		    <div class="status-label" 
-				th:if="${item.saleStatus == 3}" 
-				th:text="'販売終了'"></div>
-				 
+			<div class="status-label" th:if="${item.saleStatus == 2}" th:text="'在庫切れ'"></div>
+
+			<!-- 販売終了ラベル -->
+			<div class="status-label" th:if="${item.saleStatus == 3}" th:text="'販売終了'"></div>
+
 			<!-- 期間限定ラベル -->
-			<div class="Limited-label" 
-				th:if="${item.isLimited}" 
-				th:text="'期間限定!'"></div>
-				 
+			<div class="Limited-label" th:if="${item.isLimited}" th:text="'期間限定!'"></div>
+
 			<img th:src="@{${item.imagePath}}" alt="商品画像">
 			<div class="item-details">
 				<h3 th:text="${item.name}">商品名</h3>
@@ -44,7 +38,9 @@
 			</div>
 		</a>
 	</div>
+
 	<div th:insert="~{user_common :: footer}"></div>
+	<script th:src="@{/js/user/common/user_common.js}"></script>
 </body>
 
 </html>

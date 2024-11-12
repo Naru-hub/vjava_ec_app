@@ -10,6 +10,7 @@
 
 <body>
 	<div id="admin-header" th:insert="~{admin_common::admin-header}"></div>
+
 	<div class="container" style="min-height: 800px;">
 		<div class="row">
 			<div class="col-md-10 offset-md-1 mt-3 text-center">
@@ -81,15 +82,13 @@
 					</tr>
 					<tr>
 						<th>登録日時</th>
-						<td
-							th:text="${item.createdAt.format(T(java.time.format.DateTimeFormatter)
+						<td th:text="${item.createdAt.format(T(java.time.format.DateTimeFormatter)
 								.ofPattern('yyyy/MM/dd HH:mm:ss'))}">
 						</td>
 					</tr>
 					<tr>
 						<th>更新日時</th>
-						<td
-							th:text="${item.updatedAt.format(T(java.time.format.DateTimeFormatter)
+						<td th:text="${item.updatedAt.format(T(java.time.format.DateTimeFormatter)
 								.ofPattern('yyyy/MM/dd HH:mm:ss'))}">
 						</td>
 					</tr>
@@ -108,6 +107,7 @@
 			</div>
 		</div>
 	</div>
+
 	<div id="admin-footer" th:insert="~{admin_common::admin-footer}"></div>
 	<script th:src="@{/js/admin/item/detail.js}"></script>
 </body>

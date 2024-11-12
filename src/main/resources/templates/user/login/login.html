@@ -9,7 +9,6 @@
 </head>
 
 <body>
-
 	<div th:insert="~{user_common :: header}"></div>
 
 	<div class="login-container">
@@ -34,11 +33,11 @@
 			<form th:action="@{/user/authentication}" method="post">
 				<div class="form-group">
 					<label for="email">メールアドレス</label>
-					<input type="text" id="email" name="email" placeholder="メールアドレスを入力" >
+					<input type="text" id="email" name="email" placeholder="メールアドレスを入力">
 				</div>
 				<div class="form-group">
 					<label for="password">パスワード</label>
-					<input type="password" id="password" name="password" placeholder="パスワードを入力" >
+					<input type="password" id="password" name="password" placeholder="パスワードを入力">
 				</div>
 				<button type="submit">ログイン</button>
 			</form>
@@ -51,7 +50,6 @@
 	</div>
 
 	<div th:insert="~{user_common :: footer}"></div>
-	
 	<script th:src="@{/js/user/common/user_common.js}"></script>
 </body>
 

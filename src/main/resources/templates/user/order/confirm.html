@@ -72,9 +72,9 @@
 					<button type="submit" class="cancel-button">キャンセル</button>
 				</form>
 				<form th:action="@{/user/order/create}" method="post" onsubmit="return disableButton(this)">
-				    <button type="submit" class="blue-button" id="submitButton">
-				        購入確定
-				    </button>
+					<button type="submit" class="blue-button" id="submitButton">
+						購入確定
+					</button>
 				</form>
 			</div>
 		</div>
@@ -103,6 +103,7 @@
 
 	<div th:insert="~{user_common :: footer}"></div>
 	<script th:src="@{/js/user/order/confirm.js}"></script>
+	<script th:src="@{/js/user/common/user_common.js}"></script>
 </body>
 
 </html>

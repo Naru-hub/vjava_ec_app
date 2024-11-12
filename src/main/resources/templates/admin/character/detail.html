@@ -11,13 +11,14 @@
 
 <body>
 	<div id="admin-header" th:insert="~{admin_common::admin-header}"></div>
+
 	<div class="container my-4" style="min-height: 780px;">
 		<div class="row">
 			<div class="col-md-10 mt-3 text-center">
 				<h1>キャラクター詳細</h1>
 			</div>
 		</div>
-		
+
 		<div class="row">
 			<!-- フラッシュメッセージの表示 -->
 			<div th:if="${message}" th:text="${message}" class="col-md-5 alert alert-primary" role="alert">
@@ -90,6 +91,7 @@
 			</div>
 		</div>
 	</div>
+
 	<div id="admin-footer" th:insert="~{admin_common::admin-footer}"></div>
 	<script th:src="@{/js/admin/character/detail.js}"></script>
 </body>

@@ -10,8 +10,8 @@
 
 <body>
 	<div th:insert="~{user_common :: header}"></div>
-	<div class="container">
 
+	<div class="container">
 		<h1>ご購入ありがとうございました</h1>
 		<div class="button-area">
 			<button id="homeButton">ホーム画面へ</button>
@@ -20,6 +20,7 @@
 
 	<div th:insert="~{user_common :: footer}"></div>
 	<script th:src="@{/js/user/order/complete.js}"></script>
+	<script th:src="@{/js/user/common/user_common.js}"></script>
 </body>
 
 </html>

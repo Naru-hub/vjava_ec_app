@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
 	<meta charset="UTF-8">
 	<link th:href="@{/css/user/login/reset.css}" rel="stylesheet">
 	<link th:href="@{/css/user/common/user_common.css}" rel="stylesheet">
 	<title>パスワードの再設定</title>
 </head>
+
 <body>
 	<div th:insert="~{user_common :: header}"></div>
-	
+
 	<div class="container">
 		<h1>パスワード再設定メールの送信</h1>
 		<div th:if="${tokenError}" th:text="${tokenError}"></div>
@@ -21,9 +23,11 @@
 			</div>
 			<button type="submit" id="submitButton">再設定のメールを送る</button>
 		</form>
-	</div>	
+	</div>
 
 	<div th:insert="~{user_common :: footer}"></div>
 	<script th:src="@{/js/user/login/reset.js}"></script>
+	<script th:src="@{/js/user/common/user_common.js}"></script>
 </body>
+
 </html>

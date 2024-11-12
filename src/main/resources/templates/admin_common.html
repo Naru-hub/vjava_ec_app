@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
 <head>
 	<meta charset="UTF-8">
@@ -12,23 +11,28 @@
 <body>
 	<!-- 管理者側：ヘッダー -->
 	<div th:fragment="admin-header">
-		<nav class="navbar bg-info border-bottom border-bottom-info navbar-expand-lg bg-body-tertiary" style="min-height: 50px;">
+		<nav class="navbar bg-info border-bottom border-bottom-info navbar-expand-lg bg-body-tertiary"
+			style="min-height: 50px;">
 			<div class="container-fluid d-flex justify-content-end">
 				<ul class="navbar-nav">
 					<li sec:authorize="isAuthenticated()" class="nav-item">
-						<a class="nav-link text-white mx-2" th:href="@{/admin/item/list}"><i class="fa-solid fa-cart-shopping"></i>
+						<a class="nav-link text-white mx-2" th:href="@{/admin/item/list}"><i
+								class="fa-solid fa-cart-shopping"></i>
 							商品一覧</a>
 					</li>
 					<li sec:authorize="isAuthenticated()" class="nav-item">
-						<a class="nav-link text-white mx-2" th:href="@{/admin/user/list}"><i class="fa-solid fa-users"></i>
+						<a class="nav-link text-white mx-2" th:href="@{/admin/user/list}"><i
+								class="fa-solid fa-users"></i>
 							会員一覧</a>
 					</li>
 					<li sec:authorize="isAuthenticated()" class="nav-item">
-						<a class="nav-link text-white mx-2" th:href="@{/admin/order/list}"><i class="fa-solid fa-truck"></i>
+						<a class="nav-link text-white mx-2" th:href="@{/admin/order/list}"><i
+								class="fa-solid fa-truck"></i>
 							注文履歴一覧</a>
 					</li>
 					<li sec:authorize="isAuthenticated()" class="nav-item">
-						<a class="nav-link text-white mx-2" th:href="@{/admin/character/list}"><i class="fa-solid fa-face-smile"></i>
+						<a class="nav-link text-white mx-2" th:href="@{/admin/character/list}"><i
+								class="fa-solid fa-face-smile"></i>
 							キャラクター一覧</a>
 					</li>
 					<li sec:authorize="isAuthenticated()" class="nav-item mx-2">
