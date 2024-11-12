@@ -178,3 +178,7 @@
   ---
 ![スクリーンショット (121)](https://github.com/user-attachments/assets/05a70a52-ae74-4ad3-8994-1cd44ee7245a)
   </details>
+
+## 引用
+ ### ぶいすぽっ！ 公式サイト：https://vspo.jp/
+ ※グループワークの学習として作成したため、商用目的等や予定などは一切ありません。
