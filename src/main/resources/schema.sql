@@ -3,7 +3,6 @@ DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS admin;
 DROP TABLE IF EXISTS characters CASCADE;
 DROP TABLE IF EXISTS items CASCADE;
-DROP TABLE IF EXISTS cart_items;
 DROP TABLE IF EXISTS orders CASCADE;
 DROP TABLE IF EXISTS order_items;
 -- 会員テーブル
@@ -61,19 +60,6 @@ CREATE TABLE items
    updated_at TIMESTAMP without time zone NOT NULL,
    -- キャラクタテーブルへの外部キー制約
    FOREIGN KEY (character_id) REFERENCES characters (id)
-);
--- カート・アイテムテーブル
-CREATE TABLE cart_items
-(
-   id SERIAL PRIMARY KEY,
-   user_id INTEGER NOT NULL,
-   item_id INTEGER NOT NULL,
-   amount INTEGER NOT NULL,
-   created_at TIMESTAMP without time zone NOT NULL,
-   updated_at TIMESTAMP without time zone NOT NULL,
-   -- 会員・商品テーブルへの外部キー制約
-   FOREIGN KEY (user_id) REFERENCES users (id),
-   FOREIGN KEY (item_id) REFERENCES items (id)
 );
 -- 注文テーブル
 CREATE TABLE orders
