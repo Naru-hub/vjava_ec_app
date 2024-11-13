@@ -12,6 +12,11 @@
 **開発者数**：4名
 
 ## 設計書
+<details><summary>要件定義</summary>
+    
+![要件定義](https://github.com/user-attachments/assets/5b778434-d941-4217-a5fd-1bc0e4fe7b84)
+</details>
+
 <details><summary>ER図</summary>
     
 ![ER](https://github.com/user-attachments/assets/3abf5661-ba24-4128-8a6b-a8b723315577)
