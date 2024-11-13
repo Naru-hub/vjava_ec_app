@@ -3,7 +3,13 @@
 ![スクリーンショット (75)](https://github.com/user-attachments/assets/2017644c-a3f2-4cd0-aed9-8befe9d2485b)
 
 ## アプリ概要
-**チーム開発**で制作したVチューバーグッズの**ECサイト** 
+チーム開発で制作したVチューバーグッズのECサイト
+
+**期間**：10/7～11/8
+
+**実働日数**：19日
+
+**開発者数**：4名
 
 ## 設計書
 <details><summary>ER図</summary>
