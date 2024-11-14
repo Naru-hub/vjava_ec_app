@@ -43,9 +43,11 @@
   
 <details><summary>ワイヤーフレーム</summary>
     
+- 会員側
 ![ワイヤーフレーム会員サイド](https://github.com/user-attachments/assets/5529b1e8-7b7f-4237-a987-8ae825962a40)
 
 ---
+- 管理者側
 ![ワイヤーフレーム管理者サイド](https://github.com/user-attachments/assets/3d2a6ce5-290d-4fdb-9ea8-7155f5d90228)
 </details>
 
