@@ -125,10 +125,6 @@ public class UserServiceImpl implements UserService{
 		if(checkUser != null) {
 			 throw new Exception("そのメールアドレスは既に登録されています");
 		}
-		//パスワード一致チェック
-		if(!signupUserForm.getPassword().equals(signupUserForm.getPasswordConfirm())) {
-			throw new Exception("パスワードが一致しません");
-		}
 	
 		//フォームからエンティティに変換
 		User user = new User();
