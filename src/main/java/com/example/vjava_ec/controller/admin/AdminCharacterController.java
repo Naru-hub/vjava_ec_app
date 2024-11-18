@@ -1,6 +1,7 @@
 package com.example.vjava_ec.controller.admin;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -104,6 +105,17 @@ public class AdminCharacterController {
 			return "admin/character/new";
 		}
 
+		// 名前のユニーク制約違反エラーがあるかどうか
+		List<Character> characterList = adminCharacterService.findAll();
+		for (Character chara : characterList) {
+			if (form.getName().equals(chara.getName())) {
+				// ユニーク制約違反エラーの場合
+				bindingResult.rejectValue("name", "error.name", "このキャラクタ名はすでに使用されています。");
+				// 新規登録画面へ遷移
+				return "admin/character/new";
+			}
+		}
+
 		// 画像ファイルの処理
 		try {
 			// ファイルがnullでなく、空でなければ、処理を実行
@@ -169,7 +181,7 @@ public class AdminCharacterController {
 			return "redirect:/admin/character/" + id;
 		}
 	}
-	
+
 	/**
 	 * キャラクタ情報を編集する
 	 * 
@@ -199,6 +211,19 @@ public class AdminCharacterController {
 			attributes.addFlashAttribute("errorMessage", "対象データがありません");
 			// 詳細画面へリダイレクト
 			return "redirect:/admin/character/" + form.getId();
+		}
+
+		// 名前のユニーク制約違反エラーがあるかどうか
+		List<Character> characterList = adminCharacterService.findAll();
+		for (Character chara : characterList) {
+			if (form.getName().equals(chara.getName()) && !(form.getName().equals(existingCharacter.getName()))) {
+				// ユニーク制約違反エラーの場合
+				bindingResult.rejectValue("name", "error.name", "このキャラクタ名はすでに使用されています。");
+				model.addAttribute("adminCharacterForm", form);
+
+				// 編集画面へ遷移
+				return "admin/character/edit";
+			}
 		}
 
 		// 編集するイメージファイル名とイメージパス
@@ -265,7 +290,7 @@ public class AdminCharacterController {
 			return "admin/character/edit";
 		}
 	}
-	
+
 	/**
 	 * 指定されたIDのキャラクタを削除(論理削除)
 	 * 
