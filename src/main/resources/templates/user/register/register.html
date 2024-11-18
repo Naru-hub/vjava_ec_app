@@ -16,7 +16,7 @@
 	<!-- フォーム開始 -->
 	<div class="container">
 		<h2>会員新規登録</h2>
-		<!-- メールアドレス重複エラー -->
+		<!-- メールアドレス登録時重複エラー -->
 		<div th:if="${error}" th:text="${error}" style="color: red;"></div>
 		
 		<form action="#" method="post" th:action="@{/user/register}" th:object="${signupUserForm}"
