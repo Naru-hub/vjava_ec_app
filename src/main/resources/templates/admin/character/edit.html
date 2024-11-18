@@ -10,7 +10,7 @@
 
 <body>
 	<div id="admin-header" th:insert="~{admin_common::admin-header}"></div>
-	
+
 	<div class="container" style="min-height: 750px;">
 		<div class="row">
 			<!-- フラッシュメッセージの表示 -->
@@ -52,8 +52,8 @@
 					<!-- 身長 -->
 					<div class="my-3 d-flex flex-row">
 						<label for="heightInput" class="col-md-3 form-label">身長</label>
-						<input type="number" th:field="*{height}" class="col-md-8 form-control" id="heightInput"
-							min="0" placeholder="身長を入力">
+						<input type="number" th:field="*{height}" class="col-md-8 form-control" id="heightInput" min="0"
+							placeholder="身長を入力">
 						<p class="form-text ml-2">cm</p>
 						<span th:if="${#fields.hasErrors('height')}" th:errors="*{height}" class="col-md-10"
 							style="color: red;"></span>
@@ -78,7 +78,7 @@
 					<!-- ボタン -->
 					<div class="my-4 col-md-8 offset-md-4 d-flex flex-row text-center">
 						<!-- キャンセルボタンを表示 -->
-						<a th:href="@{/admin/character/{id}(id=${id})}" class="btn btn-outline-secondary mr-3">キャンセル</a>
+						<a th:href="@{/admin/character/{id}(id=${adminCharacterForm.id})}" class="btn btn-outline-secondary mr-3">キャンセル</a>
 						<!-- 保存ボタンを表示 -->
 						<input type="submit" value="保存" class="btn btn-outline-info mx-3">
 					</div>
@@ -86,7 +86,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<div id="admin-footer" th:insert="~{admin_common::admin-footer}"></div>
 </body>
 
