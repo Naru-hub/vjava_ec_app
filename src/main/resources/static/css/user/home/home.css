@@ -30,3 +30,41 @@ h1 {
 	margin-bottom: 100px;
 	background-color: #dbdbff;
 }
+
+.carousel-inner img {
+        width: 100%; /* 横幅を親要素いっぱいにする */
+        height: auto; /* 縦横比を保つ */
+        max-height: 500px; /* 最大高さを設定 */
+        object-fit: contain; /* 縦横比を維持して画像を全体表示 */
+    }
+    
+    .carousel-control-prev-icon {
+    background-color: rgba(255, 102, 0, 0.7); /* 半透明の黒背景 */
+    border-radius: 50%; /* 丸い形にする */
+    width: 50px;
+    height: 50px;
+    background-size: 50%; /* アイコンのサイズ調整 */
+    background-repeat: no-repeat;
+}
+
+/* 右のボタン（next）のスタイル */
+.carousel-control-next-icon {
+    background-color: rgba(255, 102, 0, 0.7); /* 半透明のオレンジ背景 */
+    border-radius: 50%; /* 丸い形にする */
+    width: 50px;
+    height: 50px;
+    background-size: 50%; /* アイコンのサイズ調整 */
+    background-repeat: no-repeat;
+}
+
+/* ホバー時の効果を追加（オプション） */
+.carousel-control-prev-icon:hover,
+.carousel-control-next-icon:hover {
+    background-color: rgba(0, 0, 0, 0.8); /* ホバーで背景を濃くする */
+}
+
+/* ボタン自体の位置を微調整（必要に応じて） */
+.carousel-control-prev, 
+.carousel-control-next {
+    width: 5%; /* ボタン領域の幅を調整 */
+}
