@@ -37,7 +37,7 @@ h1 {
 .Limited-label {
     position: absolute;
     top: 80px;
-    right: 10px;
+    left: 120px;
     background-color: rgb(255, 69, 58); /* 鮮やかな赤色背景 */
     color: white;
     padding: 5px 10px;

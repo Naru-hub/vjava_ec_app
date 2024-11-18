@@ -36,6 +36,14 @@ a {
     display: flex;
     flex-direction: column;
     position: relative;
+    opacity: 0; /* 透明 */
+    transform: translateY(50px); /* 下に50px移動 */
+    transition: opacity 0.5s ease, transform 0.5s ease; /* アニメーション */
+}
+
+.item-card.active {
+    opacity: 1; /* 不透明 */
+    transform: translateY(0); /* 元の位置に戻る */
 }
 
 .item-card:hover {
@@ -99,22 +107,6 @@ a {
     color: #696969;
     margin-top: auto;
     text-align: right;
-}
-
-.detail-link {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 5px 10px;
-    background-color: #1e90ff;
-    color: white;
-    text-decoration: none;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
-    text-align: center;
-}
-
-.detail-link:hover {
-    background-color: #4178F3;
 }
 
 @media (max-width: 1200px) {

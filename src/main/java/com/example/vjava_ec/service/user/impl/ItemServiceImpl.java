@@ -83,5 +83,14 @@ public class ItemServiceImpl implements ItemService{
     public List<Item> searchItems(String keyword) {
         return itemMapper.findItemSearch(keyword);
     }
+
+    /**
+     * 新着商品を８つ取得
+     * @return List<Item> 新着商品８つのList
+     */
+	@Override
+	public List<Item> selectNewItems() {
+		return itemMapper.findNewItems();
+	}
 }
 

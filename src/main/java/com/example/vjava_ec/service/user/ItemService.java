@@ -28,4 +28,9 @@ public interface ItemService {
      * 商品名で部分一致検索
      */
     List<Item> searchItems(String keyword);
+    
+    /**
+     * 新着商品の取得
+     */
+    List<Item> selectNewItems();
 }

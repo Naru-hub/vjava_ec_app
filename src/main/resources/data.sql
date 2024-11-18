@@ -433,7 +433,7 @@ VALUES
    '胡桃のあの衣装モチーフキーホルダー。',
    1000,
    10,
-   3,
+   2,
    false,
    false,
    '/images/item/noa_kurumi-05.jpg',
