@@ -48,7 +48,7 @@ CREATE TABLE items
 (
    id SERIAL PRIMARY KEY,
    character_id INTEGER,
-   name VARCHAR (255) NOT NULL UNIQUE,
+   name VARCHAR (255) NOT NULL,
    detail TEXT NOT NULL,
    price INTEGER NOT NULL,
    stock INTEGER NOT NULL,
