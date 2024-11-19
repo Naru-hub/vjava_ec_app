@@ -45,7 +45,7 @@ public interface ItemMapper {
 	List<Item> findItemSearch(@Param("keyword") String keyword);
 	
 	/**
-	 * 新着商品を8つ取得
+	 * 新着商品を取得
 	 */
 	List<Item> findNewItems();
 }

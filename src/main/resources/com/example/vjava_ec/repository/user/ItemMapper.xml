@@ -82,7 +82,7 @@
          AND name ILIKE '%' || #{keyword} || '%';
     </select>
     
-    <!-- 新着商品を８つ取得 -->
+    <!-- 新着商品を取得 -->
     <select id="findNewItems" resultType="com.example.vjava_ec.entity.Item">
     	SELECT id, name, detail, price, stock, sale_status as saleStatus, 
 		       is_limited as isLimited, is_deleted as isDeleted, image_path as imagePath, 

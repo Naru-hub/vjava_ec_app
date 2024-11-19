@@ -53,7 +53,6 @@
 		</div>
 		<!-- 商品リスト -->
 		<div class="item-grid">
-
 			<a th:href="@{'/user/item/' + ${item.id}}" th:each="item : ${newItems}" class="item-card">
 				<!-- 在庫切れラベル -->
 				<div class="status-label" th:if="${item.saleStatus == 2}" th:text="'在庫切れ'"></div>

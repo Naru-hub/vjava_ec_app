@@ -85,8 +85,8 @@ public class ItemServiceImpl implements ItemService{
     }
 
     /**
-     * 新着商品を８つ取得
-     * @return List<Item> 新着商品８つのList
+     * 新着商品を取得
+     * @return List<Item> 新着商品のList
      */
 	@Override
 	public List<Item> selectNewItems() {

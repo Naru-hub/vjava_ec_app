@@ -38,16 +38,16 @@ h1 {
     position: absolute;
     top: 80px;
     left: 120px;
-    background-color: rgb(255, 69, 58); /* 鮮やかな赤色背景 */
+    background-color: rgb(255, 69, 58);
     color: white;
     padding: 5px 10px;
     font-size: 12px;
     font-weight: bold;
     border-radius: 3px;
     z-index: 2;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 少し浮いているような影 */
-    text-transform: uppercase; /* すべて大文字にして強調 */
-    letter-spacing: 1px; /* 文字間隔を広く */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 1px; 
 }
 
 .image {

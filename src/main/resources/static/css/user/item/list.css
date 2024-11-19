@@ -36,14 +36,14 @@ a {
     display: flex;
     flex-direction: column;
     position: relative;
-    opacity: 0; /* 透明 */
-    transform: translateY(50px); /* 下に50px移動 */
-    transition: opacity 0.5s ease, transform 0.5s ease; /* アニメーション */
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .item-card.active {
-    opacity: 1; /* 不透明 */
-    transform: translateY(0); /* 元の位置に戻る */
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .item-card:hover {
@@ -61,23 +61,23 @@ a {
     font-size: 12px;
     font-weight: bold;
     border-radius: 3px;
-    z-index: 2; /* 画像よりも上に表示 */
+    z-index: 2;
 }
 
 .Limited-label {
     position: absolute;
     top: 20px;
     right: 20px;
-    background-color: rgb(255, 69, 58); /* 鮮やかな赤色背景 */
+    background-color: rgb(255, 69, 58);
     color: white;
     padding: 5px 10px;
     font-size: 12px;
     font-weight: bold;
     border-radius: 3px;
     z-index: 2;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 少し浮いているような影 */
-    text-transform: uppercase; /* すべて大文字にして強調 */
-    letter-spacing: 1px; /* 文字間隔を広く */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .item-card img {
