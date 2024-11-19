@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.vjava_ec.entity.Item;
 import com.example.vjava_ec.service.user.ItemService;
-import com.example.vjava_ec.service.user.UserService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -25,7 +24,6 @@ public class ItemController {
 	
 	//DI
     private final ItemService itemService;
-    private final UserService userService;
 
     /**
      * 商品一覧を表示
