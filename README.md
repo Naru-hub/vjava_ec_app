@@ -1,6 +1,7 @@
 # VJava ECサイト
 
-![スクリーンショット (75)](https://github.com/user-attachments/assets/2017644c-a3f2-4cd0-aed9-8befe9d2485b)
+![スクリーンショット (135)](https://github.com/user-attachments/assets/667e68dd-0532-4a4f-9fd7-6bdc0a2b23b6)
+![スクリーンショット (134)](https://github.com/user-attachments/assets/f15097bf-2da5-4df3-ae56-0f41fd7f9a92)
 
 ## アプリ概要
 チーム開発で制作したVチューバーグッズのECサイト
@@ -24,10 +25,10 @@
 
 <details><summary>機能一覧</summary>
   
-![機能一覧(会員)](https://github.com/user-attachments/assets/e23bd3f9-f647-4097-aa75-f4c3b6588ccc)
+![スクリーンショット (128)](https://github.com/user-attachments/assets/6ec5d50f-31c2-4a7c-a645-8165905896a7)
 
 ---
-![機能一覧(管理者)](https://github.com/user-attachments/assets/a0f16cd4-b823-4b8d-b196-97cfc93cf650)
+![スクリーンショット (129)](https://github.com/user-attachments/assets/0b75611e-5dd6-406a-b863-c88451452f17)
 </details>
 
 <details><summary>ルーティング設計</summary>
@@ -72,7 +73,7 @@
   <details><summary>商品一覧表示画面</summary>
 
   #### 一覧にて登録されている商品一覧を確認可能
- ![スクリーンショット (100)](https://github.com/user-attachments/assets/1674333e-ca90-44d9-8fb0-52bdb56622e3)
+![スクリーンショット (127)](https://github.com/user-attachments/assets/67e8c0de-4b16-4a00-a8f8-a5bd6f16622b)
   </details>
 
   ### 商品詳細 
