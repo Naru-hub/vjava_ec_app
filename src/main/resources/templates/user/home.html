@@ -3,6 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 	<link th:href="@{/css/user/home/home.css}" rel="stylesheet">
 	<link th:href="@{/css/user/common/user_common.css}" rel="stylesheet">
 	<title>ホーム</title>
@@ -10,13 +11,73 @@
 
 <body>
 	<div th:insert="~{user_common :: header}"></div>
+	<!-- カルーセル -->
+	<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+		<!-- インジケーター -->
+		<div class="carousel-indicators">
+			<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+				aria-current="true" aria-label="Slide 1"></button>
+			<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+				aria-label="Slide 2"></button>
+		</div>
+		<!-- 画像スライド -->
+		<div class="carousel-inner">
+			<div class="carousel-item active">
+				<a href="https://vspo.jp/">
+					<img src="/images/default/user/home/vspo-home.png" class="d-block w-100" alt="スライド1">
+				</a>
+			</div>
+			<div class="carousel-item">
+				<a href="/user/item/4">
+					<img src="/images/default/user/home/limited-01.png" class="d-block w-100" alt="スライド2">
+				</a>
+			</div>
+		</div>
+		<!-- ナビゲーションボタン -->
+		<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+			data-bs-slide="prev">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">前へ</span>
+		</button>
+		<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+			data-bs-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">次へ</span>
+		</button>
+	</div>
 
-	<div class="img-area">
-		<h1>VJava ECサイト</h1>
+	<div>
+		<div class="newTitle">
+			<h2>NEW ARRIVAL</h2>
+			<div>新商品</div>
+		</div>
+		<!-- 商品リスト -->
+		<div class="item-grid">
+			<a th:href="@{'/user/item/' + ${item.id}}" th:each="item : ${newItems}" class="item-card">
+				<!-- 在庫切れラベル -->
+				<div class="status-label" th:if="${item.saleStatus == 2}" th:text="'在庫切れ'"></div>
+
+				<!-- 販売終了ラベル -->
+				<div class="status-label" th:if="${item.saleStatus == 3}" th:text="'販売終了'"></div>
+
+				<!-- 期間限定ラベル -->
+				<div class="Limited-label" th:if="${item.isLimited}" th:text="'期間限定!'"></div>
+
+				<img th:src="@{${item.imagePath}}" alt="商品画像">
+				<div class="item-details">
+					<h3 th:text="${item.name}">商品名</h3>
+					<p class="price" th:text="*{#numbers.formatInteger(item.price,3,'COMMA')} + '円(税込)'">価格</p>
+				</div>
+			</a>
+		</div>
+
 	</div>
 
 	<div th:insert="~{user_common :: footer}"></div>
 	<script th:src="@{/js/user/common/user_common.js}"></script>
+	<script th:src="@{/js/user/home/home.js}"></script>
+	<!-- BootstrapのJS -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

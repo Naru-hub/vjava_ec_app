@@ -43,4 +43,9 @@ public interface ItemMapper {
 	 * 削除フラグがfalseの商品からkeywordに部分一致検索した商品を取得
 	 */
 	List<Item> findItemSearch(@Param("keyword") String keyword);
+	
+	/**
+	 * 新着商品を取得
+	 */
+	List<Item> findNewItems();
 }
