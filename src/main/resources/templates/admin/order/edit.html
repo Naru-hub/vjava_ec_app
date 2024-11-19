@@ -28,21 +28,20 @@
 
 		<div class="row mt-3">
 			<!-- 注文情報 -->
-			<div class="col-md-6 info-base">
+			<div class="col-md-7 info-base">
 				<h3 class="text-center">注文情報</h3>
 				<div class="row">
-					<div class="col-md-8">
-
+					<div class="col-md-7">
 						<form th:action="@{/admin/order/update}" th:object="${adminOrderForm}" method="post">
 							<!-- idは更新時に必要なため、hiddenで持つ -->
-							<span class="my-3 d-flex flex-row">
+							<span>
 								<input type="hidden" th:field="*{orderId}">
 							</span>
 
 							<!-- 注文ステータス -->
-							<div class="my-3 d-flex flex-row">
-								<label for="orderStatus" class="col-md-3 form-label">注文ステータス</label>
-								<select th:field="*{orderStatus}" id="orderStatus" class="col-md-8 form-control">
+							<div class="mx-3">
+								<label for="orderStatus" class="form-label">注文ステータス</label>
+								<select th:field="*{orderStatus}" id="orderStatus" class="col-md-7 form-control">
 									<option value="1">受付済</option>
 									<option value="2">発送準備中</option>
 									<option value="3">発送済</option>
@@ -52,7 +51,7 @@
 									class="col-md-10" style="color: red;"></span>
 							</div>
 					</div>
-					<div class="col-md-4">
+					<div class="col-md-5">
 						<dl>
 							<div class="d-flex flex-row">
 								<dt class="ml-5">支払い方法：</dt>
@@ -136,7 +135,7 @@
 				</div>
 			</div>
 
-			<div class="col-md-6 mb-1">
+			<div class="col-md-5 mb-1">
 				<!-- 注文者情報 -->
 				<div class="col-md-12 mb-1 info-base">
 					<h3 class="text-center">注文者情報</h3>
